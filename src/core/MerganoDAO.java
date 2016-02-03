@@ -295,7 +295,7 @@ public class MerganoDAO {
 // Insert data into database
     public boolean insertData(MerganoBean bean) {
         boolean flag = false;
-        try {  // + " VALUES(LAST_INSERT_ID(),'"
+        try {  
             String sql = "INSERT INTO " + table + " VALUES('"+bean.getID()+"','"
                                                             +bean.getProductID()+"','"
                                                             +bean.getCategory()+"','" 
@@ -374,7 +374,7 @@ public class MerganoDAO {
         return list;
     }
     
-    //TRUNCATE TABLE
+    //TRUNCATE (CLEAR) BACKLOG TABLE
      public void deleteBacklog() {
         ArrayList<MerganoBean> list = new ArrayList<>();
         MerganoBean stub = null;
@@ -410,7 +410,7 @@ public class MerganoDAO {
     }
     
     
-     // Delete data into database
+     // Delete data from database
     public boolean deleteData(MerganoBean bean, int n) {
         boolean flag = false;
         try {
