@@ -1,22 +1,22 @@
 package core;
 
 class MerganoBean {
-        private  int id;
-        private  String productID; 
-        private  String category;
-        private  String type; 
-        private  String manufacture; 
-        private  String name; 
-        private  String model; 
-        private  String description;
-        private  String cost; 
-        private  String quantity; 
-        private  String date;
-        private  String warranty;
+    private  int id;
+    private  String productID; 
+    private  String category;
+    private  String type; 
+    private  String manufacture; 
+    private  String name; 
+    private  String model; 
+    private  String description;
+    private  String cost; 
+    private  String quantity; 
+    private  String date;
+    private  String warranty;
         
-        private  int blid;
-        private  String history;
-        private  String time;
+    private  int blid;
+    private  String history;
+    private  String time;
     
     public int getBLID() {
         return blid;
@@ -36,7 +36,7 @@ class MerganoBean {
     public void setTime(String time) {
         this.time = time;
     }
-        
+      
     public int getID() {
         return id;
     }    
@@ -109,5 +109,4 @@ class MerganoBean {
     public void setWarranty(String warranty) {
         this.warranty = warranty;
     }
-   
 }

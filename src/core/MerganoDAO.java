@@ -55,7 +55,7 @@ public class MerganoDAO {
             Date dbSqlDate = rs.getDate("dated");
             stub.setImport(dbSqlDate.toString()); // SQL NOW
             list.add(stub);
-        }
+           }
         } catch (Exception e) { 
             e.printStackTrace(); // write log file
         }
