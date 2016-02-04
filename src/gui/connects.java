@@ -112,7 +112,7 @@ public class connects extends javax.swing.JFrame implements ActionListener {
 
         setas_default_db_checkbox.setText("Set as default database");
 
-        db_type_list.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MySQL", "MS SQL Server", "Oracle DB", "IBM DB2", "Redis (NoSQL)" }));
+        db_type_list.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MySQL", "MS SQL Server", "Oracle DB", "IBM DB2", "MS Access" }));
         db_type_list.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 db_type_listActionPerformed(evt);
@@ -280,6 +280,7 @@ public class connects extends javax.swing.JFrame implements ActionListener {
         if(d == 1) type = "odbc"; //mssql server
         if(d == 2) type = "oracle"; // oracle db
         if(d == 4) type = "db2"; // IBM db2
+        if(d == 5) type = "odbc" // ms access 
         cv.setUrl("jdbc:"+type+":"+hostname_box.getText()+":"+Integer.valueOf(port_box.getText())+"/"+database_box.getText());
         
         if(setas_default_db_checkbox.isSelected()) { 

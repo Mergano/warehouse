@@ -53,7 +53,7 @@ public class MerganoDAO {
             stub.setWarranty(rs.getString("warranty"));
             stub.setQuantity(rs.getString("quantity"));    
             Date dbSqlDate = rs.getDate("dated");
-            stub.setImport(dbSqlDate.toString()); // SQL NOW
+//            stub.setImport(dbSqlDate.toString()); // SQL NOW
             list.add(stub);
            }
         } catch (Exception e) { 

@@ -1907,6 +1907,11 @@ public class main extends javax.swing.JFrame {
 
         url_box.setEditable(false);
         url_box.setBackground(new java.awt.Color(255, 255, 255));
+        url_box.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                url_boxActionPerformed(evt);
+            }
+        });
 
         jLabel28.setText("Hostname");
 
@@ -3509,6 +3514,10 @@ public class main extends javax.swing.JFrame {
     private void cost_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cost_inputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cost_inputActionPerformed
+
+    private void url_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_url_boxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_url_boxActionPerformed
     private void updateBacklog(ArrayList<MerganoBean> list) {
         List<String[]> values = new ArrayList<String[]>();
         List<String> columns = new ArrayList<String>();       
