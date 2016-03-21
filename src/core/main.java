@@ -25,7 +25,7 @@ import org.jfree.data.general.DefaultPieDataset;
 
 
 public class main extends javax.swing.JFrame {
-
+    private login lo = null;
             
     public main() { 
         initComponents();
@@ -2064,6 +2064,11 @@ public class main extends javax.swing.JFrame {
         User_button.setMaximumSize(new java.awt.Dimension(70, 30));
         User_button.setMinimumSize(new java.awt.Dimension(62, 30));
         User_button.setPreferredSize(new java.awt.Dimension(62, 30));
+        User_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                User_buttonMouseClicked(evt);
+            }
+        });
         User_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 User_buttonActionPerformed(evt);
@@ -2687,25 +2692,21 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_exit_programActionPerformed
 
     private void login_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_menuitemActionPerformed
-        login lo = new login();
-        lo.setVisible(true);
-//        if(!lo.CurrentSession()) {
-//           body.setEnabled(false);
-//            }
-//        else {
-//           body.setEnabled(true);
-//        }
+        if(lo == null){
+            lo = new login();
+            lo.setVisible(true);  
+        }
     }//GEN-LAST:event_login_menuitemActionPerformed
 
     private void logout_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_menuitemActionPerformed
-        login lo = new login();
-  
+       if(lo == null) {
+           lo = new login();
         int logoutconfirm = JOptionPane.showConfirmDialog(this, "Are you sure do you want to Logout?", "Logout confirm", YES_NO_OPTION, QUESTION_MESSAGE);
         if (logoutconfirm == JOptionPane.YES_OPTION) {
              JOptionPane.showMessageDialog(null, "Logout sucessfully");
            lo.SetCurrentSession(false);
          }
-           //else {this.dispose();}
+       }
     }//GEN-LAST:event_logout_menuitemActionPerformed
 
     private void db_name_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_db_name_boxActionPerformed
@@ -3518,6 +3519,10 @@ public class main extends javax.swing.JFrame {
     private void url_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_url_boxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_url_boxActionPerformed
+
+    private void User_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_User_buttonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_User_buttonMouseClicked
     private void updateBacklog(ArrayList<MerganoBean> list) {
         List<String[]> values = new ArrayList<String[]>();
         List<String> columns = new ArrayList<String>();       

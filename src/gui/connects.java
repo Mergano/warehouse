@@ -280,7 +280,7 @@ public class connects extends javax.swing.JFrame implements ActionListener {
         if(d == 1) type = "odbc"; //mssql server
         if(d == 2) type = "oracle"; // oracle db
         if(d == 4) type = "db2"; // IBM db2
-        if(d == 5) type = "odbc" // ms access 
+        if(d == 5) type = "odbc"; // ms access 
         cv.setUrl("jdbc:"+type+":"+hostname_box.getText()+":"+Integer.valueOf(port_box.getText())+"/"+database_box.getText());
         
         if(setas_default_db_checkbox.isSelected()) { 
@@ -296,7 +296,6 @@ public class connects extends javax.swing.JFrame implements ActionListener {
 
         cv.showdata();
         this.dispose();
-        //main.body.setSelectedIndex(5);
     }
     else {
         remember_me_checkbox.setSelected(false);

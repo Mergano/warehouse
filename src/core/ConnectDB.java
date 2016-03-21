@@ -79,7 +79,7 @@ public class ConnectDB {
     public Connection getconnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver"); // Load JDBC MYSQL DRIVER
-            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:" + port + "/mergano_db","root","jukjukjuk"); 
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:" + "3306" + "/mergano","root","jukjukjuk"); 
                     // jdbc:mysql://localhost:3306/mergano_db", "root", "jukjukjuk"); 
             con.setAutoCommit(true);
             
