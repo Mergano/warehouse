@@ -21,17 +21,16 @@ import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
 import static javax.swing.JOptionPane.YES_NO_OPTION;
 import javax.swing.table.DefaultTableModel;
-import org.jfree.data.general.DefaultPieDataset;
-
+//import org.jfree.data.general.DefaultPieDataset;
 
 public class main extends javax.swing.JFrame {
+
     private login lo = null;
-            
-    public main() { 
+
+    public main() {
         initComponents();
         setIcon();
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -2648,7 +2647,7 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_about_menuitemActionPerformed
 
     private void about_menuitemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_about_menuitemMouseClicked
-      
+
     }//GEN-LAST:event_about_menuitemMouseClicked
 
     private void check_for_update_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_for_update_menuitemActionPerformed
@@ -2656,25 +2655,23 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_check_for_update_menuitemActionPerformed
 
     private void feedback_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feedback_menuitemActionPerformed
-               try 
-        {
+        try {
             Desktop.getDesktop().browse(new URL("https://github.com/Juklab/mergano").toURI());
-        }           
-        catch (URISyntaxException | IOException e) {
+        } catch (URISyntaxException | IOException e) {
         }
     }//GEN-LAST:event_feedback_menuitemActionPerformed
 
     private void print_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_print_menuitemActionPerformed
-    try {
-        boolean complete = search_box.print();
-    if (complete) { 
-            JOptionPane.showMessageDialog(null, "This job has been sent to the printer.", "Information", JOptionPane.INFORMATION_MESSAGE);          
-        }
-    } catch (PrinterException ex) {
+        try {
+            boolean complete = search_box.print();
+            if (complete) {
+                JOptionPane.showMessageDialog(null, "This job has been sent to the printer.", "Information", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (PrinterException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, ex , "Error", JOptionPane.ERROR_MESSAGE);  
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
-         
+
     }//GEN-LAST:event_print_menuitemActionPerformed
 
     private void saveas_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveas_menuitemActionPerformed
@@ -2682,35 +2679,35 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_saveas_menuitemActionPerformed
 
     private void print_preview_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_print_preview_menuitemActionPerformed
-       
+
     }//GEN-LAST:event_print_preview_menuitemActionPerformed
 
     private void exit_programActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_programActionPerformed
-        if (evt.getSource()== exit_program) {
-           System.exit(0);
+        if (evt.getSource() == exit_program) {
+            System.exit(0);
         }
     }//GEN-LAST:event_exit_programActionPerformed
 
     private void login_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_menuitemActionPerformed
-        if(lo == null){
+        if (lo == null) {
             lo = new login();
-            lo.setVisible(true);  
+            lo.setVisible(true);
         }
     }//GEN-LAST:event_login_menuitemActionPerformed
 
     private void logout_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_menuitemActionPerformed
-       if(lo == null) {
-           lo = new login();
-        int logoutconfirm = JOptionPane.showConfirmDialog(this, "Are you sure do you want to Logout?", "Logout confirm", YES_NO_OPTION, QUESTION_MESSAGE);
-        if (logoutconfirm == JOptionPane.YES_OPTION) {
-             JOptionPane.showMessageDialog(null, "Logout sucessfully");
-           lo.SetCurrentSession(false);
-         }
-       }
+        if (lo == null) {
+            lo = new login();
+            int logoutconfirm = JOptionPane.showConfirmDialog(this, "Are you sure do you want to Logout?", "Logout confirm", YES_NO_OPTION, QUESTION_MESSAGE);
+            if (logoutconfirm == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(null, "Logout sucessfully");
+                lo.SetCurrentSession(false);
+            }
+        }
     }//GEN-LAST:event_logout_menuitemActionPerformed
 
     private void db_name_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_db_name_boxActionPerformed
-        
+
     }//GEN-LAST:event_db_name_boxActionPerformed
 
     private void database_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_database_menuActionPerformed
@@ -2719,16 +2716,16 @@ public class main extends javax.swing.JFrame {
 
     private void database_menuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_database_menuMouseClicked
         login logs = new login();
-        if(logs.CurrentSession()==true) {
+        if (logs.CurrentSession() == true) {
             login_menuitem.setEnabled(false);
             logout_menuitem.setEnabled(true);
-             System.out.println(logs.CurrentSession());
+            System.out.println(logs.CurrentSession());
         }
-       
+
     }//GEN-LAST:event_database_menuMouseClicked
 
     private void database_menuComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_database_menuComponentShown
- 
+
     }//GEN-LAST:event_database_menuComponentShown
 
     private void database_menuFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_database_menuFocusGained
@@ -2740,28 +2737,24 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_database_menuStateChanged
 
     private void report_bug_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_report_bug_menuitemActionPerformed
-       try 
-        {
+        try {
             Desktop.getDesktop().browse(new URL("https://github.com/Juklab/mergano/issues").toURI());
-        }           
-        catch (URISyntaxException | IOException e) {
+        } catch (URISyntaxException | IOException e) {
         }
     }//GEN-LAST:event_report_bug_menuitemActionPerformed
 
     private void help_contents_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_help_contents_menuitemActionPerformed
         try {
-            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+"E:\\Users\\Chukkrit\\OneDrive\\+ Documents +\\NetBeansProjects\\mergano\\src\\help.html"); 
-        }
-        catch (Exception e){
-            System.out.println("Error detail "+ e);
+            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "E:\\Users\\Chukkrit\\OneDrive\\+ Documents +\\NetBeansProjects\\mergano\\src\\help.html");
+        } catch (Exception e) {
+            System.out.println("Error detail " + e);
         }
     }//GEN-LAST:event_help_contents_menuitemActionPerformed
 
     private void online_docs_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_online_docs_menuitemActionPerformed
         try {
             Desktop.getDesktop().browse(new URL("https://github.com/Juklab/mergano/wiki").toURI());
-        }           
-        catch (URISyntaxException | IOException e) {
+        } catch (URISyntaxException | IOException e) {
         }
     }//GEN-LAST:event_online_docs_menuitemActionPerformed
 
@@ -2777,56 +2770,69 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_open_menuitemActionPerformed
 
     private void statusbar_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusbar_menuitemActionPerformed
-        if(evt.getSource().equals(statusbar_menuitem)){
-        boolean stb_state =  statusbar_menuitem.isSelected();  
-        int stb_status = 1;
-        if (stb_state == true) stb_status = 1;
-        if (stb_state == false) stb_status = 0;
-            switch(stb_status) {
-            case 1: status_bar_frame.setVisible(true);
-                break;
-            case 0: status_bar_frame.setVisible(false);
-                break;  
-            default: status_bar_frame.setVisible(true);
-            }    
-         }
+        if (evt.getSource().equals(statusbar_menuitem)) {
+            boolean stb_state = statusbar_menuitem.isSelected();
+            int stb_status = 1;
+            if (stb_state == true) {
+                stb_status = 1;
+            }
+            if (stb_state == false) {
+                stb_status = 0;
+            }
+            switch (stb_status) {
+                case 1:
+                    status_bar_frame.setVisible(true);
+                    break;
+                case 0:
+                    status_bar_frame.setVisible(false);
+                    break;
+                default:
+                    status_bar_frame.setVisible(true);
+            }
+        }
     }//GEN-LAST:event_statusbar_menuitemActionPerformed
 
-
     private void view_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_menuActionPerformed
-        
+
     }//GEN-LAST:event_view_menuActionPerformed
 
     private void toolbar_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toolbar_menuitemActionPerformed
-        if(evt.getSource().equals(toolbar_menuitem)){
-        boolean tb_state = toolbar_menuitem.isSelected();  
-        int tb_status = 1;
-        if (tb_state == true) tb_status = 1;
-        if (tb_state == false) tb_status = 0;
-            switch(tb_status) {
-            case 1: tool_bar_frame.setVisible(true);
-                break;
-            case 0: tool_bar_frame.setVisible(false);
-                break;  
-            default: tool_bar_frame.setVisible(true);
-            }    
-         }
+        if (evt.getSource().equals(toolbar_menuitem)) {
+            boolean tb_state = toolbar_menuitem.isSelected();
+            int tb_status = 1;
+            if (tb_state == true) {
+                tb_status = 1;
+            }
+            if (tb_state == false) {
+                tb_status = 0;
+            }
+            switch (tb_status) {
+                case 1:
+                    tool_bar_frame.setVisible(true);
+                    break;
+                case 0:
+                    tool_bar_frame.setVisible(false);
+                    break;
+                default:
+                    tool_bar_frame.setVisible(true);
+            }
+        }
     }//GEN-LAST:event_toolbar_menuitemActionPerformed
 
     private void Reports_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reports_buttonActionPerformed
-       body.setSelectedIndex(7);
+        body.setSelectedIndex(7);
     }//GEN-LAST:event_Reports_buttonActionPerformed
 
     private void Home_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home_buttonActionPerformed
-       body.setSelectedIndex(0);
+        body.setSelectedIndex(0);
     }//GEN-LAST:event_Home_buttonActionPerformed
 
     private void Search_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Search_ButtonActionPerformed
-       body.setSelectedIndex(6);
+        body.setSelectedIndex(6);
     }//GEN-LAST:event_Search_ButtonActionPerformed
 
     private void Print_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Print_buttonActionPerformed
-       print_menuitemActionPerformed(evt);
+        print_menuitemActionPerformed(evt);
     }//GEN-LAST:event_Print_buttonActionPerformed
 
     private void Dashboard_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Dashboard_buttonActionPerformed
@@ -2834,11 +2840,11 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_Dashboard_buttonActionPerformed
 
     private void User_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_User_buttonActionPerformed
-       login_menuitemActionPerformed(evt);
+        login_menuitemActionPerformed(evt);
     }//GEN-LAST:event_User_buttonActionPerformed
 
     private void Options_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Options_buttonActionPerformed
-        ConnectDB dg = new ConnectDB(); 
+        ConnectDB dg = new ConnectDB();
         dg.showdata();
     }//GEN-LAST:event_Options_buttonActionPerformed
 
@@ -2851,59 +2857,50 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem26ActionPerformed
 
     private void website_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_website_menuitemActionPerformed
-        try 
-        {
+        try {
             Desktop.getDesktop().browse(new URL("http://juklab.com").toURI());
-        }           
-        catch (URISyntaxException | IOException e) {
-        }             
+        } catch (URISyntaxException | IOException e) {
+        }
     }//GEN-LAST:event_website_menuitemActionPerformed
 
     private void save_product_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_product_buttonActionPerformed
-         Random rand = new Random();
+        Random rand = new Random();
         int value = rand.nextInt(300000) + 150000;
         String id_in = id_input.getText();
         int id = Integer.parseInt(id_in);
-        String productID = Integer.toString(value); 
-        String category = category_input.getSelectedItem().toString();       
+        String productID = Integer.toString(value);
+        String category = category_input.getSelectedItem().toString();
         String type = type_input.getText();
         String manufacture = manufacture_input.getText();
         String name = name_input.getText();
         String model = model_input.getText();
         String description = description_input.getText();
-        String cost = cost_input.getText(); 
-        String quantity = quantity_input.getValue().toString(); 
+        String cost = cost_input.getText();
+        String quantity = quantity_input.getValue().toString();
         String warranty = warranty_input.getText();
         int quan = (Integer) quantity_input.getValue();
-        
-        if (productID.equals("") || 
-                category.equals("") || 
-                manufacture.equals("") || 
-                name.equals("") || 
-                model.equals("") ||
-                cost.equals("") ||
-                warranty.equals(""))
-       {
+
+        if (productID.equals("")
+                || category.equals("")
+                || manufacture.equals("")
+                || name.equals("")
+                || model.equals("")
+                || cost.equals("")
+                || warranty.equals("")) {
             JOptionPane.showMessageDialog(this, "Please fill out request box", "Input Error", JOptionPane.WARNING_MESSAGE);
-        } 
-        else if(productID.length() > 13) {
+        } else if (productID.length() > 13) {
             JOptionPane.showMessageDialog(this, "Product ID must less than or 13 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
-    }
-        else if(cost.length() > 8) {
+        } else if (cost.length() > 8) {
             JOptionPane.showMessageDialog(this, "Cost must less than or 8 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
-    }
-        else if(warranty.length() > 3) {
+        } else if (warranty.length() > 3) {
             JOptionPane.showMessageDialog(this, "Warranty must less than or 3 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
-    }
-        else if(quantity.length() > 8) {
+        } else if (quantity.length() > 8) {
             JOptionPane.showMessageDialog(this, "Quantity must less than or 13 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
-    }
-        else if(!isNumeric(quantity) || !isNumeric(warranty)) {
+        } else if (!isNumeric(quantity) || !isNumeric(warranty)) {
             JOptionPane.showMessageDialog(this, "Quantity Cost or Warranty must be an integer format only", "Input Error", JOptionPane.ERROR_MESSAGE);
-        }
-        else {
-        
-     // Update query
+        } else {
+
+            // Update query
             MerganoBean bean = new MerganoBean();
             bean.setID(Integer.parseInt(id_in));
             bean.setProductID(productID);
@@ -2925,68 +2922,67 @@ public class main extends javax.swing.JFrame {
                 updateBacklog(dao.getBacklogData());
                 if (status) {
                     JOptionPane.showMessageDialog(this, "Updated data successfully", "Updated Success", JOptionPane.INFORMATION_MESSAGE);
-                     id_input.setEditable(false);
-                     category_input.setEditable(false);
-                     category_input.setEnabled(false);
-                     type_input.setEditable(false);
-                     quantity_input.setEnabled(false);
-                     name_input.setEditable(false);
-                     manufacture_input.setEditable(false);
-                     model_input.setEditable(false);
-                     cost_input.setEditable(false);
-                     warranty_input.setEditable(false);
-                     description_input.setEditable(false);
+                    id_input.setEditable(false);
+                    category_input.setEditable(false);
+                    category_input.setEnabled(false);
+                    type_input.setEditable(false);
+                    quantity_input.setEnabled(false);
+                    name_input.setEditable(false);
+                    manufacture_input.setEditable(false);
+                    model_input.setEditable(false);
+                    cost_input.setEditable(false);
+                    warranty_input.setEditable(false);
+                    description_input.setEditable(false);
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
-                 JOptionPane.showMessageDialog(this, "Updated data failed", "Updated Failed", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Updated data failed", "Updated Failed", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_save_product_buttonActionPerformed
 
     private void edit_product_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_product_buttonActionPerformed
-         if(evt.getSource()== edit_product_button) {
-             id_input.setEditable(true);
-             category_input.setEditable(true);
-             category_input.setEnabled(true);          
-             type_input.setEditable(true);
-             name_input.setEditable(true);
-             manufacture_input.setEditable(true);
-             model_input.setEditable(true);
-             cost_input.setEditable(true);
-             warranty_input.setEditable(true);
-             quantity_input.setEnabled(true);
-             description_input.setEditable(true);
-         }
+        if (evt.getSource() == edit_product_button) {
+            id_input.setEditable(true);
+            category_input.setEditable(true);
+            category_input.setEnabled(true);
+            type_input.setEditable(true);
+            name_input.setEditable(true);
+            manufacture_input.setEditable(true);
+            model_input.setEditable(true);
+            cost_input.setEditable(true);
+            warranty_input.setEditable(true);
+            quantity_input.setEnabled(true);
+            description_input.setEditable(true);
+        }
 
     }//GEN-LAST:event_edit_product_buttonActionPerformed
 
     private void remove_product_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remove_product_buttonActionPerformed
-     int DeleteConfirm = JOptionPane.showConfirmDialog(this, "Are you sure do you want to delete this row?", "Delete confirmation", YES_NO_OPTION, WARNING_MESSAGE);
- 
-     if(DeleteConfirm == JOptionPane.YES_OPTION) {
-        int p_id = Integer.parseInt(id_input.getText());
-        String id_in = id_input.getText();
-        int id = Integer.parseInt(id_in);
-         MerganoDAO dao = new MerganoDAO();
-         MerganoBean bean = new MerganoBean();
-         String productID = productID_input.getText();
+        int DeleteConfirm = JOptionPane.showConfirmDialog(this, "Are you sure do you want to delete this row?", "Delete confirmation", YES_NO_OPTION, WARNING_MESSAGE);
+
+        if (DeleteConfirm == JOptionPane.YES_OPTION) {
+            int p_id = Integer.parseInt(id_input.getText());
+            String id_in = id_input.getText();
+            int id = Integer.parseInt(id_in);
+            MerganoDAO dao = new MerganoDAO();
+            MerganoBean bean = new MerganoBean();
+            String productID = productID_input.getText();
             try {
                 bean.setID(id);
                 bean.setHistory("Delete product: " + productID);
-                boolean status = dao.deleteData(bean, p_id); 
+                boolean status = dao.deleteData(bean, p_id);
                 updateTable(dao.getData());
                 updateBacklog(dao.getBacklogData());
-                
+
                 if (status) {
                     JOptionPane.showMessageDialog(this, "Deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
             } catch (Exception ex) {
-                ex.printStackTrace(); 
-            } 
-     }
+                ex.printStackTrace();
+            }
+        }
 
-            
     }//GEN-LAST:event_remove_product_buttonActionPerformed
 
     private void add_product_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_product_buttonActionPerformed
@@ -2994,46 +2990,39 @@ public class main extends javax.swing.JFrame {
         int value = rand.nextInt(900000) + 100000;
         String id_in = id_input.getText();
         int id = Integer.parseInt(id_in);
-        String productID = Integer.toString(value); 
-        String category = category_input.getSelectedItem().toString();   
+        String productID = Integer.toString(value);
+        String category = category_input.getSelectedItem().toString();
         int categoryid = category_input.getSelectedIndex();
-        
+
         String type = type_input.getText();
         String manufacture = manufacture_input.getText();
         String name = name_input.getText();
         String model = model_input.getText();
         String description = description_input.getText();
-        String cost = cost_input.getText(); 
-        String quantity = quantity_input.getValue().toString(); 
+        String cost = cost_input.getText();
+        String quantity = quantity_input.getValue().toString();
         String warranty = warranty_input.getText();
         int quan = (Integer) quantity_input.getValue();
-        
-        if (productID.equals("") || 
-                category.equals("") || 
-                manufacture.equals("") || 
-                name.equals("") || 
-                model.equals("") ||
-                cost.equals("") ||
-                warranty.equals(""))
-       {
+
+        if (productID.equals("")
+                || category.equals("")
+                || manufacture.equals("")
+                || name.equals("")
+                || model.equals("")
+                || cost.equals("")
+                || warranty.equals("")) {
             JOptionPane.showMessageDialog(this, "Please fill out request box", "Information is null", JOptionPane.WARNING_MESSAGE);
-        } 
-        else if(productID.length() > 13) {
+        } else if (productID.length() > 13) {
             JOptionPane.showMessageDialog(this, "Product ID must less than or 13 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
-    }
-        else if(cost.length() > 8) {
+        } else if (cost.length() > 8) {
             JOptionPane.showMessageDialog(this, "Cost must less than or 8 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
-    }
-        else if(warranty.length() > 3) {
+        } else if (warranty.length() > 3) {
             JOptionPane.showMessageDialog(this, "Warranty must less than or 3 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
-    }
-        else if(quantity.length() > 13) {
+        } else if (quantity.length() > 13) {
             JOptionPane.showMessageDialog(this, "Quantity must less than or 13 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
-    }
-        else if(!isNumeric(quantity) || !isNumeric(warranty)) {
+        } else if (!isNumeric(quantity) || !isNumeric(warranty)) {
             JOptionPane.showMessageDialog(this, "Quantity, Cost or Warranty must be an integer format only", "Input Error", JOptionPane.ERROR_MESSAGE);
-        }
-        else {
+        } else {
             MerganoBean bean = new MerganoBean();
             bean.setID(Integer.parseInt(id_in));
             bean.setProductID(productID);
@@ -3047,7 +3036,7 @@ public class main extends javax.swing.JFrame {
             bean.setQuantity(quantity);
             bean.setWarranty(warranty);
             bean.setHistory("Insert product: " + productID);
-            
+
             MerganoDAO dao = new MerganoDAO();
             try {
                 boolean status = dao.insertData(bean);
@@ -3063,11 +3052,11 @@ public class main extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_add_product_buttonActionPerformed
-    
-    public static boolean isNumeric(String str) {  
-       return str.matches("^-?[0-9]+(\\.[0-9]+)?$");
+
+    public static boolean isNumeric(String str) {
+        return str.matches("^-?[0-9]+(\\.[0-9]+)?$");
     }
-    
+
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -3082,10 +3071,9 @@ public class main extends javax.swing.JFrame {
 
     private void View_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_View_buttonActionPerformed
         try {
-            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+ pathname_box.getText());
-        }
-        catch (Exception e){
-            System.out.println("Error detail "+ e);
+            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + pathname_box.getText());
+        } catch (Exception e) {
+            System.out.println("Error detail " + e);
         }
     }//GEN-LAST:event_View_buttonActionPerformed
 
@@ -3114,39 +3102,38 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_warranty_inputActionPerformed
 
     private void search_product_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_product_buttonActionPerformed
-       int filter = filter_column.getSelectedIndex();
-       String input_search = search_box.getText();
-       MerganoDAO dao = new MerganoDAO();     
-       if (search_box.getText().isEmpty()) {
-             updateTable(dao.getData());
-        }
-       else {
-            switch ( filter ) {
+        int filter = filter_column.getSelectedIndex();
+        String input_search = search_box.getText();
+        MerganoDAO dao = new MerganoDAO();
+        if (search_box.getText().isEmpty()) {
+            updateTable(dao.getData());
+        } else {
+            switch (filter) {
                 case 0: // ID
-                       updateTable(dao.getDataID(Integer.parseInt(input_search)));
-                        break;    
+                    updateTable(dao.getDataID(Integer.parseInt(input_search)));
+                    break;
                 case 1: // ProductID
-                       updateTable(dao.getDataProductID(input_search));
-                       break;   
+                    updateTable(dao.getDataProductID(input_search));
+                    break;
                 case 2: // Category
-                       updateTable(dao.getDataCategory(input_search));
-                       break;  
+                    updateTable(dao.getDataCategory(input_search));
+                    break;
                 case 3: // Type
-                       updateTable(dao.getDataType(input_search));
-                       break;        
+                    updateTable(dao.getDataType(input_search));
+                    break;
                 case 4: // Manufacture
-                       updateTable(dao.getDataManufacture(input_search));
-                       break; 
+                    updateTable(dao.getDataManufacture(input_search));
+                    break;
                 case 5: // Name
-                       updateTable(dao.getDataName(input_search));
-                       break;
+                    updateTable(dao.getDataName(input_search));
+                    break;
                 case 6: // Low quantity
-                       updateTable(dao.getLowQuantity());
-                       break;
-                default: 
-                   updateTable(dao.getData());
+                    updateTable(dao.getLowQuantity());
+                    break;
+                default:
+                    updateTable(dao.getData());
             }
-       }
+        }
     }//GEN-LAST:event_search_product_buttonActionPerformed
 
     private void welcome_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_welcome_menuitemActionPerformed
@@ -3162,35 +3149,35 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_searching_menuitemActionPerformed
 
     private void dashboard_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboard_menuitemActionPerformed
-       body.setSelectedIndex(1);
+        body.setSelectedIndex(1);
     }//GEN-LAST:event_dashboard_menuitemActionPerformed
 
     private void stock_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stock_menuitemActionPerformed
-       body.setSelectedIndex(3);
+        body.setSelectedIndex(3);
     }//GEN-LAST:event_stock_menuitemActionPerformed
 
     private void operations_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_operations_menuitemActionPerformed
-       body.setSelectedIndex(4);
+        body.setSelectedIndex(4);
     }//GEN-LAST:event_operations_menuitemActionPerformed
 
     private void database_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_database_menuitemActionPerformed
-      body.setSelectedIndex(5);
+        body.setSelectedIndex(5);
     }//GEN-LAST:event_database_menuitemActionPerformed
 
     private void report_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_report_menuitemActionPerformed
-      body.setSelectedIndex(7);
+        body.setSelectedIndex(7);
     }//GEN-LAST:event_report_menuitemActionPerformed
 
     private void statistics_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statistics_menuitemActionPerformed
-      body.setSelectedIndex(8);
+        body.setSelectedIndex(8);
     }//GEN-LAST:event_statistics_menuitemActionPerformed
 
     private void backlog_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backlog_menuitemActionPerformed
-      body.setSelectedIndex(9);
+        body.setSelectedIndex(9);
     }//GEN-LAST:event_backlog_menuitemActionPerformed
 
     private void add_database_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_database_buttonActionPerformed
-       new_db_menuitemActionPerformed(evt);
+        new_db_menuitemActionPerformed(evt);
     }//GEN-LAST:event_add_database_buttonActionPerformed
 
     private void delete_database_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_database_button1ActionPerformed
@@ -3214,7 +3201,7 @@ public class main extends javax.swing.JFrame {
         database_name_show_box.setText("mergano_db");
         database_type_show_box.setText("MySQL");
         port_show_box.setText("3306");
-        
+
     }//GEN-LAST:event_localhost_dbActionPerformed
 
     private void options_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_options_menuitemActionPerformed
@@ -3228,42 +3215,41 @@ public class main extends javax.swing.JFrame {
 
     private void product_imgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_product_imgActionPerformed
 
-        JFileChooser chooser= new JFileChooser(); 
-         chooser.showOpenDialog(this); 
-         File f= chooser.getSelectedFile(); 
-         String path = f.getAbsolutePath(); 
-         pathname_box.setText(path);
-         
-         
-//         product_img.setIcon(new ImageIcon(path)); 
-//         try{ 
-//             FileInputStream fin=new FileInputStream(f); 
-//  
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(this);
+        File f = chooser.getSelectedFile();
+        String path = f.getAbsolutePath();
+        pathname_box.setText(path);
+
+//         product_img.setIcon(new ImageIcon(path));
+//         try{
+//             FileInputStream fin=new FileInputStream(f);
+//
 //
 //             //   updateTable(dao.getData());
 //
 //            } catch (Exception ex) {
 //                ex.printStackTrace();
 //            }
-//                
-//             int len=(int)f.length(); 
-//             
-//             Class.forName("com.mysql.jdbc.Drive­r"); 
-//        
-//         Connection con=DriverManager.getConnection("jd­bc:mysql://localhost/new", "root", "root"); 
-//         PreparedStatement ps=con.prepareStatement("insert into `Image` values(?)"); 
-//         ps.setBinaryStream(1, fin, len); int status=ps.executeUpdate(); 
-//         if(status is greater than 0) { 
-//             jLabel2.setText("Successfully inserted in DB"); 
+//
+//             int len=(int)f.length();
+//
+//             Class.forName("com.mysql.jdbc.Drive­r");
+//
+//         Connection con=DriverManager.getConnection("jd­bc:mysql://localhost/new", "root", "root");
+//         PreparedStatement ps=con.prepareStatement("insert into `Image` values(?)");
+//         ps.setBinaryStream(1, fin, len); int status=ps.executeUpdate();
+//         if(status is greater than 0) {
+//             jLabel2.setText("Successfully inserted in DB");
 //         }
-//         else{ jLabel2.setText("Image not inserted!"); 
+//         else{ jLabel2.setText("Image not inserted!");
 //                 } }
 //         catch(Exception e)
 //         {
-//             System.out.println(e); 
+//             System.out.println(e);
 //         }
-//         
-//        
+//
+//
 //        String imagePath;
 //        File path = null; // remember last user's path
 //        JFileChooser chooser = new JFileChooser();
@@ -3294,9 +3280,9 @@ public class main extends javax.swing.JFrame {
 //        public String getDescription() {
 //            return null;
 //        }
-//     };    
+//     };
 //        chooser.setFileFilter(ff);
-//        
+//
 //        int returnVal = chooser.showOpenDialog(this);
 //        // If user selected
 //        if(returnVal == JFileChooser.APPROVE_OPTION) {
@@ -3308,7 +3294,6 @@ public class main extends javax.swing.JFrame {
 //        ImageIcon newIcon = new ImageIcon(newimg);
 //        product_img.setIcon(newIcon);
 //    }
-        
     }//GEN-LAST:event_product_imgActionPerformed
 
     private void da_button_welActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_da_button_welActionPerformed
@@ -3316,15 +3301,15 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_da_button_welActionPerformed
 
     private void ma_button_welActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ma_button_welActionPerformed
-       body.setSelectedIndex(2);
+        body.setSelectedIndex(2);
     }//GEN-LAST:event_ma_button_welActionPerformed
 
     private void op_button_welActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_op_button_welActionPerformed
-       body.setSelectedIndex(4);
+        body.setSelectedIndex(4);
     }//GEN-LAST:event_op_button_welActionPerformed
 
     private void vi_button_welActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vi_button_welActionPerformed
-       body.setSelectedIndex(3);
+        body.setSelectedIndex(3);
     }//GEN-LAST:event_vi_button_welActionPerformed
 
     private void status_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_status_boxActionPerformed
@@ -3340,25 +3325,25 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_rep_button_welActionPerformed
 
     private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton7ActionPerformed
-       DefaultPieDataset PieDataset = new DefaultPieDataset();
-       PieDataset.setValue("Jan", new Integer(10));
-       PieDataset.setValue("Feb", new Integer(20));
-       PieDataset.setValue("Mar", new Integer(10));
-       PieDataset.setValue("Apr", new Integer(30));
-       PieDataset.setValue("May", new Integer(30));
-       //JFreeChart char = ChartFactory.createPieChart(null, PieDataset, PieDataset, HIDE_ON_CLOSE, rootPaneCheckingEnabled, rootPaneCheckingEnabled, rootPaneCheckingEnabled, Locale.FRENCH, rootPaneCheckingEnabled, rootPaneCheckingEnabled);
+        /*DefaultPieDataset PieDataset = new DefaultPieDataset();
+        PieDataset.setValue("Jan", new Integer(10));
+        PieDataset.setValue("Feb", new Integer(20));
+        PieDataset.setValue("Mar", new Integer(10));
+        PieDataset.setValue("Apr", new Integer(30));
+        PieDataset.setValue("May", new Integer(30)); */
+        //JFreeChart char = ChartFactory.createPieChart(null, PieDataset, PieDataset, HIDE_ON_CLOSE, rootPaneCheckingEnabled, rootPaneCheckingEnabled, rootPaneCheckingEnabled, Locale.FRENCH, rootPaneCheckingEnabled, rootPaneCheckingEnabled);
     }//GEN-LAST:event_jToggleButton7ActionPerformed
 
     private void dat_button_welActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dat_button_welActionPerformed
-         body.setSelectedIndex(5);
+        body.setSelectedIndex(5);
     }//GEN-LAST:event_dat_button_welActionPerformed
 
     private void sta_button_welActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sta_button_welActionPerformed
-         body.setSelectedIndex(8);
+        body.setSelectedIndex(8);
     }//GEN-LAST:event_sta_button_welActionPerformed
 
     private void ser_button_welActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ser_button_welActionPerformed
-         body.setSelectedIndex(6);
+        body.setSelectedIndex(6);
     }//GEN-LAST:event_ser_button_welActionPerformed
 
     private void ord_button_welActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ord_button_welActionPerformed
@@ -3370,11 +3355,9 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_bac_button_welActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       try 
-        {
+        try {
             Desktop.getDesktop().browse(new URL("http://mergano.com").toURI());
-        }           
-        catch (URISyntaxException | IOException e) {
+        } catch (URISyntaxException | IOException e) {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -3385,12 +3368,11 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void search_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_buttonActionPerformed
-         body.setSelectedIndex(2);
+        body.setSelectedIndex(2);
     }//GEN-LAST:event_search_buttonActionPerformed
 
     private void search_boxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_boxKeyPressed
-         if(evt.getKeyCode()==10)
-        {
+        if (evt.getKeyCode() == 10) {
             search_product_buttonActionPerformed(null);
         }
     }//GEN-LAST:event_search_boxKeyPressed
@@ -3413,7 +3395,7 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_category_inputActionPerformed
 
     private void view_stockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_stockActionPerformed
-            displayAllTable();
+        displayAllTable();
     }//GEN-LAST:event_view_stockActionPerformed
 
     private void test_connection_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_test_connection_buttonActionPerformed
@@ -3451,19 +3433,19 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_query_tableMouseClicked
 
     private void clear_noti_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear_noti_buttonActionPerformed
-        if(evt.getSource()==clear_noti_button) {
-        
-        DefaultListModel listmodel = new DefaultListModel();
-        notification_list = new JList(listmodel);
-        listmodel.removeAllElements();
-        listmodel.clear();
-    }
+        if (evt.getSource() == clear_noti_button) {
+
+            DefaultListModel listmodel = new DefaultListModel();
+            notification_list = new JList(listmodel);
+            listmodel.removeAllElements();
+            listmodel.clear();
+        }
     }//GEN-LAST:event_clear_noti_buttonActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         DefaultListModel listModel = new DefaultListModel();
         listModel.addElement("Test");
-        
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void db4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_db4ActionPerformed
@@ -3474,17 +3456,17 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_db4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-            MerganoDAO dao = new MerganoDAO();
-            try {
-                dao.deleteBacklog(); 
-                updateBacklog(dao.getBacklogData());
-            } catch (Exception ex) {
-                ex.printStackTrace(); 
-            } 
+        MerganoDAO dao = new MerganoDAO();
+        try {
+            dao.deleteBacklog();
+            updateBacklog(dao.getBacklogData());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void search_boxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_boxKeyTyped
-   
+
     }//GEN-LAST:event_search_boxKeyTyped
 
     private void stock_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stock_tableMouseClicked
@@ -3509,7 +3491,7 @@ public class main extends javax.swing.JFrame {
         category_box.setText(selectedCategory);
         type_box.setText(selectedType);
         name_box.setText(selectedProductName);
-       
+
     }//GEN-LAST:event_stock_tableMouseClicked
 
     private void cost_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cost_inputActionPerformed
@@ -3523,35 +3505,34 @@ public class main extends javax.swing.JFrame {
     private void User_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_User_buttonMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_User_buttonMouseClicked
+
     private void updateBacklog(ArrayList<MerganoBean> list) {
         List<String[]> values = new ArrayList<String[]>();
-        List<String> columns = new ArrayList<String>();       
+        List<String> columns = new ArrayList<String>();
         MerganoDAO db = new MerganoDAO();
         try {
-             list = db.getBacklogData();
-            }
-        catch (Exception e) {
+            list = db.getBacklogData();
+        } catch (Exception e) {
             e.printStackTrace();
-            }
+        }
         columns.add("ID");
         columns.add("History");
         columns.add("Time");
-        for(int i =0; i< list.size(); i++) {
-            values.add(new String[] {"" +
-            list.get(i).getBLID(),
-            list.get(i).getHistory(),
-            list.get(i).getTime()
-    });
-}
+        for (int i = 0; i < list.size(); i++) {
+            values.add(new String[]{""
+                + list.get(i).getBLID(),
+                list.get(i).getHistory(),
+                list.get(i).getTime()
+            });
+        }
         backlog_table.setModel(new javax.swing.table.DefaultTableModel(values.toArray(new Object[][]{}), columns.toArray())
         );
         ScrollPanelForBacklog.setViewportView(backlog_table);
     }
-    
-    
-     public void updateTable(ArrayList<MerganoBean> list) {
+
+    public void updateTable(ArrayList<MerganoBean> list) {
         List<String[]> values = new ArrayList<String[]>();
-        List<String> columns = new ArrayList<String>();  
+        List<String> columns = new ArrayList<String>();
         columns.add("ID");
         columns.add("Product ID");
         columns.add("Category");
@@ -3564,38 +3545,36 @@ public class main extends javax.swing.JFrame {
         columns.add("Warranty");
         columns.add("Quantity");
         columns.add("Import");
-        for(int i =0; i< list.size(); i++) {
-            values.add(new String[] {"" +
-            list.get(i).getID(),
-            list.get(i).getProductID(),
-            list.get(i).getCategory(),
-            list.get(i).getType(),
-            list.get(i).getManufacture(),
-            list.get(i).getName(),
-            list.get(i).getModel(),
-            list.get(i).getDescription(),
-            list.get(i).getCost(),
-            list.get(i).getWarranty(),
-            list.get(i).getQuantity(),
-            list.get(i).getImport()
-    });
-}
+        for (int i = 0; i < list.size(); i++) {
+            values.add(new String[]{""
+                + list.get(i).getID(),
+                list.get(i).getProductID(),
+                list.get(i).getCategory(),
+                list.get(i).getType(),
+                list.get(i).getManufacture(),
+                list.get(i).getName(),
+                list.get(i).getModel(),
+                list.get(i).getDescription(),
+                list.get(i).getCost(),
+                list.get(i).getWarranty(),
+                list.get(i).getQuantity(),
+                list.get(i).getImport()
+            });
+        }
         query_table.setModel(new javax.swing.table.DefaultTableModel(values.toArray(new Object[][]{}), columns.toArray())
         );
         ScrollPanelForStock.setViewportView(stock_table);
         ScrollPanelForQueryTable.setViewportView(query_table);
     }
-     
-     
-     
-      public void displayAllTable() {
-                ArrayList<MerganoBean> list = null;
-                MerganoDAO db = new MerganoDAO();
-                try {
-                    list = db.getData();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+
+    public void displayAllTable() {
+        ArrayList<MerganoBean> list = null;
+        MerganoDAO db = new MerganoDAO();
+        try {
+            list = db.getData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         List<String[]> values = new ArrayList<String[]>();
         List<String> columns = new ArrayList<String>();
         columns.add("ID");
@@ -3611,36 +3590,35 @@ public class main extends javax.swing.JFrame {
         columns.add("Quantity");
         columns.add("Import");
 
-        for(int i =0; i< list.size(); i++) {
-            values.add(new String[] {"" +
-            list.get(i).getID(),
-            list.get(i).getProductID(),
-            list.get(i).getCategory(),
-            list.get(i).getType(),
-            list.get(i).getManufacture(),
-            list.get(i).getName(),
-            list.get(i).getModel(),
-            list.get(i).getDescription(),
-            list.get(i).getCost(),
-            list.get(i).getWarranty(),
-            list.get(i).getQuantity(),
-            list.get(i).getImport()
-    });
-}
-       stock_table.setModel(new javax.swing.table.DefaultTableModel(values.toArray(new Object[][]{}), columns.toArray())
+        for (int i = 0; i < list.size(); i++) {
+            values.add(new String[]{""
+                + list.get(i).getID(),
+                list.get(i).getProductID(),
+                list.get(i).getCategory(),
+                list.get(i).getType(),
+                list.get(i).getManufacture(),
+                list.get(i).getName(),
+                list.get(i).getModel(),
+                list.get(i).getDescription(),
+                list.get(i).getCost(),
+                list.get(i).getWarranty(),
+                list.get(i).getQuantity(),
+                list.get(i).getImport()
+            });
+        }
+        stock_table.setModel(new javax.swing.table.DefaultTableModel(values.toArray(new Object[][]{}), columns.toArray())
         );
         ScrollPanelForQueryTable.setViewportView(query_table);
         ScrollPanelForStock.setViewportView(stock_table);
 
     }
-     
-      
+
     public void displayBacklog() {
-      
-      //  backlog_table.setModel(new javax.swing.table.DefaultTableModel(valuesBL.toArray(new Object[][]{}), columnsBL.toArray()));
-       // ScrollPanelForBacklog.setViewportView(backlog_table);
+
+        //  backlog_table.setModel(new javax.swing.table.DefaultTableModel(valuesBL.toArray(new Object[][]{}), columnsBL.toArray()));
+        // ScrollPanelForBacklog.setViewportView(backlog_table);
     }
-     
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -3658,22 +3636,20 @@ public class main extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
- 
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 try {
                     Thread.sleep(300);
+                } catch (Exception e) {
                 }
-                catch(Exception e) {}
-                new main().setVisible(true); 
-            }     
+                new main().setVisible(true);
+            }
         });
     }
 
-
-     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Bookmark_button;
     private javax.swing.JButton Dashboard_button;
@@ -3916,7 +3892,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenuItem welcome_menuitem;
     // End of variables declaration//GEN-END:variables
 
-     private void setIcon() {
+    private void setIcon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
     }
 }

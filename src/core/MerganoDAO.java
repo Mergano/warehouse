@@ -1,4 +1,5 @@
 package core;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,15 +12,15 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 
 public class MerganoDAO {
-    private final String table = "product"; 
-    private final String backlog= "backlog";
+
+    private final String table = "product";
+    private final String backlog = "backlog";
     private ConnectDB con;
     private Connection connect;
     private PreparedStatement p = null;
     private ResultSet rs = null;
-    
-    public MerganoDAO()
-    {
+
+    public MerganoDAO() {
         try {
             con = new ConnectDB();
             connect = con.getconnection();
@@ -27,295 +28,310 @@ public class MerganoDAO {
             Logger.getLogger(MerganoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
- // Display all data from table
-  public ArrayList<MerganoBean> getData() {
+
+    // Display all data from table
+    public ArrayList<MerganoBean> getData() {
         ArrayList<MerganoBean> list = new ArrayList<>();
-        
-        String sql = "SELECT * FROM "+table+";";         
-        if(connect == null) System.out.print("ERROR NO CONNECTION");
+
+        String sql = "SELECT * FROM " + table + ";";
+        if (connect == null) {
+            System.out.print("ERROR NO CONNECTION");
+        }
 
         try {
-           p = connect.prepareStatement(sql);
-           rs = p.executeQuery();
+            p = connect.prepareStatement(sql);
+            rs = p.executeQuery();
 
-        while (rs.next()) {
-            MerganoBean stub = new MerganoBean();
-            stub.setID(rs.getInt("id"));
-            stub.setProductID(rs.getString("product_id"));
-            stub.setCategory(rs.getString("category"));
-            stub.setType(rs.getString("type"));
-            stub.setManufacture(rs.getString("manufacture"));
-            stub.setName(rs.getString("name"));
-            stub.setModel(rs.getString("model"));
-            stub.setDescription(rs.getString("description"));
-            stub.setCost(rs.getString("cost"));
-            stub.setWarranty(rs.getString("warranty"));
-            stub.setQuantity(rs.getString("quantity"));    
-            Date dbSqlDate = rs.getDate("dated");
-            stub.setImport(dbSqlDate.toString()); // SQL NOW
-            list.add(stub);
-           }
-        } catch (Exception e) { 
+            while (rs.next()) {
+                MerganoBean stub = new MerganoBean();
+                stub.setID(rs.getInt("id"));
+                stub.setProductID(rs.getString("product_id"));
+                stub.setCategory(rs.getString("category"));
+                stub.setType(rs.getString("type"));
+                stub.setManufacture(rs.getString("manufacture"));
+                stub.setName(rs.getString("name"));
+                stub.setModel(rs.getString("model"));
+                stub.setDescription(rs.getString("description"));
+                stub.setCost(rs.getString("cost"));
+                stub.setWarranty(rs.getString("warranty"));
+                stub.setQuantity(rs.getString("quantity"));
+                Date dbSqlDate = rs.getDate("dated");
+                stub.setImport(dbSqlDate.toString()); // SQL NOW
+                list.add(stub);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    // get backlog data from database
+    public ArrayList<MerganoBean> getBacklogData() {
+        ArrayList<MerganoBean> list = new ArrayList<>();
+
+        // display data from
+        String sql = "SELECT * FROM " + backlog + ";";
+        if (connect == null) {
+            System.out.print("ERROR NO CONNECTION");
+        }
+
+        try {
+            p = connect.prepareStatement(sql);
+            rs = p.executeQuery();
+
+            while (rs.next()) {
+                MerganoBean stub = new MerganoBean();
+                stub.setBLID(rs.getInt("id"));
+                stub.setHistory(rs.getString("history"));
+                Timestamp BacklogTime = rs.getTimestamp("timed");
+                stub.setTime(BacklogTime.toString()); // SQL NOW
+                list.add(stub);
+            }
+        } catch (Exception e) {
             e.printStackTrace(); // write log file
         }
         return list;
     }
-    
-  // get backlog data from database
-   public ArrayList<MerganoBean> getBacklogData() {
-        ArrayList<MerganoBean> list = new ArrayList<>();
-        
-    // display data from 
-        String sql = "SELECT * FROM "+backlog+";";         
-        if(connect == null) System.out.print("ERROR NO CONNECTION");
 
-        try {
-           p = connect.prepareStatement(sql);
-           rs = p.executeQuery();
-
-        while (rs.next()) {
-            MerganoBean stub = new MerganoBean();
-            stub.setBLID(rs.getInt("id"));
-            stub.setHistory(rs.getString("history"));
-            Timestamp BacklogTime = rs.getTimestamp("timed");
-            stub.setTime(BacklogTime.toString()); // SQL NOW
-            list.add(stub);
-        }
-        } catch (Exception e) { 
-            e.printStackTrace(); // write log file
-        }
-        return list;
-    }
-   
-  // Search by ID
+    // Search by ID
     public ArrayList<MerganoBean> getDataID(int id) {
-            ArrayList<MerganoBean> list = new ArrayList<>();
-        
-        String sql = "SELECT * FROM "+table+" WHERE id="+id+";";         
-        if(connect == null) System.out.print("ERROR NO CONNECTION");
+        ArrayList<MerganoBean> list = new ArrayList<>();
+
+        String sql = "SELECT * FROM " + table + " WHERE id=" + id + ";";
+        if (connect == null) {
+            System.out.print("ERROR NO CONNECTION");
+        }
 
         try {
-           p = connect.prepareStatement(sql);
-           rs = p.executeQuery();
-           
-        while (rs.next()) {
-            MerganoBean stub = new MerganoBean();
-            stub.setID(rs.getInt("id"));
-            stub.setProductID(rs.getString("product_id"));
-            stub.setCategory(rs.getString("category"));
-            stub.setType(rs.getString("type"));
-            stub.setManufacture(rs.getString("manufacture"));
-            stub.setName(rs.getString("name"));
-            stub.setModel(rs.getString("model"));
-            stub.setDescription(rs.getString("description"));
-            stub.setCost(rs.getString("cost"));
-            stub.setWarranty(rs.getString("warranty"));
-            stub.setQuantity(rs.getString("quantity"));    
-            Date dbSqlDate = rs.getDate("dated");
-            stub.setImport(dbSqlDate.toString()); // SQL NOW
-            list.add(stub);
-        }
-        } catch (Exception e) { 
+            p = connect.prepareStatement(sql);
+            rs = p.executeQuery();
+
+            while (rs.next()) {
+                MerganoBean stub = new MerganoBean();
+                stub.setID(rs.getInt("id"));
+                stub.setProductID(rs.getString("product_id"));
+                stub.setCategory(rs.getString("category"));
+                stub.setType(rs.getString("type"));
+                stub.setManufacture(rs.getString("manufacture"));
+                stub.setName(rs.getString("name"));
+                stub.setModel(rs.getString("model"));
+                stub.setDescription(rs.getString("description"));
+                stub.setCost(rs.getString("cost"));
+                stub.setWarranty(rs.getString("warranty"));
+                stub.setQuantity(rs.getString("quantity"));
+                Date dbSqlDate = rs.getDate("dated");
+                stub.setImport(dbSqlDate.toString()); // SQL NOW
+                list.add(stub);
+            }
+        } catch (Exception e) {
             e.printStackTrace(); // write log file
         }
         return list;
     }
-    
+
     // Search by Name
-     public ArrayList<MerganoBean> getDataName(String name) {
-            ArrayList<MerganoBean> list = new ArrayList<>();
-        
-        String sql = "SELECT * FROM "+table+" WHERE name="+name+";";         
-        if(connect == null) System.out.print("ERROR NO CONNECTION");
+    public ArrayList<MerganoBean> getDataName(String name) {
+        ArrayList<MerganoBean> list = new ArrayList<>();
+
+        String sql = "SELECT * FROM " + table + " WHERE name=" + name + ";";
+        if (connect == null) {
+            System.out.print("ERROR NO CONNECTION");
+        }
 
         try {
-           p = connect.prepareStatement(sql);
-           rs = p.executeQuery();
-           
-        while (rs.next()) {
-            MerganoBean stub = new MerganoBean();
-            stub.setID(rs.getInt("id"));
-            stub.setProductID(rs.getString("product_id"));
-            stub.setCategory(rs.getString("category"));
-            stub.setType(rs.getString("type"));
-            stub.setManufacture(rs.getString("manufacture"));
-            stub.setName(rs.getString("name"));
-            stub.setModel(rs.getString("model"));
-            stub.setDescription(rs.getString("description"));
-            stub.setCost(rs.getString("cost"));
-            stub.setWarranty(rs.getString("warranty"));
-            stub.setQuantity(rs.getString("quantity"));    
-            Date dbSqlDate = rs.getDate("dated");
-            stub.setImport(dbSqlDate.toString()); // SQL NOW
-            list.add(stub);
-        }
-        } catch (Exception e) { 
+            p = connect.prepareStatement(sql);
+            rs = p.executeQuery();
+
+            while (rs.next()) {
+                MerganoBean stub = new MerganoBean();
+                stub.setID(rs.getInt("id"));
+                stub.setProductID(rs.getString("product_id"));
+                stub.setCategory(rs.getString("category"));
+                stub.setType(rs.getString("type"));
+                stub.setManufacture(rs.getString("manufacture"));
+                stub.setName(rs.getString("name"));
+                stub.setModel(rs.getString("model"));
+                stub.setDescription(rs.getString("description"));
+                stub.setCost(rs.getString("cost"));
+                stub.setWarranty(rs.getString("warranty"));
+                stub.setQuantity(rs.getString("quantity"));
+                Date dbSqlDate = rs.getDate("dated");
+                stub.setImport(dbSqlDate.toString()); // SQL NOW
+                list.add(stub);
+            }
+        } catch (Exception e) {
             e.printStackTrace(); // write log file
         }
         return list;
     }
-    
-       // Search by ProductID
-     public ArrayList<MerganoBean> getDataProductID(String productID) {
-            ArrayList<MerganoBean> list = new ArrayList<>();
-        
-        String sql = "SELECT * FROM "+table+" WHERE product_id="+productID+";";         
-        if(connect == null) System.out.print("ERROR NO CONNECTION");
+
+    // Search by ProductID
+    public ArrayList<MerganoBean> getDataProductID(String productID) {
+        ArrayList<MerganoBean> list = new ArrayList<>();
+
+        String sql = "SELECT * FROM " + table + " WHERE product_id=" + productID + ";";
+        if (connect == null) {
+            System.out.print("ERROR NO CONNECTION");
+        }
 
         try {
-           p = connect.prepareStatement(sql);
-           rs = p.executeQuery();
-           
-        while (rs.next()) {
-            MerganoBean stub = new MerganoBean();
-            stub.setID(rs.getInt("id"));
-            stub.setProductID(rs.getString("product_id"));
-            stub.setCategory(rs.getString("category"));
-            stub.setType(rs.getString("type"));
-            stub.setManufacture(rs.getString("manufacture"));
-            stub.setName(rs.getString("name"));
-            stub.setModel(rs.getString("model"));
-            stub.setDescription(rs.getString("description"));
-            stub.setCost(rs.getString("cost"));
-            stub.setWarranty(rs.getString("warranty"));
-            stub.setQuantity(rs.getString("quantity"));    
-            Date dbSqlDate = rs.getDate("dated");
-            stub.setImport(dbSqlDate.toString()); // SQL NOW
-            list.add(stub);
-        }
-        } catch (Exception e) { 
+            p = connect.prepareStatement(sql);
+            rs = p.executeQuery();
+
+            while (rs.next()) {
+                MerganoBean stub = new MerganoBean();
+                stub.setID(rs.getInt("id"));
+                stub.setProductID(rs.getString("product_id"));
+                stub.setCategory(rs.getString("category"));
+                stub.setType(rs.getString("type"));
+                stub.setManufacture(rs.getString("manufacture"));
+                stub.setName(rs.getString("name"));
+                stub.setModel(rs.getString("model"));
+                stub.setDescription(rs.getString("description"));
+                stub.setCost(rs.getString("cost"));
+                stub.setWarranty(rs.getString("warranty"));
+                stub.setQuantity(rs.getString("quantity"));
+                Date dbSqlDate = rs.getDate("dated");
+                stub.setImport(dbSqlDate.toString()); // SQL NOW
+                list.add(stub);
+            }
+        } catch (Exception e) {
             e.printStackTrace(); // write log file
         }
         return list;
     }
-    
-       // Search by Category
-     public ArrayList<MerganoBean> getDataCategory(String category) {
-            ArrayList<MerganoBean> list = new ArrayList<>();
-        
-        String sql = "SELECT * FROM "+table+" WHERE category='"+category+"';";         
-        if(connect == null) System.out.print("ERROR NO CONNECTION");
+
+    // Search by Category
+    public ArrayList<MerganoBean> getDataCategory(String category) {
+        ArrayList<MerganoBean> list = new ArrayList<>();
+
+        String sql = "SELECT * FROM " + table + " WHERE category='" + category + "';";
+        if (connect == null) {
+            System.out.print("ERROR NO CONNECTION");
+        }
 
         try {
-           p = connect.prepareStatement(sql);
-           rs = p.executeQuery();
-           
-        while (rs.next()) {
-            MerganoBean stub = new MerganoBean();
-            stub.setID(rs.getInt("id"));
-            stub.setProductID(rs.getString("product_id"));
-            stub.setCategory(rs.getString("category"));
-            stub.setType(rs.getString("type"));
-            stub.setManufacture(rs.getString("manufacture"));
-            stub.setName(rs.getString("name"));
-            stub.setModel(rs.getString("model"));
-            stub.setDescription(rs.getString("description"));
-            stub.setCost(rs.getString("cost"));
-            stub.setWarranty(rs.getString("warranty"));
-            stub.setQuantity(rs.getString("quantity"));    
-            Date dbSqlDate = rs.getDate("dated");
-            stub.setImport(dbSqlDate.toString()); // SQL NOW
-            list.add(stub);
-        }
-        } catch (Exception e) { 
+            p = connect.prepareStatement(sql);
+            rs = p.executeQuery();
+
+            while (rs.next()) {
+                MerganoBean stub = new MerganoBean();
+                stub.setID(rs.getInt("id"));
+                stub.setProductID(rs.getString("product_id"));
+                stub.setCategory(rs.getString("category"));
+                stub.setType(rs.getString("type"));
+                stub.setManufacture(rs.getString("manufacture"));
+                stub.setName(rs.getString("name"));
+                stub.setModel(rs.getString("model"));
+                stub.setDescription(rs.getString("description"));
+                stub.setCost(rs.getString("cost"));
+                stub.setWarranty(rs.getString("warranty"));
+                stub.setQuantity(rs.getString("quantity"));
+                Date dbSqlDate = rs.getDate("dated");
+                stub.setImport(dbSqlDate.toString()); // SQL NOW
+                list.add(stub);
+            }
+        } catch (Exception e) {
             e.printStackTrace(); // write log file
         }
         return list;
     }
-    
-        // Search by Type
-     public ArrayList<MerganoBean> getDataType(String type) {
-            ArrayList<MerganoBean> list = new ArrayList<>();
-        
-        String sql = "SELECT * FROM "+table+" WHERE type='"+type+"';";         
-        if(connect == null) System.out.print("ERROR NO CONNECTION");
+
+    // Search by Type
+    public ArrayList<MerganoBean> getDataType(String type) {
+        ArrayList<MerganoBean> list = new ArrayList<>();
+
+        String sql = "SELECT * FROM " + table + " WHERE type='" + type + "';";
+        if (connect == null) {
+            System.out.print("ERROR NO CONNECTION");
+        }
 
         try {
-           p = connect.prepareStatement(sql);
-           rs = p.executeQuery();
-           
-        while (rs.next()) {
-            MerganoBean stub = new MerganoBean();
-            stub.setID(rs.getInt("id"));
-            stub.setProductID(rs.getString("product_id"));
-            stub.setCategory(rs.getString("category"));
-            stub.setType(rs.getString("type"));
-            stub.setManufacture(rs.getString("manufacture"));
-            stub.setName(rs.getString("name"));
-            stub.setModel(rs.getString("model"));
-            stub.setDescription(rs.getString("description"));
-            stub.setCost(rs.getString("cost"));
-            stub.setWarranty(rs.getString("warranty"));
-            stub.setQuantity(rs.getString("quantity"));    
-            Date dbSqlDate = rs.getDate("dated");
-            stub.setImport(dbSqlDate.toString()); // SQL NOW
-            list.add(stub);
-        }
-        } catch (Exception e) { 
+            p = connect.prepareStatement(sql);
+            rs = p.executeQuery();
+
+            while (rs.next()) {
+                MerganoBean stub = new MerganoBean();
+                stub.setID(rs.getInt("id"));
+                stub.setProductID(rs.getString("product_id"));
+                stub.setCategory(rs.getString("category"));
+                stub.setType(rs.getString("type"));
+                stub.setManufacture(rs.getString("manufacture"));
+                stub.setName(rs.getString("name"));
+                stub.setModel(rs.getString("model"));
+                stub.setDescription(rs.getString("description"));
+                stub.setCost(rs.getString("cost"));
+                stub.setWarranty(rs.getString("warranty"));
+                stub.setQuantity(rs.getString("quantity"));
+                Date dbSqlDate = rs.getDate("dated");
+                stub.setImport(dbSqlDate.toString()); // SQL NOW
+                list.add(stub);
+            }
+        } catch (Exception e) {
             e.printStackTrace(); // write log file
         }
         return list;
     }
-    
-        // Search by Manufacture
-     public ArrayList<MerganoBean> getDataManufacture(String manufacture) {
-            ArrayList<MerganoBean> list = new ArrayList<>();
-        
-        String sql = "SELECT * FROM "+table+" WHERE manufacture='"+manufacture+"';";         
-        if(connect == null) System.out.print("ERROR NO CONNECTION");
+
+    // Search by Manufacture
+    public ArrayList<MerganoBean> getDataManufacture(String manufacture) {
+        ArrayList<MerganoBean> list = new ArrayList<>();
+
+        String sql = "SELECT * FROM " + table + " WHERE manufacture='" + manufacture + "';";
+        if (connect == null) {
+            System.out.print("ERROR NO CONNECTION");
+        }
 
         try {
-           p = connect.prepareStatement(sql);
-           rs = p.executeQuery();
-           
-        while (rs.next()) {
-            MerganoBean stub = new MerganoBean();
-            stub.setID(rs.getInt("id"));
-            stub.setProductID(rs.getString("product_id"));
-            stub.setCategory(rs.getString("category"));
-            stub.setType(rs.getString("type"));
-            stub.setManufacture(rs.getString("manufacture"));
-            stub.setName(rs.getString("name"));
-            stub.setModel(rs.getString("model"));
-            stub.setDescription(rs.getString("description"));
-            stub.setCost(rs.getString("cost"));
-            stub.setWarranty(rs.getString("warranty"));
-            stub.setQuantity(rs.getString("quantity"));    
-            Date dbSqlDate = rs.getDate("dated");
-            stub.setImport(dbSqlDate.toString()); // SQL NOW
-            list.add(stub);
-        }
-        } catch (Exception e) { 
+            p = connect.prepareStatement(sql);
+            rs = p.executeQuery();
+
+            while (rs.next()) {
+                MerganoBean stub = new MerganoBean();
+                stub.setID(rs.getInt("id"));
+                stub.setProductID(rs.getString("product_id"));
+                stub.setCategory(rs.getString("category"));
+                stub.setType(rs.getString("type"));
+                stub.setManufacture(rs.getString("manufacture"));
+                stub.setName(rs.getString("name"));
+                stub.setModel(rs.getString("model"));
+                stub.setDescription(rs.getString("description"));
+                stub.setCost(rs.getString("cost"));
+                stub.setWarranty(rs.getString("warranty"));
+                stub.setQuantity(rs.getString("quantity"));
+                Date dbSqlDate = rs.getDate("dated");
+                stub.setImport(dbSqlDate.toString()); // SQL NOW
+                list.add(stub);
+            }
+        } catch (Exception e) {
             e.printStackTrace(); // write log file
         }
         return list;
     }
-    
+
 // Insert data into database
     public boolean insertData(MerganoBean bean) {
         boolean flag = false;
-        try {  
-            String sql = "INSERT INTO " + table + " VALUES('"+bean.getID()+"','"
-                                                            +bean.getProductID()+"','"
-                                                            +bean.getCategory()+"','" 
-                                                            +bean.getType()+"','"
-                                                            +bean.getManufacture()+"','"
-                                                          +bean.getName()+"','"
-                                                          +bean.getModel()+"','"
-                                                          +bean.getDescription()+"','"
-                                                          +bean.getCost()+"','"
-                                                          +bean.getWarranty()+"','"
-                                                          +bean.getQuantity()+"',current_date());"; 
-           // p = connect.prepareStatement(sql);      
-            String sql2 = "INSERT INTO backlog VALUES('"+bean.getID()+"','"+ bean.getHistory()+"',now());";
-            //p.executeUpdate(); 
+        try {
+            String sql = "INSERT INTO " + table + " VALUES('" + bean.getID() + "','"
+                    + bean.getProductID() + "','"
+                    + bean.getCategory() + "','"
+                    + bean.getType() + "','"
+                    + bean.getManufacture() + "','"
+                    + bean.getName() + "','"
+                    + bean.getModel() + "','"
+                    + bean.getDescription() + "','"
+                    + bean.getCost() + "','"
+                    + bean.getWarranty() + "','"
+                    + bean.getQuantity() + "',current_date());";
+            // p = connect.prepareStatement(sql);
+            String sql2 = "INSERT INTO backlog VALUES('" + bean.getID() + "','" + bean.getHistory() + "',now());";
+            //p.executeUpdate();
             p = connect.prepareStatement(sql);
-            p.executeUpdate(); 
+            p.executeUpdate();
             p = connect.prepareStatement(sql2);
-            p.executeUpdate(); 
+            p.executeUpdate();
 //            String sql = "INSERT INTO " + table + " values(?,?,?,?,?,?,?,?,?,?,?,?)";
-          // print for sql test
+            // print for sql test
 //            p.setInt(1, bean.getID()); // "LAST_INSERT_ID()");
 //            p.setString(2, bean.getProductID());
 //            p.setString(3, bean.getCategory());
@@ -328,11 +344,11 @@ public class MerganoDAO {
 //            p.setString(10,bean.getWarranty());
 //            p.setString(11, bean.getQuantity());
 //            p.setString(12, "current_date()");
-           // p.executeQuery();
+            // p.executeQuery();
             flag = true;
-        }catch(SQLException e){
-           System.out.println(e);
-           e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println(e);
+            e.printStackTrace();
         } catch (Exception e) {
             flag = false;
             System.out.println(e);
@@ -342,45 +358,47 @@ public class MerganoDAO {
     }
 
     public ArrayList<MerganoBean> getLowQuantity() {
-              ArrayList<MerganoBean> list = new ArrayList<>();
-        
-        String sql = "SELECT * FROM "+table+" WHERE quantity <=10;";         
-        if(connect == null) System.out.print("ERROR NO CONNECTION");
+        ArrayList<MerganoBean> list = new ArrayList<>();
+
+        String sql = "SELECT * FROM " + table + " WHERE quantity <=10;";
+        if (connect == null) {
+            System.out.print("ERROR NO CONNECTION");
+        }
 
         try {
-           p = connect.prepareStatement(sql);
-           rs = p.executeQuery();
-           
-        while (rs.next()) {
-            MerganoBean stub = new MerganoBean();
-            stub.setID(rs.getInt("id"));
-            stub.setProductID(rs.getString("product_id"));
-            stub.setCategory(rs.getString("category"));
-            stub.setType(rs.getString("type"));
-            stub.setManufacture(rs.getString("manufacture"));
-            stub.setName(rs.getString("name"));
-            stub.setModel(rs.getString("model"));
-            stub.setDescription(rs.getString("description"));
-            stub.setCost(rs.getString("cost"));
-            stub.setWarranty(rs.getString("warranty"));
-            stub.setQuantity(rs.getString("quantity"));    
-            Date dbSqlDate = rs.getDate("dated");
-            stub.setImport(dbSqlDate.toString()); // SQL NOW
-            list.add(stub);
-        }
-        } catch (Exception e) { 
+            p = connect.prepareStatement(sql);
+            rs = p.executeQuery();
+
+            while (rs.next()) {
+                MerganoBean stub = new MerganoBean();
+                stub.setID(rs.getInt("id"));
+                stub.setProductID(rs.getString("product_id"));
+                stub.setCategory(rs.getString("category"));
+                stub.setType(rs.getString("type"));
+                stub.setManufacture(rs.getString("manufacture"));
+                stub.setName(rs.getString("name"));
+                stub.setModel(rs.getString("model"));
+                stub.setDescription(rs.getString("description"));
+                stub.setCost(rs.getString("cost"));
+                stub.setWarranty(rs.getString("warranty"));
+                stub.setQuantity(rs.getString("quantity"));
+                Date dbSqlDate = rs.getDate("dated");
+                stub.setImport(dbSqlDate.toString()); // SQL NOW
+                list.add(stub);
+            }
+        } catch (Exception e) {
             e.printStackTrace(); // write log file
         }
         return list;
     }
-    
+
     //TRUNCATE (CLEAR) BACKLOG TABLE
-     public void deleteBacklog() {
+    public void deleteBacklog() {
         ArrayList<MerganoBean> list = new ArrayList<>();
         MerganoBean stub = null;
-         
+
         try {
-            String sql = "DELETE FROM "+ backlog;
+            String sql = "DELETE FROM " + backlog;
             p = connect.prepareStatement(sql);
             p.executeUpdate(sql);
             System.out.println(sql);
@@ -390,13 +408,13 @@ public class MerganoDAO {
         }
 
     }
-     
+
     // Update data into database
     public boolean updateData(MerganoBean bean, int n) {
         boolean flag = false;
         try {
-            String sql = "UPDATE "+table+" SET id ='"+bean.getID()+"' , product_id='"+bean.getProductID()+"' , category='"+bean.getProductID()+"' , manufacture='"+bean.getManufacture()+"' , type='"+bean.getType()+"' , model='"+ bean.getModel()+"' , description='"+bean.getDescription()+"' , cost='"+bean.getCost()+"' , warranty='"+bean.getWarranty()+"' , quantity='"+bean.getQuantity()+"' WHERE id ='"+n+"';";
-            String sql2 = "INSERT INTO backlog VALUES('"+bean.getID()+"','"+ bean.getHistory()+"',now());";
+            String sql = "UPDATE " + table + " SET id ='" + bean.getID() + "' , product_id='" + bean.getProductID() + "' , category='" + bean.getProductID() + "' , manufacture='" + bean.getManufacture() + "' , type='" + bean.getType() + "' , model='" + bean.getModel() + "' , description='" + bean.getDescription() + "' , cost='" + bean.getCost() + "' , warranty='" + bean.getWarranty() + "' , quantity='" + bean.getQuantity() + "' WHERE id ='" + n + "';";
+            String sql2 = "INSERT INTO backlog VALUES('" + bean.getID() + "','" + bean.getHistory() + "',now());";
             p = connect.prepareStatement(sql);
             p.executeUpdate();
             p = connect.prepareStatement(sql2);
@@ -408,14 +426,13 @@ public class MerganoDAO {
         }
         return flag;
     }
-    
-    
-     // Delete data from database
+
+    // Delete data from database
     public boolean deleteData(MerganoBean bean, int n) {
         boolean flag = false;
         try {
-            String sql = "DELETE FROM "+table+" WHERE id ='"+n+"';";
-            String sql2 = "INSERT INTO backlog VALUES('"+bean.getID()+"','"+ bean.getHistory()+"',now());";
+            String sql = "DELETE FROM " + table + " WHERE id ='" + n + "';";
+            String sql2 = "INSERT INTO backlog VALUES('" + bean.getID() + "','" + bean.getHistory() + "',now());";
             p = connect.prepareStatement(sql);
             p.executeUpdate();
             p = connect.prepareStatement(sql2);

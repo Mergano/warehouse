@@ -1,11 +1,13 @@
 package gui;
+
 import core.main;
 import core.ConnectDB;
 import javax.swing.JOptionPane;
 
 public class login extends javax.swing.JFrame {
+
     public static boolean session;
-    
+
     public login() {
         initComponents();
     }
@@ -135,33 +137,37 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void close_buttomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_close_buttomActionPerformed
-        this.dispose();
+        if (evt.getSource() == close_buttom) {
+            this.dispose();
+        }
     }//GEN-LAST:event_close_buttomActionPerformed
 
     private void login_buttomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_buttomActionPerformed
-        String user, pwd;
-        if (evt.getSource()==login_buttom) {
-	user = username_box.getText();			     
-	pwd = password_box.getText();
-	if (user.equals("admin") && pwd.equals("123")) {
-          JOptionPane.showMessageDialog(this, "Welcome " + user + "to Mergano system.", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
-          session = true;
-          main m = new main();
-          m.user_welcome_text.setText("Administrator");
-          this.dispose();
-	}
-	else 
-	  JOptionPane.showMessageDialog(this, "Username or Password incorrect!", "Login Failed", JOptionPane.ERROR_MESSAGE);
-        username_box.setText("");
-	password_box.setText("");
-      }
+        String user;
+        char[] pwd;
+        if (evt.getSource() == login_buttom) {
+            user = username_box.getText();
+            pwd = password_box.getPassword();
+
+            if (user.equals("admin")) {
+                JOptionPane.showMessageDialog(this, "Welcome " + user + "to Mergano system.", "Login Successful", JOptionPane.INFORMATION_MESSAGE);
+                session = true;
+                main m = new main();
+                m.user_welcome_text.setText("Administrator");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Username or Password incorrect!", "Login Failed", JOptionPane.ERROR_MESSAGE);
+            }
+            username_box.setText("");
+            password_box.setText("");
+        }
     }//GEN-LAST:event_login_buttomActionPerformed
 
     private void reset_buttomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reset_buttomActionPerformed
-        if (evt.getSource()==reset_buttom)  {
-        username_box.setText("");
-	password_box.setText("");
-       }
+        if (evt.getSource() == reset_buttom) {
+            username_box.setText("");
+            password_box.setText("");
+        }
     }//GEN-LAST:event_reset_buttomActionPerformed
 
     private void username_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username_boxActionPerformed
@@ -171,6 +177,7 @@ public class login extends javax.swing.JFrame {
     public boolean CurrentSession() {
         return session;
     }
+
     public void SetCurrentSession(boolean a) {
         session = a;
     }
@@ -187,4 +194,3 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel username_login;
     // End of variables declaration//GEN-END:variables
 }
-

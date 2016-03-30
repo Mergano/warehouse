@@ -5,7 +5,7 @@ import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConnectDB {  
+public class ConnectDB {
 
     String hostname;
     int port;
@@ -20,70 +20,95 @@ public class ConnectDB {
     Connection con;
 
     public ConnectDB() {
-    hostname=null;
-    port=3306;
-    DBtype=null;
-    databasename=null;
-    username=null;
-    password=null;
-    status=null;
+        hostname = null;
+        port = 3306;
+        DBtype = null;
+        databasename = null;
+        username = null;
+        password = null;
+        status = null;
     }
+
     public void setHostname(String h) {
         hostname = h;
     }
+
     public void setPort(int p) {
         port = p;
     }
+
     public void setProtocol(int d) {
-        if(d == 0) DBtype = "jdbc"; Driver = "com.mysql.jdbc.Driver"; // mysql
-        if(d == 1) DBtype = "odbc"; Driver = "com.mysql.jdbc.Driver";//mssql server
-        if(d == 2) DBtype = "oracle"; Driver = "com.mysql.jdbc.Driver"; // oracle db
-        if(d == 4) DBtype = "db2"; Driver = "com.mysql.jdbc.Driver"; // IBM db2
+        if (d == 0) {
+            DBtype = "jdbc";
+        }
+        Driver = "com.mysql.jdbc.Driver"; // mysql
+        if (d == 1) {
+            DBtype = "odbc";
+        }
+        Driver = "com.mysql.jdbc.Driver";//mssql server
+        if (d == 2) {
+            DBtype = "oracle";
+        }
+        Driver = "com.mysql.jdbc.Driver"; // oracle db
+        if (d == 4) {
+            DBtype = "db2";
+        }
+        Driver = "com.mysql.jdbc.Driver"; // IBM db2
     }
+
     public void setDatabaseName(String n) {
         databasename = n;
     }
+
     public void setUsername(String s) {
         username = s;
-    }  
+    }
+
     public void setPassword(String w) {
         password = w;
     }
+
     public void setUrl(String u) {
         url = u;
     }
+
     public String getHostname() {
         return hostname;
     }
+
     public int getPort() {
         return port;
     }
+
     public String getProtocol() {
         return DBtype;
     }
+
     public String getDatabaseName() {
         return databasename;
     }
+
     public String getUrl() {
         return url;
     }
+
     public String getStatus() {
         return status;
     }
+
     public String getError() {
         return error;
     }
-    
-//"jdbc:mysql://192.168.117.93:3306/mergano_db";
 
+//"jdbc:mysql://192.168.117.93:3306/mergano_db";
     public Connection getconnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver"); // Load JDBC MYSQL DRIVER
-            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:" + "3306" + "/mergano","root","jukjukjuk"); 
-                    // jdbc:mysql://localhost:3306/mergano_db", "root", "jukjukjuk"); 
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://128.199.117.93:" + "3306" + "/mergano", "user", "iloveoosd");
+            // jdbc:mysql://localhost:3306/mergano_db", "root", "jukjukjuk");
             con.setAutoCommit(true);
-            
-            if(con == null) {
+
+            if (con == null) {
                 status = "Disconnect";
                 error = "Error Database Connection Failed";
                 main.status_box.setText("Disconnect");
@@ -97,32 +122,29 @@ public class ConnectDB {
                 main.url_box.setText(this.getProtocol());
                 main.db_name_box.setText(con.getCatalog());
                 System.out.println("Connecting database to " + con);
-            } 
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
-        return con; 
+        return con;
     }
-    
+
     public void closeDB() {
         try {
             con.close();
         } catch (SQLException ex) {
-                ex.printStackTrace();
+            ex.printStackTrace();
         }
     }
-    
-    
+
     public void showdata() {
-        System.out.println("TYPE DB: "+ DBtype);
-        System.out.println("DATABASE NAME: "+databasename);
-        System.out.println("HOSTNAME: "+hostname);
-        System.out.println("PORT: "+port);
-        System.out.println("USER NAME: "+username);
-        System.out.println("PASSWORD: "+password);
+        System.out.println("TYPE DB: " + DBtype);
+        System.out.println("DATABASE NAME: " + databasename);
+        System.out.println("HOSTNAME: " + hostname);
+        System.out.println("PORT: " + port);
+        System.out.println("USER NAME: " + username);
+        System.out.println("PASSWORD: " + password);
         System.out.println("-----------------------------------------------------");
-        System.out.println("URL: "+ url);
+        System.out.println("URL: " + url);
     }
 }
-
-
