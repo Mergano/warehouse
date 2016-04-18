@@ -104,11 +104,8 @@ public class ConnectDB {
     public Connection getconnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver"); // Load JDBC MYSQL DRIVER
-<<<<<<< HEAD
             con = (Connection) DriverManager.getConnection("jdbc:mysql://128.199.117.93:" + "3306" + "/mergano" + "?useCompression=true", "user", "iloveoosd");
-=======
-            con = (Connection) DriverManager.getConnection("jdbc:mysql://128.199.117.93:" + "3306" + "mergano", "user", "iloveoosd");
->>>>>>> origin/master
+
             // jdbc:mysql://localhost:3306/mergano_db", "root", "jukjukjuk");
             con.setAutoCommit(true);
 
