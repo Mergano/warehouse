@@ -10,6 +10,8 @@ import java.util.logging.Logger;
 import java.sql.Date;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import javax.swing.JOptionPane;
+import core.main;
 
 public class MerganoDAO {
 
@@ -33,14 +35,25 @@ public class MerganoDAO {
     public ArrayList<MerganoBean> getData() {
         ArrayList<MerganoBean> list = new ArrayList<>();
 
-        String sql = "SELECT * FROM " + table + ";";
         if (connect == null) {
-            System.out.print("ERROR NO CONNECTION");
+            System.out.println("ERROR: NO INTERNET CONNECTION");
+            JOptionPane.showMessageDialog(null, "Internet connection is broken or disconnected. \nPlease check your internet connection and try again.", "Communication error",
+                    JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
         }
 
+        String sql = "SELECT * FROM " + table + ";";
         try {
+            long start = java.lang.System.currentTimeMillis();
             p = connect.prepareStatement(sql);
             rs = p.executeQuery();
+            long stop = java.lang.System.currentTimeMillis();
+            if (rs.next()) {
+                System.out.println("Query successful");
+                System.out.println("JDBC query time: " + String.valueOf((stop - start)) + " ms");
+            } else {
+                System.out.println("Query failed");
+            }
 
             while (rs.next()) {
                 MerganoBean stub = new MerganoBean();
@@ -69,26 +82,26 @@ public class MerganoDAO {
         ArrayList<MerganoBean> list = new ArrayList<>();
 
         // display data from
-        String sql = "SELECT * FROM " + backlog + ";";
-        if (connect == null) {
-            System.out.print("ERROR NO CONNECTION");
-        }
-
-        try {
-            p = connect.prepareStatement(sql);
-            rs = p.executeQuery();
-
-            while (rs.next()) {
-                MerganoBean stub = new MerganoBean();
-                stub.setBLID(rs.getInt("id"));
-                stub.setHistory(rs.getString("history"));
-                Timestamp BacklogTime = rs.getTimestamp("timed");
-                stub.setTime(BacklogTime.toString()); // SQL NOW
-                list.add(stub);
-            }
-        } catch (Exception e) {
-            e.printStackTrace(); // write log file
-        }
+//        String sql = "SELECT * FROM " + backlog + ";";
+//        if (connect == null) {
+//            System.out.print("ERROR NO CONNECTION");
+//        }
+//
+//        try {
+//            p = connect.prepareStatement(sql);
+//            rs = p.executeQuery();
+//
+//            while (rs.next()) {
+//                MerganoBean stub = new MerganoBean();
+//                stub.setBLID(rs.getInt("id"));
+//                stub.setHistory(rs.getString("history"));
+//                Timestamp BacklogTime = rs.getTimestamp("timed");
+//                stub.setTime(BacklogTime.toString()); // SQL NOW
+//                list.add(stub);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace(); // write log file
+//        }
         return list;
     }
 

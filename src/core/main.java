@@ -3,6 +3,7 @@ package core;
 import gui.*;
 import java.awt.Desktop;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.awt.print.PrinterException;
 import java.io.File;
 import java.io.IOException;
@@ -978,6 +979,11 @@ public class main extends javax.swing.JFrame {
         query_table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 query_tableMouseClicked(evt);
+            }
+        });
+        query_table.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                query_tableKeyPressed(evt);
             }
         });
         ScrollPanelForQueryTable.setViewportView(query_table);
@@ -3403,6 +3409,10 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_test_connection_buttonActionPerformed
 
     private void query_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_query_tableMouseClicked
+        this.fillDataField();
+    }//GEN-LAST:event_query_tableMouseClicked
+
+    private void fillDataField() {
         String selectedData = null;
         int selectedRow = query_table.getSelectedRow();
         int selectedColumn = query_table.getSelectedColumn();
@@ -3430,8 +3440,7 @@ public class main extends javax.swing.JFrame {
         quantity_input.setValue(Integer.parseInt(selectedQuantity));
         warranty_input.setText(selectedWarranty);
         description_input.setText(selectedDescription);
-    }//GEN-LAST:event_query_tableMouseClicked
-
+    }
     private void clear_noti_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear_noti_buttonActionPerformed
         if (evt.getSource() == clear_noti_button) {
 
@@ -3506,14 +3515,19 @@ public class main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_User_buttonMouseClicked
 
+    private void query_tableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_query_tableKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_UP || evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            this.fillDataField();
+        }
+    }//GEN-LAST:event_query_tableKeyPressed
+
     private void updateBacklog(ArrayList<MerganoBean> list) {
-        List<String[]> values = new ArrayList<String[]>();
-        List<String> columns = new ArrayList<String>();
+        List<String[]> values = new ArrayList<>();
+        List<String> columns = new ArrayList<>();
         MerganoDAO db = new MerganoDAO();
         try {
             list = db.getBacklogData();
         } catch (Exception e) {
-            e.printStackTrace();
         }
         columns.add("ID");
         columns.add("History");
