@@ -1890,7 +1890,7 @@ public class main extends javax.swing.JFrame {
         file_menu.setText("File");
 
         open_menuitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        open_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/folder_add.png"))); // NOI18N
+        open_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/folder_add.png"))); // NOI18N
         open_menuitem.setText("Open...");
         open_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1900,11 +1900,11 @@ public class main extends javax.swing.JFrame {
         file_menu.add(open_menuitem);
 
         save_menuitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-        save_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/save-icon.png"))); // NOI18N
+        save_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/archive.png"))); // NOI18N
         save_menuitem.setText("Save");
         file_menu.add(save_menuitem);
 
-        saveas_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/save-as-icon.png"))); // NOI18N
+        saveas_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/archive.png"))); // NOI18N
         saveas_menuitem.setText("Save as...");
         saveas_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1914,7 +1914,7 @@ public class main extends javax.swing.JFrame {
         file_menu.add(saveas_menuitem);
         file_menu.add(jSeparator3);
 
-        welcome_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/home.png"))); // NOI18N
+        welcome_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/archive.png"))); // NOI18N
         welcome_menuitem.setText("Welcome");
         welcome_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1923,7 +1923,7 @@ public class main extends javax.swing.JFrame {
         });
         file_menu.add(welcome_menuitem);
 
-        dashboard_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/dashboard.png"))); // NOI18N
+        dashboard_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/archive.png"))); // NOI18N
         dashboard_menuitem.setText("Dashboard");
         dashboard_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1932,7 +1932,7 @@ public class main extends javax.swing.JFrame {
         });
         file_menu.add(dashboard_menuitem);
 
-        stock_management_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/notebook.png"))); // NOI18N
+        stock_management_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/archive.png"))); // NOI18N
         stock_management_menuitem.setText("Stock Management");
         stock_management_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1941,7 +1941,7 @@ public class main extends javax.swing.JFrame {
         });
         file_menu.add(stock_management_menuitem);
 
-        order_management_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/notebook.png"))); // NOI18N
+        order_management_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/archive.png"))); // NOI18N
         order_management_menuitem.setText("Order Management");
         order_management_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1950,7 +1950,7 @@ public class main extends javax.swing.JFrame {
         });
         file_menu.add(order_management_menuitem);
 
-        tracking_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/checkmark.png"))); // NOI18N
+        tracking_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/archive.png"))); // NOI18N
         tracking_menuitem.setText("Tracking");
         tracking_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1959,7 +1959,7 @@ public class main extends javax.swing.JFrame {
         });
         file_menu.add(tracking_menuitem);
 
-        database_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/database_32.png"))); // NOI18N
+        database_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/archive.png"))); // NOI18N
         database_menuitem.setText("Database");
         database_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1968,7 +1968,7 @@ public class main extends javax.swing.JFrame {
         });
         file_menu.add(database_menuitem);
 
-        searching_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/search.png"))); // NOI18N
+        searching_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/archive.png"))); // NOI18N
         searching_menuitem.setText("Searching");
         searching_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1977,7 +1977,7 @@ public class main extends javax.swing.JFrame {
         });
         file_menu.add(searching_menuitem);
 
-        report_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/chart_graph.png"))); // NOI18N
+        report_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/archive.png"))); // NOI18N
         report_menuitem.setText("Report");
         report_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1986,7 +1986,7 @@ public class main extends javax.swing.JFrame {
         });
         file_menu.add(report_menuitem);
 
-        statistics_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/statistics.png"))); // NOI18N
+        statistics_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/archive.png"))); // NOI18N
         statistics_menuitem.setLabel("Statistics");
         statistics_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1995,7 +1995,7 @@ public class main extends javax.swing.JFrame {
         });
         file_menu.add(statistics_menuitem);
 
-        backlog_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/cup.png"))); // NOI18N
+        backlog_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/archive.png"))); // NOI18N
         backlog_menuitem.setLabel("Backlog");
         backlog_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2006,7 +2006,7 @@ public class main extends javax.swing.JFrame {
         file_menu.add(jSeparator7);
 
         print_menuitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        print_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/print.png"))); // NOI18N
+        print_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/archive.png"))); // NOI18N
         print_menuitem.setText("Print...");
         print_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2015,11 +2015,11 @@ public class main extends javax.swing.JFrame {
         });
         file_menu.add(print_menuitem);
 
-        jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/file_edit.png"))); // NOI18N
+        jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/archive.png"))); // NOI18N
         jMenuItem16.setText("Page Setup...");
         file_menu.add(jMenuItem16);
 
-        print_preview_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/search.png"))); // NOI18N
+        print_preview_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/archive.png"))); // NOI18N
         print_preview_menuitem.setText("Print Preview...");
         print_preview_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2030,6 +2030,7 @@ public class main extends javax.swing.JFrame {
         file_menu.add(jSeparator10);
 
         logout_menuitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        logout_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/archive.png"))); // NOI18N
         logout_menuitem.setText("Logout");
         logout_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2040,6 +2041,7 @@ public class main extends javax.swing.JFrame {
         file_menu.add(jSeparator2);
 
         exit_program.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        exit_program.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/application_blueprint.png"))); // NOI18N
         exit_program.setText("Exit");
         exit_program.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2068,9 +2070,11 @@ public class main extends javax.swing.JFrame {
         edit_menu.add(jMenuItem26);
         edit_menu.add(jSeparator8);
 
+        jMenuItem27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/blueprint.png"))); // NOI18N
         jMenuItem27.setText("Cut");
         edit_menu.add(jMenuItem27);
 
+        jMenuItem28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/blueprint.png"))); // NOI18N
         jMenuItem28.setText("Copy");
         edit_menu.add(jMenuItem28);
 
@@ -2082,19 +2086,24 @@ public class main extends javax.swing.JFrame {
         jMenuItem31.setEnabled(false);
         edit_menu.add(jMenuItem31);
 
+        jMenuItem33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/blueprint.png"))); // NOI18N
         jMenuItem33.setText("Delete");
         edit_menu.add(jMenuItem33);
 
+        jMenuItem32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/blueprint.png"))); // NOI18N
         jMenuItem32.setText("Select All");
         edit_menu.add(jMenuItem32);
         edit_menu.add(jSeparator9);
 
+        jMenuItem36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/blueprint.png"))); // NOI18N
         jMenuItem36.setText("Find/Replace...");
         edit_menu.add(jMenuItem36);
 
+        jMenuItem34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/blueprint.png"))); // NOI18N
         jMenuItem34.setText("Find Next");
         edit_menu.add(jMenuItem34);
 
+        jMenuItem35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/blueprint.png"))); // NOI18N
         jMenuItem35.setText("Find Previous");
         edit_menu.add(jMenuItem35);
 
@@ -2158,10 +2167,10 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/database_32.png"))); // NOI18N
+        jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/add.png"))); // NOI18N
         jMenu7.setText("Connect..");
 
-        new_db_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/database_add_32.png"))); // NOI18N
+        new_db_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/add.png"))); // NOI18N
         new_db_menuitem.setText("New...");
         new_db_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2170,7 +2179,7 @@ public class main extends javax.swing.JFrame {
         });
         jMenu7.add(new_db_menuitem);
 
-        del_db_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/database_close_32.png"))); // NOI18N
+        del_db_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/add.png"))); // NOI18N
         del_db_menuitem.setText("Delete...");
         del_db_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2179,13 +2188,13 @@ public class main extends javax.swing.JFrame {
         });
         jMenu7.add(del_db_menuitem);
 
-        find_db_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/database_search_32.png"))); // NOI18N
+        find_db_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/add.png"))); // NOI18N
         find_db_menuitem.setText("Find...");
         jMenu7.add(find_db_menuitem);
 
         database_menu.add(jMenu7);
 
-        connect_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/lock_open_32.png"))); // NOI18N
+        connect_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/add.png"))); // NOI18N
         connect_menuitem.setText("Connect");
         connect_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2194,7 +2203,7 @@ public class main extends javax.swing.JFrame {
         });
         database_menu.add(connect_menuitem);
 
-        disconnect_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/lock_32.png"))); // NOI18N
+        disconnect_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/add.png"))); // NOI18N
         disconnect_menuitem.setText("Disconnect");
         disconnect_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2204,23 +2213,27 @@ public class main extends javax.swing.JFrame {
         database_menu.add(disconnect_menuitem);
         database_menu.add(jSeparator1);
 
-        import_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/inbox.png"))); // NOI18N
+        import_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/add.png"))); // NOI18N
         import_menuitem.setText("Import...");
 
+        import_csv_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/add.png"))); // NOI18N
         import_csv_menuitem.setText("From CSV");
         import_menuitem.add(import_csv_menuitem);
 
         database_menu.add(import_menuitem);
 
-        export_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/box.png"))); // NOI18N
+        export_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/add.png"))); // NOI18N
         export_menuitem.setText("Export...");
 
+        export_csv_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/add.png"))); // NOI18N
         export_csv_menuitem.setText("To CSV");
         export_menuitem.add(export_csv_menuitem);
 
+        export_txt_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/add.png"))); // NOI18N
         export_txt_menuitem.setText("To TXT");
         export_menuitem.add(export_txt_menuitem);
 
+        export_sql_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/add.png"))); // NOI18N
         export_sql_menuitem.setText("To SQL");
         export_menuitem.add(export_sql_menuitem);
 
@@ -2230,20 +2243,20 @@ public class main extends javax.swing.JFrame {
 
         tools_menu.setText("Tools");
 
-        search_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/search.png"))); // NOI18N
+        search_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/application_blueprint.png"))); // NOI18N
         search_menuitem.setText("Search...");
         tools_menu.add(search_menuitem);
 
-        backup_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/clock2.png"))); // NOI18N
+        backup_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/application_blueprint.png"))); // NOI18N
         backup_menuitem.setText("Backup");
         tools_menu.add(backup_menuitem);
 
-        bookmark_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/star.png"))); // NOI18N
+        bookmark_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/application_blueprint.png"))); // NOI18N
         bookmark_menuitem.setText("Bookmarks");
         tools_menu.add(bookmark_menuitem);
         tools_menu.add(jSeparator6);
 
-        options_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/gear.png"))); // NOI18N
+        options_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/application_blueprint.png"))); // NOI18N
         options_menuitem.setText("Options");
         options_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2257,7 +2270,7 @@ public class main extends javax.swing.JFrame {
         help_menu.setText("Help");
 
         help_contents_menuitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
-        help_contents_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/help.png"))); // NOI18N
+        help_contents_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/button_up.png"))); // NOI18N
         help_contents_menuitem.setText("Help Contents");
         help_contents_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2267,7 +2280,7 @@ public class main extends javax.swing.JFrame {
         help_menu.add(help_contents_menuitem);
 
         online_docs_menuitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.SHIFT_MASK));
-        online_docs_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/info.png"))); // NOI18N
+        online_docs_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/button_up.png"))); // NOI18N
         online_docs_menuitem.setText("Online Docs and Support");
         online_docs_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2277,7 +2290,7 @@ public class main extends javax.swing.JFrame {
         help_menu.add(online_docs_menuitem);
         help_menu.add(jSeparator5);
 
-        report_bug_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/bug.png"))); // NOI18N
+        report_bug_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/button_up.png"))); // NOI18N
         report_bug_menuitem.setText("Report Bug...");
         report_bug_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2286,7 +2299,7 @@ public class main extends javax.swing.JFrame {
         });
         help_menu.add(report_bug_menuitem);
 
-        feedback_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/comment_bubble.png"))); // NOI18N
+        feedback_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/button_up.png"))); // NOI18N
         feedback_menuitem.setText("Feedback...");
         feedback_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2295,7 +2308,7 @@ public class main extends javax.swing.JFrame {
         });
         help_menu.add(feedback_menuitem);
 
-        website_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/globe.png"))); // NOI18N
+        website_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/button_up.png"))); // NOI18N
         website_menuitem.setText("Website..");
         website_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2305,7 +2318,7 @@ public class main extends javax.swing.JFrame {
         help_menu.add(website_menuitem);
         help_menu.add(jSeparator4);
 
-        check_for_update_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/button_up.png"))); // NOI18N
+        check_for_update_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/button_up.png"))); // NOI18N
         check_for_update_menuitem.setText("Check for Updates");
         check_for_update_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2314,7 +2327,7 @@ public class main extends javax.swing.JFrame {
         });
         help_menu.add(check_for_update_menuitem);
 
-        about_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico16/info_light.png"))); // NOI18N
+        about_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/ico16/button_up.png"))); // NOI18N
         about_menuitem.setText("About");
         about_menuitem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

@@ -23,7 +23,7 @@
                   <KeyStroke key="Ctrl+O"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/folder_add.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/folder_add.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Open..."/>
               </Properties>
@@ -37,7 +37,7 @@
                   <KeyStroke key="Ctrl+S"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/save-icon.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/archive.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Save"/>
               </Properties>
@@ -45,7 +45,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="saveas_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/save-as-icon.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/archive.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Save as..."/>
               </Properties>
@@ -58,7 +58,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="welcome_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/home.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/archive.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Welcome"/>
               </Properties>
@@ -69,7 +69,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="dashboard_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/dashboard.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/archive.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Dashboard"/>
               </Properties>
@@ -80,7 +80,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="stock_management_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/notebook.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/archive.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Stock Management"/>
               </Properties>
@@ -91,7 +91,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="order_management_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/notebook.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/archive.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Order Management"/>
               </Properties>
@@ -102,7 +102,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="tracking_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/checkmark.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/archive.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Tracking"/>
               </Properties>
@@ -113,7 +113,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="database_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/database_32.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/archive.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Database"/>
               </Properties>
@@ -124,7 +124,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="searching_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/search.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/archive.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Searching"/>
               </Properties>
@@ -135,7 +135,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="report_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/chart_graph.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/archive.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Report"/>
               </Properties>
@@ -146,7 +146,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="statistics_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/statistics.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/archive.png"/>
                 </Property>
                 <Property name="label" type="java.lang.String" value="Statistics"/>
               </Properties>
@@ -157,7 +157,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="backlog_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/cup.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/archive.png"/>
                 </Property>
                 <Property name="label" type="java.lang.String" value="Backlog"/>
               </Properties>
@@ -173,7 +173,7 @@
                   <KeyStroke key="Ctrl+Alt+P"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/print.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/archive.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Print..."/>
               </Properties>
@@ -184,7 +184,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem16">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/file_edit.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/archive.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Page Setup..."/>
               </Properties>
@@ -192,7 +192,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="print_preview_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/search.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/archive.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Print Preview..."/>
               </Properties>
@@ -207,6 +207,9 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Shift+Ctrl+Q"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/mergano/ico16/archive.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Logout"/>
               </Properties>
               <Events>
@@ -219,6 +222,9 @@
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+Q"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/mergano/ico16/application_blueprint.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
@@ -258,11 +264,17 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem27">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/mergano/ico16/blueprint.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Cut"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem28">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/mergano/ico16/blueprint.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Copy"/>
               </Properties>
             </MenuItem>
@@ -280,11 +292,17 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem33">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/mergano/ico16/blueprint.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Delete"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem32">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/mergano/ico16/blueprint.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Select All"/>
               </Properties>
             </MenuItem>
@@ -292,16 +310,25 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem36">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/mergano/ico16/blueprint.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Find/Replace..."/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem34">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/mergano/ico16/blueprint.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Find Next"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem35">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/mergano/ico16/blueprint.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Find Previous"/>
               </Properties>
             </MenuItem>
@@ -356,7 +383,7 @@
             <Menu class="javax.swing.JMenu" name="jMenu7">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/database_32.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/add.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Connect.."/>
               </Properties>
@@ -364,7 +391,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="new_db_menuitem">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/ico16/database_add_32.png"/>
+                      <Image iconType="3" name="/com/mergano/ico16/add.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="New..."/>
                   </Properties>
@@ -375,7 +402,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="del_db_menuitem">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/ico16/database_close_32.png"/>
+                      <Image iconType="3" name="/com/mergano/ico16/add.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Delete..."/>
                   </Properties>
@@ -386,7 +413,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="find_db_menuitem">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/ico16/database_search_32.png"/>
+                      <Image iconType="3" name="/com/mergano/ico16/add.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Find..."/>
                   </Properties>
@@ -396,7 +423,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="connect_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/lock_open_32.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/add.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Connect"/>
               </Properties>
@@ -410,7 +437,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="disconnect_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/lock_32.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/add.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Disconnect"/>
               </Properties>
@@ -426,13 +453,16 @@
             <Menu class="javax.swing.JMenu" name="import_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/inbox.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/add.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Import..."/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="import_csv_menuitem">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/com/mergano/ico16/add.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="From CSV"/>
                   </Properties>
                 </MenuItem>
@@ -441,23 +471,32 @@
             <Menu class="javax.swing.JMenu" name="export_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/box.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/add.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Export..."/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="export_csv_menuitem">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/com/mergano/ico16/add.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="To CSV"/>
                   </Properties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="export_txt_menuitem">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/com/mergano/ico16/add.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="To TXT"/>
                   </Properties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="export_sql_menuitem">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/com/mergano/ico16/add.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="To SQL"/>
                   </Properties>
                 </MenuItem>
@@ -473,7 +512,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="search_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/search.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/application_blueprint.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Search..."/>
               </Properties>
@@ -481,7 +520,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="backup_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/clock2.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/application_blueprint.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Backup"/>
               </Properties>
@@ -489,7 +528,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="bookmark_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/star.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/application_blueprint.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Bookmarks"/>
               </Properties>
@@ -499,7 +538,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="options_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/gear.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/application_blueprint.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Options"/>
               </Properties>
@@ -520,7 +559,7 @@
                   <KeyStroke key="F2"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/help.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/button_up.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Help Contents"/>
               </Properties>
@@ -534,7 +573,7 @@
                   <KeyStroke key="Shift+F1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/info.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/button_up.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Online Docs and Support"/>
               </Properties>
@@ -547,7 +586,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="report_bug_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/bug.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/button_up.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Report Bug..."/>
               </Properties>
@@ -558,7 +597,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="feedback_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/comment_bubble.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/button_up.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Feedback..."/>
               </Properties>
@@ -569,7 +608,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="website_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/globe.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/button_up.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Website.."/>
               </Properties>
@@ -582,7 +621,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="check_for_update_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/button_up.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/button_up.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Check for Updates"/>
               </Properties>
@@ -593,7 +632,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="about_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ico16/info_light.png"/>
+                  <Image iconType="3" name="/com/mergano/ico16/button_up.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="About"/>
               </Properties>
