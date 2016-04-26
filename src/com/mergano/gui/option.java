@@ -68,7 +68,7 @@ public class option extends javax.swing.JFrame {
         jToolBar1.setFloatable(false);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/gear.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("_static/ico/gear.png"))); // NOI18N
         jButton1.setText("Miscellaneous");
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -80,7 +80,7 @@ public class option extends javax.swing.JFrame {
         jToolBar1.add(jButton1);
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ico/info.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("_static/ico/info.png"))); // NOI18N
         jButton2.setText("Notifications");
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);

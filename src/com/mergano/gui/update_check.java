@@ -1,4 +1,5 @@
 package com.mergano.gui;
+
 public class update_check extends javax.swing.JDialog {
     
     public update_check() {

@@ -77,7 +77,7 @@ public class login extends javax.swing.JFrame {
             }
         });
 
-        login_pic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/pic/login.png"))); // NOI18N
+        login_pic.setIcon(new javax.swing.ImageIcon(getClass().getResource("_static/pic/login.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -1,5 +1,6 @@
 package com.mergano.gui;
-import com.mergano.core.ConnectDB;
+
+import com.mergano.core.dbManager.ConnectDB;
 import javax.swing.JOptionPane;
 
 public class delete_db extends javax.swing.JFrame {
@@ -51,7 +52,7 @@ public class delete_db extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Localhost", "Test1", "JukDB", "Digital_ocean" }));
 
-        login_pic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/login.png"))); // NOI18N
+        login_pic.setIcon(new javax.swing.ImageIcon(getClass().getResource("_static/pic/login.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

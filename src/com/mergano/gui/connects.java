@@ -1,5 +1,6 @@
 package com.mergano.gui;
-import com.mergano.core.ConnectDB;
+
+import com.mergano.core.dbManager.ConnectDB;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
@@ -55,7 +56,7 @@ public class connects extends javax.swing.JFrame implements ActionListener {
         login_title.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         login_title.setText("Add Database");
 
-        login_pic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/login.png"))); // NOI18N
+        login_pic.setIcon(new javax.swing.ImageIcon(getClass().getResource("_static/pic/login.png"))); // NOI18N
 
         database_connection_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Database Connection", javax.swing.border.TitledBorder.LEADING, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 

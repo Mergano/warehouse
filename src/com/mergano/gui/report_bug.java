@@ -1,5 +1,6 @@
 package com.mergano.gui;
-import com.mergano.core.ConnectDB;
+
+import com.mergano.core.dbManager.ConnectDB;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

@@ -46,7 +46,7 @@ public class about extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Product version:");
 
-        about_picture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/about.png"))); // NOI18N
+        about_picture.setIcon(new javax.swing.ImageIcon(getClass().getResource("_static/pic/about.png"))); // NOI18N
         about_picture.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         about_picture.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
