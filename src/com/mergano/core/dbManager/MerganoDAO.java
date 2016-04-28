@@ -70,6 +70,7 @@ public class MerganoDAO {
                 list.add(stub);
             }
         } catch (Exception e) {
+            System.err.print(e);
         }
         return list;
     }

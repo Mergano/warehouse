@@ -1,12 +1,14 @@
 package com.mergano.gui;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.mergano.core.dbManager.ConnectDB;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 
 public class login extends javax.swing.JFrame {
 
     public static boolean session;
+    private ConnectDB con;
+    private Connection connect;
 
     public login() {
         initComponents();
@@ -26,7 +28,7 @@ public class login extends javax.swing.JFrame {
         reset_buttom = new javax.swing.JButton();
         login_pic = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
         setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -40,26 +42,20 @@ public class login extends javax.swing.JFrame {
 
         close_buttom.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         close_buttom.setText("Cancel");
-        close_buttom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                close_buttomActionPerformed(evt);
-            }
+        close_buttom.addActionListener((java.awt.event.ActionEvent evt) -> {
+            close_buttomActionPerformed(evt);
         });
 
         login_buttom.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         login_buttom.setText("Login");
         login_buttom.setToolTipText("");
-        login_buttom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                login_buttomActionPerformed(evt);
-            }
+        login_buttom.addActionListener((java.awt.event.ActionEvent evt) -> {
+            login_buttomActionPerformed(evt);
         });
 
         username_box.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        username_box.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                username_boxActionPerformed(evt);
-            }
+        username_box.addActionListener((java.awt.event.ActionEvent evt) -> {
+            username_boxActionPerformed(evt);
         });
 
         username_login.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -71,10 +67,8 @@ public class login extends javax.swing.JFrame {
         reset_buttom.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         reset_buttom.setText("Reset");
         reset_buttom.setToolTipText("");
-        reset_buttom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reset_buttomActionPerformed(evt);
-            }
+        reset_buttom.addActionListener((java.awt.event.ActionEvent evt) -> {
+            reset_buttomActionPerformed(evt);
         });
 
         login_pic.setIcon(new javax.swing.ImageIcon(getClass().getResource("_static/pic/login.png"))); // NOI18N
@@ -82,54 +76,54 @@ public class login extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(login_pic)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(username_login)
-                            .addComponent(login_buttom, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(5, 5, 5)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(reset_buttom, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(close_buttom, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(92, 92, 92)
-                                .addComponent(password_login))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(username_box, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(password_box, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addComponent(login_title))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(login_pic)
+                .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(username_login)
+                                                .addComponent(login_buttom, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(5, 5, 5)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                        .addGap(13, 13, 13)
+                                                        .addComponent(reset_buttom, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(26, 26, 26)
+                                                        .addComponent(close_buttom, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(layout.createSequentialGroup()
+                                                        .addGap(92, 92, 92)
+                                                        .addComponent(password_login))))
+                                .addGroup(layout.createSequentialGroup()
+                                        .addComponent(username_box, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(password_box, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addContainerGap())))
+                .addGroup(layout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(login_title))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(login_pic)
-                .addGap(14, 14, 14)
-                .addComponent(login_title)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(password_login)
-                    .addComponent(username_login))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(username_box, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(password_box, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(close_buttom, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(login_buttom, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(reset_buttom, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                        .addComponent(login_pic)
+                        .addGap(14, 14, 14)
+                        .addComponent(login_title)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(password_login)
+                                .addComponent(username_login))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(username_box, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(password_box, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(close_buttom, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(login_buttom, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(reset_buttom, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -145,6 +139,7 @@ public class login extends javax.swing.JFrame {
     private void login_buttomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_buttomActionPerformed
         String user;
         char[] pwd;
+
         if (evt.getSource() == login_buttom) {
             user = username_box.getText();
             pwd = password_box.getPassword();
@@ -158,8 +153,10 @@ public class login extends javax.swing.JFrame {
             }
             username_box.setText("");
             password_box.setText("");
+
+        } else {
         }
-    }//GEN-LAST:event_login_buttomActionPerformed
+    }
 
     private void reset_buttomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reset_buttomActionPerformed
         if (evt.getSource() == reset_buttom) {
@@ -193,16 +190,11 @@ public class login extends javax.swing.JFrame {
         }
 
         java.awt.EventQueue.invokeLater(() -> {
-            try {
-                Thread.sleep(300);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-            }
             new login().setVisible(true);
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify
     private javax.swing.JButton close_buttom;
     private javax.swing.JButton login_buttom;
     private javax.swing.JLabel login_pic;
