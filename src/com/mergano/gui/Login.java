@@ -253,8 +253,6 @@ public class Login extends javax.swing.JFrame {
         if (user.length() != 0 && pwd.length != 0) {
             String encryptedUsername = Encryption.encrypt(user);
             String encryptedPassword = Encryption.encrypt(String.valueOf(pwd));
-            String userTxt = LoginBean.getUserTxt();
-            System.out.println("USER : " + userTxt);
             //String decryptedPassword = Encryption.decrypt("tm+m/bhBMk+fc6a/2ScztLdY+PzGUhih1oNUiGKv97lfHAeiRclBKyU6Wi2elCri");
             System.out.println("Encrypted Username : " + encryptedUsername);
             System.out.println("Encrypted Password : " + encryptedPassword);
@@ -271,31 +269,31 @@ public class Login extends javax.swing.JFrame {
                     session = true;
                     SetCurrentSession(session);
                     ResetLoginInput("");
-                    LoginAdminProcess(userTxt);
+                    LoginAdminProcess(LoginBean.getUserTxt());
                     break;
                 case 2: // LOGIN SUCCESGULL AS USER LEVEL
                     session = true;
                     SetCurrentSession(session);
                     ResetLoginInput("");
-                    LoginUserProcess(userTxt);
+                    LoginUserProcess(LoginBean.getUserTxt());
                     break;
                 case 3: // LOGIN SUCCESGULL AS AGENT LEVEL
                     session = true;
                     SetCurrentSession(session);
                     ResetLoginInput("");
-                    LoginAgentProcess(userTxt);
+                    LoginAgentProcess(LoginBean.getUserTxt());
                     break;
                 case 4: // LOGIN SUCCESGULL AS DRIVER LEVEL
                     session = true;
                     SetCurrentSession(session);
                     ResetLoginInput("");
-                    LoginDriverProcess(userTxt);
+                    LoginDriverProcess(LoginBean.getUserTxt());
                     break;
                 case 5: // LOGIN SUCCESGULL AS DEBUG MODE
                     session = true;
                     SetCurrentSession(session);
                     ResetLoginInput("");
-                    LoginDebugModeProcess(userTxt);
+                    LoginDebugModeProcess(LoginBean.getUserTxt());
                     break;
                 case 6: // LOGIN FAILED WRONG USER OR PASSWORD
                     session = false;
@@ -327,6 +325,8 @@ public class Login extends javax.swing.JFrame {
         Main m = new Main();
         Main.user_box.setText(u);
         m.database_menu.setEnabled(false);
+        m.database_panel.setEnabled(false);
+        m.body.setEnabledAt(5, false);
         m.data_button_wel.setEnabled(false);
         m.User_button.setEnabled(false);
         m.mai_button_wel.setEnabled(false);
@@ -339,6 +339,9 @@ public class Login extends javax.swing.JFrame {
         Main m = new Main();
         Main.user_box.setText(u);
         m.database_menu.setEnabled(false);
+        m.database_panel.setEnabled(false);
+        m.body.setEnabledAt(2, false);
+        m.body.setEnabledAt(5, false);
         m.sm_button_wel.setEnabled(false);
         m.management_panel.setEnabled(false);
         m.data_button_wel.setEnabled(false);
@@ -353,6 +356,10 @@ public class Login extends javax.swing.JFrame {
         Main m = new Main();
         Main.user_box.setText(u);
         m.database_menu.setEnabled(false);
+        m.database_panel.setEnabled(false);
+        m.body.setEnabledAt(2, false);
+        m.body.setEnabledAt(3, false);
+        m.body.setEnabledAt(5, false);
         m.sm_button_wel.setEnabled(false);
         m.management_panel.setEnabled(false);
         m.order_panel.setEnabled(false);

@@ -37,7 +37,7 @@ public class ConnectDB {
         URL = "jdbc:mysql://" + hostName + ":" + port + "/" + databaseName + "?useCompression=true" + "&autoReconnnect=true" + "&useSSL=false";
         info.put("user", username);
         info.put("password", password);
-        System.out.println("URL" + URL);
+// System.out.println("URL: " + URL);
 //  print the list with a PrintWriter object
 //        info.list(writer);
 // flush the stream

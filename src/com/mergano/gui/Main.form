@@ -1175,18 +1175,13 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jTextField2" pref="146" max="32767" attributes="0"/>
-                                      <Component id="jTextField1" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jTextField2" pref="146" max="32767" attributes="0"/>
+                              <Component id="jTextField1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace pref="763" max="32767" attributes="0"/>
                       </Group>
@@ -1205,9 +1200,7 @@
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="347" max="32767" attributes="0"/>
+                          <EmptySpace pref="379" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1226,11 +1219,6 @@
                 <Component class="javax.swing.JTextField" name="jTextField1">
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField2">
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel4">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="jLabel4"/>
-                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -1873,7 +1861,6 @@
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ArrayList&lt;com.mergano.core.dbManager.ProductBean&gt; list = null;&#xa;com.mergano.core.dbManager.ProductDAO db = new com.mergano.core.dbManager.ProductDAO();&#xa;try {&#xa;    list = db.getData();&#xa;}&#xa;catch (Exception e) {&#xa;    e.printStackTrace();&#xa;}&#xa;List&lt;String[]&gt; values = new ArrayList&lt;&gt;();&#xa;List&lt;String&gt; columns = new ArrayList&lt;&gt;();&#xa;columns.add(&quot;Product ID&quot;);&#xa;columns.add(&quot;Category&quot;);&#xa;columns.add(&quot;Name&quot;);&#xa;columns.add(&quot;Manufacture&quot;);&#xa;columns.add(&quot;Model&quot;);&#xa;columns.add(&quot;Description&quot;);&#xa;columns.add(&quot;Cost&quot;);&#xa;columns.add(&quot;Location&quot;);&#xa;columns.add(&quot;Warranty&quot;);&#xa;columns.add(&quot;Quantity&quot;);&#xa;columns.add(&quot;Import&quot;);&#xa;columns.add(&quot;Status&quot;);&#xa;columns.add(&quot;Last modified&quot;);&#xa;for(int i =0; i&lt; list.size(); i++) {&#xa;    values.add(new String[] {&quot;&quot; +&#xa;        list.get(i).getProductID(),&#xa;        list.get(i).getCategory(),&#xa;        list.get(i).getName(),&#xa;        list.get(i).getManufacture(),&#xa;        list.get(i).getModel(),&#xa;        list.get(i).getDescription(),&#xa;        list.get(i).getCost(),&#xa;        list.get(i).getWarranty(),&#xa;        list.get(i).getQuantity(),&#xa;        list.get(i).getImport(),&#xa;        list.get(i).getStatus(),&#xa;        list.get(i).getUserLastModified()&#xa;    });&#xa;}"/>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
 
@@ -1894,6 +1881,8 @@
                     <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="query_tableKeyPressed"/>
                   </Events>
                   <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ArrayList&lt;com.mergano.core.dbManager.ProductBean&gt; list = null;&#xa;com.mergano.core.dbManager.ProductDAO db = new com.mergano.core.dbManager.ProductDAO();&#xa;try {&#xa;    list = db.getData();&#xa;}&#xa;catch (Exception e) {&#xa;    e.printStackTrace();&#xa;}&#xa;List&lt;String[]&gt; values = new ArrayList&lt;&gt;();&#xa;List&lt;String&gt; columns = new ArrayList&lt;&gt;();&#xa;columns.add(&quot;Product ID&quot;);&#xa;columns.add(&quot;Category&quot;);&#xa;columns.add(&quot;Name&quot;);&#xa;columns.add(&quot;Manufacture&quot;);&#xa;columns.add(&quot;Model&quot;);&#xa;columns.add(&quot;Description&quot;);&#xa;columns.add(&quot;Cost&quot;);&#xa;columns.add(&quot;Location&quot;);&#xa;columns.add(&quot;Warranty&quot;);&#xa;columns.add(&quot;Quantity&quot;);&#xa;columns.add(&quot;Import&quot;);&#xa;columns.add(&quot;Status&quot;);&#xa;columns.add(&quot;Last modified&quot;);&#xa;for(int i =0; i&lt; list.size(); i++) {&#xa;    values.add(new String[] {&quot;&quot; +&#xa;        list.get(i).getProductID(),&#xa;        list.get(i).getCategory(),&#xa;        list.get(i).getName(),&#xa;        list.get(i).getManufacture(),&#xa;        list.get(i).getModel(),&#xa;        list.get(i).getDescription(),&#xa;        list.get(i).getCost(),&#xa;        list.get(i).getWarranty(),&#xa;        list.get(i).getQuantity(),&#xa;        list.get(i).getImport(),&#xa;        list.get(i).getStatus(),&#xa;        list.get(i).getUserLastModified()&#xa;    });&#xa;}"/>
                     <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="main_query_table"/>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>

@@ -77,7 +77,6 @@ public class Main extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         management_panel = new javax.swing.JPanel();
         browse_button = new javax.swing.JButton();
         View_button = new javax.swing.JButton();
@@ -530,8 +529,6 @@ public class Main extends javax.swing.JFrame {
 
         jLabel3.setText("Last Updated");
 
-        jLabel4.setText("jLabel4");
-
         javax.swing.GroupLayout dashboard_panel_bodyLayout = new javax.swing.GroupLayout(dashboard_panel_body);
         dashboard_panel_body.setLayout(dashboard_panel_bodyLayout);
         dashboard_panel_bodyLayout.setHorizontalGroup(
@@ -539,15 +536,12 @@ public class Main extends javax.swing.JFrame {
             .addGroup(dashboard_panel_bodyLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(dashboard_panel_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addGroup(dashboard_panel_bodyLayout.createSequentialGroup()
-                        .addGroup(dashboard_panel_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(dashboard_panel_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                            .addComponent(jTextField1))))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(dashboard_panel_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                    .addComponent(jTextField1))
                 .addContainerGap(763, Short.MAX_VALUE))
         );
         dashboard_panel_bodyLayout.setVerticalGroup(
@@ -561,9 +555,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(dashboard_panel_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addContainerGap(347, Short.MAX_VALUE))
+                .addContainerGap(379, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout dashboard_panelLayout = new javax.swing.GroupLayout(dashboard_panel);
@@ -923,6 +915,8 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        ScrollPanelForQueryTable.setBorder(null);
+
         ArrayList<com.mergano.core.dbManager.ProductBean> list = null;
         com.mergano.core.dbManager.ProductDAO db = new com.mergano.core.dbManager.ProductDAO();
         try {
@@ -962,8 +956,6 @@ public class Main extends javax.swing.JFrame {
                 list.get(i).getUserLastModified()
             });
         }
-        ScrollPanelForQueryTable.setBorder(null);
-
         query_table.setModel(new javax.swing.table.DefaultTableModel(values.toArray(new Object[][] {}), columns.toArray())
             {public boolean isCellEditable(int row, int column){return false;}}
         );
@@ -3733,7 +3725,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

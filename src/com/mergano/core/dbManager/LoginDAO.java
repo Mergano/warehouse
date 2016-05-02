@@ -37,7 +37,6 @@ public class LoginDAO {
             p = conn.prepareStatement(sql);
             p.setString(1, users);
             p.setString(2, passwd);
-            System.out.println(sql);
 
             rs = p.executeQuery();
             conn.commit();

@@ -42,7 +42,7 @@ public class BacklogDAO {
 
             while (rs.next()) {
                 BacklogBean stub = new BacklogBean();
-                stub.setBacklogID(rs.getInt("id"));
+                stub.setBacklogID(rs.getInt("idbacklog"));
                 stub.setActionType(rs.getString("action_type"));
                 stub.setActionDetail(rs.getString("action_detail"));
                 Date BacklogDate = rs.getDate("date");

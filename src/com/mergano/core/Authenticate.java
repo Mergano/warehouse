@@ -9,11 +9,11 @@ public class Authenticate {
         LoginDAO log = new LoginDAO();
         int flag = log.getUser(encryptedUser, encryptedPass);
 
-        System.out.println("User type " + LoginBean.getUserType());
-        System.out.println("Username encrypted " + encryptedUser);
-        System.out.println("Username from db " + LoginBean.getUsername());
-        System.out.println("Password encrypted " + encryptedPass);
-        System.out.println("Password from db " + LoginBean.getPassword());
+        System.out.println("User type: " + LoginBean.getUserType());
+        System.out.println("Username encrypted: " + encryptedUser);
+        System.out.println("Username from db: " + LoginBean.getUsername());
+        System.out.println("Password encrypted: " + encryptedPass);
+        System.out.println("Password from db: " + LoginBean.getPassword());
         switch (flag) {
             case 1:
                 System.out.println("AUTHENTICATE QUERY SUCCESSFUL");
