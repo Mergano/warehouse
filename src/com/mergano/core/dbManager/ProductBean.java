@@ -1,61 +1,29 @@
 package com.mergano.core.dbManager;
 
-public class MerganoBean {
+public class ProductBean {
 
-    private int id;
-    private String productID;
+    // Product Management table
+    private int productID;
     private String category;
-    private String type;
     private String manufacture;
     private String name;
     private String model;
     private String description;
     private String cost;
-    private String quantity;
+    private int quantity;
     private String date;
     private String warranty;
+    private String p_status;
+    private String p_location;
+    private String user_lastmodified;
+    private byte[] image;
 
-    private int blid;
-    private String history;
-    private String time;
-
-    public int getBLID() {
-        return blid;
-    }
-
-    public void setBLID(int blid) {
-        this.blid = blid;
-    }
-
-    public String getHistory() {
-        return history;
-    }
-
-    public void setHistory(String history) {
-        this.history = history;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public int getID() {
-        return id;
-    }
-
-    public void setID(int id) {
-        this.id = id;
-    }
-
-    public String getProductID() {
+    // Setter and Getter for Product Management
+    public int getProductID() {
         return productID;
     }
 
-    public void setProductID(String productID) {
+    public void setProductID(int productID) {
         this.productID = productID;
     }
 
@@ -65,14 +33,6 @@ public class MerganoBean {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getManufacture() {
@@ -108,19 +68,35 @@ public class MerganoBean {
     }
 
     public String getCost() {
-        return cost;
+        return cost + "";
     }
 
     public void setCost(String cost) {
         this.cost = cost;
     }
 
-    public String getQuantity() {
-        return quantity;
+    public String getWarranty() {
+        return warranty;
     }
 
-    public void setQuantity(String quantity) {
+    public void setWarranty(String warranty) {
+        this.warranty = warranty;
+    }
+
+    public String getQuantity() {
+        return quantity + "";
+    }
+
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getLocation() {
+        return p_location;
+    }
+
+    public void setLocation(String p_location) {
+        this.p_location = p_location;
     }
 
     public String getImport() {
@@ -131,11 +107,24 @@ public class MerganoBean {
         this.date = date;
     }
 
-    public String getWarranty() {
-        return warranty;
+    public String getStatus() {
+        return p_status;
     }
 
-    public void setWarranty(String warranty) {
-        this.warranty = warranty;
+    public void setStatus(String p_status) {
+        this.warranty = p_status;
     }
+
+    public String getUserLastModified() {
+        return user_lastmodified;
+    }
+
+    public void setUserLastModified(String user_lastmodified) {
+        this.user_lastmodified = user_lastmodified;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
 }

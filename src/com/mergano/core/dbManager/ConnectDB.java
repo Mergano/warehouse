@@ -1,112 +1,98 @@
 package com.mergano.core.dbManager;
 
-import com.mergano.gui.main;
+import static com.mergano.gui.Main.*;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Savepoint;
+import java.sql.Statement;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ConnectDB {
 
+    String URL;
     String hostName;
     int port;
-    String DBtype;
     String databaseName;
     String username;
     String password;
-    String url;
     String status;
-    String error;
     Connection con;
+    Statement stmt;
+    DatabaseMetaData meta;
+    Savepoint savepoint1;
+    Properties info = new Properties();
+    PrintWriter writer = new PrintWriter(System.out);
 
     public ConnectDB() {
-        hostName = null;
+        con = null;
+        stmt = null;
+        URL = null;
+        hostName = "localhost";
         port = 3306;
-        DBtype = null;
-        databaseName = null;
-        username = null;
-        password = null;
+        databaseName = "mergano";
+        username = "root";
+        password = "jukjukjuk";
         status = null;
-    }
-
-    public void setHostname(String h) {
-        hostName = h;
-    }
-
-    public void setPort(int p) {
-        port = p;
-    }
-
-    public void setDatabaseName(String n) {
-        databaseName = n;
-    }
-
-    public void setUsername(String s) {
-        username = s;
-    }
-
-    public void setPassword(String w) {
-        password = w;
-    }
-
-    public void setUrl(String u) {
-        url = u;
-    }
-
-    public String getHostname() {
-        return hostName;
-    }
-
-    public int getPort() {
-        return port;
-    }
-
-    public String getProtocol() {
-        return DBtype;
-    }
-
-    public String getDatabaseName() {
-        return databaseName;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public String getError() {
-        return error;
+        savepoint1 = null;
     }
 
     public Connection getconnection() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver"); // Load JDBC MYSQL DRIVER
-            con = (Connection) DriverManager.getConnection("jdbc:mysql://128.199.117.93:" + "3306" + "/mergano" + "?useCompression=true", "user", "iloveoosd");
-            con.setAutoCommit(true);
+        URL = "jdbc:mysql://" + hostName + ":" + port + "/" + databaseName + "?useCompression=true" + "&autoReconnect=true" + "&useSSL=false";
+        info.put("user", username);
+        info.put("password", password);
+        System.out.println("URL" + URL);
 
-            if (con == null) {
-                status = "Disconnect";
-                error = "Error Database Connection Failed";
-                main.status_box.setText("Disconnect");
-                System.out.println("Faild to connect to " + con);
-            } else {
-                error = "Database Connected Successfully";
+        // print the list with a PrintWriter object
+        info.list(writer);
+        // flush the stream
+        writer.flush();
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver"); // Registed JDBC MYSQL DRIVER
+            System.out.println("Connnecting to database ..");
+            con = (Connection) DriverManager.getConnection(URL, info);
+            //con = (Connection) DriverManager.getConnection("jdbc:mysql://128.199.117.93:" + "3306" + "/mergano" + "?useCompression=true", "user", "iloveoosd");
+            con.setAutoCommit(false);
+            meta = con.getMetaData();
+            System.out.println("Connect status: " + con);
+            if (con != null) {
                 status = "Connected";
-                DatabaseMetaData meta = con.getMetaData();
-                main.status_box.setText(status);
-                main.db_type_box.setText(meta.getDatabaseProductName());
-                main.port_box.setText(this.port + "");
-                main.url_box.setText(meta.getUserName());
-                main.db_name_box.setText(con.getCatalog());
-                System.out.println("Connecting database to " + con);
+                status_box.setText(status);
+                db_type_box.setText(meta.getDatabaseProductName());
+                port_box.setText(this.port + "");
+                url_box.setText(meta.getUserName());
+                db_name_box.setText(con.getCatalog());
+                System.out.println("Connected to database " + con);
+            } else {
+                status = "Disconnect";
+                status_box.setText("Disconnect");
+                System.out.println("Faild to connect to " + con);
+                System.exit(1);
             }
-        } catch (ClassNotFoundException | SQLException e) {
-            System.out.println(e);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
+            System.exit(1);
         }
         return con;
+    }
+
+    public void commit() {
+        try {
+            con.commit();
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            try {
+                con.rollback();
+            } catch (SQLException ex1) {
+                System.err.println(ex.getMessage());
+            }
+        }
     }
 
     public void closeDB() {
@@ -114,8 +100,16 @@ public class ConnectDB {
             con.close();
         } catch (SQLException ex) {
             System.err.print(ex);
-        } finally {
-            //System.exit(0);
         }
     }
+
+    public Statement createStatement() {
+        try {
+            stmt = con.createStatement();
+        } catch (SQLException ex) {
+            System.err.print(ex);
+        }
+        return stmt;
+    }
+
 }

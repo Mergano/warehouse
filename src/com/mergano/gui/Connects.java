@@ -3,12 +3,21 @@ package com.mergano.gui;
 import com.mergano.core.dbManager.ConnectDB;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
-public class report_bug extends javax.swing.JFrame implements ActionListener {
-    public static boolean session;
+public class Connects extends javax.swing.JFrame implements ActionListener {
 
-    public report_bug() {
-        initComponents();  
+    public boolean session;
+    public boolean remember;
+    ConnectDB cv = new ConnectDB();
+
+    public Connects() {
+        initComponents();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -16,6 +25,7 @@ public class report_bug extends javax.swing.JFrame implements ActionListener {
     private void initComponents() {
 
         login_title = new javax.swing.JLabel();
+        login_pic = new javax.swing.JLabel();
         database_connection_panel = new javax.swing.JPanel();
         hostname_box = new javax.swing.JTextField();
         hostname_title = new javax.swing.JLabel();
@@ -36,7 +46,7 @@ public class report_bug extends javax.swing.JFrame implements ActionListener {
         add_buttom = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Report Issues");
+        setTitle("Add Database");
         setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setIconImages(null);
@@ -45,7 +55,9 @@ public class report_bug extends javax.swing.JFrame implements ActionListener {
         setSize(new java.awt.Dimension(500, 300));
 
         login_title.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        login_title.setText("Bug Report");
+        login_title.setText("Add Database");
+
+        login_pic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/login.png"))); // NOI18N
 
         database_connection_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Database Connection", javax.swing.border.TitledBorder.LEADING, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
@@ -102,7 +114,7 @@ public class report_bug extends javax.swing.JFrame implements ActionListener {
 
         setas_default_db_checkbox.setText("Set as default database");
 
-        db_type_list.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MySQL", "MS SQL Server", "Oracle DB", "IBM DB2" }));
+        db_type_list.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MySQL", "MS SQL Server", "Oracle DB", "IBM DB2", "MS Access" }));
         db_type_list.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 db_type_listActionPerformed(evt);
@@ -209,6 +221,9 @@ public class report_bug extends javax.swing.JFrame implements ActionListener {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(login_pic)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -216,23 +231,24 @@ public class report_bug extends javax.swing.JFrame implements ActionListener {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(add_buttom, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(test_buttom, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42)
                         .addComponent(close_buttom, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(191, 191, 191)
+                .addGap(178, 178, 178)
                 .addComponent(login_title)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(login_pic)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(login_title)
-                .addGap(126, 126, 126)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(database_connection_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -249,45 +265,94 @@ public class report_bug extends javax.swing.JFrame implements ActionListener {
     private void close_buttomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_close_buttomActionPerformed
         this.dispose();
     }//GEN-LAST:event_close_buttomActionPerformed
-    
+
     private void add_buttomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_buttomActionPerformed
-  
+        boolean isSelected = remember_me_checkbox.isSelected();
+        if (isSelected) {
+            remember_me_checkbox.setSelected(true);
+//            cv.setHostname(hostname_box.getText());
+//            cv.setPort(Integer.valueOf(port_box.getText()));
+//            cv.setDatabaseName(database_box.getText());
+//            cv.setUsername(username_box.getText());
+//            cv.setPassword(password_box.getText());
+//            cv.setUrl("jdbc:mysql://" + hostname_box.getText() + ":" + Integer.valueOf(port_box.getText()) + "/" + database_box.getText() + "?useCompression=true");
+
+            if (setas_default_db_checkbox.isSelected()) {
+                System.out.println("Remember me value is " + remember_me_checkbox.isSelected());
+                System.out.println("Set as default DB value is " + setas_default_db_checkbox.isSelected());
+            } else {
+                System.out.println("Remember me value is " + remember_me_checkbox.isSelected());
+                System.out.println("Set as default DB value is " + setas_default_db_checkbox.isSelected());
+            }
+
+            add_buttom.addActionListener(this);
+            this.dispose();
+        } else {
+            remember_me_checkbox.setSelected(false);
+
+        }
+
     }//GEN-LAST:event_add_buttomActionPerformed
 
+    private void StoreDatabase(String hostname, int port, String database, String username, String password) {
+
+        try {
+            Properties p = new Properties();
+            p.load(new FileInputStream("database.ini"));
+            System.out.println("user = " + p.getProperty("DBuser"));
+            System.out.println("password = " + p.getProperty("DBpassword"));
+            System.out.println("location = " + p.getProperty("DBlocation"));
+            p.list(System.out);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+
     private void test_buttomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_test_buttomActionPerformed
-        if (evt.getSource()==test_buttom)  {
-        hostname_box.setText("");
-	password_box.setText("");
-       }
+        if (evt.getSource() == test_buttom) {
+            if (hostname_box.getText().equals("")
+                    || port_box.getText().equals("")
+                    || database_box.getText().equals("")
+                    || username_box.getText().equals("")
+                    || password_box.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Please fill out all boxs.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            } else if (!isNumeric(port_box.getText())) {
+                JOptionPane.showMessageDialog(this, "Port number must be an integer format only.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                try {
+                    cv.getconnection();
+                } catch (Exception ex) {
+                    Logger.getLogger(Connects.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                //  String test_result = cv.getError();
+                if (test_result.equals("Error Database Connection Failed")) {
+                    JOptionPane.showMessageDialog(this, "Error Database Connection Failed.", "Connection Failed", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Database Connected Successfully.", "Connection Success", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        }
     }//GEN-LAST:event_test_buttomActionPerformed
 
-    private void hostname_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hostname_boxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hostname_boxActionPerformed
-
-    private void username_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username_boxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_username_boxActionPerformed
-
-    private void port_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_port_boxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_port_boxActionPerformed
-
-    private void database_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_database_boxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_database_boxActionPerformed
+    public boolean isNumeric(String str) {
+        return str.matches("-?\\d+(\\.\\d+)?");
+    }
 
     private void remember_me_checkboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remember_me_checkboxActionPerformed
-        // TODO add your handling code here:
+        if (evt.getSource() == test_buttom) {
+            if (remember_me_checkbox.isSelected()) {
+                remember = true;
+            } else {
+                remember = false;
+            }
+        }
     }//GEN-LAST:event_remember_me_checkboxActionPerformed
-
-    private void db_type_listActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_db_type_listActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_db_type_listActionPerformed
 
     public boolean CurrentSession() {
         return session;
     }
+
     public void SetCurrentSession(boolean a) {
         session = a;
     }
@@ -302,6 +367,7 @@ public class report_bug extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JComboBox db_type_list;
     private javax.swing.JTextField hostname_box;
     private javax.swing.JLabel hostname_title;
+    private javax.swing.JLabel login_pic;
     private javax.swing.JLabel login_title;
     private javax.swing.JPasswordField password_box;
     private javax.swing.JLabel password_login;
@@ -319,15 +385,3 @@ public class report_bug extends javax.swing.JFrame implements ActionListener {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
-
-/*
-          login lo = new login();
-          if(lo.CurrentSession()) {
-           login_menuitem.setEnabled(false);
-           logout_menuitem.setEnabled(true);
-           } 
-          else {
-           login_menuitem.setEnabled(true);
-           logout_menuitem.setEnabled(false);
-          }
-*/
