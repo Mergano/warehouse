@@ -6,35 +6,42 @@ import com.mergano.core.dbManager.LoginDAO;
 public class Authenticate {
 
     public int VerifyUser(String encryptedUser, String encryptedPass) {
-
         LoginDAO log = new LoginDAO();
-        LoginBean data = new LoginBean();
         int flag = log.getUser(encryptedUser, encryptedPass);
 
-        if (flag == 1) {
-            System.out.println("QUERY SUCCESSFUL");
-        } else if (flag == 0) {
-            System.out.println("QUERY FAILED");
-        }
-
-        System.out.println("User type " + data.getUserType());
+        System.out.println("User type " + LoginBean.getUserType());
         System.out.println("Username encrypted " + encryptedUser);
-        System.out.println("Username from db " + data.getUsername());
+        System.out.println("Username from db " + LoginBean.getUsername());
         System.out.println("Password encrypted " + encryptedPass);
-        System.out.println("Password from db " + data.getPassword());
+        System.out.println("Password from db " + LoginBean.getPassword());
+        switch (flag) {
+            case 1:
+                System.out.println("AUTHENTICATE QUERY SUCCESSFUL");
 
-        if (encryptedUser.equals(data.getUsername()) && encryptedPass.equals(data.getPassword()) && data.getUserType().equals("administrator")) {
-            return 1; // LOGIN SUCCESSFUL AS ADMINISTRATOR
-        } else if (encryptedUser.equals(data.getUsername()) && encryptedPass.equals(data.getPassword()) && data.getUserType().equals("user")) {
-            return 2; // LOGIN SUCCESGULL AS USER
-        } else if (encryptedUser.equals(data.getUsername()) && encryptedPass.equals(data.getPassword()) && data.getUserType().equals("agent")) {
-            return 3; // LOGIN SUCCESGULL AS AGENT
-        } else if (encryptedUser.equals(data.getUsername()) && encryptedPass.equals(data.getPassword()) && data.getUserType().equals("driver")) {
-            return 4; // LOGIN SUCCESGULL AS DRIVER
-        } else if (encryptedUser.equals(data.getUsername()) && encryptedPass.equals(data.getPassword()) && data.getUserType().equals("debug")) {
-            return 5;  // LOGIN SUCCESGULL AS DEBUG
-        } else {
-            return 0; // LOGIN FAILED
+                if (encryptedUser.equals(LoginBean.getUsername()) && encryptedPass.equals(LoginBean.getPassword()) && LoginBean.getUserType().equals("administrator")) {
+                    return 1; // LOGIN SUCCESSFUL AS ADMINISTRATOR LEVEL
+                } else if (encryptedUser.equals(LoginBean.getUsername()) && encryptedPass.equals(LoginBean.getPassword()) && LoginBean.getUserType().equals("user")) {
+                    return 2; // LOGIN SUCCESGULL AS USER LEVEL
+                } else if (encryptedUser.equals(LoginBean.getUsername()) && encryptedPass.equals(LoginBean.getPassword()) && LoginBean.getUserType().equals("agent")) {
+                    return 3; // LOGIN SUCCESGULL AS AGENT LEVEL
+                } else if (encryptedUser.equals(LoginBean.getUsername()) && encryptedPass.equals(LoginBean.getPassword()) && LoginBean.getUserType().equals("driver")) {
+                    return 4; // LOGIN SUCCESGULL AS DRIVER LEVEL
+                } else if (encryptedUser.equals(LoginBean.getUsername()) && encryptedPass.equals(LoginBean.getPassword()) && LoginBean.getUserType().equals("debug")) {
+                    return 5;  // LOGIN SUCCESGULL AS DEBUG MODE LEVEL
+                } else if ((!encryptedUser.equals(LoginBean.getUsername())) || (!encryptedPass.equals(LoginBean.getPassword()))) {
+                    return 6; // LOGIN FAILED WRONG USER OR PASSWORD
+                }
+                return 1;
+            case 0:
+                System.out.println("INTERNET CONNECTION ERROR");
+                return 0; // LOGIN FAILED NO INTERNET CONNECTION
+            case -1:
+                System.out.println("AUTHENTICATE UNKNOWN ERROR");
+                return -1; // UNKNOWN ERROR
+            default:
+                break;
         }
+        return 0;
     }
+
 }

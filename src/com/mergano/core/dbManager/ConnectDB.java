@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,14 +19,12 @@ public class ConnectDB {
     private final String username;
     private final String password;
     private String status;
-    private Statement stmt;
     private DatabaseMetaData meta;
     private final Properties info = new Properties();
     private PrintWriter writer = new PrintWriter(System.out);
 
     public ConnectDB() {
         conn = null;
-        stmt = null;
         hostName = "localhost";
         port = 3306;
         databaseName = "mergano";
@@ -41,10 +38,10 @@ public class ConnectDB {
         info.put("user", username);
         info.put("password", password);
         System.out.println("URL" + URL);
-        //  print the list with a PrintWriter object
-        info.list(writer);
-        // flush the stream
-        writer.flush();
+//  print the list with a PrintWriter object
+//        info.list(writer);
+// flush the stream
+//        writer.flush();
         try {
             Class.forName("com.mysql.jdbc.Driver"); // Registed JDBC MYSQL DRIVER
             conn = DriverManager.getConnection(URL, info);
@@ -53,15 +50,15 @@ public class ConnectDB {
             meta = conn.getMetaData();
             if (conn == null) {
                 status = "Disconnnect";
-                System.out.println("Faild to connnect to " + conn);
+                System.out.println("Faild to connect database");
                 System.exit(1);
             } else {
                 status = "Connected";
-//                Main.status_box.setText(status);
-//                Main.db_type_box.setText(meta.getDatabaseProductName());
-//                Main.port_box.setText(port + "");
-//                Main.url_box.setText(meta.getUserName());
-//                Main.db_name_box.setText(conn.getCatalog());
+                StatusBean.setStatus(status);
+                StatusBean.setDbType(meta.getDatabaseProductName());
+                StatusBean.setDbName(conn.getCatalog());
+                StatusBean.setPort(port + "");
+                StatusBean.setUrl(meta.getUserName());
                 System.out.println("Connected to database " + conn);
             }
         } catch (ClassNotFoundException | SQLException ex) {
@@ -84,15 +81,6 @@ public class ConnectDB {
                 System.exit(1);
             }
         }
-    }
-
-    public Statement createStatement() {
-        try {
-            stmt = conn.createStatement();
-        } catch (SQLException ex) {
-            System.err.print(ex);
-        }
-        return stmt;
     }
 
     public void closeDB() {

@@ -1,5 +1,6 @@
 package com.mergano.core.dbManager;
 
+import com.mergano.core.Encryption;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,14 +26,13 @@ public class LoginDAO {
     }
 
     public int getUser(String users, String passwd) {
-        System.out.println("Connect status: " + conn);
         if (conn == null) {
             System.err.println("ERROR: NO INTERNET CONNECTION");
-            System.exit(0);
+            return 0;
         }
-
         String sql = "SELECT * FROM " + table + " WHERE username =? AND password =? ;";
-
+        System.out.println(sql);
+        String decryptUser = "";
         try {
             p = conn.prepareStatement(sql);
             p.setString(1, users);
@@ -43,15 +43,14 @@ public class LoginDAO {
             conn.commit();
             while (rs.next()) {
                 LoginBean bean = new LoginBean();
+                Encryption encr = new Encryption();
                 bean.setUsername(rs.getString("username"));
                 bean.setPassword(rs.getString("password"));
                 bean.setUserType(rs.getString("type"));
-                System.out.println(rs.getString("username"));
-                System.out.println(rs.getString("password"));
-                System.out.println(rs.getString("type"));
-                System.out.println(rs.getString("firstname"));
+                bean.setUserEmail(rs.getString("email"));
+                decryptUser = Encryption.decrypt(rs.getString("username"));
+                bean.setUserTxt(decryptUser);
             }
-
             //Clean-up environment
             p.close();
             rs.close();
@@ -62,7 +61,7 @@ public class LoginDAO {
             try {
                 System.err.println(se);
                 conn.close();
-                return 0;
+                return -1;
             } catch (SQLException ex) {
                 Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
             }

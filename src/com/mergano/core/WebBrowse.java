@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 
 public class WebBrowse {
 
-    public static void open_website(String url) {
+    public void open_website(String url) {
         try {
             Desktop.getDesktop().browse(new URL(url).toURI());
         } catch (URISyntaxException | IOException e) {

@@ -26,10 +26,36 @@ public class SearchDAO {
         }
     }
 
-    public ArrayList<ProductBean> getDataSearch(int key_input, String filter) {
+    public ArrayList<ProductBean> getDataSearch(String key_input, int filter) {
         ArrayList<ProductBean> list = new ArrayList<>();
+        String selector = null, key = null;
+        switch (filter) {
+            case 0:
+                selector = "product_id";
+                key = key_input;
+                break;
+            case 1:
+                selector = "name";
+                key = "'" + key_input + "'";
+                break;
+            case 2:
+                selector = "category";
+                key = "'" + key_input + "'";
+                break;
+            case 3:
+                selector = "manufacture";
+                key = "'" + key_input + "'";
+                break;
+            case 4:
+                selector = "location";
+                key = "'" + key_input + "'";
+                break;
+            default:
+                break;
+        }
 
-        String sql = "SELECT * FROM " + table + " WHERE " + filter + " = " + key_input + ";";
+        String sql = "SELECT * FROM " + table + " WHERE " + selector + " = " + key + ";";
+        System.out.println(sql);
         if (connect == null) {
             System.err.print("ERROR NO CONNECTION");
         }
@@ -37,7 +63,7 @@ public class SearchDAO {
         try {
             p = connect.prepareStatement(sql);
             rs = p.executeQuery();
-
+            con.commit();
             while (rs.next()) {
                 ProductBean stub = new ProductBean();
                 stub.setProductID(rs.getInt("product_id"));
@@ -56,10 +82,12 @@ public class SearchDAO {
                 stub.setUserLastModified(rs.getString("user_lastmodified"));
                 list.add(stub);
             }
+            rs.close();
+            p.close();
+            con.closeDB();
         } catch (Exception e) {
             System.err.println(e);
         }
-        con.closeDB();
         return list;
     }
 
