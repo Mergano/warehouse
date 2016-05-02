@@ -1,8 +1,6 @@
 package com.mergano.core.dbManager;
 
-import java.io.Serializable;
-
-public class LoginBean implements Serializable {
+public class LoginBean {
 
     private String username;
     private String password;
@@ -13,7 +11,7 @@ public class LoginBean implements Serializable {
         return username;
     }
 
-    protected void setUsername(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
@@ -21,7 +19,7 @@ public class LoginBean implements Serializable {
         return password;
     }
 
-    protected void setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -29,7 +27,7 @@ public class LoginBean implements Serializable {
         return userType;
     }
 
-    protected void setUserType(String userType) {
+    public void setUserType(String userType) {
         this.userType = userType;
     }
 

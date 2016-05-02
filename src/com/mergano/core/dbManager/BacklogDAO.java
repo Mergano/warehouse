@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class BacklogDAO {
 
-    private ConnectDB con;
+    private ConnectDB conn;
     private Connection connect;
     private PreparedStatement p = null;
     private ResultSet rs = null;
@@ -21,8 +21,8 @@ public class BacklogDAO {
 
     public BacklogDAO() {
         try {
-            con = new ConnectDB();
-            connect = con.getconnection();
+            conn = new ConnectDB();
+            connect = conn.getconnection();
         } catch (Exception ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
