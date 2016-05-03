@@ -317,6 +317,8 @@ public class Login extends javax.swing.JFrame {
         Main m = new Main();
         Main.user_box.setText(u);
         SetUpStatusBar();
+        m.pack();
+        m.setExtendedState(m.getExtendedState() | Main.MAXIMIZED_BOTH);
         m.setVisible(true);
     }
 
@@ -331,6 +333,8 @@ public class Login extends javax.swing.JFrame {
         m.User_button.setEnabled(false);
         m.mai_button_wel.setEnabled(false);
         SetUpStatusBar();
+        m.pack();
+        m.setExtendedState(m.getExtendedState() | Main.MAXIMIZED_BOTH);
         m.setVisible(true);
     }
 
@@ -348,6 +352,8 @@ public class Login extends javax.swing.JFrame {
         m.User_button.setEnabled(false);
         m.mai_button_wel.setEnabled(false);
         SetUpStatusBar();
+        m.pack();
+        m.setExtendedState(m.getExtendedState() | Main.MAXIMIZED_BOTH);
         m.setVisible(true);
     }
 
@@ -367,6 +373,9 @@ public class Login extends javax.swing.JFrame {
         m.User_button.setEnabled(false);
         m.mai_button_wel.setEnabled(false);
         SetUpStatusBar();
+        m.pack();
+        m.setExtendedState(m.getExtendedState() | Main.MAXIMIZED_BOTH);
+        m.setVisible(true);
         m.setVisible(true);
     }
 
@@ -375,6 +384,8 @@ public class Login extends javax.swing.JFrame {
         Main m = new Main();
         Main.user_box.setText(u);
         SetUpStatusBar();
+        m.pack();
+        m.setExtendedState(m.getExtendedState() | Main.MAXIMIZED_BOTH);
         m.setVisible(true);
     }
 

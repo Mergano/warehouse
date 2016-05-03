@@ -30,7 +30,7 @@ public class ProductDAO {
 
 // Display all data from product table
     public ArrayList<ProductBean> getData() {
-        ArrayList<ProductBean> list = new ArrayList<>();
+        ArrayList<ProductBean> product_list = new ArrayList<>();
 
         if (connect == null) {
             System.err.println("ERROR: NO INTERNET CONNECTION");
@@ -38,7 +38,7 @@ public class ProductDAO {
                     JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         } else {
-            String sql = "SELECT * FROM " + table + ";";
+            String sql = "SELECT * FROM " + table + " ORDER BY " + "CATEGORY;";
             try {
                 long start = java.lang.System.currentTimeMillis();
                 p = connect.prepareStatement(sql);
@@ -46,40 +46,41 @@ public class ProductDAO {
                 con.commit();
 
                 // Benchmark time
-//                long stop = java.lang.System.currentTimeMillis();
-//                if (rs.next()) {
-//                    System.out.println("QUERY PRODUCT SUCCESSFUL");
-//                    System.out.println("JDBC query time: " + String.valueOf((stop - start)) + " ms");
-                while (rs.next()) {
-                    ProductBean stub = new ProductBean();
-                    stub.setProductID(rs.getLong("product_id"));
-                    stub.setCategory(rs.getString("category"));
-                    stub.setManufacture(rs.getString("manufacture"));
-                    stub.setName(rs.getString("name"));
-                    stub.setModel(rs.getString("model"));
-                    stub.setDescription(rs.getString("description"));
-                    stub.setCost(rs.getString("cost"));
-                    stub.setLocation(rs.getString("location"));
-                    stub.setWarranty(rs.getString("warranty"));
-                    stub.setQuantity(rs.getInt("quantity"));
-                    //Date dbSqlDate = rs.getDate("import_date").toString();
-                    //stub.setImport(dbSqlDate.toString()); // SQL NOW
-                    stub.setImport(rs.getDate("import_date").toString());
-                    stub.setStatus(rs.getString("status"));
-                    stub.setUserLastModified(rs.getString("user_lastmodified"));
-                    stub.setImage(rs.getBytes("image"));
-                    list.add(stub);
+                long stop = java.lang.System.currentTimeMillis();
+                if (rs.next()) {
+                    System.out.println("QUERY PRODUCT SUCCESSFUL");
+                    System.out.println("JDBC query time: " + String.valueOf((stop - start)) + " ms");
+                    while (rs.next()) {
+                        ProductBean stub = new ProductBean();
+                        stub.setProductID(rs.getLong("product_id"));
+                        stub.setCategory(rs.getString("category"));
+                        stub.setManufacture(rs.getString("manufacture"));
+                        stub.setName(rs.getString("name"));
+                        stub.setModel(rs.getString("model"));
+                        stub.setDescription(rs.getString("description"));
+                        stub.setCost(rs.getString("cost"));
+                        stub.setLocation(rs.getString("location"));
+                        stub.setWarranty(rs.getString("warranty"));
+                        stub.setQuantity(rs.getInt("quantity"));
+                        //Date dbSqlDate = rs.getDate("import_date").toString();
+                        //stub.setImport(dbSqlDate.toString()); // SQL NOW
+                        stub.setImport(rs.getDate("import_date").toString());
+                        stub.setStatus(rs.getString("status"));
+                        stub.setUserLastModified(rs.getString("user_lastmodified"));
+                        stub.setImage(rs.getBytes("image"));
+                        product_list.add(stub);
+                    }
+                } else {
+                    System.out.println("QUERY PRODUCT FAILED");
                 }
-                //                } else {
-//                    System.out.println("QUERY PRODUCT FAILED");
-//                }
                 p.close();
                 rs.close();
+                con.closeDB();
             } catch (Exception e) {
                 System.err.print(e);
             }
         }
-        return list;
+        return product_list;
     }
 
 // Insert data into product table
@@ -112,6 +113,7 @@ public class ProductDAO {
             con.commit();
             flag = true;
             p.close();
+            con.closeDB();
         } catch (SQLException e) {
             System.err.println(e);
         } catch (Exception e) {
@@ -123,11 +125,11 @@ public class ProductDAO {
 
     // Update data into product table
     public boolean updateData(ProductBean bean, long n) {
-        boolean flag = false;
-        int quan = Integer.parseInt(bean.getQuantity());
-        double cost = Double.parseDouble(bean.getCost());
+        boolean flag;
+        //int quan = Integer.parseInt(bean.getQuantity());
+        // double cost = Double.parseDouble(bean.getCost());
         try {
-            String sql_update = "UPDATE " + table
+            String sql_update = "UPDATE " + table + " SET"
                     + " product_id="
                     + bean.getProductID()
                     + " , category='"
@@ -139,34 +141,32 @@ public class ProductDAO {
                     + "' , description='"
                     + bean.getDescription()
                     + "' , cost="
-                    + cost
+                    + Double.parseDouble(bean.getCost())
                     + " , location='"
                     + bean.getLocation()
                     + "' , warranty='"
                     + bean.getWarranty()
                     + "' , quantity="
-                    + quan
+                    + Integer.parseInt(bean.getQuantity())
                     + " WHERE product_id =" + n + ";";
-
-            String sql_update_bl = "INSERT INTO " + backlog_table + " VALUES("
-                    + "DEFAULT" + ","
-                    + "'Update'" + ","
-                    + "'Updated product " + bean.getProductID() + "',"
-                    + "current_date()" + ","
-                    + "current_time()" + ",'"
-                    + username + "');";
+            System.out.println("PRODUCT UPDATE SQL: " + sql_update);
+//            String sql_update_bl = "INSERT INTO " + backlog_table + " VALUES("
+//                    + "DEFAULT" + ","
+//                    + "'Update'" + ","
+//                    + "'Updated product " + bean.getProductID() + "',"
+//                    + "current_date()" + ","
+//                    + "current_time()" + ",'"
+//                    + username + "');";
 
             p = connect.prepareStatement(sql_update);
             p.executeUpdate();
-            p = connect.prepareStatement(sql_update_bl);
-            p.executeUpdate();
+            //p = connect.prepareStatement(sql_update_bl);
+            //p.executeUpdate();
             con.commit();
             flag = true;
             p.close();
-            rs.close();
+            con.closeDB();
         } catch (SQLException e) {
-            System.err.println(e);
-        } catch (Exception e) {
             flag = false;
             System.err.println(e);
         }
@@ -193,6 +193,7 @@ public class ProductDAO {
             con.commit();
             flag = true;
             p.close();
+            con.closeDB();
         } catch (SQLException e) {
             System.err.println(e);
         } catch (Exception e) {

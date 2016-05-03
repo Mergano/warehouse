@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,15 +14,16 @@ import javax.swing.JOptionPane;
 public class SearchDAO {
 
     private final String table = "products";
-    private ConnectDB con;
-    private Connection connect;
+    private ConnectDB connect;
+    private Connection conn;
     private PreparedStatement p = null;
     private ResultSet rs = null;
+    private Statement stmt = null;
 
     public SearchDAO() {
         try {
-            con = new ConnectDB();
-            connect = con.getconnection();
+            connect = new ConnectDB();
+            conn = connect.getconnection();
         } catch (Exception ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -55,16 +57,18 @@ public class SearchDAO {
                 break;
         }
 
-        String sql = "SELECT * FROM " + table + " WHERE " + selector + " = " + key + ";";
+        String sql = "SELECT SQL_CACHE * FROM " + table + " WHERE " + selector + " = " + key + ";";
         System.out.println(sql);
-        if (connect == null) {
+        if (conn == null) {
             System.err.print("ERROR NO CONNECTION");
         }
 
         try {
-            p = connect.prepareStatement(sql);
-            rs = p.executeQuery();
-            con.commit();
+            //p = conn.prepareStatement(sql);
+            //rs = p.executeQuery();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            connect.commit();
             while (rs.next()) {
                 ProductBean stub = new ProductBean();
                 stub.setProductID(rs.getLong("product_id"));
@@ -84,7 +88,9 @@ public class SearchDAO {
                 list.add(stub);
             }
             rs.close();
-            p.close();
+            //p.close();
+            stmt.close();
+            conn.close();
         } catch (SQLException e) {
             System.err.println(e);
         }
@@ -95,18 +101,18 @@ public class SearchDAO {
     public ArrayList<ProductBean> getLowQuantity() {
         ArrayList<ProductBean> list = new ArrayList<>();
 
-        if (connect == null) {
+        if (conn == null) {
             System.err.println("ERROR: NO INTERNET CONNECTION");
-            JOptionPane.showMessageDialog(null, "Internet connection is broken or disconnected. \nPlease check your internet connection and try again.", "Communication error",
+            JOptionPane.showMessageDialog(null, "Internet connion is broken or disconned. \nPlease check your internet connion and try again.", "Communication error",
                     JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         } else {
             String sql = "SELECT * FROM " + table + " WHERE quantity <= 5 " + ";";
             try {
                 long start = java.lang.System.currentTimeMillis();
-                p = connect.prepareStatement(sql);
+                p = conn.prepareStatement(sql);
                 rs = p.executeQuery();
-                con.commit();
+                connect.commit();
                 // Benchmark time
                 long stop = java.lang.System.currentTimeMillis();
                 if (rs.next()) {
@@ -135,6 +141,7 @@ public class SearchDAO {
                 }
                 p.close();
                 rs.close();
+                conn.close();
             } catch (SQLException e) {
                 System.err.print(e);
             }

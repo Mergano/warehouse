@@ -1,13 +1,10 @@
 package com.mergano.core.dbManager;
 
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ConnectDB {
 
@@ -21,16 +18,19 @@ public class ConnectDB {
     private String status;
     private DatabaseMetaData meta;
     private final Properties info = new Properties();
-    private PrintWriter writer = new PrintWriter(System.out);
+    //   private PrintWriter writer = new PrintWriter(System.out);
 
     public ConnectDB() {
         conn = null;
+        URL = "";
         hostName = "localhost";
         port = 3306;
         databaseName = "mergano";
         username = "root";
         password = "jukjukjuk";
-        status = null;
+        status = "";
+        meta = null;
+
     }
 
     public Connection getconnection() {
@@ -50,7 +50,7 @@ public class ConnectDB {
             meta = conn.getMetaData();
             if (conn == null) {
                 status = "Disconnnect";
-                System.out.println("Faild to connect database");
+                System.out.println("Connect to database failed");
                 System.exit(1);
             } else {
                 status = "Connected";
@@ -62,7 +62,6 @@ public class ConnectDB {
                 System.out.println("Connected to database " + conn);
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println("Error " + ex);
             System.exit(1);
         }
@@ -86,6 +85,7 @@ public class ConnectDB {
     public void closeDB() {
         try {
             conn.close();
+            System.out.println("Connection closed");
         } catch (SQLException ex) {
             System.err.print(ex);
         }

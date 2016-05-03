@@ -6,10 +6,6 @@ public class LoginBean {
     private static String password;
     private static String userType;
     private static String userEmail;
-    private static String empno;
-    private static String firstname;
-    private static String lastname;
-    private static String datetime;
     private static String userTxt;
 
     // Setter and Getter for authenticate
@@ -43,38 +39,6 @@ public class LoginBean {
 
     public void setUserEmail(String userEmail) {
         LoginBean.userEmail = userEmail;
-    }
-
-    public static String getEmpno() {
-        return empno;
-    }
-
-    public void setEmpno(String empno) {
-        LoginBean.empno = empno;
-    }
-
-    public static String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        LoginBean.firstname = firstname;
-    }
-
-    public static String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        LoginBean.lastname = lastname;
-    }
-
-    public static String getDatetime() {
-        return datetime;
-    }
-
-    public void setDatetime(String datetime) {
-        LoginBean.datetime = datetime;
     }
 
     public static String getUserTxt() {

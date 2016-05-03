@@ -47,16 +47,28 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        header = new javax.swing.JPanel();
+        main_toolbar = new javax.swing.JToolBar();
+        Home_button = new javax.swing.JButton();
+        Dashboard_button = new javax.swing.JButton();
+        Search_Button = new javax.swing.JButton();
+        Customer_button = new javax.swing.JButton();
+        User_button = new javax.swing.JButton();
+        Print_button = new javax.swing.JButton();
+        Import_button = new javax.swing.JButton();
+        Export_button = new javax.swing.JButton();
+        Options_button = new javax.swing.JButton();
+        Logout_button = new javax.swing.JButton();
         body = new javax.swing.JTabbedPane();
         home_panel = new javax.swing.JPanel();
         header_panel = new javax.swing.JPanel();
         welcome_bg = new javax.swing.JLabel();
         body_panel = new javax.swing.JPanel();
-        home_icon_panel = new javax.swing.JPanel();
+        left_panel = new javax.swing.JPanel();
         da_button_wel = new javax.swing.JButton();
         sm_button_wel = new javax.swing.JButton();
         ord_button_wel = new javax.swing.JButton();
-        trac_button_wel = new javax.swing.JButton();
+        order_request_button_wel = new javax.swing.JButton();
         data_button_wel = new javax.swing.JButton();
         ser_button_wel = new javax.swing.JButton();
         rep_button_wel = new javax.swing.JButton();
@@ -129,8 +141,8 @@ public class Main extends javax.swing.JFrame {
         order_confirm_btn = new javax.swing.JButton();
         order_product_img_panel = new javax.swing.JPanel();
         order_product_img = new javax.swing.JButton();
-        tracking_panel = new javax.swing.JPanel();
-        request_order_panel = new javax.swing.JPanel();
+        order_request_panel = new javax.swing.JPanel();
+        request_order_body_panel = new javax.swing.JPanel();
         database_panel = new javax.swing.JPanel();
         store_db_panel = new javax.swing.JPanel();
         localhost_db = new javax.swing.JToggleButton();
@@ -216,31 +228,18 @@ public class Main extends javax.swing.JFrame {
         backlog_table = new javax.swing.JTable();
         truncate_backlog_btn = new javax.swing.JButton();
         status_bar_frame = new javax.swing.JPanel();
+        dbname_label = new javax.swing.JLabel();
         db_name_box = new javax.swing.JTextField();
         status_label = new javax.swing.JLabel();
-        status_label1 = new javax.swing.JLabel();
         status_box = new javax.swing.JTextField();
+        dbType_label = new javax.swing.JLabel();
         db_type_box = new javax.swing.JTextField();
-        jLabel26 = new javax.swing.JLabel();
-        port_box = new javax.swing.JTextField();
-        jLabel27 = new javax.swing.JLabel();
+        hostname_label = new javax.swing.JLabel();
         url_box = new javax.swing.JTextField();
-        jLabel28 = new javax.swing.JLabel();
-        user_box = new javax.swing.JTextField();
+        port_label = new javax.swing.JLabel();
+        port_box = new javax.swing.JTextField();
         user_label = new javax.swing.JLabel();
-        tool_bar_frame = new javax.swing.JPanel();
-        main_toolbar = new javax.swing.JToolBar();
-        Home_button = new javax.swing.JButton();
-        Dashboard_button = new javax.swing.JButton();
-        Search_Button = new javax.swing.JButton();
-        Customer_button = new javax.swing.JButton();
-        Reports_button = new javax.swing.JButton();
-        User_button = new javax.swing.JButton();
-        Print_button = new javax.swing.JButton();
-        Import_button = new javax.swing.JButton();
-        Export_button = new javax.swing.JButton();
-        Options_button = new javax.swing.JButton();
-        Logout_button = new javax.swing.JButton();
+        user_box = new javax.swing.JTextField();
         main_menubar = new javax.swing.JMenuBar();
         file_menu = new javax.swing.JMenu();
         open_menuitem = new javax.swing.JMenuItem();
@@ -319,45 +318,220 @@ public class Main extends javax.swing.JFrame {
         setTitle(bundle.getString("title")); // NOI18N
         setBackground(new java.awt.Color(255, 255, 255));
         setIconImages(null);
-        setMaximumSize(new java.awt.Dimension(1024, 640));
+        setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(1024, 640));
         setName("main_frame"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1024, 640));
+        setPreferredSize(new java.awt.Dimension(1024, 660));
+        setSize(new java.awt.Dimension(1024, 660));
+
+        header.setAlignmentX(0.0F);
+        header.setAlignmentY(0.0F);
+        header.setPreferredSize(new java.awt.Dimension(57, 24));
+        header.setLayout(new java.awt.BorderLayout());
+
+        main_toolbar.setFloatable(false);
+        main_toolbar.setRollover(true);
+        main_toolbar.setMaximumSize(new java.awt.Dimension(522, 58));
+        main_toolbar.setMinimumSize(new java.awt.Dimension(902, 42));
+        main_toolbar.setPreferredSize(new java.awt.Dimension(902, 42));
+
+        Home_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        Home_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/home.png"))); // NOI18N
+        Home_button.setText("Home");
+        Home_button.setAlignmentX(0.5F);
+        Home_button.setFocusable(false);
+        Home_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        Home_button.setIconTextGap(10);
+        Home_button.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        Home_button.setMaximumSize(new java.awt.Dimension(90, 40));
+        Home_button.setMinimumSize(new java.awt.Dimension(90, 40));
+        Home_button.setPreferredSize(new java.awt.Dimension(70, 40));
+        Home_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Home_buttonActionPerformed(evt);
+            }
+        });
+        main_toolbar.add(Home_button);
+
+        Dashboard_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        Dashboard_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/dashboard.png"))); // NOI18N
+        Dashboard_button.setText("Dashboard");
+        Dashboard_button.setAlignmentX(0.5F);
+        Dashboard_button.setFocusable(false);
+        Dashboard_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        Dashboard_button.setIconTextGap(5);
+        Dashboard_button.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        Dashboard_button.setMaximumSize(new java.awt.Dimension(90, 40));
+        Dashboard_button.setMinimumSize(new java.awt.Dimension(90, 40));
+        Dashboard_button.setPreferredSize(new java.awt.Dimension(100, 40));
+        Dashboard_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Dashboard_buttonActionPerformed(evt);
+            }
+        });
+        main_toolbar.add(Dashboard_button);
+
+        Search_Button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        Search_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/search.png"))); // NOI18N
+        Search_Button.setText("Search");
+        Search_Button.setAlignmentX(0.5F);
+        Search_Button.setFocusable(false);
+        Search_Button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        Search_Button.setIconTextGap(10);
+        Search_Button.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        Search_Button.setMaximumSize(new java.awt.Dimension(90, 40));
+        Search_Button.setMinimumSize(new java.awt.Dimension(90, 40));
+        Search_Button.setPreferredSize(new java.awt.Dimension(62, 30));
+        Search_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Search_ButtonActionPerformed(evt);
+            }
+        });
+        main_toolbar.add(Search_Button);
+
+        Customer_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        Customer_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/users_business.png"))); // NOI18N
+        Customer_button.setText("Customer");
+        Customer_button.setAlignmentX(0.5F);
+        Customer_button.setFocusable(false);
+        Customer_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        Customer_button.setIconTextGap(10);
+        Customer_button.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        Customer_button.setMaximumSize(new java.awt.Dimension(90, 40));
+        Customer_button.setMinimumSize(new java.awt.Dimension(90, 40));
+        Customer_button.setPreferredSize(new java.awt.Dimension(62, 30));
+        Customer_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Customer_buttonActionPerformed(evt);
+            }
+        });
+        main_toolbar.add(Customer_button);
+
+        User_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        User_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/user.png"))); // NOI18N
+        User_button.setText("User");
+        User_button.setAlignmentX(0.5F);
+        User_button.setFocusable(false);
+        User_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        User_button.setIconTextGap(10);
+        User_button.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        User_button.setMaximumSize(new java.awt.Dimension(90, 40));
+        User_button.setMinimumSize(new java.awt.Dimension(90, 40));
+        User_button.setPreferredSize(new java.awt.Dimension(62, 30));
+        User_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                User_buttonMouseClicked(evt);
+            }
+        });
+        User_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                User_buttonActionPerformed(evt);
+            }
+        });
+        main_toolbar.add(User_button);
+
+        Print_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        Print_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/print.png"))); // NOI18N
+        Print_button.setText("Print");
+        Print_button.setAlignmentX(0.5F);
+        Print_button.setFocusable(false);
+        Print_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        Print_button.setIconTextGap(10);
+        Print_button.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        Print_button.setMaximumSize(new java.awt.Dimension(90, 40));
+        Print_button.setMinimumSize(new java.awt.Dimension(90, 40));
+        Print_button.setPreferredSize(new java.awt.Dimension(62, 30));
+        Print_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Print_buttonActionPerformed(evt);
+            }
+        });
+        main_toolbar.add(Print_button);
+
+        Import_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        Import_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/folder_add.png"))); // NOI18N
+        Import_button.setText("Import");
+        Import_button.setFocusable(false);
+        Import_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        Import_button.setIconTextGap(10);
+        Import_button.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        Import_button.setMaximumSize(new java.awt.Dimension(90, 40));
+        Import_button.setMinimumSize(new java.awt.Dimension(90, 40));
+        Import_button.setPreferredSize(new java.awt.Dimension(70, 30));
+        Import_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Import_buttonActionPerformed(evt);
+            }
+        });
+        main_toolbar.add(Import_button);
+
+        Export_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        Export_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/folder_upload.png"))); // NOI18N
+        Export_button.setText("Export");
+        Export_button.setFocusable(false);
+        Export_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        Export_button.setIconTextGap(10);
+        Export_button.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        Export_button.setMaximumSize(new java.awt.Dimension(90, 40));
+        Export_button.setMinimumSize(new java.awt.Dimension(90, 40));
+        Export_button.setPreferredSize(new java.awt.Dimension(70, 30));
+        main_toolbar.add(Export_button);
+
+        Options_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        Options_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/gear.png"))); // NOI18N
+        Options_button.setText("Options");
+        Options_button.setAlignmentX(0.5F);
+        Options_button.setFocusable(false);
+        Options_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        Options_button.setIconTextGap(10);
+        Options_button.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        Options_button.setMaximumSize(new java.awt.Dimension(90, 40));
+        Options_button.setMinimumSize(new java.awt.Dimension(90, 40));
+        Options_button.setPreferredSize(new java.awt.Dimension(62, 30));
+        Options_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Options_buttonActionPerformed(evt);
+            }
+        });
+        main_toolbar.add(Options_button);
+
+        Logout_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        Logout_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/lock.png"))); // NOI18N
+        Logout_button.setText("Logout");
+        Logout_button.setAlignmentX(0.5F);
+        Logout_button.setFocusable(false);
+        Logout_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        Logout_button.setIconTextGap(10);
+        Logout_button.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        Logout_button.setMaximumSize(new java.awt.Dimension(90, 40));
+        Logout_button.setMinimumSize(new java.awt.Dimension(90, 40));
+        Logout_button.setPreferredSize(new java.awt.Dimension(62, 30));
+        Logout_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Logout_buttonActionPerformed(evt);
+            }
+        });
+        main_toolbar.add(Logout_button);
+
+        header.add(main_toolbar, java.awt.BorderLayout.CENTER);
 
         home_panel.setBackground(new java.awt.Color(255, 255, 255));
         home_panel.setLayout(new java.awt.BorderLayout());
 
         header_panel.setBackground(new java.awt.Color(231, 76, 60));
+        header_panel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
+        welcome_bg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         welcome_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/pic/welcome.png"))); // NOI18N
-
-        javax.swing.GroupLayout header_panelLayout = new javax.swing.GroupLayout(header_panel);
-        header_panel.setLayout(header_panelLayout);
-        header_panelLayout.setHorizontalGroup(
-            header_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1075, Short.MAX_VALUE)
-            .addGroup(header_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(header_panelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(welcome_bg)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        header_panelLayout.setVerticalGroup(
-            header_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-            .addGroup(header_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(header_panelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(welcome_bg)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        welcome_bg.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        header_panel.add(welcome_bg);
 
         home_panel.add(header_panel, java.awt.BorderLayout.NORTH);
 
         body_panel.setLayout(new java.awt.GridLayout(1, 2));
 
-        home_icon_panel.setBackground(new java.awt.Color(255, 255, 255));
-        home_icon_panel.setLayout(new java.awt.GridLayout(5, 2));
+        left_panel.setBackground(new java.awt.Color(255, 255, 255));
+        left_panel.setLayout(new java.awt.GridLayout(5, 2));
 
         da_button_wel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         da_button_wel.setForeground(new java.awt.Color(51, 51, 51));
@@ -374,7 +548,7 @@ public class Main extends javax.swing.JFrame {
                 da_button_welActionPerformed(evt);
             }
         });
-        home_icon_panel.add(da_button_wel);
+        left_panel.add(da_button_wel);
 
         sm_button_wel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         sm_button_wel.setForeground(new java.awt.Color(51, 51, 51));
@@ -391,7 +565,7 @@ public class Main extends javax.swing.JFrame {
                 sm_button_welActionPerformed(evt);
             }
         });
-        home_icon_panel.add(sm_button_wel);
+        left_panel.add(sm_button_wel);
 
         ord_button_wel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         ord_button_wel.setForeground(new java.awt.Color(51, 51, 51));
@@ -409,24 +583,24 @@ public class Main extends javax.swing.JFrame {
                 ord_button_welActionPerformed(evt);
             }
         });
-        home_icon_panel.add(ord_button_wel);
+        left_panel.add(ord_button_wel);
 
-        trac_button_wel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        trac_button_wel.setForeground(new java.awt.Color(51, 51, 51));
-        trac_button_wel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/Checkmark.png"))); // NOI18N
-        trac_button_wel.setText("Tracking");
-        trac_button_wel.setBorderPainted(false);
-        trac_button_wel.setContentAreaFilled(false);
-        trac_button_wel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        trac_button_wel.setIconTextGap(16);
-        trac_button_wel.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/Checkmark_roll.png"))); // NOI18N
-        trac_button_wel.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/Checkmark_roll.png"))); // NOI18N
-        trac_button_wel.addActionListener(new java.awt.event.ActionListener() {
+        order_request_button_wel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        order_request_button_wel.setForeground(new java.awt.Color(51, 51, 51));
+        order_request_button_wel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/Checkmark.png"))); // NOI18N
+        order_request_button_wel.setText("Order Request");
+        order_request_button_wel.setBorderPainted(false);
+        order_request_button_wel.setContentAreaFilled(false);
+        order_request_button_wel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        order_request_button_wel.setIconTextGap(16);
+        order_request_button_wel.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/Checkmark_roll.png"))); // NOI18N
+        order_request_button_wel.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/Checkmark_roll.png"))); // NOI18N
+        order_request_button_wel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                trac_button_welActionPerformed(evt);
+                order_request_button_welActionPerformed(evt);
             }
         });
-        home_icon_panel.add(trac_button_wel);
+        left_panel.add(order_request_button_wel);
 
         data_button_wel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         data_button_wel.setForeground(new java.awt.Color(51, 51, 51));
@@ -444,7 +618,7 @@ public class Main extends javax.swing.JFrame {
                 data_button_welActionPerformed(evt);
             }
         });
-        home_icon_panel.add(data_button_wel);
+        left_panel.add(data_button_wel);
 
         ser_button_wel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         ser_button_wel.setForeground(new java.awt.Color(51, 51, 51));
@@ -461,7 +635,7 @@ public class Main extends javax.swing.JFrame {
                 ser_button_welActionPerformed(evt);
             }
         });
-        home_icon_panel.add(ser_button_wel);
+        left_panel.add(ser_button_wel);
 
         rep_button_wel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         rep_button_wel.setForeground(new java.awt.Color(51, 51, 51));
@@ -479,7 +653,7 @@ public class Main extends javax.swing.JFrame {
                 rep_button_welActionPerformed(evt);
             }
         });
-        home_icon_panel.add(rep_button_wel);
+        left_panel.add(rep_button_wel);
 
         sta_button_wel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         sta_button_wel.setForeground(new java.awt.Color(51, 51, 51));
@@ -496,7 +670,7 @@ public class Main extends javax.swing.JFrame {
                 sta_button_welActionPerformed(evt);
             }
         });
-        home_icon_panel.add(sta_button_wel);
+        left_panel.add(sta_button_wel);
 
         bac_button_wel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         bac_button_wel.setForeground(new java.awt.Color(51, 51, 51));
@@ -514,7 +688,7 @@ public class Main extends javax.swing.JFrame {
                 bac_button_welActionPerformed(evt);
             }
         });
-        home_icon_panel.add(bac_button_wel);
+        left_panel.add(bac_button_wel);
 
         mai_button_wel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         mai_button_wel.setForeground(new java.awt.Color(51, 51, 51));
@@ -531,9 +705,9 @@ public class Main extends javax.swing.JFrame {
                 mai_button_welActionPerformed(evt);
             }
         });
-        home_icon_panel.add(mai_button_wel);
+        left_panel.add(mai_button_wel);
 
-        body_panel.add(home_icon_panel);
+        body_panel.add(left_panel);
 
         right_panel.setBackground(new java.awt.Color(255, 255, 255));
         right_panel.setLayout(new java.awt.BorderLayout());
@@ -576,7 +750,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(dashboard_panel_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                     .addComponent(jTextField1))
-                .addContainerGap(812, Short.MAX_VALUE))
+                .addContainerGap(822, Short.MAX_VALUE))
         );
         dashboard_panel_bodyLayout.setVerticalGroup(
             dashboard_panel_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -589,7 +763,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(dashboard_panel_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(404, Short.MAX_VALUE))
+                .addContainerGap(414, Short.MAX_VALUE))
         );
 
         dashboard_panel.add(dashboard_panel_body, java.awt.BorderLayout.CENTER);
@@ -1178,42 +1352,42 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(order_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(order_pane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         body.addTab("Order Management", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/clipboard.png")), order_panel); // NOI18N
 
-        request_order_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Request Order", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
+        request_order_body_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Request Order", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
 
-        javax.swing.GroupLayout request_order_panelLayout = new javax.swing.GroupLayout(request_order_panel);
-        request_order_panel.setLayout(request_order_panelLayout);
-        request_order_panelLayout.setHorizontalGroup(
-            request_order_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout request_order_body_panelLayout = new javax.swing.GroupLayout(request_order_body_panel);
+        request_order_body_panel.setLayout(request_order_body_panelLayout);
+        request_order_body_panelLayout.setHorizontalGroup(
+            request_order_body_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1012, Short.MAX_VALUE)
         );
-        request_order_panelLayout.setVerticalGroup(
-            request_order_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 461, Short.MAX_VALUE)
+        request_order_body_panelLayout.setVerticalGroup(
+            request_order_body_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 471, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout tracking_panelLayout = new javax.swing.GroupLayout(tracking_panel);
-        tracking_panel.setLayout(tracking_panelLayout);
-        tracking_panelLayout.setHorizontalGroup(
-            tracking_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tracking_panelLayout.createSequentialGroup()
+        javax.swing.GroupLayout order_request_panelLayout = new javax.swing.GroupLayout(order_request_panel);
+        order_request_panel.setLayout(order_request_panelLayout);
+        order_request_panelLayout.setHorizontalGroup(
+            order_request_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(order_request_panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(request_order_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addComponent(request_order_body_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(51, Short.MAX_VALUE))
         );
-        tracking_panelLayout.setVerticalGroup(
-            tracking_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tracking_panelLayout.createSequentialGroup()
+        order_request_panelLayout.setVerticalGroup(
+            order_request_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(order_request_panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(request_order_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(request_order_body_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        body.addTab("Tracking", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/checkmark.png")), tracking_panel); // NOI18N
+        body.addTab("Order Request", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/checkmark.png")), order_request_panel); // NOI18N
 
         store_db_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Stored Database", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
         store_db_panel.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
@@ -1434,7 +1608,7 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(database_type_show_box, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(port_show_box, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(driver_box, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
         db_show_info_panelLayout.setVerticalGroup(
             db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1578,7 +1752,7 @@ public class Main extends javax.swing.JFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 525, Short.MAX_VALUE)
+            .addGap(0, 530, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1620,7 +1794,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
                 .addComponent(search_button, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1733,7 +1907,7 @@ public class Main extends javax.swing.JFrame {
                                     .addComponent(jLabel23))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                                    .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                                     .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jTextField11)
                                     .addComponent(jTextField12, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1812,7 +1986,7 @@ public class Main extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
         );
 
         searching_panel.add(jPanel4);
@@ -1840,7 +2014,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(view_graph_button, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(805, Short.MAX_VALUE))
+                .addContainerGap(815, Short.MAX_VALUE))
             .addComponent(statistic_graph, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         statistics_panelLayout.setVerticalGroup(
@@ -1922,7 +2096,7 @@ public class Main extends javax.swing.JFrame {
         );
         stock_report_panelLayout.setVerticalGroup(
             stock_report_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+            .addGap(0, 425, Short.MAX_VALUE)
             .addGroup(stock_report_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(stock_report_panelLayout.createSequentialGroup()
                     .addContainerGap()
@@ -1949,7 +2123,7 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(clear_report_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(print_report_button, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel1))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         report_panelLayout.setVerticalGroup(
             report_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2017,16 +2191,16 @@ public class Main extends javax.swing.JFrame {
             .addGroup(backlog_panelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ScrollPanelForBacklog, javax.swing.GroupLayout.PREFERRED_SIZE, 876, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(truncate_backlog_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addContainerGap())
         );
         backlog_panelLayout.setVerticalGroup(
             backlog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backlog_panelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(backlog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ScrollPanelForBacklog, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+                    .addComponent(ScrollPanelForBacklog, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
                     .addGroup(backlog_panelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(truncate_backlog_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -2035,299 +2209,74 @@ public class Main extends javax.swing.JFrame {
 
         body.addTab("Backlog", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/clock2.png")), backlog_panel); // NOI18N
 
+        status_bar_frame.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         status_bar_frame.setPreferredSize(new java.awt.Dimension(176, 40));
+        status_bar_frame.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 12, 12));
+
+        dbname_label.setText("Database name");
+        status_bar_frame.add(dbname_label);
 
         db_name_box.setEditable(false);
         db_name_box.setBackground(new java.awt.Color(255, 255, 255));
+        db_name_box.setMinimumSize(new java.awt.Dimension(120, 20));
+        db_name_box.setPreferredSize(new java.awt.Dimension(120, 20));
         db_name_box.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 db_name_boxActionPerformed(evt);
             }
         });
+        status_bar_frame.add(db_name_box);
 
         status_label.setText("Database status");
-
-        status_label1.setText("Database name");
+        status_bar_frame.add(status_label);
 
         status_box.setEditable(false);
         status_box.setBackground(new java.awt.Color(255, 255, 255));
         status_box.setForeground(new java.awt.Color(0, 153, 102));
+        status_box.setMinimumSize(new java.awt.Dimension(80, 20));
+        status_box.setPreferredSize(new java.awt.Dimension(80, 20));
+        status_bar_frame.add(status_box);
+
+        dbType_label.setText("Type");
+        status_bar_frame.add(dbType_label);
 
         db_type_box.setEditable(false);
         db_type_box.setBackground(new java.awt.Color(255, 255, 255));
+        db_type_box.setMinimumSize(new java.awt.Dimension(80, 20));
+        db_type_box.setPreferredSize(new java.awt.Dimension(80, 20));
+        status_bar_frame.add(db_type_box);
 
-        jLabel26.setText("Type");
-
-        port_box.setEditable(false);
-        port_box.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel27.setText("Port");
+        hostname_label.setText("Hostname");
+        status_bar_frame.add(hostname_label);
 
         url_box.setEditable(false);
         url_box.setBackground(new java.awt.Color(255, 255, 255));
+        url_box.setMinimumSize(new java.awt.Dimension(120, 20));
+        url_box.setPreferredSize(new java.awt.Dimension(120, 20));
         url_box.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 url_boxActionPerformed(evt);
             }
         });
+        status_bar_frame.add(url_box);
 
-        jLabel28.setText("Hostname");
+        port_label.setText("Port");
+        status_bar_frame.add(port_label);
+
+        port_box.setEditable(false);
+        port_box.setBackground(new java.awt.Color(255, 255, 255));
+        port_box.setMinimumSize(new java.awt.Dimension(60, 20));
+        port_box.setPreferredSize(new java.awt.Dimension(60, 20));
+        status_bar_frame.add(port_box);
+
+        user_label.setText("Username");
+        status_bar_frame.add(user_label);
 
         user_box.setEditable(false);
         user_box.setBackground(new java.awt.Color(255, 255, 255));
-
-        user_label.setText("Username");
-
-        javax.swing.GroupLayout status_bar_frameLayout = new javax.swing.GroupLayout(status_bar_frame);
-        status_bar_frame.setLayout(status_bar_frameLayout);
-        status_bar_frameLayout.setHorizontalGroup(
-            status_bar_frameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(status_bar_frameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(status_label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(status_box, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(status_label1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(db_name_box, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel26)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(db_type_box, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel28)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(url_box, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel27)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(port_box, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(user_label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(user_box, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
-        );
-        status_bar_frameLayout.setVerticalGroup(
-            status_bar_frameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, status_bar_frameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(status_bar_frameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(status_label)
-                    .addComponent(db_name_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(status_label1)
-                    .addComponent(status_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(db_type_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel26)
-                    .addComponent(port_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel27)
-                    .addComponent(url_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel28)
-                    .addComponent(user_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(user_label))
-                .addContainerGap())
-        );
-
-        tool_bar_frame.setAlignmentX(0.0F);
-        tool_bar_frame.setAlignmentY(0.0F);
-        tool_bar_frame.setPreferredSize(new java.awt.Dimension(57, 24));
-        tool_bar_frame.setLayout(new java.awt.BorderLayout());
-
-        main_toolbar.setFloatable(false);
-        main_toolbar.setRollover(true);
-        main_toolbar.setMaximumSize(new java.awt.Dimension(522, 28));
-        main_toolbar.setPreferredSize(new java.awt.Dimension(100, 28));
-
-        Home_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        Home_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/home.png"))); // NOI18N
-        Home_button.setText("Home");
-        Home_button.setAlignmentX(0.5F);
-        Home_button.setFocusable(false);
-        Home_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        Home_button.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        Home_button.setMaximumSize(new java.awt.Dimension(90, 30));
-        Home_button.setMinimumSize(new java.awt.Dimension(90, 30));
-        Home_button.setPreferredSize(new java.awt.Dimension(24, 24));
-        Home_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Home_buttonActionPerformed(evt);
-            }
-        });
-        main_toolbar.add(Home_button);
-
-        Dashboard_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        Dashboard_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/dashboard.png"))); // NOI18N
-        Dashboard_button.setText("Dashboard");
-        Dashboard_button.setAlignmentX(0.5F);
-        Dashboard_button.setFocusable(false);
-        Dashboard_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        Dashboard_button.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        Dashboard_button.setMaximumSize(new java.awt.Dimension(90, 30));
-        Dashboard_button.setMinimumSize(new java.awt.Dimension(62, 30));
-        Dashboard_button.setPreferredSize(new java.awt.Dimension(80, 30));
-        Dashboard_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Dashboard_buttonActionPerformed(evt);
-            }
-        });
-        main_toolbar.add(Dashboard_button);
-
-        Search_Button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        Search_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/search.png"))); // NOI18N
-        Search_Button.setText("Search");
-        Search_Button.setAlignmentX(0.5F);
-        Search_Button.setFocusable(false);
-        Search_Button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        Search_Button.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        Search_Button.setMaximumSize(new java.awt.Dimension(90, 30));
-        Search_Button.setMinimumSize(new java.awt.Dimension(62, 30));
-        Search_Button.setPreferredSize(new java.awt.Dimension(62, 30));
-        Search_Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Search_ButtonActionPerformed(evt);
-            }
-        });
-        main_toolbar.add(Search_Button);
-
-        Customer_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        Customer_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/users_business.png"))); // NOI18N
-        Customer_button.setText("Customer");
-        Customer_button.setAlignmentX(0.5F);
-        Customer_button.setFocusable(false);
-        Customer_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        Customer_button.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        Customer_button.setMaximumSize(new java.awt.Dimension(90, 30));
-        Customer_button.setMinimumSize(new java.awt.Dimension(62, 30));
-        Customer_button.setPreferredSize(new java.awt.Dimension(62, 30));
-        Customer_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Customer_buttonActionPerformed(evt);
-            }
-        });
-        main_toolbar.add(Customer_button);
-
-        Reports_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        Reports_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/project.png"))); // NOI18N
-        Reports_button.setText("Reports");
-        Reports_button.setAlignmentX(0.5F);
-        Reports_button.setFocusable(false);
-        Reports_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        Reports_button.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        Reports_button.setMaximumSize(new java.awt.Dimension(90, 30));
-        Reports_button.setMinimumSize(new java.awt.Dimension(62, 30));
-        Reports_button.setPreferredSize(new java.awt.Dimension(62, 30));
-        Reports_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Reports_buttonActionPerformed(evt);
-            }
-        });
-        main_toolbar.add(Reports_button);
-
-        User_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        User_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/user.png"))); // NOI18N
-        User_button.setText("User");
-        User_button.setAlignmentX(0.5F);
-        User_button.setFocusable(false);
-        User_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        User_button.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        User_button.setMaximumSize(new java.awt.Dimension(90, 30));
-        User_button.setMinimumSize(new java.awt.Dimension(62, 30));
-        User_button.setPreferredSize(new java.awt.Dimension(62, 30));
-        User_button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                User_buttonMouseClicked(evt);
-            }
-        });
-        User_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                User_buttonActionPerformed(evt);
-            }
-        });
-        main_toolbar.add(User_button);
-
-        Print_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        Print_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/print.png"))); // NOI18N
-        Print_button.setText("Print");
-        Print_button.setAlignmentX(0.5F);
-        Print_button.setFocusable(false);
-        Print_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        Print_button.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        Print_button.setMaximumSize(new java.awt.Dimension(90, 30));
-        Print_button.setMinimumSize(new java.awt.Dimension(62, 30));
-        Print_button.setPreferredSize(new java.awt.Dimension(62, 30));
-        Print_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Print_buttonActionPerformed(evt);
-            }
-        });
-        main_toolbar.add(Print_button);
-
-        Import_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        Import_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/folder_add.png"))); // NOI18N
-        Import_button.setText("Import");
-        Import_button.setFocusable(false);
-        Import_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        Import_button.setIconTextGap(8);
-        Import_button.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        Import_button.setMaximumSize(new java.awt.Dimension(90, 30));
-        Import_button.setMinimumSize(new java.awt.Dimension(62, 30));
-        Import_button.setPreferredSize(new java.awt.Dimension(70, 30));
-        Import_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Import_buttonActionPerformed(evt);
-            }
-        });
-        main_toolbar.add(Import_button);
-
-        Export_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        Export_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/folder_upload.png"))); // NOI18N
-        Export_button.setText("Export");
-        Export_button.setFocusable(false);
-        Export_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        Export_button.setIconTextGap(8);
-        Export_button.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        Export_button.setMaximumSize(new java.awt.Dimension(90, 30));
-        Export_button.setPreferredSize(new java.awt.Dimension(70, 30));
-        main_toolbar.add(Export_button);
-
-        Options_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        Options_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/gear.png"))); // NOI18N
-        Options_button.setText("Options");
-        Options_button.setAlignmentX(0.5F);
-        Options_button.setFocusable(false);
-        Options_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        Options_button.setIconTextGap(6);
-        Options_button.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        Options_button.setMaximumSize(new java.awt.Dimension(90, 30));
-        Options_button.setMinimumSize(new java.awt.Dimension(62, 30));
-        Options_button.setPreferredSize(new java.awt.Dimension(62, 30));
-        Options_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Options_buttonActionPerformed(evt);
-            }
-        });
-        main_toolbar.add(Options_button);
-
-        Logout_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        Logout_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/lock.png"))); // NOI18N
-        Logout_button.setText("Logout");
-        Logout_button.setAlignmentX(0.5F);
-        Logout_button.setFocusable(false);
-        Logout_button.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        Logout_button.setIconTextGap(6);
-        Logout_button.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        Logout_button.setMaximumSize(new java.awt.Dimension(90, 30));
-        Logout_button.setMinimumSize(new java.awt.Dimension(62, 30));
-        Logout_button.setPreferredSize(new java.awt.Dimension(62, 30));
-        Logout_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Logout_buttonActionPerformed(evt);
-            }
-        });
-        main_toolbar.add(Logout_button);
-
-        tool_bar_frame.add(main_toolbar, java.awt.BorderLayout.CENTER);
+        user_box.setMinimumSize(new java.awt.Dimension(120, 20));
+        user_box.setPreferredSize(new java.awt.Dimension(120, 20));
+        status_bar_frame.add(user_box);
 
         main_menubar.setBorder(null);
         main_menubar.setPreferredSize(new java.awt.Dimension(56, 23));
@@ -2793,25 +2742,25 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tool_bar_frame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(status_bar_frame, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
+            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(status_bar_frame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(body)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(tool_bar_frame, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(body, javax.swing.GroupLayout.PREFERRED_SIZE, 539, Short.MAX_VALUE)
+                .addComponent(body, javax.swing.GroupLayout.PREFERRED_SIZE, 549, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(status_bar_frame, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+                .addComponent(status_bar_frame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         body.getAccessibleContext().setAccessibleName("Body");
 
         getAccessibleContext().setAccessibleDescription("This is main windows");
 
-        setSize(new java.awt.Dimension(1096, 689));
+        pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -2968,21 +2917,16 @@ public class Main extends javax.swing.JFrame {
 
             switch (tb_status) {
                 case 1:
-                    tool_bar_frame.setVisible(true);
+                    header.setVisible(true);
                     break;
                 case 0:
-                    tool_bar_frame.setVisible(false);
+                    header.setVisible(false);
                     break;
                 default:
-                    tool_bar_frame.setVisible(true);
+                    header.setVisible(true);
             }
         }
     }//GEN-LAST:event_toolbar_menuitemActionPerformed
-
-    private void Reports_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reports_buttonActionPerformed
-        Report rp = new Report();
-        rp.setVisible(true);
-    }//GEN-LAST:event_Reports_buttonActionPerformed
 
     private void Home_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home_buttonActionPerformed
         body.setSelectedIndex(0);
@@ -3050,11 +2994,11 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Warranty must less than or 3 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
         } else if (quantity > 999999) {
             JOptionPane.showMessageDialog(this, "Quantity must less than or 6 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
-        } else if (!isNumeric(quantity_txt) || !isNumeric(warranty)) {
-            JOptionPane.showMessageDialog(this, "Quantity Cost or Warranty must be an integer format only", "Input Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!isNumeric(quantity_txt)) {
+            JOptionPane.showMessageDialog(this, "Quantity must be an integer format only", "Input Error", JOptionPane.ERROR_MESSAGE);
         } else {
 
-            // Update query
+            // Update product bean
             ProductBean bean = new ProductBean();
             bean.setProductID(productID);
             bean.setCategory(category);
@@ -3068,26 +3012,26 @@ public class Main extends javax.swing.JFrame {
             bean.setWarranty(warranty);
             //bean.setHistory("Edited product " + productID);
             ProductDAO dao = new ProductDAO();
-            try {
-                boolean status = dao.updateData(bean, productID);
-                updateTable(dao.getData());
-                //updateBacklog(dao.getBacklogData());
-                if (status) {
-                    JOptionPane.showMessageDialog(this, "Updated data successfully", "Updated Success", JOptionPane.INFORMATION_MESSAGE);
-                    productID_input.setEditable(false);
-                    category_input.setEditable(false);
-                    category_input.setEnabled(false);
-                    quantity_input.setEnabled(false);
-                    name_input.setEditable(false);
-                    manufacture_input.setEditable(false);
-                    model_input.setEditable(false);
-                    location_input.setEditable(false);
-                    cost_input.setEditable(false);
-                    warranty_input.setEditable(false);
-                    description_input.setEditable(false);
-                }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Updated data failed", "Updated Failed: " + ex, JOptionPane.ERROR_MESSAGE);
+
+            boolean status = dao.updateData(bean, productID);
+            updateTable(dao.getData());
+            //updateBacklog(dao.getBacklogData());
+            System.out.println("status :" + status);
+            if (status) {
+                JOptionPane.showMessageDialog(this, "Updated data successfully", "Updated Success", JOptionPane.INFORMATION_MESSAGE);
+                productID_input.setEditable(false);
+                category_input.setEditable(false);
+                category_input.setEnabled(false);
+                quantity_input.setEnabled(false);
+                name_input.setEditable(false);
+                manufacture_input.setEditable(false);
+                model_input.setEditable(false);
+                location_input.setEditable(false);
+                cost_input.setEditable(false);
+                warranty_input.setEditable(false);
+                description_input.setEditable(false);
+            } else {
+                JOptionPane.showMessageDialog(this, "Updated data Failed", "Updated Failed", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_save_product_buttonActionPerformed
@@ -3384,9 +3328,9 @@ public class Main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_view_graph_buttonActionPerformed
 
-    private void trac_button_welActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trac_button_welActionPerformed
+    private void order_request_button_welActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_order_request_button_welActionPerformed
         body.setSelectedIndex(4);
-    }//GEN-LAST:event_trac_button_welActionPerformed
+    }//GEN-LAST:event_order_request_button_welActionPerformed
 
     private void sta_button_welActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sta_button_welActionPerformed
         body.setSelectedIndex(8);
@@ -3447,6 +3391,7 @@ public class Main extends javax.swing.JFrame {
 
     private void product_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_product_tableMouseClicked
         int index = product_table.getSelectedRow();
+        System.out.println("CLICK INDEX: " + index);
         fillDataField(index);
     }//GEN-LAST:event_product_tableMouseClicked
 
@@ -3530,18 +3475,23 @@ public class Main extends javax.swing.JFrame {
     private void product_tableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_product_tableKeyPressed
         int index = product_table.getSelectedRow();
         if (evt.getKeyCode() == KeyEvent.VK_UP) {
-            if (index > 0) {
+            System.out.println(index);
+            if (index >= 1) {
                 fillDataField(index - 1);
-            } else { // If table have only 1 row
+            } else if (index == 1) {
+                // fillDataField(index);
+            } else if (product_table.getRowCount() == 1) { // If table have only 1 row
                 fillDataField(1);
             }
-        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
-            System.out.println("TOTAL INDEX " + product_table.getRowCount());
-            if (index < product_table.getRowCount()) {
+        }
+        if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+
+            System.out.println(index);
+            if (index < product_table.getRowCount() - 1) {
                 fillDataField(index + 1);
             } else if (index == product_table.getRowCount()) { // If selected row is last row
                 fillDataField(product_table.getRowCount());
-            } else { // If table have only 1 row
+            } else if (product_table.getRowCount() == 1) { // If table have only 1 row
                 fillDataField(1);
             }
         }
@@ -3733,7 +3683,6 @@ public class Main extends javax.swing.JFrame {
     protected javax.swing.JButton Logout_button;
     protected javax.swing.JButton Options_button;
     protected javax.swing.JButton Print_button;
-    protected javax.swing.JButton Reports_button;
     private javax.swing.JScrollPane ScrollPanelForBacklog;
     private javax.swing.JScrollPane ScrollPanelForBacklog1;
     private javax.swing.JScrollPane ScrollPanelForQueryTable;
@@ -3772,11 +3721,13 @@ public class Main extends javax.swing.JFrame {
     protected javax.swing.JPanel database_panel;
     private javax.swing.JTextField database_type_show_box;
     private javax.swing.JToggleButton db4;
+    private javax.swing.JLabel dbType_label;
     private javax.swing.JPanel db_info_panel;
     private javax.swing.JPanel db_manager_panel;
     public static javax.swing.JTextField db_name_box;
     private javax.swing.JPanel db_show_info_panel;
     public static javax.swing.JTextField db_type_box;
+    private javax.swing.JLabel dbname_label;
     private javax.swing.JMenuItem del_db_menuitem;
     private javax.swing.JButton delete_database_button1;
     private javax.swing.JButton delete_order_btn;
@@ -3797,12 +3748,13 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox filter_column;
     private javax.swing.JButton find_database_button;
     private javax.swing.JMenuItem find_db_menuitem;
+    private javax.swing.JPanel header;
     private javax.swing.JPanel header_panel;
     private javax.swing.JMenuItem help_contents_menuitem;
     protected javax.swing.JMenu help_menu;
     private javax.swing.JCheckBoxMenuItem hint_menuitem;
-    private javax.swing.JPanel home_icon_panel;
     protected javax.swing.JPanel home_panel;
+    private javax.swing.JLabel hostname_label;
     private javax.swing.JTextField hostname_show_box;
     private javax.swing.JPanel img_box_search;
     private javax.swing.JMenuItem import_csv_menuitem;
@@ -3827,9 +3779,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -3891,6 +3840,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JToggleButton jToggleButton6;
+    private javax.swing.JPanel left_panel;
     private javax.swing.JToggleButton localhost_db;
     private javax.swing.JTextField location_input;
     private javax.swing.JMenuItem logout_menuitem;
@@ -3916,8 +3866,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel order_product_img_panel;
     private javax.swing.JSpinner order_quantity;
     private javax.swing.JLabel order_quantity_label;
+    protected javax.swing.JButton order_request_button_wel;
+    protected javax.swing.JPanel order_request_panel;
     public javax.swing.JTextField pathname_box;
     public static javax.swing.JTextField port_box;
+    private javax.swing.JLabel port_label;
     private javax.swing.JTextField port_show_box;
     private javax.swing.JButton print_database_info_button;
     private javax.swing.JMenuItem print_menuitem;
@@ -3942,7 +3895,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem report_menuitem;
     protected javax.swing.JPanel report_panel;
     private javax.swing.JTable report_table;
-    private javax.swing.JPanel request_order_panel;
+    private javax.swing.JPanel request_order_body_panel;
     private javax.swing.JPanel right_panel;
     private javax.swing.JMenuItem save_menuitem;
     private javax.swing.JButton save_order_btn;
@@ -3967,18 +3920,14 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel status_bar_frame;
     public static javax.swing.JTextField status_box;
     private javax.swing.JLabel status_label;
-    private javax.swing.JLabel status_label1;
     private javax.swing.JCheckBoxMenuItem statusbar_menuitem;
     private javax.swing.JMenuItem stock_management_menuitem;
     private javax.swing.JPanel stock_report_panel;
     private javax.swing.JPanel store_db_panel;
     private javax.swing.JButton test_connection_button;
-    private javax.swing.JPanel tool_bar_frame;
     private javax.swing.JCheckBoxMenuItem toolbar_menuitem;
     protected javax.swing.JMenu tools_menu;
-    protected javax.swing.JButton trac_button_wel;
     private javax.swing.JMenuItem tracking_menuitem;
-    protected javax.swing.JPanel tracking_panel;
     private javax.swing.JButton truncate_backlog_btn;
     public static javax.swing.JTextField url_box;
     public static javax.swing.JTextField user_box;

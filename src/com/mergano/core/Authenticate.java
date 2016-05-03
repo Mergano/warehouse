@@ -43,5 +43,10 @@ public class Authenticate {
         }
         return 0;
     }
+    
+    public void ResetLoginBean() {
+        LoginBean log = new LoginBean();
+        
+    }
 
 }
