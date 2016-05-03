@@ -1,7 +1,6 @@
 package com.mergano.core.dbManager;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -47,17 +46,13 @@ public class ProductDAO {
                 con.commit();
 
                 // Benchmark time
-                long stop = java.lang.System.currentTimeMillis();
-                if (rs.next()) {
-                    System.out.println("Query successful");
-                    System.out.println("JDBC query time: " + String.valueOf((stop - start)) + " ms");
-                } else {
-                    System.out.println("Query failed");
-                }
-
+//                long stop = java.lang.System.currentTimeMillis();
+//                if (rs.next()) {
+//                    System.out.println("QUERY PRODUCT SUCCESSFUL");
+//                    System.out.println("JDBC query time: " + String.valueOf((stop - start)) + " ms");
                 while (rs.next()) {
                     ProductBean stub = new ProductBean();
-                    stub.setProductID(rs.getInt("product_id"));
+                    stub.setProductID(rs.getLong("product_id"));
                     stub.setCategory(rs.getString("category"));
                     stub.setManufacture(rs.getString("manufacture"));
                     stub.setName(rs.getString("name"));
@@ -67,11 +62,17 @@ public class ProductDAO {
                     stub.setLocation(rs.getString("location"));
                     stub.setWarranty(rs.getString("warranty"));
                     stub.setQuantity(rs.getInt("quantity"));
-                    Date dbSqlDate = rs.getDate("dated");
-                    stub.setImport(dbSqlDate.toString()); // SQL NOW
+                    //Date dbSqlDate = rs.getDate("import_date").toString();
+                    //stub.setImport(dbSqlDate.toString()); // SQL NOW
+                    stub.setImport(rs.getDate("import_date").toString());
+                    stub.setStatus(rs.getString("status"));
                     stub.setUserLastModified(rs.getString("user_lastmodified"));
+                    stub.setImage(rs.getBytes("image"));
                     list.add(stub);
                 }
+                //                } else {
+//                    System.out.println("QUERY PRODUCT FAILED");
+//                }
                 p.close();
                 rs.close();
             } catch (Exception e) {
@@ -108,9 +109,9 @@ public class ProductDAO {
             p.executeUpdate();
             p = connect.prepareStatement(sql_insert_bl);
             p.executeUpdate();
+            con.commit();
             flag = true;
             p.close();
-
         } catch (SQLException e) {
             System.err.println(e);
         } catch (Exception e) {
@@ -159,7 +160,10 @@ public class ProductDAO {
             p.executeUpdate();
             p = connect.prepareStatement(sql_update_bl);
             p.executeUpdate();
+            con.commit();
             flag = true;
+            p.close();
+            rs.close();
         } catch (SQLException e) {
             System.err.println(e);
         } catch (Exception e) {
@@ -186,7 +190,9 @@ public class ProductDAO {
             p.executeUpdate();
             p = connect.prepareStatement(sql_delete_bl);
             p.executeUpdate();
+            con.commit();
             flag = true;
+            p.close();
         } catch (SQLException e) {
             System.err.println(e);
         } catch (Exception e) {

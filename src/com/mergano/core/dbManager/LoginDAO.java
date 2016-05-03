@@ -31,8 +31,7 @@ public class LoginDAO {
             return 0;
         }
         String sql = "SELECT * FROM " + table + " WHERE username =? AND password =? ;";
-        System.out.println(sql);
-        String decryptUser = "";
+        String decryptUser;
         try {
             p = conn.prepareStatement(sql);
             p.setString(1, users);

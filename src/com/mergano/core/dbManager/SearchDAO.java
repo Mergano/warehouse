@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,7 +12,7 @@ import javax.swing.JOptionPane;
 
 public class SearchDAO {
 
-    private final String table = "product";
+    private final String table = "products";
     private ConnectDB con;
     private Connection connect;
     private PreparedStatement p = null;
@@ -66,7 +67,7 @@ public class SearchDAO {
             con.commit();
             while (rs.next()) {
                 ProductBean stub = new ProductBean();
-                stub.setProductID(rs.getInt("product_id"));
+                stub.setProductID(rs.getLong("product_id"));
                 stub.setCategory(rs.getString("category"));
                 stub.setManufacture(rs.getString("manufacture"));
                 stub.setName(rs.getString("name"));
@@ -84,8 +85,7 @@ public class SearchDAO {
             }
             rs.close();
             p.close();
-            con.closeDB();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println(e);
         }
         return list;
@@ -106,7 +106,7 @@ public class SearchDAO {
                 long start = java.lang.System.currentTimeMillis();
                 p = connect.prepareStatement(sql);
                 rs = p.executeQuery();
-
+                con.commit();
                 // Benchmark time
                 long stop = java.lang.System.currentTimeMillis();
                 if (rs.next()) {
@@ -133,7 +133,9 @@ public class SearchDAO {
                     stub.setUserLastModified(rs.getString("user_lastmodified"));
                     list.add(stub);
                 }
-            } catch (Exception e) {
+                p.close();
+                rs.close();
+            } catch (SQLException e) {
                 System.err.print(e);
             }
         }

@@ -39,7 +39,7 @@ public class BacklogDAO {
         try {
             p = connect.prepareStatement(sql);
             rs = p.executeQuery();
-
+            conn.commit();
             while (rs.next()) {
                 BacklogBean stub = new BacklogBean();
                 stub.setBacklogID(rs.getInt("idbacklog"));
@@ -54,6 +54,8 @@ public class BacklogDAO {
                 //  stub.setTime(BacklogTime.toString()); // SQL NOW
                 list.add(stub);
             }
+            p.close();
+            rs.close();
         } catch (SQLException e) {
             System.err.println(e);
         }
@@ -65,6 +67,10 @@ public class BacklogDAO {
             sql = "TRUNCATE backlog;";
             p = connect.prepareStatement(sql);
             rs = p.executeQuery();
+            conn.commit();
+            p.close();
+            rs.close();
+            conn.closeDB();
         } catch (SQLException ex) {
             System.err.println(ex);
         }

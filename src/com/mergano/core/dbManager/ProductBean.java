@@ -3,7 +3,7 @@ package com.mergano.core.dbManager;
 public class ProductBean {
 
     // Product Management table
-    private int productID;
+    private long productID;
     private String category;
     private String manufacture;
     private String name;
@@ -19,11 +19,11 @@ public class ProductBean {
     private byte[] image;
 
     // Setter and Getter for Product Management
-    public int getProductID() {
+    public long getProductID() {
         return productID;
     }
 
-    public void setProductID(int productID) {
+    public void setProductID(long productID) {
         this.productID = productID;
     }
 
@@ -112,7 +112,7 @@ public class ProductBean {
     }
 
     public void setStatus(String p_status) {
-        this.warranty = p_status;
+        this.p_status = p_status;
     }
 
     public String getUserLastModified() {
@@ -125,6 +125,10 @@ public class ProductBean {
 
     public byte[] getImage() {
         return image;
+    }
+
+    public void setImage(byte[] img) {
+        this.image = img;
     }
 
 }
