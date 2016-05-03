@@ -122,7 +122,7 @@ public class ProductDAO {
     }
 
     // Update data into product table
-    public boolean updateData(ProductBean bean, int n) {
+    public boolean updateData(ProductBean bean, long n) {
         boolean flag = false;
         int quan = Integer.parseInt(bean.getQuantity());
         double cost = Double.parseDouble(bean.getCost());

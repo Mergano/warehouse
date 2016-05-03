@@ -3022,7 +3022,7 @@ public class Main extends javax.swing.JFrame {
 
     private void save_product_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_product_buttonActionPerformed
         String productID_txt = productID_input.getText();
-        int productID = Integer.parseInt(productID_txt);
+        long productID = Long.parseLong(productID_txt);
         String category = category_input.getSelectedItem().toString();
         String manufacture = manufacture_input.getText();
         String name = name_input.getText();
@@ -3232,7 +3232,7 @@ public class Main extends javax.swing.JFrame {
             String s = path;
         } else if (result == JFileChooser.CANCEL_OPTION) {
             System.out.println("No Data");
-            product_img.setText("NO DATA");
+            //product_img.setText("NO DATA");
         }
 
     }//GEN-LAST:event_browse_buttonActionPerformed
@@ -3267,22 +3267,32 @@ public class Main extends javax.swing.JFrame {
         } else {
             switch (filter) {
                 case 0: // ProductID
-                    updateTable(sdao.getDataSearch(input_search, 0));
+                    if (isNumeric(input_search)) {
+                        updateTable(sdao.getDataSearch(input_search, 0));
+                    } else {
+                        updateTable(pdao.getData());
+                    }
+                    search_box.setText("");
                     break;
                 case 1: // Name
                     updateTable(sdao.getDataSearch(input_search, 1));
+                    search_box.setText("");
                     break;
                 case 2: // Category
                     updateTable(sdao.getDataSearch(input_search, 2));
+                    search_box.setText("");
                     break;
                 case 3: // Manufacture
                     updateTable(sdao.getDataSearch(input_search, 3));
+                    search_box.setText("");
                     break;
                 case 4: // Location
                     updateTable(sdao.getDataSearch(input_search, 4));
+                    search_box.setText("");
                     break;
                 case 5: // Low quantity
                     updateTable(sdao.getLowQuantity());
+                    search_box.setText("");
                     break;
                 default:
                     updateTable(pdao.getData());
@@ -3436,15 +3446,14 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_test_connection_buttonActionPerformed
 
     private void product_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_product_tableMouseClicked
-        fillDataField();
+        int index = product_table.getSelectedRow();
+        fillDataField(index);
     }//GEN-LAST:event_product_tableMouseClicked
 
-    private void fillDataField() {
+    private void fillDataField(int selectedRow) {
         ArrayList<ProductBean> list;
         ProductDAO db = new ProductDAO();
         list = db.getData();
-
-        int selectedRow = product_table.getSelectedRow();
         int selectedColumn = product_table.getSelectedColumn();
         String selectedProductID = (String) product_table.getModel().getValueAt(selectedRow, 0);
         String selectedCategory = (String) product_table.getModel().getValueAt(selectedRow, 1);
@@ -3469,7 +3478,6 @@ public class Main extends javax.swing.JFrame {
         warranty_input.setText(selectedWarranty);
         product_status_box.setText(selectedStatus);
         //description_input.setText(selectedDescription);
-
         //long p_id = Long.parseLong(selectedProductID);
         //        for (int i = 0; i < list.size(); i++) {
 //            System.out.println("DATA LIST: " + list.get(i).getName());
@@ -3479,11 +3487,11 @@ public class Main extends javax.swing.JFrame {
 
         if (Arrays.toString(list.get(selectedRow).getImage()) == null) {
             product_img.setText("NO IMAGE");
-        } else {
+        } else if (Arrays.toString(list.get(selectedRow).getImage()) != null) {
             product_img.setText("");
-            ImageIcon icon = new ImageIcon(list.get(selectedRow).getImage());
-            Image image = icon.getImage().getScaledInstance(product_img.getWidth(), product_img.getHeight(), Image.SCALE_SMOOTH);
-            product_img.setIcon(new ImageIcon(image));
+            //   ImageIcon icon = new ImageIcon(list.get(selectedRow).getImage());
+            //   Image image = icon.getImage().getScaledInstance(product_img.getWidth(), product_img.getHeight(), Image.SCALE_SMOOTH);
+            //   product_img.setIcon(new ImageIcon(image));
         }
     }
 
@@ -3504,7 +3512,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_truncate_backlog_btnActionPerformed
 
     private void search_boxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_boxKeyTyped
-
+        //  search_product_buttonActionPerformed(null);
     }//GEN-LAST:event_search_boxKeyTyped
 
     private void cost_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cost_inputActionPerformed
@@ -3520,8 +3528,22 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_User_buttonMouseClicked
 
     private void product_tableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_product_tableKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_UP || evt.getKeyCode() == KeyEvent.VK_DOWN) {
-            this.fillDataField();
+        int index = product_table.getSelectedRow();
+        if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            if (index > 0) {
+                fillDataField(index - 1);
+            } else { // If table have only 1 row
+                fillDataField(1);
+            }
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            System.out.println("TOTAL INDEX " + product_table.getRowCount());
+            if (index < product_table.getRowCount()) {
+                fillDataField(index + 1);
+            } else if (index == product_table.getRowCount()) { // If selected row is last row
+                fillDataField(product_table.getRowCount());
+            } else { // If table have only 1 row
+                fillDataField(1);
+            }
         }
     }//GEN-LAST:event_product_tableKeyPressed
 
