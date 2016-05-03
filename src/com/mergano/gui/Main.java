@@ -32,6 +32,7 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
 import static javax.swing.JOptionPane.YES_NO_OPTION;
 import javax.swing.JTable;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Main extends javax.swing.JFrame {
 
@@ -171,7 +172,7 @@ public class Main extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         search_button = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        img_box_search = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -1628,18 +1629,18 @@ public class Main extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search Result", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel5.setPreferredSize(new java.awt.Dimension(150, 150));
+        img_box_search.setBackground(new java.awt.Color(255, 255, 255));
+        img_box_search.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        img_box_search.setPreferredSize(new java.awt.Dimension(150, 150));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout img_box_searchLayout = new javax.swing.GroupLayout(img_box_search);
+        img_box_search.setLayout(img_box_searchLayout);
+        img_box_searchLayout.setHorizontalGroup(
+            img_box_searchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 230, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        img_box_searchLayout.setVerticalGroup(
+            img_box_searchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 196, Short.MAX_VALUE)
         );
 
@@ -1703,7 +1704,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(img_box_search, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(48, 48, 48)
                                 .addComponent(jLabel11)
@@ -1756,7 +1757,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(img_box_search, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -3211,14 +3212,38 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_View_buttonActionPerformed
 
     private void browse_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browse_buttonActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        chooser.showOpenDialog(null);
-        File f = chooser.getSelectedFile();
-        String pathname = f.getAbsolutePath();
-        String filename = f.getName();
-        pathname_box.setText(pathname);
-        search_box.setText(filename);
+
+        // String pathname = f.getAbsolutePath();
+        //String filename = f.getName();
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files", "jpg", "png", "gif", "jpeg");
+        fileChooser.addChoosableFileFilter(filter);
+        // File f = fileChooser.getSelectedFile();
+        // String pathname = f.getAbsolutePath();
+
+        int result = fileChooser.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            String path = selectedFile.getAbsolutePath();
+            pathname_box.setText(path);
+            product_img.setText("");
+            product_img.setIcon(ResizeImage(path));
+            String s = path;
+        } else if (result == JFileChooser.CANCEL_OPTION) {
+            System.out.println("No Data");
+            product_img.setText("NO DATA");
+        }
+
     }//GEN-LAST:event_browse_buttonActionPerformed
+
+    public ImageIcon ResizeImage(String imgPath) {
+        ImageIcon MyImage = new ImageIcon(imgPath);
+        Image img = MyImage.getImage();
+        Image newImage = img.getScaledInstance(product_img.getWidth(), product_img.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImage);
+        return image;
+    }
 
     private void new_db_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_new_db_menuitemActionPerformed
 
@@ -3757,6 +3782,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel home_icon_panel;
     protected javax.swing.JPanel home_panel;
     private javax.swing.JTextField hostname_show_box;
+    private javax.swing.JPanel img_box_search;
     private javax.swing.JMenuItem import_csv_menuitem;
     private javax.swing.JMenu import_menuitem;
     private javax.swing.JButton import_product;
@@ -3806,7 +3832,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
