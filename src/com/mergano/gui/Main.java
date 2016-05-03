@@ -18,8 +18,6 @@ package com.mergano.gui;
 import com.mergano.core.Logout;
 import com.mergano.core.WebBrowse;
 import com.mergano.core.dbManager.*;
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -34,12 +32,6 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
 import static javax.swing.JOptionPane.YES_NO_OPTION;
 import javax.swing.JTable;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
 
 public class Main extends javax.swing.JFrame {
 
@@ -208,7 +200,7 @@ public class Main extends javax.swing.JFrame {
         statistics_panel = new javax.swing.JPanel();
         statistic_graph = new javax.swing.JPanel();
         jComboBox2 = new javax.swing.JComboBox();
-        jToggleButton7 = new javax.swing.JToggleButton();
+        view_graph_button = new javax.swing.JToggleButton();
         report_panel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         print_report_button = new javax.swing.JButton();
@@ -1826,25 +1818,15 @@ public class Main extends javax.swing.JFrame {
 
         body.addTab("Searching", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/search.png")), searching_panel); // NOI18N
 
-        statistic_graph.setBackground(new java.awt.Color(25, 25, 25));
-
-        javax.swing.GroupLayout statistic_graphLayout = new javax.swing.GroupLayout(statistic_graph);
-        statistic_graph.setLayout(statistic_graphLayout);
-        statistic_graphLayout.setHorizontalGroup(
-            statistic_graphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        statistic_graphLayout.setVerticalGroup(
-            statistic_graphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 462, Short.MAX_VALUE)
-        );
+        statistic_graph.setBackground(new java.awt.Color(255, 255, 255));
+        statistic_graph.setLayout(new java.awt.BorderLayout());
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Months revenue", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
 
-        jToggleButton7.setText("View");
-        jToggleButton7.addActionListener(new java.awt.event.ActionListener() {
+        view_graph_button.setText("View");
+        view_graph_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton7ActionPerformed(evt);
+                view_graph_buttonActionPerformed(evt);
             }
         });
 
@@ -1856,7 +1838,7 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jToggleButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(view_graph_button, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(805, Short.MAX_VALUE))
             .addComponent(statistic_graph, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -1867,7 +1849,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(statistics_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton7))
+                    .addComponent(view_graph_button))
                 .addContainerGap())
         );
 
@@ -3363,21 +3345,9 @@ public class Main extends javax.swing.JFrame {
         body.setSelectedIndex(7);
     }//GEN-LAST:event_rep_button_welActionPerformed
 
-    private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton7ActionPerformed
-        DefaultCategoryDataset barchartData = new DefaultCategoryDataset();
-        barchartData.setValue(300, "Amount", "Jan");
-        barchartData.setValue(250, "Amount", "Feb");
-        barchartData.setValue(400, "Amount", "Mar");
-        barchartData.setValue(500, "Amount", "Apr");
-        barchartData.setValue(600, "Amount", "May");
-        JFreeChart barchart = ChartFactory.createAreaChart("Revenue", "Monthly", "Amount", barchartData, PlotOrientation.VERTICAL, false, true, false);
-        CategoryPlot chart = barchart.getCategoryPlot();
-        chart.setRangeGridlinePaint(Color.MAGENTA);
-        statistic_graph.removeAll();
-        ChartPanel barPanel = new ChartPanel(barchart);
-        statistic_graph.add(barPanel, BorderLayout.CENTER);
-        statistic_graph.validate();
-    }//GEN-LAST:event_jToggleButton7ActionPerformed
+    private void view_graph_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_graph_buttonActionPerformed
+
+    }//GEN-LAST:event_view_graph_buttonActionPerformed
 
     private void trac_button_welActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trac_button_welActionPerformed
         body.setSelectedIndex(4);
@@ -3874,7 +3844,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JToggleButton jToggleButton6;
-    private javax.swing.JToggleButton jToggleButton7;
     private javax.swing.JToggleButton localhost_db;
     private javax.swing.JTextField location_input;
     private javax.swing.JMenuItem logout_menuitem;
@@ -3945,7 +3914,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton set_as_default_button;
     protected javax.swing.JButton sm_button_wel;
     protected javax.swing.JButton sta_button_wel;
-    private javax.swing.JPanel statistic_graph;
+    public javax.swing.JPanel statistic_graph;
     private javax.swing.JMenuItem statistics_menuitem;
     protected javax.swing.JPanel statistics_panel;
     private javax.swing.JPanel status_bar_frame;
@@ -3967,6 +3936,7 @@ public class Main extends javax.swing.JFrame {
     public static javax.swing.JTextField url_box;
     public static javax.swing.JTextField user_box;
     private javax.swing.JLabel user_label;
+    private javax.swing.JToggleButton view_graph_button;
     protected javax.swing.JMenu view_menu;
     private javax.swing.JTextField warranty_input;
     private javax.swing.JLabel warranty_label;
