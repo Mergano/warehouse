@@ -6,9 +6,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class ConnectDB {
+/**
+ *
+ * @author vchuk
+ */
+public class ConnectDB extends LoadDriver {
 
     private Connection conn;
+    private String URL_HEADER;
     private String URL;
     private final String hostName;
     private final int port;
@@ -22,6 +27,7 @@ public class ConnectDB {
 
     public ConnectDB() {
         conn = null;
+        URL_HEADER = "";
         URL = "";
         hostName = "localhost";
         port = 3306;
@@ -34,7 +40,9 @@ public class ConnectDB {
     }
 
     public Connection getconnection() {
-        URL = "jdbc:mysql://" + hostName + ":" + port + "/" + databaseName + "?useCompression=true" + "&autoReconnnect=true" + "&useSSL=false";
+        super.LoadDBDriver(1);
+        URL_HEADER = LoadDriver.getUrlHeader();
+        URL = URL_HEADER + hostName + ":" + port + "/" + databaseName + "?useCompression=true" + "&autoReconnnect=true" + "&useSSL=false";
         info.put("user", username);
         info.put("password", password);
 // System.out.println("URL: " + URL);
@@ -43,7 +51,7 @@ public class ConnectDB {
 // flush the stream
 //        writer.flush();
         try {
-            Class.forName("com.mysql.jdbc.Driver"); // Registed JDBC MYSQL DRIVER
+            Class.forName(LoadDriver.getDriver()); // Registed JDBC DRIVER
             conn = DriverManager.getConnection(URL, info);
             //conn = (Connection) DriverManager.getConnection("jdbc:mysql://128.199.117.93:" + "3306" + "/mergano" + "?useCompression=true", "user", "iloveoosd");
             conn.setAutoCommit(false);

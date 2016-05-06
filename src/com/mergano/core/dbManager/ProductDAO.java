@@ -13,16 +13,16 @@ public class ProductDAO {
 
     private final String table = "products";
     private final String backlog_table = "backlog";
-    private ConnectDB con;
-    private Connection connect;
+    private ConnectDB connect;
+    private Connection conn;
     private PreparedStatement p = null;
     private ResultSet rs = null;
     private String username = "admin";
 
     public ProductDAO() {
         try {
-            con = new ConnectDB();
-            connect = con.getconnection();
+            connect = new ConnectDB();
+            conn = connect.getconnection();
         } catch (Exception ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -32,7 +32,7 @@ public class ProductDAO {
     public ArrayList<ProductBean> getData() {
         ArrayList<ProductBean> product_list = new ArrayList<>();
 
-        if (connect == null) {
+        if (conn == null) {
             System.err.println("ERROR: NO INTERNET CONNECTION");
             JOptionPane.showMessageDialog(null, "Internet connection is broken or disconnected. \nPlease check your internet connection and try again.", "Communication error",
                     JOptionPane.ERROR_MESSAGE);
@@ -41,9 +41,9 @@ public class ProductDAO {
             String sql = "SELECT * FROM " + table + " ORDER BY " + "CATEGORY;";
             try {
                 long start = java.lang.System.currentTimeMillis();
-                p = connect.prepareStatement(sql);
+                p = conn.prepareStatement(sql);
                 rs = p.executeQuery();
-                con.commit();
+                connect.commit();
 
                 // Benchmark time
                 long stop = java.lang.System.currentTimeMillis();
@@ -75,9 +75,14 @@ public class ProductDAO {
                 }
                 p.close();
                 rs.close();
-                con.closeDB();
             } catch (Exception e) {
                 System.err.print(e);
+            } finally {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         return product_list;
@@ -106,19 +111,24 @@ public class ProductDAO {
                     + "current_date()" + ","
                     + "current_time()" + ",'"
                     + username + "');";
-            p = connect.prepareStatement(sql_insert);
+            p = conn.prepareStatement(sql_insert);
             p.executeUpdate();
-            p = connect.prepareStatement(sql_insert_bl);
+            p = conn.prepareStatement(sql_insert_bl);
             p.executeUpdate();
-            con.commit();
+            connect.commit();
             flag = true;
             p.close();
-            con.closeDB();
         } catch (SQLException e) {
             System.err.println(e);
         } catch (Exception e) {
             flag = false;
             System.err.println(e);
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return flag;
     }
@@ -158,17 +168,22 @@ public class ProductDAO {
 //                    + "current_time()" + ",'"
 //                    + username + "');";
 
-            p = connect.prepareStatement(sql_update);
+            p = conn.prepareStatement(sql_update);
             p.executeUpdate();
-            //p = connect.prepareStatement(sql_update_bl);
+            //p = conn.prepareStatement(sql_update_bl);
             //p.executeUpdate();
-            con.commit();
+            connect.commit();
             flag = true;
             p.close();
-            con.closeDB();
         } catch (SQLException e) {
             flag = false;
             System.err.println(e);
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return flag;
     }
@@ -186,19 +201,24 @@ public class ProductDAO {
                     + "current_time()" + ",'"
                     + username + "');";
 
-            p = connect.prepareStatement(sql_delete);
+            p = conn.prepareStatement(sql_delete);
             p.executeUpdate();
-            p = connect.prepareStatement(sql_delete_bl);
+            p = conn.prepareStatement(sql_delete_bl);
             p.executeUpdate();
-            con.commit();
+            connect.commit();
             flag = true;
             p.close();
-            con.closeDB();
         } catch (SQLException e) {
             System.err.println(e);
         } catch (Exception e) {
             flag = false;
             System.err.println(e);
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return flag;
     }

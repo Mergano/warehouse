@@ -1,6 +1,7 @@
 package com.mergano.gui;
 
 import com.mergano.core.Authenticate;
+import static com.mergano.core.ClearGC.ClearGarbageCollection;
 import com.mergano.core.Encryption;
 import com.mergano.core.dbManager.LoginBean;
 import com.mergano.core.dbManager.StatusBean;
@@ -9,9 +10,11 @@ import java.awt.event.KeyEvent;
 public class Login extends javax.swing.JFrame {
 
     public static boolean session;
+    LoginBean login;
 
     public Login() {
         initComponents();
+        login = new LoginBean();
     }
 
     /**
@@ -254,8 +257,6 @@ public class Login extends javax.swing.JFrame {
             String encryptedUsername = Encryption.encrypt(user);
             String encryptedPassword = Encryption.encrypt(String.valueOf(pwd));
             //String decryptedPassword = Encryption.decrypt("tm+m/bhBMk+fc6a/2ScztLdY+PzGUhih1oNUiGKv97lfHAeiRclBKyU6Wi2elCri");
-            System.out.println("Encrypted Username : " + encryptedUsername);
-            System.out.println("Encrypted Password : " + encryptedPassword);
             Authenticate auth = new Authenticate();
             int flag = auth.VerifyUser(encryptedUsername, encryptedPassword);
 
@@ -317,6 +318,7 @@ public class Login extends javax.swing.JFrame {
         Main m = new Main();
         Main.user_box.setText(u);
         SetUpStatusBar();
+        ClearLoginPassword();
         m.pack();
         m.setExtendedState(m.getExtendedState() | Main.MAXIMIZED_BOTH);
         m.setVisible(true);
@@ -333,6 +335,7 @@ public class Login extends javax.swing.JFrame {
         m.User_button.setEnabled(false);
         m.mai_button_wel.setEnabled(false);
         SetUpStatusBar();
+        ClearLoginPassword();
         m.pack();
         m.setExtendedState(m.getExtendedState() | Main.MAXIMIZED_BOTH);
         m.setVisible(true);
@@ -352,6 +355,7 @@ public class Login extends javax.swing.JFrame {
         m.User_button.setEnabled(false);
         m.mai_button_wel.setEnabled(false);
         SetUpStatusBar();
+        ClearLoginPassword();
         m.pack();
         m.setExtendedState(m.getExtendedState() | Main.MAXIMIZED_BOTH);
         m.setVisible(true);
@@ -373,9 +377,9 @@ public class Login extends javax.swing.JFrame {
         m.User_button.setEnabled(false);
         m.mai_button_wel.setEnabled(false);
         SetUpStatusBar();
+        ClearLoginPassword();
         m.pack();
         m.setExtendedState(m.getExtendedState() | Main.MAXIMIZED_BOTH);
-        m.setVisible(true);
         m.setVisible(true);
     }
 
@@ -384,6 +388,7 @@ public class Login extends javax.swing.JFrame {
         Main m = new Main();
         Main.user_box.setText(u);
         SetUpStatusBar();
+        ClearLoginPassword();
         m.pack();
         m.setExtendedState(m.getExtendedState() | Main.MAXIMIZED_BOTH);
         m.setVisible(true);
@@ -395,6 +400,13 @@ public class Login extends javax.swing.JFrame {
         Main.db_type_box.setText(StatusBean.getDbType());
         Main.port_box.setText(StatusBean.getPort());
         Main.url_box.setText(StatusBean.getUrl());
+    }
+
+    private void ClearLoginPassword() {
+        // Clear Password after finished login process to prevent unauthorized access
+        login.setPassword("");
+        // To decrease the memory usage by cleanup unused garbage collection
+        ClearGarbageCollection();
     }
 
     public void SetCurrentSession(boolean s) {

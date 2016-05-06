@@ -2,35 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/SearchDAO.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/BacklogBean.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/gui/About.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/UserBean.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/ReportBean.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/gui/Customer.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/Utils.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/LoginDAO.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/gui/Option.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/ConnectDB.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/gui/Main.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/gui/Report.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/BacklogDAO.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/CSVLoader.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/Authenticate.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/ProductDAO.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/InvoiceDAO.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/gui/Login.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/OrderDAO.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/gui/delete_db.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/Encryption.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/ProductBean.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/LoginBean.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/UserDAO.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/gui/UserEditor.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/ReportDAO.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/PrintTable.java</file>
-            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/Bundle.properties</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

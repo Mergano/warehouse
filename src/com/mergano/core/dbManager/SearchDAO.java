@@ -29,6 +29,7 @@ public class SearchDAO {
         }
     }
 
+    // Deep search with SQL
     public ArrayList<ProductBean> getDataSearch(String key_input, int filter) {
         ArrayList<ProductBean> list = new ArrayList<>();
         String selector = null, key = null;
@@ -56,13 +57,11 @@ public class SearchDAO {
             default:
                 break;
         }
-
         String sql = "SELECT SQL_CACHE * FROM " + table + " WHERE " + selector + " = " + key + ";";
         System.out.println(sql);
         if (conn == null) {
             System.err.print("ERROR NO CONNECTION");
         }
-
         try {
             //p = conn.prepareStatement(sql);
             //rs = p.executeQuery();
@@ -90,9 +89,14 @@ public class SearchDAO {
             rs.close();
             //p.close();
             stmt.close();
-            conn.close();
         } catch (SQLException e) {
             System.err.println(e);
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return list;
     }
@@ -141,9 +145,14 @@ public class SearchDAO {
                 }
                 p.close();
                 rs.close();
-                conn.close();
             } catch (SQLException e) {
                 System.err.print(e);
+            } finally {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         return list;
