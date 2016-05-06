@@ -28,6 +28,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
 import static javax.swing.JOptionPane.YES_NO_OPTION;
 import javax.swing.JTable;
@@ -39,7 +40,7 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         setIcon();
     }
-
+    private static boolean addType = false;
     WebBrowse w = new WebBrowse();
 
     @SuppressWarnings("unchecked")
@@ -2915,8 +2916,15 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_website_menuitemActionPerformed
 
     private void save_product_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_product_buttonActionPerformed
+        if (addType) {
+            AddandSave_ActionPerformed();
+        } else {
+            EditandSave_ActionPerformed();
+        }
+    }//GEN-LAST:event_save_product_buttonActionPerformed
+
+    private void EditandSave_ActionPerformed() {
         String productID_txt = productID_input.getText();
-        long productID = Long.parseLong(productID_txt);
         String category = category_input.getSelectedItem().toString();
         String manufacture = manufacture_input.getText();
         String name = name_input.getText();
@@ -2928,13 +2936,13 @@ public class Main extends javax.swing.JFrame {
         int quantity = Integer.parseInt(quantity_txt);
         String warranty = warranty_input.getText();
 
-        if (productID_txt.isEmpty()
-                || category.equals("")
-                || manufacture.equals("")
-                || name.equals("")
-                || cost.equals("")
-                || location.equals("")
-                || warranty.equals("")) {
+        if (productID_txt.length() == 0
+                || category.length() == 0
+                || manufacture.length() == 0
+                || name.length() == 0
+                || location.length() == 0
+                || cost.length() == 0
+                || warranty.length() == 0) {
             JOptionPane.showMessageDialog(this, "Please fill out request box", "Input Error", JOptionPane.WARNING_MESSAGE);
         } else if (productID_txt.length() > 13) {
             JOptionPane.showMessageDialog(this, "Product ID must less than or 13 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
@@ -2947,7 +2955,7 @@ public class Main extends javax.swing.JFrame {
         } else if (!isNumeric(quantity_txt)) {
             JOptionPane.showMessageDialog(this, "Quantity must be an integer format only", "Input Error", JOptionPane.ERROR_MESSAGE);
         } else {
-
+            long productID = Long.parseLong(productID_txt);
             // Update product bean
             ProductBean bean = new ProductBean();
             bean.setProductID(productID);
@@ -2960,9 +2968,8 @@ public class Main extends javax.swing.JFrame {
             bean.setLocation(location);
             bean.setQuantity(quantity);
             bean.setWarranty(warranty);
-            //bean.setHistory("Edited product " + productID);
-            ProductDAO dao = new ProductDAO();
 
+            ProductDAO dao = new ProductDAO();
             boolean status = dao.updateData(bean, productID);
             updateTable(dao.getData());
             //updateBacklog(dao.getBacklogData());
@@ -2984,53 +2991,10 @@ public class Main extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Updated data Failed", "Updated Failed", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_save_product_buttonActionPerformed
+    }
 
-    private void edit_product_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_product_buttonActionPerformed
-        if (evt.getSource() == edit_product_button) {
-            if (!productID_input.getText().equals("")) {
-                productID_input.setEditable(true);
-                category_input.setEnabled(true);
-                name_input.setEditable(true);
-                manufacture_input.setEditable(true);
-                model_input.setEditable(true);
-                location_input.setEditable(true);
-                cost_input.setEditable(true);
-                warranty_input.setEditable(true);
-                quantity_input.setEnabled(true);
-                description_input.setEditable(true);
-                save_product_button.setEnabled(true);
-            }
-        }
-    }//GEN-LAST:event_edit_product_buttonActionPerformed
-
-    private void remove_product_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remove_product_buttonActionPerformed
-        if (!productID_input.getText().equals("")) {
-            int DeleteConfirm = JOptionPane.showConfirmDialog(this, "Are you sure do you want to delete this row?", "Delete confirmation", YES_NO_OPTION, WARNING_MESSAGE);
-
-            if (DeleteConfirm == JOptionPane.YES_OPTION) {
-                long product_id = Long.parseLong(productID_input.getText());
-                ProductDAO dao = new ProductDAO();
-                BacklogDAO daobl = new BacklogDAO();
-                ProductBean bean = new ProductBean();
-                try {
-                    bean.setProductID(product_id);
-                    boolean status = dao.deleteData(bean, product_id);
-                    updateTable(dao.getData());
-                    updateBacklog(daobl.getBacklogData());
-
-                    if (status) {
-                        JOptionPane.showMessageDialog(this, "Deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                } catch (Exception ex) {
-                }
-            }
-        }
-    }//GEN-LAST:event_remove_product_buttonActionPerformed
-
-    private void add_product_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_product_buttonActionPerformed
+    private void AddandSave_ActionPerformed() {
         String productID_txt = productID_input.getText();
-        long productID = Long.parseLong(productID_txt);
         String category = category_input.getSelectedItem().toString();
         String manufacture = manufacture_input.getText();
         String name = name_input.getText();
@@ -3061,6 +3025,8 @@ public class Main extends javax.swing.JFrame {
         } else if (!isNumeric(quantity_txt) || !isNumeric(warranty) || !isNumeric(productID_txt)) {
             JOptionPane.showMessageDialog(this, "Quantity, Cost or Warranty must be an integer format only", "Input Error", JOptionPane.ERROR_MESSAGE);
         } else {
+            long productID = Long.parseLong(productID_txt);
+            // Update product bean
             ProductBean bean = new ProductBean();
             bean.setProductID(productID);
             bean.setCategory(category);
@@ -3068,12 +3034,11 @@ public class Main extends javax.swing.JFrame {
             bean.setName(name);
             bean.setModel(model);
             bean.setDescription(description);
-            bean.setLocation(location);
             bean.setCost(cost);
+            bean.setLocation(location);
             bean.setQuantity(quantity);
             bean.setWarranty(warranty);
 
-            // bean.setHistory("Insert product: " + productID);
             ProductDAO dao = new ProductDAO();
             try {
                 boolean status = dao.insertData(bean);
@@ -3086,10 +3051,80 @@ public class Main extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Error while adding product: " + ex, "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
+    }
 
+    private void edit_product_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_product_buttonActionPerformed
+        if (evt.getSource() == edit_product_button) {
+            if (productID_input.getText().length() != 0) {
+                addType = false;
+                setInputEnable();
+                save_product_button.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_edit_product_buttonActionPerformed
+
+    private void remove_product_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remove_product_buttonActionPerformed
+        if (evt.getSource() == remove_product_button) {
+            if (productID_input.getText().length() != 0) {
+                int DeleteConfirm = JOptionPane.showConfirmDialog(this, "Are you sure do you want to delete this row?", "Delete confirmation", YES_NO_OPTION, WARNING_MESSAGE);
+
+                if (DeleteConfirm == JOptionPane.YES_OPTION) {
+                    long product_id = Long.parseLong(productID_input.getText());
+                    ProductDAO dao = new ProductDAO();
+                    BacklogDAO daobl = new BacklogDAO();
+                    ProductBean bean = new ProductBean();
+                    try {
+                        bean.setProductID(product_id);
+                        boolean status = dao.deleteData(bean, product_id);
+                        updateTable(dao.getData());
+                        updateBacklog(daobl.getBacklogData());
+
+                        if (status) {
+                            JOptionPane.showMessageDialog(this, "Deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    } catch (Exception ex) {
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_remove_product_buttonActionPerformed
+
+    private void clearProductInput() {
+        productID_input.setText("");
+        category_input.setSelectedItem("Book");
+        name_input.setText("");
+        manufacture_input.setText("");
+        model_input.setText("");
+        location_input.setText("");
+        product_status_box.setText("");
+        warranty_input.setText("");
+        cost_input.setText("");
+        quantity_input.setValue(0);
+        description_input.setText("");
+    }
+
+    private void setInputEnable() {
+        productID_input.setEditable(true);
+        category_input.setEnabled(true);
+        name_input.setEditable(true);
+        manufacture_input.setEditable(true);
+        model_input.setEditable(true);
+        location_input.setEditable(true);
+        cost_input.setEditable(true);
+        warranty_input.setEditable(true);
+        quantity_input.setEnabled(true);
+        description_input.setEditable(true);
+    }
+
+    private void add_product_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_product_buttonActionPerformed
+        clearProductInput();
+        setInputEnable();
+        addType = true;
+        category_input.setEnabled(true);
+        save_product_button.setEnabled(true);
     }//GEN-LAST:event_add_product_buttonActionPerformed
 
-    public static boolean isNumeric(String str) {
+    private static boolean isNumeric(String str) {
         return str.matches("^-?[0-9]+(\\.[0-9]+)?$");
     }
 

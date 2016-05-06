@@ -76,6 +76,7 @@ public class ProductDAO {
                 p.close();
                 rs.close();
                 conn.close();
+                System.out.println("===== CLOSED CONNECTION SUCCESSFULLY =====");
             } catch (Exception e) {
                 System.err.print(e);
             }
