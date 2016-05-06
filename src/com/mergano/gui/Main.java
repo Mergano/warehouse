@@ -24,7 +24,6 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -760,7 +759,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(dashboard_panel_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                     .addComponent(jTextField1))
-                .addContainerGap(1794, Short.MAX_VALUE))
+                .addContainerGap(932, Short.MAX_VALUE))
         );
         dashboard_panel_bodyLayout.setVerticalGroup(
             dashboard_panel_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -773,7 +772,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(dashboard_panel_bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(562, Short.MAX_VALUE))
+                .addContainerGap(454, Short.MAX_VALUE))
         );
 
         dashboard_panel.add(dashboard_panel_body, java.awt.BorderLayout.CENTER);
@@ -903,6 +902,7 @@ public class Main extends javax.swing.JFrame {
         columns.add("Name");
         columns.add("Manufacture");
         columns.add("Model");
+        columns.add("Description");
         columns.add("Cost");
         columns.add("Location");
         columns.add("Warranty");
@@ -910,6 +910,7 @@ public class Main extends javax.swing.JFrame {
         columns.add("Import");
         columns.add("Status");
         columns.add("Last modified");
+
         for(int i =0; i< list.size(); i++) {
             values.add(new String[] {"" +
                 list.get(i).getProductID(),
@@ -917,6 +918,7 @@ public class Main extends javax.swing.JFrame {
                 list.get(i).getName(),
                 list.get(i).getManufacture(),
                 list.get(i).getModel(),
+                list.get(i).getDescription(),
                 list.get(i).getCost(),
                 list.get(i).getLocation(),
                 list.get(i).getWarranty(),
@@ -925,12 +927,14 @@ public class Main extends javax.swing.JFrame {
                 list.get(i).getStatus(),
                 list.get(i).getUserLastModified()
             });
+
         }
         product_table.setModel(new javax.swing.table.DefaultTableModel(values.toArray(new Object[][] {}), columns.toArray())
             {public boolean isCellEditable(int row, int column){return false;}}
         );
         product_table.setDragEnabled(true);
         product_table.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        product_table.removeColumn(product_table.getColumnModel().getColumn(5));
         product_table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 product_tableMouseClicked(evt);
@@ -965,6 +969,11 @@ public class Main extends javax.swing.JFrame {
         product_img.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         product_img.setText("NO IMAGE");
         product_img.setPreferredSize(new java.awt.Dimension(60, 20));
+        product_img.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                product_imgMouseClicked(evt);
+            }
+        });
         product_img_panel.add(product_img, java.awt.BorderLayout.CENTER);
 
         product_info_head_panel.add(product_img_panel);
@@ -983,6 +992,7 @@ public class Main extends javax.swing.JFrame {
         category_label.setText("Category");
         product_head_group_panel.add(category_label);
 
+        category_input.setEditable(true);
         category_input.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Book", "Stationary", "Drink", "Beauty", "Other" }));
         category_input.setEnabled(false);
         category_input.addActionListener(new java.awt.event.ActionListener() {
@@ -1108,6 +1118,7 @@ public class Main extends javax.swing.JFrame {
         product_info_footer_panel.add(add_product_button);
 
         remove_product_button.setText("Remove");
+        remove_product_button.setEnabled(false);
         remove_product_button.setPreferredSize(new java.awt.Dimension(80, 28));
         remove_product_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1117,6 +1128,7 @@ public class Main extends javax.swing.JFrame {
         product_info_footer_panel.add(remove_product_button);
 
         edit_product_button.setText("Edit..");
+        edit_product_button.setEnabled(false);
         edit_product_button.setPreferredSize(new java.awt.Dimension(80, 28));
         edit_product_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1126,6 +1138,7 @@ public class Main extends javax.swing.JFrame {
         product_info_footer_panel.add(edit_product_button);
 
         save_product_button.setText("Save");
+        save_product_button.setEnabled(false);
         save_product_button.setPreferredSize(new java.awt.Dimension(80, 28));
         save_product_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1289,7 +1302,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(order_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(order_pane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         body.addTab("Order Management", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/clipboard.png")), order_panel); // NOI18N
@@ -1304,7 +1317,7 @@ public class Main extends javax.swing.JFrame {
         );
         request_order_body_panelLayout.setVerticalGroup(
             request_order_body_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 619, Short.MAX_VALUE)
+            .addGap(0, 511, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout order_request_panelLayout = new javax.swing.GroupLayout(order_request_panel);
@@ -1314,7 +1327,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(order_request_panelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(request_order_body_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1023, Short.MAX_VALUE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         order_request_panelLayout.setVerticalGroup(
             order_request_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1545,7 +1558,7 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(database_type_show_box, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(port_show_box, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(driver_box, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(1136, Short.MAX_VALUE))
+                .addContainerGap(274, Short.MAX_VALUE))
         );
         db_show_info_panelLayout.setVerticalGroup(
             db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1689,7 +1702,7 @@ public class Main extends javax.swing.JFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1016, Short.MAX_VALUE)
+            .addGap(0, 585, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1731,7 +1744,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 373, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 265, Short.MAX_VALUE)
                 .addComponent(search_button, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1844,7 +1857,7 @@ public class Main extends javax.swing.JFrame {
                                     .addComponent(jLabel23))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+                                    .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
                                     .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jTextField11)
                                     .addComponent(jTextField12, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1923,7 +1936,7 @@ public class Main extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
         );
 
         searching_panel.add(jPanel4);
@@ -1951,7 +1964,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(view_graph_button, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1787, Short.MAX_VALUE))
+                .addContainerGap(925, Short.MAX_VALUE))
             .addComponent(statistic_graph, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         statistics_panelLayout.setVerticalGroup(
@@ -2033,7 +2046,7 @@ public class Main extends javax.swing.JFrame {
         );
         stock_report_panelLayout.setVerticalGroup(
             stock_report_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 573, Short.MAX_VALUE)
+            .addGap(0, 465, Short.MAX_VALUE)
             .addGroup(stock_report_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(stock_report_panelLayout.createSequentialGroup()
                     .addContainerGap()
@@ -2060,7 +2073,7 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(clear_report_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(print_report_button, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel1))
-                .addContainerGap(1024, Short.MAX_VALUE))
+                .addContainerGap(162, Short.MAX_VALUE))
         );
         report_panelLayout.setVerticalGroup(
             report_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2137,7 +2150,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backlog_panelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(backlog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ScrollPanelForBacklog, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
+                    .addComponent(ScrollPanelForBacklog, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
                     .addGroup(backlog_panelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(truncate_backlog_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -2957,7 +2970,6 @@ public class Main extends javax.swing.JFrame {
             if (status) {
                 JOptionPane.showMessageDialog(this, "Updated data successfully", "Updated Success", JOptionPane.INFORMATION_MESSAGE);
                 productID_input.setEditable(false);
-                category_input.setEditable(false);
                 category_input.setEnabled(false);
                 quantity_input.setEnabled(false);
                 name_input.setEditable(false);
@@ -2967,6 +2979,7 @@ public class Main extends javax.swing.JFrame {
                 cost_input.setEditable(false);
                 warranty_input.setEditable(false);
                 description_input.setEditable(false);
+                save_product_button.setEnabled(false);
             } else {
                 JOptionPane.showMessageDialog(this, "Updated data Failed", "Updated Failed", JOptionPane.ERROR_MESSAGE);
             }
@@ -2975,37 +2988,42 @@ public class Main extends javax.swing.JFrame {
 
     private void edit_product_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_product_buttonActionPerformed
         if (evt.getSource() == edit_product_button) {
-            productID_input.setEditable(true);
-            category_input.setEditable(true);
-            name_input.setEditable(true);
-            manufacture_input.setEditable(true);
-            model_input.setEditable(true);
-            location_input.setEditable(true);
-            cost_input.setEditable(true);
-            warranty_input.setEditable(true);
-            quantity_input.setEnabled(true);
-            description_input.setEditable(true);
+            if (!productID_input.getText().equals("")) {
+                productID_input.setEditable(true);
+                category_input.setEnabled(true);
+                name_input.setEditable(true);
+                manufacture_input.setEditable(true);
+                model_input.setEditable(true);
+                location_input.setEditable(true);
+                cost_input.setEditable(true);
+                warranty_input.setEditable(true);
+                quantity_input.setEnabled(true);
+                description_input.setEditable(true);
+                save_product_button.setEnabled(true);
+            }
         }
     }//GEN-LAST:event_edit_product_buttonActionPerformed
 
     private void remove_product_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remove_product_buttonActionPerformed
-        int DeleteConfirm = JOptionPane.showConfirmDialog(this, "Are you sure do you want to delete this row?", "Delete confirmation", YES_NO_OPTION, WARNING_MESSAGE);
+        if (!productID_input.getText().equals("")) {
+            int DeleteConfirm = JOptionPane.showConfirmDialog(this, "Are you sure do you want to delete this row?", "Delete confirmation", YES_NO_OPTION, WARNING_MESSAGE);
 
-        if (DeleteConfirm == JOptionPane.YES_OPTION) {
-            int product_id = Integer.parseInt(productID_input.getText());
-            ProductDAO dao = new ProductDAO();
-            BacklogDAO daobl = new BacklogDAO();
-            ProductBean bean = new ProductBean();
-            try {
-                bean.setProductID(product_id);
-                boolean status = dao.deleteData(bean, product_id);
-                updateTable(dao.getData());
-                updateBacklog(daobl.getBacklogData());
+            if (DeleteConfirm == JOptionPane.YES_OPTION) {
+                long product_id = Long.parseLong(productID_input.getText());
+                ProductDAO dao = new ProductDAO();
+                BacklogDAO daobl = new BacklogDAO();
+                ProductBean bean = new ProductBean();
+                try {
+                    bean.setProductID(product_id);
+                    boolean status = dao.deleteData(bean, product_id);
+                    updateTable(dao.getData());
+                    updateBacklog(daobl.getBacklogData());
 
-                if (status) {
-                    JOptionPane.showMessageDialog(this, "Deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    if (status) {
+                        JOptionPane.showMessageDialog(this, "Deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } catch (Exception ex) {
                 }
-            } catch (Exception ex) {
             }
         }
     }//GEN-LAST:event_remove_product_buttonActionPerformed
@@ -3323,27 +3341,27 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_test_connection_buttonActionPerformed
 
     private void product_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_product_tableMouseClicked
-        int index = product_table.getSelectedRow();
-        System.out.println("CLICK INDEX: " + index);
-        fillDataField(index);
+        int selectedRow = product_table.getSelectedRow();
+        int selectedColumn = product_table.getSelectedColumn();
+        System.out.println("CLICK COLUMN: " + selectedColumn);
+        System.out.println("CLICK INDEX ROW: " + selectedRow);
+        fillDataField(selectedRow);
     }//GEN-LAST:event_product_tableMouseClicked
 
     private void fillDataField(int selectedRow) {
-        ArrayList<ProductBean> list;
-        ProductDAO db = new ProductDAO();
-        list = db.getData();
-        int selectedColumn = product_table.getSelectedColumn();
+        edit_product_button.setEnabled(true);
+        remove_product_button.setEnabled(true);
         String selectedProductID = (String) product_table.getModel().getValueAt(selectedRow, 0);
         String selectedCategory = (String) product_table.getModel().getValueAt(selectedRow, 1);
         String selectedProductName = (String) product_table.getModel().getValueAt(selectedRow, 2);
         String selectedManufacture = (String) product_table.getModel().getValueAt(selectedRow, 3);
         String selectedModel = (String) product_table.getModel().getValueAt(selectedRow, 4);
-        //String selectedDescription = (String) query_table.getModel().getValueAt(selectedRow, 5);
-        String selectedCost = (String) product_table.getModel().getValueAt(selectedRow, 5);
-        String selectedLocation = (String) product_table.getModel().getValueAt(selectedRow, 6);
-        String selectedWarranty = (String) product_table.getModel().getValueAt(selectedRow, 7);
-        String selectedQuantity = (String) product_table.getModel().getValueAt(selectedRow, 8);
-        String selectedStatus = (String) product_table.getModel().getValueAt(selectedRow, 9);
+        String selectedDescription = (String) product_table.getModel().getValueAt(selectedRow, 5);
+        String selectedCost = (String) product_table.getModel().getValueAt(selectedRow, 6);
+        String selectedLocation = (String) product_table.getModel().getValueAt(selectedRow, 7);
+        String selectedWarranty = (String) product_table.getModel().getValueAt(selectedRow, 8);
+        String selectedQuantity = (String) product_table.getModel().getValueAt(selectedRow, 9);
+        String selectedStatus = (String) product_table.getModel().getValueAt(selectedRow, 11);
 
         productID_input.setText(selectedProductID);
         category_input.setSelectedItem(selectedCategory);
@@ -3355,22 +3373,25 @@ public class Main extends javax.swing.JFrame {
         location_input.setText(selectedLocation);
         warranty_input.setText(selectedWarranty);
         product_status_box.setText(selectedStatus);
-        //description_input.setText(selectedDescription);
+        description_input.setText(selectedDescription);
+
+        //ArrayList<ProductBean> list;
+        //ProductDAO db = new ProductDAO();
+        //list = db.getData();
         //long p_id = Long.parseLong(selectedProductID);
         //        for (int i = 0; i < list.size(); i++) {
 //            System.out.println("DATA LIST: " + list.get(i).getName());
-//        }
-        System.out.println("CURRENT DATA LIST: " + list.get(selectedRow).getName());
-        System.out.println("CURRENT DATA IMAGE: " + Arrays.toString(list.get(selectedRow).getImage()));
-
-        if (Arrays.toString(list.get(selectedRow).getImage()) == null) {
-            product_img.setText("NO IMAGE");
-        } else if (Arrays.toString(list.get(selectedRow).getImage()) != null) {
-            product_img.setText("");
-            //   ImageIcon icon = new ImageIcon(list.get(selectedRow).getImage());
-            //   Image image = icon.getImage().getScaledInstance(product_img.getWidth(), product_img.getHeight(), Image.SCALE_SMOOTH);
-            //   product_img.setIcon(new ImageIcon(image));
-        }
+//       }
+        //System.out.println("CURRENT DATA LIST: " + list.get(selectedRow).getName());
+        // System.out.println("CURRENT DATA IMAGE: " + Arrays.toString(list.get(selectedRow).getImage()));
+        //if (Arrays.toString(list.get(selectedRow).getImage()) == null) {
+        //    product_img.setText("NO IMAGE");
+        //} else if (Arrays.toString(list.get(selectedRow).getImage()) != null) {
+        //    product_img.setText("");
+        //   ImageIcon icon = new ImageIcon(list.get(selectedRow).getImage());
+        //   Image image = icon.getImage().getScaledInstance(product_img.getWidth(), product_img.getHeight(), Image.SCALE_SMOOTH);
+        //   product_img.setIcon(new ImageIcon(image));
+        //}
     }
 
     private void db4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_db4ActionPerformed
@@ -3382,11 +3403,9 @@ public class Main extends javax.swing.JFrame {
 
     private void truncate_backlog_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_truncate_backlog_btnActionPerformed
         BacklogDAO daobl = new BacklogDAO();
-        try {
-            daobl.truncateBacklog();
-            updateBacklog(daobl.getBacklogData());
-        } catch (Exception ex) {
-        }
+        daobl.truncateBacklog();
+        updateBacklog(daobl.getBacklogData());
+
     }//GEN-LAST:event_truncate_backlog_btnActionPerformed
 
     private void search_boxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_boxKeyTyped
@@ -3394,15 +3413,15 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_search_boxKeyTyped
 
     private void cost_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cost_inputActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_cost_inputActionPerformed
 
     private void url_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_url_boxActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_url_boxActionPerformed
 
     private void User_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_User_buttonMouseClicked
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_User_buttonMouseClicked
 
     private void product_tableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_product_tableKeyPressed
@@ -3431,7 +3450,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_product_tableKeyPressed
 
     private void order_management_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_order_management_menuitemActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_order_management_menuitemActionPerformed
 
     private void data_button_welActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_data_button_welActionPerformed
@@ -3439,7 +3458,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_data_button_welActionPerformed
 
     private void find_database_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_find_database_buttonActionPerformed
-        // unlock the database setting
+
     }//GEN-LAST:event_find_database_buttonActionPerformed
 
     private void logout_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_menuitemActionPerformed
@@ -3463,15 +3482,15 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_export_productActionPerformed
 
     private void done_report_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_done_report_btnActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_done_report_btnActionPerformed
 
     private void query_table2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_query_table2MouseClicked
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_query_table2MouseClicked
 
     private void query_table2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_query_table2KeyPressed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_query_table2KeyPressed
 
     private void print_report_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_print_report_buttonActionPerformed
@@ -3490,6 +3509,12 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_order_product_imgActionPerformed
 
+    private void product_imgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_product_imgMouseClicked
+        if (evt.getClickCount() == 2) {
+            int DeleteConfirm = JOptionPane.showConfirmDialog(this, "Are you sure do you want to delete this picture?", "Delete confirmation", YES_NO_OPTION, QUESTION_MESSAGE);
+        }
+    }//GEN-LAST:event_product_imgMouseClicked
+
     private void logout_action() {
         Logout.logout_confirm();
     }
@@ -3499,49 +3524,10 @@ public class Main extends javax.swing.JFrame {
         List<String> columns = new ArrayList<>();
         columns.add("Product ID");
         columns.add("Category");
-        columns.add("Manufacture");
         columns.add("Name");
+        columns.add("Manufacture");
         columns.add("Model");
         columns.add("Description");
-        columns.add("Cost");
-        columns.add("Warranty");
-        columns.add("Quantity");
-        columns.add("Import");
-        for (int i = 0; i < list.size(); i++) {
-            values.add(new String[]{""
-                + list.get(i).getProductID(),
-                list.get(i).getCategory(),
-                list.get(i).getManufacture(),
-                list.get(i).getName(),
-                list.get(i).getModel(),
-                list.get(i).getDescription(),
-                list.get(i).getCost(),
-                list.get(i).getWarranty(),
-                list.get(i).getQuantity(),
-                list.get(i).getImport()
-            });
-        }
-        // set Model of JTabel from list array of data
-        product_table.setModel(new javax.swing.table.DefaultTableModel(values.toArray(new Object[][]{}), columns.toArray())
-        );
-        // set the JTable into scroll panel
-        ScrollPanelForQueryTable.setViewportView(product_table);
-    }
-
-    public void displayAllTable() {
-        ArrayList<ProductBean> list = null;
-        ProductDAO db = new ProductDAO();
-        try {
-            list = db.getData();
-        } catch (Exception e) {
-        }
-        List<String[]> values = new ArrayList<>();
-        List<String> columns = new ArrayList<>();
-        columns.add("Product ID");
-        columns.add("Category");
-        columns.add("Name");
-        columns.add("Manufacture");
-        columns.add("Model");
         columns.add("Cost");
         columns.add("Location");
         columns.add("Warranty");
@@ -3549,7 +3535,6 @@ public class Main extends javax.swing.JFrame {
         columns.add("Import");
         columns.add("Status");
         columns.add("Last modified");
-
         for (int i = 0; i < list.size(); i++) {
             values.add(new String[]{""
                 + list.get(i).getProductID(),
@@ -3567,8 +3552,16 @@ public class Main extends javax.swing.JFrame {
                 list.get(i).getUserLastModified()
             });
         }
-        ScrollPanelForQueryTable.setViewportView(product_table);
 
+        // set Model of JTabel from list array of data
+        product_table.setModel(new javax.swing.table.DefaultTableModel(values.toArray(new Object[][]{}), columns.toArray())
+        );
+
+        product_table.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        product_table.removeColumn(product_table.getColumnModel().getColumn(5));
+
+        // set the JTable into scroll panel
+        ScrollPanelForQueryTable.setViewportView(product_table);
     }
 
     public void displayBacklog() {
@@ -3602,7 +3595,6 @@ public class Main extends javax.swing.JFrame {
                 list.get(i).getUser()
             });
         }
-
         backlog_table.setModel(new javax.swing.table.DefaultTableModel(values.toArray(new Object[][]{}), columns.toArray()));
         ScrollPanelForBacklog.setViewportView(backlog_table);
     }

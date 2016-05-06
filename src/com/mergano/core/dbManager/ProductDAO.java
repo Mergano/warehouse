@@ -43,7 +43,6 @@ public class ProductDAO {
                 long start = java.lang.System.currentTimeMillis();
                 p = conn.prepareStatement(sql);
                 rs = p.executeQuery();
-                connect.commit();
 
                 // Benchmark time
                 long stop = java.lang.System.currentTimeMillis();
@@ -73,16 +72,12 @@ public class ProductDAO {
                 } else {
                     System.out.println("QUERY PRODUCT FAILED");
                 }
+                conn.commit();
                 p.close();
                 rs.close();
+                conn.close();
             } catch (Exception e) {
                 System.err.print(e);
-            } finally {
-                try {
-                    conn.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }
             }
         }
         return product_list;
@@ -115,7 +110,7 @@ public class ProductDAO {
             p.executeUpdate();
             p = conn.prepareStatement(sql_insert_bl);
             p.executeUpdate();
-            connect.commit();
+            conn.commit();
             flag = true;
             p.close();
         } catch (SQLException e) {
@@ -123,12 +118,6 @@ public class ProductDAO {
         } catch (Exception e) {
             flag = false;
             System.err.println(e);
-        } finally {
-            try {
-                conn.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
         return flag;
     }
@@ -172,24 +161,18 @@ public class ProductDAO {
             p.executeUpdate();
             //p = conn.prepareStatement(sql_update_bl);
             //p.executeUpdate();
-            connect.commit();
+            conn.commit();
             flag = true;
             p.close();
         } catch (SQLException e) {
             flag = false;
             System.err.println(e);
-        } finally {
-            try {
-                conn.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
         return flag;
     }
 
     // Delete data from database
-    public boolean deleteData(ProductBean bean, int n) {
+    public boolean deleteData(ProductBean bean, long n) {
         boolean flag = false;
         try {
             String sql_delete = "DELETE FROM " + table + " WHERE product_id =" + n + ";";
@@ -205,7 +188,7 @@ public class ProductDAO {
             p.executeUpdate();
             p = conn.prepareStatement(sql_delete_bl);
             p.executeUpdate();
-            connect.commit();
+            conn.commit();
             flag = true;
             p.close();
         } catch (SQLException e) {
@@ -213,12 +196,6 @@ public class ProductDAO {
         } catch (Exception e) {
             flag = false;
             System.err.println(e);
-        } finally {
-            try {
-                conn.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
         return flag;
     }

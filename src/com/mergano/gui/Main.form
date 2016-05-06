@@ -1541,7 +1541,7 @@
                               <Component id="jTextField2" pref="146" max="32767" attributes="0"/>
                               <Component id="jTextField1" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="1794" max="32767" attributes="0"/>
+                          <EmptySpace pref="932" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1558,7 +1558,7 @@
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="562" max="32767" attributes="0"/>
+                          <EmptySpace pref="454" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1889,7 +1889,8 @@
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()"/>
-                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ArrayList&lt;com.mergano.core.dbManager.ProductBean&gt; list = null;&#xa;com.mergano.core.dbManager.ProductDAO db = new com.mergano.core.dbManager.ProductDAO();&#xa;try {&#xa;    list = db.getData();&#xa;}&#xa;catch (Exception e) {&#xa;    e.printStackTrace();&#xa;}&#xa;List&lt;String[]&gt; values = new ArrayList&lt;&gt;();&#xa;List&lt;String&gt; columns = new ArrayList&lt;&gt;();&#xa;columns.add(&quot;Product ID&quot;);&#xa;columns.add(&quot;Category&quot;);&#xa;columns.add(&quot;Name&quot;);&#xa;columns.add(&quot;Manufacture&quot;);&#xa;columns.add(&quot;Model&quot;);&#xa;columns.add(&quot;Cost&quot;);&#xa;columns.add(&quot;Location&quot;);&#xa;columns.add(&quot;Warranty&quot;);&#xa;columns.add(&quot;Quantity&quot;);&#xa;columns.add(&quot;Import&quot;);&#xa;columns.add(&quot;Status&quot;);&#xa;columns.add(&quot;Last modified&quot;);&#xa;for(int i =0; i&lt; list.size(); i++) {&#xa;    values.add(new String[] {&quot;&quot; +&#xa;        list.get(i).getProductID(),&#xa;        list.get(i).getCategory(),&#xa;        list.get(i).getName(),&#xa;        list.get(i).getManufacture(),&#xa;        list.get(i).getModel(),&#xa;        list.get(i).getCost(),&#xa;        list.get(i).getLocation(),&#xa;        list.get(i).getWarranty(),&#xa;        list.get(i).getQuantity(),&#xa;        list.get(i).getImport(),&#xa;        list.get(i).getStatus(),&#xa;        list.get(i).getUserLastModified()&#xa;    });&#xa;}"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="product_table.removeColumn(product_table.getColumnModel().getColumn(5));&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ArrayList&lt;com.mergano.core.dbManager.ProductBean&gt; list = null;&#xa;com.mergano.core.dbManager.ProductDAO db = new com.mergano.core.dbManager.ProductDAO();&#xa;try {&#xa;    list = db.getData();&#xa;}&#xa;catch (Exception e) {&#xa;    e.printStackTrace();&#xa;}&#xa;List&lt;String[]&gt; values = new ArrayList&lt;&gt;();&#xa;List&lt;String&gt; columns = new ArrayList&lt;&gt;();&#xa;columns.add(&quot;Product ID&quot;);&#xa;columns.add(&quot;Category&quot;);&#xa;columns.add(&quot;Name&quot;);&#xa;columns.add(&quot;Manufacture&quot;);&#xa;columns.add(&quot;Model&quot;);&#xa;columns.add(&quot;Description&quot;);&#xa;columns.add(&quot;Cost&quot;);&#xa;columns.add(&quot;Location&quot;);&#xa;columns.add(&quot;Warranty&quot;);&#xa;columns.add(&quot;Quantity&quot;);&#xa;columns.add(&quot;Import&quot;);&#xa;columns.add(&quot;Status&quot;);&#xa;columns.add(&quot;Last modified&quot;);&#xa;&#xa;for(int i =0; i&lt; list.size(); i++) {&#xa;    values.add(new String[] {&quot;&quot; +&#xa;        list.get(i).getProductID(),&#xa;        list.get(i).getCategory(),&#xa;        list.get(i).getName(),&#xa;        list.get(i).getManufacture(),&#xa;        list.get(i).getModel(),&#xa;        list.get(i).getDescription(),&#xa;        list.get(i).getCost(),&#xa;        list.get(i).getLocation(),&#xa;        list.get(i).getWarranty(),&#xa;        list.get(i).getQuantity(),&#xa;        list.get(i).getImport(),&#xa;        list.get(i).getStatus(),&#xa;        list.get(i).getUserLastModified()&#xa;    });&#xa;&#xa;}&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="main_query_table"/>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                       </AuxValues>
@@ -1975,6 +1976,9 @@
                               <Dimension value="[60, 20]"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="product_imgMouseClicked"/>
+                          </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
                               <BorderConstraints direction="Center"/>
@@ -2017,6 +2021,7 @@
                         </Component>
                         <Component class="javax.swing.JComboBox" name="category_input">
                           <Properties>
+                            <Property name="editable" type="boolean" value="true"/>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="5">
                                 <StringItem index="0" value="Book"/>
@@ -2275,6 +2280,7 @@
                     <Component class="javax.swing.JButton" name="remove_product_button">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Remove"/>
+                        <Property name="enabled" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[80, 28]"/>
                         </Property>
@@ -2286,6 +2292,7 @@
                     <Component class="javax.swing.JButton" name="edit_product_button">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Edit.."/>
+                        <Property name="enabled" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[80, 28]"/>
                         </Property>
@@ -2297,6 +2304,7 @@
                     <Component class="javax.swing.JButton" name="save_product_button">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Save"/>
+                        <Property name="enabled" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[80, 28]"/>
                         </Property>
@@ -2346,7 +2354,7 @@
                           <Component id="jPanel1" max="32767" attributes="0"/>
                           <Component id="order_pane" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="174" max="32767" attributes="0"/>
+                      <EmptySpace pref="66" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2617,7 +2625,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="request_order_body_panel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="1023" max="32767" attributes="0"/>
+                      <EmptySpace pref="161" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2651,7 +2659,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="619" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="511" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -3054,7 +3062,7 @@
                                   </Group>
                                   <Component id="driver_box" min="-2" pref="246" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="1136" max="32767" attributes="0"/>
+                              <EmptySpace pref="274" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -3262,7 +3270,7 @@
                           <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                           <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="373" max="32767" attributes="0"/>
+                          <EmptySpace pref="265" max="32767" attributes="0"/>
                           <Component id="search_button" min="-2" pref="45" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -3319,7 +3327,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="1016" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="585" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -3409,7 +3417,7 @@
                                           </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jTextField9" alignment="1" pref="686" max="32767" attributes="0"/>
+                                              <Component id="jTextField9" alignment="1" pref="255" max="32767" attributes="0"/>
                                               <Component id="jTextField8" alignment="1" max="32767" attributes="0"/>
                                               <Component id="jTextField11" max="32767" attributes="0"/>
                                               <Component id="jTextField12" alignment="1" max="32767" attributes="0"/>
@@ -3517,7 +3525,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="273" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="165" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -3708,7 +3716,7 @@
                       <Component id="jComboBox2" min="-2" pref="157" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="view_graph_button" min="-2" pref="85" max="-2" attributes="0"/>
-                      <EmptySpace pref="1787" max="32767" attributes="0"/>
+                      <EmptySpace pref="925" max="32767" attributes="0"/>
                   </Group>
                   <Component id="statistic_graph" alignment="1" max="32767" attributes="0"/>
               </Group>
@@ -3809,7 +3817,7 @@
                           </Group>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="1024" max="32767" attributes="0"/>
+                      <EmptySpace pref="162" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -3895,7 +3903,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="573" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="465" max="32767" attributes="0"/>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
@@ -3963,7 +3971,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ScrollPanelForBacklog" pref="643" max="32767" attributes="0"/>
+                          <Component id="ScrollPanelForBacklog" pref="535" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="truncate_backlog_btn" min="-2" pref="40" max="-2" attributes="0"/>
