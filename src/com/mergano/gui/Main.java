@@ -3256,27 +3256,21 @@ public class Main extends javax.swing.JFrame {
                     } else {
                         updateTable(pdao.getData());
                     }
-                    search_box.setText("");
                     break;
                 case 1: // Name
                     updateTable(sdao.getDataSearch(input_search, 1));
-                    search_box.setText("");
                     break;
                 case 2: // Category
                     updateTable(sdao.getDataSearch(input_search, 2));
-                    search_box.setText("");
                     break;
                 case 3: // Manufacture
                     updateTable(sdao.getDataSearch(input_search, 3));
-                    search_box.setText("");
                     break;
                 case 4: // Location
                     updateTable(sdao.getDataSearch(input_search, 4));
-                    search_box.setText("");
                     break;
                 case 5: // Low quantity
                     updateTable(sdao.getLowQuantity());
-                    search_box.setText("");
                     break;
                 default:
                     updateTable(pdao.getData());

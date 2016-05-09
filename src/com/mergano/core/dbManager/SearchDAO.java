@@ -57,16 +57,15 @@ public class SearchDAO {
             default:
                 break;
         }
-        String sql = "SELECT SQL_CACHE * FROM " + table + " WHERE " + selector + " = " + key + ";";
+        String sql = "SELECT product_id, category, manufacture, name, model, description, cost, location, warranty, quantity, import_date, status, user_lastmodified FROM " + table + " WHERE " + selector + " = " + key + ";";
         System.out.println(sql);
         if (conn == null) {
             System.err.print("ERROR NO CONNECTION");
         }
         try {
-            //p = conn.prepareStatement(sql);
-            //rs = p.executeQuery();
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
+            long start = java.lang.System.currentTimeMillis();
+            p = conn.prepareStatement(sql);
+            rs = p.executeQuery();
             connect.commit();
             while (rs.next()) {
                 ProductBean stub = new ProductBean();
@@ -86,9 +85,11 @@ public class SearchDAO {
                 stub.setUserLastModified(rs.getString("user_lastmodified"));
                 list.add(stub);
             }
+            // Benchmark time
+            long stop = java.lang.System.currentTimeMillis();
+            System.out.println("JDBC search query time: " + String.valueOf((stop - start)) + " ms");
             rs.close();
-            //p.close();
-            stmt.close();
+            p.close();
         } catch (SQLException e) {
             System.err.println(e);
         } finally {
@@ -111,7 +112,7 @@ public class SearchDAO {
                     JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         } else {
-            String sql = "SELECT * FROM " + table + " WHERE quantity <= 5 " + ";";
+            String sql = "SELECT product_id, category, manufacture, name, model, description, cost, location, warranty, quantity, import_date, status, user_lastmodified FROM " + table + " WHERE quantity <= 5 " + ";";
             try {
                 long start = java.lang.System.currentTimeMillis();
                 p = conn.prepareStatement(sql);

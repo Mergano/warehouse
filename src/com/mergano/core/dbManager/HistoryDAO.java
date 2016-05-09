@@ -29,7 +29,7 @@ public class HistoryDAO {
     // get backlog data from backlog table
     public ArrayList<HistoryBean> getHistoryData() {
         ArrayList<HistoryBean> list = new ArrayList<>();
-        sql = "SELECT * FROM " + backlog_table + ";";
+        sql = "SELECT idbacklog, action_type, action_detail, date, time FROM " + backlog_table + ";";
         if (conn == null) {
             System.out.print("ERROR NO CONNECTION");
         }
@@ -64,7 +64,6 @@ public class HistoryDAO {
             p.executeUpdate();
             conn.commit();
             p.close();
-            conn.close();
         } catch (SQLException ex) {
             System.err.println(ex);
         }

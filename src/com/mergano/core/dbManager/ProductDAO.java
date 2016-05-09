@@ -45,11 +45,7 @@ public class ProductDAO {
                 p = conn.prepareStatement(sql);
                 rs = p.executeQuery();
 
-                // Benchmark time
-                long stop = java.lang.System.currentTimeMillis();
                 if (rs.next()) {
-                    System.out.println("QUERY PRODUCT SUCCESSFUL");
-                    System.out.println("JDBC query time: " + String.valueOf((stop - start)) + " ms");
                     while (rs.next()) {
                         ProductBean bean = new ProductBean();
                         bean.setProductID(rs.getLong("product_id"));
@@ -68,14 +64,16 @@ public class ProductDAO {
                         //bean.setImage(rs.getBytes("image"));
                         product_list.add(bean);
                     }
+                    // Benchmark time
+                    long stop = java.lang.System.currentTimeMillis();
+                    System.out.println("JDBC query time: " + String.valueOf((stop - start)) + " ms");
                 } else {
-                    System.out.println("QUERY PRODUCT FAILED");
+                    // ERROR CODE QUERY ERROR
                 }
                 conn.commit();
                 p.close();
                 rs.close();
                 conn.close();
-                System.out.println("===== CLOSED CONNECTION SUCCESSFULLY =====");
             } catch (Exception e) {
                 System.err.print(e);
             }
@@ -151,7 +149,6 @@ public class ProductDAO {
                     + ", user_lastmodified= '"
                     + bean.getUserLastModified()
                     + "' WHERE product_id =" + n + ";";
-            System.out.println(sql_update);
             p = conn.prepareStatement(sql_update);
             p.executeUpdate();
             String sql_edit_his = "INSERT INTO " + backlog_table + " VALUES("
