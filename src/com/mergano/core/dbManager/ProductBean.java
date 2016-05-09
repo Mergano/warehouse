@@ -68,7 +68,7 @@ public class ProductBean {
     }
 
     public String getCost() {
-        return cost + "";
+        return cost;
     }
 
     public void setCost(String cost) {
@@ -83,8 +83,8 @@ public class ProductBean {
         this.warranty = warranty;
     }
 
-    public String getQuantity() {
-        return quantity + "";
+    public int getQuantity() {
+        return quantity;
     }
 
     public void setQuantity(int quantity) {

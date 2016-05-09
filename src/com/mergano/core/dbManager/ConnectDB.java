@@ -1,5 +1,7 @@
 package com.mergano.core.dbManager;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -29,17 +31,17 @@ public class ConnectDB extends LoadDriver {
         conn = null;
         URL_HEADER = "";
         URL = "";
-        hostName = "localhost";
+        hostName = "128.199.117.93";
         port = 3306;
         databaseName = "mergano";
-        username = "root";
-        password = "jukjukjuk";
+        username = "user";
+        password = "iloveoosd";
         status = "";
         meta = null;
 
     }
 
-    public Connection getconnection() {
+    public Connection getconnection() throws UnknownHostException {
         super.LoadDBDriver(1);
         URL_HEADER = LoadDriver.getUrlHeader();
         URL = URL_HEADER + hostName + ":" + port + "/" + databaseName + "?useCompression=true" + "&autoReconnnect=true" + "&useSSL=false";
@@ -51,6 +53,8 @@ public class ConnectDB extends LoadDriver {
 // flush the stream
 //        writer.flush();
         try {
+            boolean internet = "127.0.0.1".equals(InetAddress.getLocalHost().getHostAddress());
+            System.out.println(internet);
             Class.forName(LoadDriver.getDriver()); // Registed JDBC DRIVER
             conn = DriverManager.getConnection(URL, info);
             //conn = (Connection) DriverManager.getConnection("jdbc:mysql://128.199.117.93:" + "3306" + "/mergano" + "?useCompression=true", "user", "iloveoosd");
@@ -66,7 +70,7 @@ public class ConnectDB extends LoadDriver {
                 StatusBean.setDbType(meta.getDatabaseProductName());
                 StatusBean.setDbName(conn.getCatalog());
                 StatusBean.setPort(port + "");
-                StatusBean.setUrl(meta.getUserName());
+                StatusBean.setUrl(hostName);
                 System.out.println("Connected to database " + conn);
             }
         } catch (ClassNotFoundException | SQLException ex) {
@@ -81,10 +85,8 @@ public class ConnectDB extends LoadDriver {
             conn.commit();
         } catch (SQLException ex) {
             try {
-                System.err.println(ex.getMessage());
                 conn.rollback();
             } catch (SQLException ex1) {
-                System.err.println(ex.getMessage());
                 System.exit(1);
             }
         }
@@ -95,7 +97,6 @@ public class ConnectDB extends LoadDriver {
             conn.close();
             System.out.println("Connection closed");
         } catch (SQLException ex) {
-            System.err.print(ex);
         }
     }
 

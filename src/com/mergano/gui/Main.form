@@ -228,15 +228,18 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="report_menuitemActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="backlog_menuitem">
+            <MenuItem class="javax.swing.JMenuItem" name="history_menuitem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/mergano/gui/_static/ico16/clock2.png"/>
                 </Property>
-                <Property name="label" type="java.lang.String" value="Backlog"/>
+                <Property name="text" type="java.lang.String" value="History"/>
               </Properties>
+              <AccessibilityProperties>
+                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="History button"/>
+              </AccessibilityProperties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backlog_menuitemActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="history_menuitemActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator7">
@@ -1464,7 +1467,7 @@
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
                       </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JButton" name="bac_button_wel">
+                    <Component class="javax.swing.JButton" name="his_button_wel">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="18" style="0"/>
@@ -1475,7 +1478,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/com/mergano/gui/_static/ico32/Clock2.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Backlog"/>
+                        <Property name="text" type="java.lang.String" value="History"/>
                         <Property name="borderPainted" type="boolean" value="false"/>
                         <Property name="contentAreaFilled" type="boolean" value="false"/>
                         <Property name="horizontalAlignment" type="int" value="2"/>
@@ -1491,7 +1494,7 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bac_button_welActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="his_button_welActionPerformed"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
@@ -1893,7 +1896,6 @@
                             </Property>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="search_boxActionPerformed"/>
                             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="search_boxKeyPressed"/>
                             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="search_boxKeyReleased"/>
                           </Events>
@@ -1925,8 +1927,14 @@
                 </Container>
                 <Container class="javax.swing.JScrollPane" name="ScrollPanelForQueryTable">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI Light" size="11" style="0"/>
                     </Property>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[500, 430]"/>
@@ -1956,15 +1964,30 @@
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                           <Connection code="new javax.swing.table.DefaultTableModel(values.toArray(new Object[][] {}), columns.toArray())&#xa;{public boolean isCellEditable(int row, int column){return false;}}&#xa;" type="code"/>
                         </Property>
-                        <Property name="dragEnabled" type="boolean" value="true"/>
-                        <Property name="rowHeight" type="int" value="18"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Product table"/>
+                        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                          <Color id="Default Cursor"/>
+                        </Property>
+                        <Property name="fillsViewportHeight" type="boolean" value="true"/>
+                        <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                        </Property>
+                        <Property name="name" type="java.lang.String" value="" noResource="true"/>
+                        <Property name="rowHeight" type="int" value="20"/>
+                        <Property name="rowMargin" type="int" value="3"/>
                         <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="33" green="0" red="ff" type="rgb"/>
+                          <Color blue="33" green="33" red="ff" type="rgb"/>
                         </Property>
                         <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
                           <JTableSelectionModel selectionMode="2"/>
                         </Property>
+                        <Property name="showHorizontalLines" type="boolean" value="false"/>
+                        <Property name="showVerticalLines" type="boolean" value="false"/>
                       </Properties>
+                      <AccessibilityProperties>
+                        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Product Table"/>
+                        <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="This table store product information of warehouse."/>
+                      </AccessibilityProperties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="product_tableMouseClicked"/>
                         <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="product_tableMouseReleased"/>
@@ -1973,7 +1996,7 @@
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()"/>
                         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="product_table.removeColumn(product_table.getColumnModel().getColumn(5));&#xa;product_table.getColumnModel().getColumn(0).setPreferredWidth(90);&#xa;product_table.getColumnModel().getColumn(1).setPreferredWidth(76);&#xa;product_table.getColumnModel().getColumn(2).setPreferredWidth(150);&#xa;product_table.getColumnModel().getColumn(3).setPreferredWidth(160);&#xa;product_table.getColumnModel().getColumn(4).setPreferredWidth(50);&#xa;product_table.getColumnModel().getColumn(6).setPreferredWidth(60);&#xa;product_table.getColumnModel().getColumn(7).setPreferredWidth(50);&#xa;product_table.getColumnModel().getColumn(8).setPreferredWidth(60);&#xa;product_table.getColumnModel().getColumn(9).setPreferredWidth(60);&#xa;product_table.getColumnModel().getColumn(10).setPreferredWidth(70);&#xa;product_table.getColumnModel().getColumn(11).setPreferredWidth(65);"/>
-                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ArrayList&lt;com.mergano.core.dbManager.ProductBean&gt; list = null;&#xa;com.mergano.core.dbManager.ProductDAO db = new com.mergano.core.dbManager.ProductDAO();&#xa;try {&#xa;    list = db.getData();&#xa;}&#xa;catch (Exception e) {&#xa;    e.printStackTrace();&#xa;}&#xa;List&lt;String[]&gt; values = new ArrayList&lt;&gt;();&#xa;List&lt;String&gt; columns = new ArrayList&lt;&gt;();&#xa;columns.add(&quot;Product ID&quot;);&#xa;columns.add(&quot;Category&quot;);&#xa;columns.add(&quot;Name&quot;);&#xa;columns.add(&quot;Manufacture&quot;);&#xa;columns.add(&quot;Model&quot;);&#xa;columns.add(&quot;Description&quot;);&#xa;columns.add(&quot;Cost&quot;);&#xa;columns.add(&quot;Location&quot;);&#xa;columns.add(&quot;Warranty&quot;);&#xa;columns.add(&quot;Quantity&quot;);&#xa;columns.add(&quot;Import&quot;);&#xa;columns.add(&quot;Status&quot;);&#xa;columns.add(&quot;Last modified&quot;);&#xa;&#xa;for(int i =0; i&lt; list.size(); i++) {&#xa;    values.add(new String[] {&quot;&quot; +&#xa;        list.get(i).getProductID(),&#xa;        list.get(i).getCategory(),&#xa;        list.get(i).getName(),&#xa;        list.get(i).getManufacture(),&#xa;        list.get(i).getModel(),&#xa;        list.get(i).getDescription(),&#xa;        list.get(i).getCost(),&#xa;        list.get(i).getLocation(),&#xa;        list.get(i).getWarranty(),&#xa;        list.get(i).getQuantity(),&#xa;        list.get(i).getImport(),&#xa;        list.get(i).getStatus(),&#xa;        list.get(i).getUserLastModified()&#xa;    });&#xa;&#xa;}&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ArrayList&lt;com.mergano.core.dbManager.ProductBean&gt; list = null;&#xa;com.mergano.core.dbManager.ProductDAO db = new com.mergano.core.dbManager.ProductDAO();&#xa;try {&#xa;    list = db.getData();&#xa;}&#xa;catch (Exception e) {&#xa;    e.printStackTrace();&#xa;}&#xa;List&lt;String[]&gt; values = new ArrayList&lt;&gt;();&#xa;List&lt;String&gt; columns = new ArrayList&lt;&gt;();&#xa;columns.add(&quot;Product ID&quot;);&#xa;columns.add(&quot;Category&quot;);&#xa;columns.add(&quot;Name&quot;);&#xa;columns.add(&quot;Manufacture&quot;);&#xa;columns.add(&quot;Model&quot;);&#xa;columns.add(&quot;Description&quot;);&#xa;columns.add(&quot;Cost&quot;);&#xa;columns.add(&quot;Location&quot;);&#xa;columns.add(&quot;Warranty&quot;);&#xa;columns.add(&quot;Quantity&quot;);&#xa;columns.add(&quot;Import&quot;);&#xa;columns.add(&quot;Status&quot;);&#xa;columns.add(&quot;Last modified&quot;);&#xa;&#xa;for(int i =0; i&lt; list.size(); i++) {&#xa;    values.add(new String[] {&quot;&quot; +&#xa;        list.get(i).getProductID(),&#xa;        list.get(i).getCategory(),&#xa;        list.get(i).getName(),&#xa;        list.get(i).getManufacture(),&#xa;        list.get(i).getModel(),&#xa;        list.get(i).getDescription(),&#xa;        list.get(i).getCost(),&#xa;        list.get(i).getLocation(),&#xa;        list.get(i).getWarranty(),&#xa;        String.valueOf(list.get(i).getQuantity()),&#xa;        list.get(i).getImport(),&#xa;        list.get(i).getStatus(),&#xa;        list.get(i).getUserLastModified()&#xa;    });&#xa;&#xa;}&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="main_query_table"/>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                       </AuxValues>
@@ -2137,9 +2160,6 @@
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
                           </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="name_inputActionPerformed"/>
-                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="manufacture_label">
                           <Properties>
@@ -3908,14 +3928,14 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="backlog_panel">
+        <Container class="javax.swing.JPanel" name="history_panel">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Backlog">
-                <Property name="tabTitle" type="java.lang.String" value="Backlog"/>
+              <JTabbedPaneConstraints tabName="History">
+                <Property name="tabTitle" type="java.lang.String" value="History"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/mergano/gui/_static/ico16/clock2.png"/>
                 </Property>
@@ -3928,9 +3948,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="ScrollPanelForBacklog" min="-2" pref="876" max="-2" attributes="0"/>
+                      <Component id="ScrollPanelForHistory" min="-2" pref="876" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="truncate_backlog_btn" min="-2" pref="140" max="-2" attributes="0"/>
+                      <Component id="truncate_history_btn" min="-2" pref="140" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -3940,10 +3960,10 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ScrollPanelForBacklog" pref="554" max="32767" attributes="0"/>
+                          <Component id="ScrollPanelForHistory" pref="554" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="truncate_backlog_btn" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="truncate_history_btn" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -3952,24 +3972,34 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="ScrollPanelForBacklog">
+            <Container class="javax.swing.JScrollPane" name="ScrollPanelForHistory">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
+              </Properties>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="backlog_table">
+                <Component class="javax.swing.JTable" name="history_table">
                   <Properties>
+                    <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="    new javax.swing.table.DefaultTableModel(valuesBL.toArray(new Object[][] {}), columnsBL.toArray())&#xa;    {public boolean isCellEditable(int row, int column){return false;}}" type="code"/>
+                      <Connection code="new javax.swing.table.DefaultTableModel(valuesHIS.toArray(new Object[][] {}), columnsHIS.toArray())&#xa;{public boolean isCellEditable(int row, int column){return false;}}" type="code"/>
                     </Property>
                   </Properties>
+                  <AccessibilityProperties>
+                    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="History table"/>
+                    <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="This table store history action of user."/>
+                  </AccessibilityProperties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()"/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ArrayList&lt;com.mergano.core.dbManager.BacklogBean&gt; listb = null;&#xa;com.mergano.core.dbManager.BacklogDAO bldao = new com.mergano.core.dbManager.BacklogDAO(); &#xa;            try {&#xa;                   listb = bldao.getBacklogData();&#xa;                } catch (Exception e) {&#xa;                    e.printStackTrace();&#xa;                }&#xa;        List&lt;String[]&gt; valuesBL = new ArrayList&lt;&gt;();&#xa;        List&lt;String&gt; columnsBL = new ArrayList&lt;&gt;();&#xa;        columnsBL.add(&quot;Backlog ID&quot;);&#xa;        columnsBL.add(&quot;Type&quot;);&#xa;        columnsBL.add(&quot;Action detail&quot;);&#xa;        columnsBL.add(&quot;Date modified&quot;);&#xa;        columnsBL.add(&quot;Time&quot;);&#xa;        columnsBL.add(&quot;Username&quot;);&#xa;        &#xa;        for(int i =0; i&lt; listb.size(); i++) {&#xa;            valuesBL.add(new String[] {&quot;&quot; +&#xa;            listb.get(i).getBacklogID(),&#xa;            listb.get(i).getActionType(),&#xa;            listb.get(i).getActionDetail(),&#xa;            listb.get(i).getBacklogDate(),&#xa;            listb.get(i).getBacklogTime(),&#xa;            listb.get(i).getUser()&#xa;    });&#xa;}"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ArrayList&lt;com.mergano.core.dbManager.HistoryBean&gt; listHIS = null;&#xa;com.mergano.core.dbManager.HistoryDAO hisdao = new com.mergano.core.dbManager.HistoryDAO(); &#xa;            try {&#xa;                    listHIS = hisdao.getHistoryData();&#xa;                } catch (Exception e) {&#xa;                    e.printStackTrace();&#xa;                }&#xa;        List&lt;String[]&gt; valuesHIS = new ArrayList&lt;&gt;();&#xa;        List&lt;String&gt; columnsHIS = new ArrayList&lt;&gt;();&#xa;        columnsHIS.add(&quot;#&quot;);&#xa;        columnsHIS.add(&quot;Type&quot;);&#xa;        columnsHIS.add(&quot;Action detail&quot;);&#xa;        columnsHIS.add(&quot;Date modified&quot;);&#xa;        columnsHIS.add(&quot;Time&quot;);&#xa;        columnsHIS.add(&quot;Username&quot;);&#xa;        &#xa;        for(int i =0; i&lt; listHIS.size(); i++) {&#xa;            valuesHIS.add(new String[] {&quot;&quot; +&#xa;            listHIS.get(i).getBacklogID(),&#xa;            listHIS.get(i).getActionType(),&#xa;            listHIS.get(i).getActionDetail(),&#xa;            listHIS.get(i).getBacklogDate(),&#xa;            listHIS.get(i).getBacklogTime(),&#xa;            listHIS.get(i).getUser()&#xa;    });&#xa;}"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="truncate_backlog_btn">
+            <Component class="javax.swing.JButton" name="truncate_history_btn">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="0"/>
@@ -3977,7 +4007,7 @@
                 <Property name="text" type="java.lang.String" value="Clear"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="truncate_backlog_btnActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="truncate_history_btnActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -4010,6 +4040,7 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[120, 20]"/>
             </Property>
@@ -4038,6 +4069,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="99" red="0" type="rgb"/>
             </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[80, 20]"/>
             </Property>
@@ -4060,6 +4092,7 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[80, 20]"/>
             </Property>
@@ -4082,6 +4115,7 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[120, 20]"/>
             </Property>
@@ -4107,6 +4141,7 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[60, 20]"/>
             </Property>
@@ -4129,6 +4164,7 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[120, 20]"/>
             </Property>

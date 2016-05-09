@@ -1,6 +1,6 @@
 package com.mergano.core.dbManager;
 
-public class BacklogBean {
+public class HistoryBean {
 
     // Backlog table
     private int BacklogID;

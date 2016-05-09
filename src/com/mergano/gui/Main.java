@@ -51,6 +51,7 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         search_box.setDocument(new TextFieldLimit(100));
         pathname_box.setDocument(new TextFieldLimit(500));
+        productID_input.setDocument(new TextFieldLimit(13));
 
     }
 
@@ -93,7 +94,7 @@ public class Main extends javax.swing.JFrame {
         ser_button_wel = new javax.swing.JButton();
         rep_button_wel = new javax.swing.JButton();
         sta_button_wel = new javax.swing.JButton();
-        bac_button_wel = new javax.swing.JButton();
+        his_button_wel = new javax.swing.JButton();
         mai_button_wel = new javax.swing.JButton();
         right_panel = new javax.swing.JPanel();
         welcome_panel_pic = new javax.swing.JButton();
@@ -254,10 +255,10 @@ public class Main extends javax.swing.JFrame {
         ScrollPanelForBacklog1 = new javax.swing.JScrollPane();
         report_table = new javax.swing.JTable();
         clear_report_btn = new javax.swing.JButton();
-        backlog_panel = new javax.swing.JPanel();
-        ScrollPanelForBacklog = new javax.swing.JScrollPane();
-        backlog_table = new javax.swing.JTable();
-        truncate_backlog_btn = new javax.swing.JButton();
+        history_panel = new javax.swing.JPanel();
+        ScrollPanelForHistory = new javax.swing.JScrollPane();
+        history_table = new javax.swing.JTable();
+        truncate_history_btn = new javax.swing.JButton();
         status_bar_frame = new javax.swing.JPanel();
         dbname_label = new javax.swing.JLabel();
         db_name_box = new javax.swing.JTextField();
@@ -286,7 +287,7 @@ public class Main extends javax.swing.JFrame {
         searching_menuitem = new javax.swing.JMenuItem();
         statistics_menuitem = new javax.swing.JMenuItem();
         report_menuitem = new javax.swing.JMenuItem();
-        backlog_menuitem = new javax.swing.JMenuItem();
+        history_menuitem = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
         print_menuitem = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
@@ -745,23 +746,23 @@ public class Main extends javax.swing.JFrame {
         });
         left_panel.add(sta_button_wel);
 
-        bac_button_wel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        bac_button_wel.setForeground(new java.awt.Color(51, 51, 51));
-        bac_button_wel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/Clock2.png"))); // NOI18N
-        bac_button_wel.setText("Backlog");
-        bac_button_wel.setBorderPainted(false);
-        bac_button_wel.setContentAreaFilled(false);
-        bac_button_wel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        bac_button_wel.setIconTextGap(16);
-        bac_button_wel.setMargin(new java.awt.Insets(2, 34, 2, 14));
-        bac_button_wel.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/Clock2_roll.png"))); // NOI18N
-        bac_button_wel.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/Clock2_roll.png"))); // NOI18N
-        bac_button_wel.addActionListener(new java.awt.event.ActionListener() {
+        his_button_wel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        his_button_wel.setForeground(new java.awt.Color(51, 51, 51));
+        his_button_wel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/Clock2.png"))); // NOI18N
+        his_button_wel.setText("History");
+        his_button_wel.setBorderPainted(false);
+        his_button_wel.setContentAreaFilled(false);
+        his_button_wel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        his_button_wel.setIconTextGap(16);
+        his_button_wel.setMargin(new java.awt.Insets(2, 34, 2, 14));
+        his_button_wel.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/Clock2_roll.png"))); // NOI18N
+        his_button_wel.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/Clock2_roll.png"))); // NOI18N
+        his_button_wel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bac_button_welActionPerformed(evt);
+                his_button_welActionPerformed(evt);
             }
         });
-        left_panel.add(bac_button_wel);
+        left_panel.add(his_button_wel);
 
         mai_button_wel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         mai_button_wel.setForeground(new java.awt.Color(51, 51, 51));
@@ -925,11 +926,6 @@ public class Main extends javax.swing.JFrame {
 
         search_box.setMinimumSize(new java.awt.Dimension(6, 23));
         search_box.setPreferredSize(new java.awt.Dimension(500, 23));
-        search_box.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                search_boxActionPerformed(evt);
-            }
-        });
         search_box.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 search_boxKeyPressed(evt);
@@ -953,7 +949,9 @@ public class Main extends javax.swing.JFrame {
 
         sm_left_panel.add(sm_header_group_panel, java.awt.BorderLayout.NORTH);
 
+        ScrollPanelForQueryTable.setBackground(new java.awt.Color(255, 255, 255));
         ScrollPanelForQueryTable.setBorder(null);
+        ScrollPanelForQueryTable.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
         ScrollPanelForQueryTable.setMinimumSize(new java.awt.Dimension(500, 430));
         ScrollPanelForQueryTable.setPreferredSize(new java.awt.Dimension(500, 450));
         ScrollPanelForQueryTable.setRequestFocusEnabled(false);
@@ -993,7 +991,7 @@ public class Main extends javax.swing.JFrame {
                 list.get(i).getCost(),
                 list.get(i).getLocation(),
                 list.get(i).getWarranty(),
-                list.get(i).getQuantity(),
+                String.valueOf(list.get(i).getQuantity()),
                 list.get(i).getImport(),
                 list.get(i).getStatus(),
                 list.get(i).getUserLastModified()
@@ -1005,10 +1003,17 @@ public class Main extends javax.swing.JFrame {
         product_table.setModel(new javax.swing.table.DefaultTableModel(values.toArray(new Object[][] {}), columns.toArray())
             {public boolean isCellEditable(int row, int column){return false;}}
         );
-        product_table.setDragEnabled(true);
-        product_table.setRowHeight(18);
-        product_table.setSelectionBackground(new java.awt.Color(255, 0, 51));
+        product_table.setToolTipText("Product table");
+        product_table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        product_table.setFillsViewportHeight(true);
+        product_table.setGridColor(new java.awt.Color(204, 204, 204));
+        product_table.setName(""); // NOI18N
+        product_table.setRowHeight(20);
+        product_table.setRowMargin(3);
+        product_table.setSelectionBackground(new java.awt.Color(255, 51, 51));
         product_table.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        product_table.setShowHorizontalLines(false);
+        product_table.setShowVerticalLines(false);
         product_table.removeColumn(product_table.getColumnModel().getColumn(5));
         product_table.getColumnModel().getColumn(0).setPreferredWidth(90);
         product_table.getColumnModel().getColumn(1).setPreferredWidth(76);
@@ -1035,6 +1040,8 @@ public class Main extends javax.swing.JFrame {
             }
         });
         ScrollPanelForQueryTable.setViewportView(product_table);
+        product_table.getAccessibleContext().setAccessibleName("Product Table");
+        product_table.getAccessibleContext().setAccessibleDescription("This table store product information of warehouse.");
 
         sm_left_panel.add(ScrollPanelForQueryTable, java.awt.BorderLayout.CENTER);
 
@@ -1101,11 +1108,6 @@ public class Main extends javax.swing.JFrame {
 
         name_input.setEditable(false);
         name_input.setBackground(new java.awt.Color(255, 255, 255));
-        name_input.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                name_inputActionPerformed(evt);
-            }
-        });
         product_head_group_panel.add(name_input);
 
         manufacture_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -2113,68 +2115,73 @@ public class Main extends javax.swing.JFrame {
 
         body.addTab("Reporting", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/chart_graph.png")), report_panel); // NOI18N
 
-        ArrayList<com.mergano.core.dbManager.BacklogBean> listb = null;
-        com.mergano.core.dbManager.BacklogDAO bldao = new com.mergano.core.dbManager.BacklogDAO();
+        ScrollPanelForHistory.setBorder(null);
+
+        ArrayList<com.mergano.core.dbManager.HistoryBean> listHIS = null;
+        com.mergano.core.dbManager.HistoryDAO hisdao = new com.mergano.core.dbManager.HistoryDAO();
         try {
-            listb = bldao.getBacklogData();
+            listHIS = hisdao.getHistoryData();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        List<String[]> valuesBL = new ArrayList<>();
-        List<String> columnsBL = new ArrayList<>();
-        columnsBL.add("Backlog ID");
-        columnsBL.add("Type");
-        columnsBL.add("Action detail");
-        columnsBL.add("Date modified");
-        columnsBL.add("Time");
-        columnsBL.add("Username");
+        List<String[]> valuesHIS = new ArrayList<>();
+        List<String> columnsHIS = new ArrayList<>();
+        columnsHIS.add("#");
+        columnsHIS.add("Type");
+        columnsHIS.add("Action detail");
+        columnsHIS.add("Date modified");
+        columnsHIS.add("Time");
+        columnsHIS.add("Username");
 
-        for(int i =0; i< listb.size(); i++) {
-            valuesBL.add(new String[] {"" +
-                listb.get(i).getBacklogID(),
-                listb.get(i).getActionType(),
-                listb.get(i).getActionDetail(),
-                listb.get(i).getBacklogDate(),
-                listb.get(i).getBacklogTime(),
-                listb.get(i).getUser()
+        for(int i =0; i< listHIS.size(); i++) {
+            valuesHIS.add(new String[] {"" +
+                listHIS.get(i).getBacklogID(),
+                listHIS.get(i).getActionType(),
+                listHIS.get(i).getActionDetail(),
+                listHIS.get(i).getBacklogDate(),
+                listHIS.get(i).getBacklogTime(),
+                listHIS.get(i).getUser()
             });
         }
-        backlog_table.setModel(    new javax.swing.table.DefaultTableModel(valuesBL.toArray(new Object[][] {}), columnsBL.toArray())
+        history_table.setAutoCreateRowSorter(true);
+        history_table.setModel(new javax.swing.table.DefaultTableModel(valuesHIS.toArray(new Object[][] {}), columnsHIS.toArray())
             {public boolean isCellEditable(int row, int column){return false;}});
-        ScrollPanelForBacklog.setViewportView(backlog_table);
+        ScrollPanelForHistory.setViewportView(history_table);
+        history_table.getAccessibleContext().setAccessibleName("History table");
+        history_table.getAccessibleContext().setAccessibleDescription("This table store history action of user.");
 
-        truncate_backlog_btn.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        truncate_backlog_btn.setText("Clear");
-        truncate_backlog_btn.addActionListener(new java.awt.event.ActionListener() {
+        truncate_history_btn.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        truncate_history_btn.setText("Clear");
+        truncate_history_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                truncate_backlog_btnActionPerformed(evt);
+                truncate_history_btnActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout backlog_panelLayout = new javax.swing.GroupLayout(backlog_panel);
-        backlog_panel.setLayout(backlog_panelLayout);
-        backlog_panelLayout.setHorizontalGroup(
-            backlog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(backlog_panelLayout.createSequentialGroup()
+        javax.swing.GroupLayout history_panelLayout = new javax.swing.GroupLayout(history_panel);
+        history_panel.setLayout(history_panelLayout);
+        history_panelLayout.setHorizontalGroup(
+            history_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(history_panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ScrollPanelForBacklog, javax.swing.GroupLayout.PREFERRED_SIZE, 876, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ScrollPanelForHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 876, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(truncate_backlog_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(truncate_history_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        backlog_panelLayout.setVerticalGroup(
-            backlog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backlog_panelLayout.createSequentialGroup()
+        history_panelLayout.setVerticalGroup(
+            history_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, history_panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(backlog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ScrollPanelForBacklog, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
-                    .addGroup(backlog_panelLayout.createSequentialGroup()
+                .addGroup(history_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ScrollPanelForHistory, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
+                    .addGroup(history_panelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(truncate_backlog_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(truncate_history_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
-        body.addTab("Backlog", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/clock2.png")), backlog_panel); // NOI18N
+        body.addTab("History", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/clock2.png")), history_panel); // NOI18N
 
         status_bar_frame.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         status_bar_frame.setPreferredSize(new java.awt.Dimension(176, 40));
@@ -2185,6 +2192,7 @@ public class Main extends javax.swing.JFrame {
 
         db_name_box.setEditable(false);
         db_name_box.setBackground(new java.awt.Color(255, 255, 255));
+        db_name_box.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         db_name_box.setMinimumSize(new java.awt.Dimension(120, 20));
         db_name_box.setPreferredSize(new java.awt.Dimension(120, 20));
         db_name_box.addActionListener(new java.awt.event.ActionListener() {
@@ -2200,6 +2208,7 @@ public class Main extends javax.swing.JFrame {
         status_box.setEditable(false);
         status_box.setBackground(new java.awt.Color(255, 255, 255));
         status_box.setForeground(new java.awt.Color(0, 153, 102));
+        status_box.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         status_box.setMinimumSize(new java.awt.Dimension(80, 20));
         status_box.setPreferredSize(new java.awt.Dimension(80, 20));
         status_bar_frame.add(status_box);
@@ -2209,6 +2218,7 @@ public class Main extends javax.swing.JFrame {
 
         db_type_box.setEditable(false);
         db_type_box.setBackground(new java.awt.Color(255, 255, 255));
+        db_type_box.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         db_type_box.setMinimumSize(new java.awt.Dimension(80, 20));
         db_type_box.setPreferredSize(new java.awt.Dimension(80, 20));
         status_bar_frame.add(db_type_box);
@@ -2218,6 +2228,7 @@ public class Main extends javax.swing.JFrame {
 
         url_box.setEditable(false);
         url_box.setBackground(new java.awt.Color(255, 255, 255));
+        url_box.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         url_box.setMinimumSize(new java.awt.Dimension(120, 20));
         url_box.setPreferredSize(new java.awt.Dimension(120, 20));
         url_box.addActionListener(new java.awt.event.ActionListener() {
@@ -2232,6 +2243,7 @@ public class Main extends javax.swing.JFrame {
 
         port_box.setEditable(false);
         port_box.setBackground(new java.awt.Color(255, 255, 255));
+        port_box.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         port_box.setMinimumSize(new java.awt.Dimension(60, 20));
         port_box.setPreferredSize(new java.awt.Dimension(60, 20));
         status_bar_frame.add(port_box);
@@ -2241,6 +2253,7 @@ public class Main extends javax.swing.JFrame {
 
         user_box.setEditable(false);
         user_box.setBackground(new java.awt.Color(255, 255, 255));
+        user_box.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         user_box.setMinimumSize(new java.awt.Dimension(120, 20));
         user_box.setPreferredSize(new java.awt.Dimension(120, 20));
         status_bar_frame.add(user_box);
@@ -2359,14 +2372,16 @@ public class Main extends javax.swing.JFrame {
         });
         file_menu.add(report_menuitem);
 
-        backlog_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/clock2.png"))); // NOI18N
-        backlog_menuitem.setLabel("Backlog");
-        backlog_menuitem.addActionListener(new java.awt.event.ActionListener() {
+        history_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/clock2.png"))); // NOI18N
+        history_menuitem.setText("History");
+        history_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backlog_menuitemActionPerformed(evt);
+                history_menuitemActionPerformed(evt);
             }
         });
-        file_menu.add(backlog_menuitem);
+        file_menu.add(history_menuitem);
+        history_menuitem.getAccessibleContext().setAccessibleName("History button");
+
         file_menu.add(jSeparator7);
 
         print_menuitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
@@ -2938,7 +2953,10 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_save_product_buttonActionPerformed
 
     private void EditandSave_ActionPerformed() {
-        String productID_txt = productID_input.getText();
+        String old_productID_txt = (String) product_table.getModel().getValueAt(product_table.getSelectedRow(), 0);
+        long old_productID = Long.parseLong(old_productID_txt);
+        String new_productID_txt = productID_input.getText();
+        long new_productID = Long.parseLong(new_productID_txt);
         String category = category_input.getSelectedItem().toString();
         String manufacture = manufacture_input.getText();
         String name = name_input.getText();
@@ -2947,10 +2965,10 @@ public class Main extends javax.swing.JFrame {
         String description = description_input.getText();
         String cost = cost_input.getText();
         String quantity_txt = quantity_input.getValue().toString();
-        int quantity = Integer.parseInt(quantity_txt);
+        int quantity = (int) quantity_input.getValue();
         String warranty = warranty_input.getText();
 
-        if (productID_txt.length() == 0
+        if (new_productID_txt.length() == 0
                 || category.length() == 0
                 || manufacture.length() == 0
                 || name.length() == 0
@@ -2958,21 +2976,23 @@ public class Main extends javax.swing.JFrame {
                 || cost.length() == 0
                 || warranty.length() == 0) {
             JOptionPane.showMessageDialog(this, "Please fill out request box", "Input Error", JOptionPane.WARNING_MESSAGE);
-        } else if (productID_txt.length() > 13) {
-            JOptionPane.showMessageDialog(this, "Product ID must less than or 13 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
+        } else if (new_productID_txt.length() < 8 || new_productID_txt.length() > 13) {
+            JOptionPane.showMessageDialog(this, "Product ID must between 8-13 13 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
         } else if (cost.length() > 8) {
             JOptionPane.showMessageDialog(this, "Cost must less than or 8 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
         } else if (warranty.length() > 3) {
             JOptionPane.showMessageDialog(this, "Warranty must less than or 3 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
         } else if (quantity > 999999) {
             JOptionPane.showMessageDialog(this, "Quantity must less than or 6 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
-        } else if (!isNumeric(quantity_txt)) {
-            JOptionPane.showMessageDialog(this, "Quantity must be an integer format only", "Input Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!isNumeric(quantity_txt) || !isNumeric(cost) || !isNumeric(new_productID_txt)) {
+            JOptionPane.showMessageDialog(this, "Quantity, Cost or ProductID must be an integer format only", "Input Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            long productID = Long.parseLong(productID_txt);
+
             // Update product bean
+            ProductDAO dao = new ProductDAO();
+            HistoryDAO hisdao = new HistoryDAO();
             ProductBean bean = new ProductBean();
-            bean.setProductID(productID);
+            bean.setProductID(new_productID);
             bean.setCategory(category);
             bean.setManufacture(manufacture);
             bean.setName(name);
@@ -2982,24 +3002,15 @@ public class Main extends javax.swing.JFrame {
             bean.setLocation(location);
             bean.setQuantity(quantity);
             bean.setWarranty(warranty);
+            bean.setUserLastModified(user_box.getText());
+            bean.setImage(null);
 
-            ProductDAO dao = new ProductDAO();
-            boolean status = dao.updateData(bean, productID);
+            boolean status = dao.updateData(bean, old_productID);
             updateTable(dao.getData());
-            //updateBacklog(dao.getBacklogData());
-            System.out.println("status :" + status);
+            updateHistory(hisdao.getHistoryData());
             if (status) {
+                setInputEnable(false);
                 JOptionPane.showMessageDialog(this, "Updated data successfully", "Updated Success", JOptionPane.INFORMATION_MESSAGE);
-                productID_input.setEditable(false);
-                category_input.setEnabled(false);
-                quantity_input.setEnabled(false);
-                name_input.setEditable(false);
-                manufacture_input.setEditable(false);
-                model_input.setEditable(false);
-                location_input.setEditable(false);
-                cost_input.setEditable(false);
-                warranty_input.setEditable(false);
-                description_input.setEditable(false);
                 save_product_button.setEnabled(false);
             } else {
                 JOptionPane.showMessageDialog(this, "Updated data Failed", "Updated Failed", JOptionPane.ERROR_MESSAGE);
@@ -3009,6 +3020,7 @@ public class Main extends javax.swing.JFrame {
 
     private void AddandSave_ActionPerformed() {
         String productID_txt = productID_input.getText();
+        long productID = Long.parseLong(productID_txt);
         String category = category_input.getSelectedItem().toString();
         String manufacture = manufacture_input.getText();
         String name = name_input.getText();
@@ -3028,19 +3040,20 @@ public class Main extends javax.swing.JFrame {
                 || cost.length() == 0
                 || warranty.length() == 0) {
             JOptionPane.showMessageDialog(this, "Please fill out request box", "Information is null", JOptionPane.WARNING_MESSAGE);
-        } else if (productID_txt.length() != 13) {
-            JOptionPane.showMessageDialog(this, "Product ID must be 13 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
+        } else if (productID_txt.length() < 8 || productID_txt.length() > 13) {
+            JOptionPane.showMessageDialog(this, "Product ID must between 8-13 13 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
         } else if (cost.length() > 8) {
             JOptionPane.showMessageDialog(this, "Cost must less than or 8 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
         } else if (warranty.length() > 3) {
             JOptionPane.showMessageDialog(this, "Warranty must less than or 3 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
         } else if (quantity_txt.length() > 13) {
             JOptionPane.showMessageDialog(this, "Quantity must less than or 13 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
-        } else if (!isNumeric(quantity_txt) || !isNumeric(warranty) || !isNumeric(productID_txt)) {
-            JOptionPane.showMessageDialog(this, "Quantity, Cost or Warranty must be an integer format only", "Input Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!isNumeric(quantity_txt) || !isNumeric(cost) || !isNumeric(productID_txt)) {
+            JOptionPane.showMessageDialog(this, "Quantity, Cost or ProductID must be an integer format only", "Input Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            long productID = Long.parseLong(productID_txt);
             // Update product bean
+            ProductDAO dao = new ProductDAO();
+            HistoryDAO hisdao = new HistoryDAO();
             ProductBean bean = new ProductBean();
             bean.setProductID(productID);
             bean.setCategory(category);
@@ -3052,14 +3065,20 @@ public class Main extends javax.swing.JFrame {
             bean.setLocation(location);
             bean.setQuantity(quantity);
             bean.setWarranty(warranty);
+            bean.setStatus("Available");
+            bean.setImport(null);
+            bean.setUserLastModified(user_box.getText());
+            bean.setImage(null);
 
-            ProductDAO dao = new ProductDAO();
             try {
                 boolean status = dao.insertData(bean);
                 updateTable(dao.getData());
-                //updateBacklog(dao.getBacklogData());
+                updateHistory(hisdao.getHistoryData());
+
                 if (status) {
+                    setInputEnable(false);
                     JOptionPane.showMessageDialog(this, "Added to database successfully", "Added Success", JOptionPane.INFORMATION_MESSAGE);
+                    save_product_button.setEnabled(false);
                 }
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Error while adding product: " + ex, "Error", JOptionPane.ERROR_MESSAGE);
@@ -3078,7 +3097,7 @@ public class Main extends javax.swing.JFrame {
     private void editProduct() {
         if (productID_input.getText().length() != 0) {
             addType = false;
-            setInputEnable();
+            setInputEnable(true);
             save_product_button.setEnabled(true);
         }
     }
@@ -3090,18 +3109,22 @@ public class Main extends javax.swing.JFrame {
             if (DeleteConfirm == JOptionPane.YES_OPTION) {
                 long product_id = Long.parseLong(productID_input.getText());
                 ProductDAO dao = new ProductDAO();
-                BacklogDAO daobl = new BacklogDAO();
+                HistoryDAO hisdao = new HistoryDAO();
                 ProductBean bean = new ProductBean();
+                bean.setProductID(product_id);
+                bean.setUserLastModified(user_box.getText());
+
                 try {
-                    bean.setProductID(product_id);
                     boolean status = dao.deleteData(bean, product_id);
                     updateTable(dao.getData());
-                    updateBacklog(daobl.getBacklogData());
+                    updateHistory(hisdao.getHistoryData());
 
                     if (status) {
                         JOptionPane.showMessageDialog(this, "Deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        save_product_button.setEnabled(false);
                     }
                 } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "Error while deleting product " + ex, "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } else {
@@ -3123,31 +3146,31 @@ public class Main extends javax.swing.JFrame {
         description_input.setText("");
     }
 
-    private void setInputEnable() {
-        productID_input.setEditable(true);
-        category_input.setEnabled(true);
-        name_input.setEditable(true);
-        manufacture_input.setEditable(true);
-        model_input.setEditable(true);
-        location_input.setEditable(true);
-        cost_input.setEditable(true);
-        warranty_input.setEditable(true);
-        quantity_input.setEnabled(true);
-        description_input.setEditable(true);
-        product_img.setEnabled(true);
+    private void setInputEnable(boolean b) {
+        productID_input.setEditable(b);
+        category_input.setEnabled(b);
+        name_input.setEditable(b);
+        manufacture_input.setEditable(b);
+        model_input.setEditable(b);
+        location_input.setEditable(b);
+        cost_input.setEditable(b);
+        warranty_input.setEditable(b);
+        quantity_input.setEnabled(b);
+        description_input.setEditable(b);
+        product_img.setEnabled(b);
     }
-
-    private void add_product_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_product_buttonActionPerformed
-        clearProductInput();
-        setInputEnable();
-        addType = true;
-        category_input.setEnabled(true);
-        save_product_button.setEnabled(true);
-    }//GEN-LAST:event_add_product_buttonActionPerformed
 
     private static boolean isNumeric(String str) {
         return str.matches("^-?[0-9]+(\\.[0-9]+)?$");
     }
+
+    private void add_product_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_product_buttonActionPerformed
+        // clearProductInput();
+        setInputEnable(true);
+        addType = true;
+        category_input.setEnabled(true);
+        save_product_button.setEnabled(true);
+    }//GEN-LAST:event_add_product_buttonActionPerformed
 
     private void import_productActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_import_productActionPerformed
         // TODO add your handling code here:
@@ -3188,21 +3211,12 @@ public class Main extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "The selected file must be .csv type only.", "File type error", WARNING_MESSAGE);
             }
-
             product_img.setText("");
             product_img.setIcon(ResizeImage(path));
         } else if (result == JFileChooser.CANCEL_OPTION) {
         }
 
     }//GEN-LAST:event_browse_buttonActionPerformed
-
-    public ImageIcon ResizeImage(String imgPath) {
-        ImageIcon MyImage = new ImageIcon(imgPath);
-        Image img = MyImage.getImage();
-        Image newImage = img.getScaledInstance(product_img.getWidth(), product_img.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon image = new ImageIcon(newImage);
-        return image;
-    }
 
     private void new_db_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_new_db_menuitemActionPerformed
 
@@ -3287,9 +3301,9 @@ public class Main extends javax.swing.JFrame {
         body.setSelectedIndex(8);
     }//GEN-LAST:event_statistics_menuitemActionPerformed
 
-    private void backlog_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backlog_menuitemActionPerformed
+    private void history_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_history_menuitemActionPerformed
         body.setSelectedIndex(9);
-    }//GEN-LAST:event_backlog_menuitemActionPerformed
+    }//GEN-LAST:event_history_menuitemActionPerformed
 
     private void add_database_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_database_buttonActionPerformed
         new_db_menuitemActionPerformed(evt);
@@ -3310,7 +3324,7 @@ public class Main extends javax.swing.JFrame {
 
     private void localhost_dbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localhost_dbActionPerformed
         hostname_show_box.setText("localhost");
-        database_name_show_box.setText("mergano_db");
+        database_name_show_box.setText("mergano");
         database_type_show_box.setText("MySQL");
         port_show_box.setText("3306");
     }//GEN-LAST:event_localhost_dbActionPerformed
@@ -3355,9 +3369,9 @@ public class Main extends javax.swing.JFrame {
         body.setSelectedIndex(3);
     }//GEN-LAST:event_ord_button_welActionPerformed
 
-    private void bac_button_welActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bac_button_welActionPerformed
+    private void his_button_welActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_his_button_welActionPerformed
         body.setSelectedIndex(9);
-    }//GEN-LAST:event_bac_button_welActionPerformed
+    }//GEN-LAST:event_his_button_welActionPerformed
 
     private void welcome_panel_picActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_welcome_panel_picActionPerformed
         w.open_website("http://mergano.com");
@@ -3398,10 +3412,40 @@ public class Main extends javax.swing.JFrame {
     private void product_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_product_tableMouseClicked
         int selectedRow = product_table.getSelectedRow();
         int selectedColumn = product_table.getSelectedColumn();
-        System.out.println("CLICK COLUMN: " + selectedColumn);
-        System.out.println("CLICK INDEX ROW: " + selectedRow);
         fillDataField(selectedRow);
     }//GEN-LAST:event_product_tableMouseClicked
+
+    private void db4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_db4ActionPerformed
+    }//GEN-LAST:event_db4ActionPerformed
+
+    private void truncate_history_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_truncate_history_btnActionPerformed
+        if (product_table.getRowCount() > 0) {
+            HistoryDAO hisdao = new HistoryDAO();
+            hisdao.truncateHistory();
+            updateHistory(hisdao.getHistoryData());
+            truncate_history_btn.setEnabled(false);
+        }
+    }//GEN-LAST:event_truncate_history_btnActionPerformed
+
+    private void cost_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cost_inputActionPerformed
+
+    }//GEN-LAST:event_cost_inputActionPerformed
+
+    private void url_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_url_boxActionPerformed
+
+    }//GEN-LAST:event_url_boxActionPerformed
+
+    private void User_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_User_buttonMouseClicked
+
+    }//GEN-LAST:event_User_buttonMouseClicked
+
+    public ImageIcon ResizeImage(String imgPath) {
+        ImageIcon MyImage = new ImageIcon(imgPath);
+        Image img = MyImage.getImage();
+        Image newImage = img.getScaledInstance(product_img.getWidth(), product_img.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImage);
+        return image;
+    }
 
     private void fillDataField(int selectedRow) {
         edit_product_button.setEnabled(true);
@@ -3430,13 +3474,6 @@ public class Main extends javax.swing.JFrame {
         product_status_box.setText(selectedStatus);
         description_input.setText(selectedDescription);
 
-        //ArrayList<ProductBean> list;
-        //ProductDAO db = new ProductDAO();
-        //list = db.getData();
-        //long p_id = Long.parseLong(selectedProductID);
-        //        for (int i = 0; i < list.size(); i++) {
-//            System.out.println("DATA LIST: " + list.get(i).getName());
-//       }
         //System.out.println("CURRENT DATA LIST: " + list.get(selectedRow).getName());
         // System.out.println("CURRENT DATA IMAGE: " + Arrays.toString(list.get(selectedRow).getImage()));
         //if (Arrays.toString(list.get(selectedRow).getImage()) == null) {
@@ -3449,36 +3486,9 @@ public class Main extends javax.swing.JFrame {
         //}
     }
 
-    private void db4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_db4ActionPerformed
-        hostname_show_box.setText("");
-        database_name_show_box.setText("");
-        database_type_show_box.setText("MySQL");
-        port_show_box.setText("");
-    }//GEN-LAST:event_db4ActionPerformed
-
-    private void truncate_backlog_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_truncate_backlog_btnActionPerformed
-        BacklogDAO daobl = new BacklogDAO();
-        daobl.truncateBacklog();
-        updateBacklog(daobl.getBacklogData());
-
-    }//GEN-LAST:event_truncate_backlog_btnActionPerformed
-
-    private void cost_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cost_inputActionPerformed
-
-    }//GEN-LAST:event_cost_inputActionPerformed
-
-    private void url_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_url_boxActionPerformed
-
-    }//GEN-LAST:event_url_boxActionPerformed
-
-    private void User_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_User_buttonMouseClicked
-
-    }//GEN-LAST:event_User_buttonMouseClicked
-
     private void product_tableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_product_tableKeyPressed
         int index = product_table.getSelectedRow();
         if (evt.getKeyCode() == KeyEvent.VK_UP) {
-            System.out.println(index);
             if (index >= 1) {
                 fillDataField(index - 1);
             } else if (index == 1) {
@@ -3488,8 +3498,6 @@ public class Main extends javax.swing.JFrame {
             }
         }
         if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
-
-            System.out.println(index);
             if (index < product_table.getRowCount() - 1) {
                 fillDataField(index + 1);
             } else if (index == product_table.getRowCount()) { // If selected row is last row
@@ -3515,10 +3523,6 @@ public class Main extends javax.swing.JFrame {
     private void logout_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_menuitemActionPerformed
         logout_action();
     }//GEN-LAST:event_logout_menuitemActionPerformed
-
-    private void name_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_inputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_name_inputActionPerformed
 
     private void Logout_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Logout_buttonActionPerformed
         logout_action();
@@ -3546,7 +3550,6 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_query_table2KeyPressed
 
     private void print_report_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_print_report_buttonActionPerformed
-
         MessageFormat header = new MessageFormat("Report Print");
         MessageFormat footer = new MessageFormat("Page{0,number,integer}");
         try {
@@ -3566,10 +3569,6 @@ public class Main extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_product_imgMouseClicked
-
-    private void search_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_boxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_search_boxActionPerformed
 
     private void search_boxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_boxKeyReleased
         String keyword = search_box.getText().toLowerCase();
@@ -3594,7 +3593,6 @@ public class Main extends javax.swing.JFrame {
             default:
                 filter_search(keyword, 9);
                 break;
-
         }
     }//GEN-LAST:event_search_boxKeyReleased
 
@@ -3668,17 +3666,14 @@ public class Main extends javax.swing.JFrame {
                 list.get(i).getCost(),
                 list.get(i).getLocation(),
                 list.get(i).getWarranty(),
-                list.get(i).getQuantity(),
+                String.valueOf(list.get(i).getQuantity()),
                 list.get(i).getImport(),
                 list.get(i).getStatus(),
                 list.get(i).getUserLastModified()
             });
         }
-
         // set Model of JTabel from list array of data
-        product_table.setModel(new javax.swing.table.DefaultTableModel(values.toArray(new Object[][]{}), columns.toArray())
-        );
-
+        product_table.setModel(new javax.swing.table.DefaultTableModel(values.toArray(new Object[][]{}), columns.toArray()));
         product_table.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         product_table.removeColumn(product_table.getColumnModel().getColumn(5));
         product_table.getColumnModel().getColumn(0).setPreferredWidth(90);
@@ -3692,25 +3687,25 @@ public class Main extends javax.swing.JFrame {
         product_table.getColumnModel().getColumn(9).setPreferredWidth(60);
         product_table.getColumnModel().getColumn(10).setPreferredWidth(70);
         product_table.getColumnModel().getColumn(11).setPreferredWidth(65);
-
         // set the JTable into scroll panel
         ScrollPanelForQueryTable.setViewportView(product_table);
+        System.out.println("Product table updated");
     }
 
-    public void displayBacklog() {
-
-        //  backlog_table.setModel(new javax.swing.table.DefaultTableModel(valuesBL.toArray(new Object[][]{}), columnsBL.toArray()));
-        // ScrollPanelForBacklog.setViewportView(backlog_table);
+    public void displayHistory() {
+        //backlog_table.setModel(new javax.swing.table.DefaultTableModel(valuesBL.toArray(new Object[][]{}), columnsBL.toArray()));
+        ScrollPanelForHistory.setViewportView(history_table);
     }
 
-    private void updateBacklog(ArrayList<BacklogBean> list) {
+    private void updateHistory(ArrayList<HistoryBean> list) {
         List<String[]> values = new ArrayList<>();
         List<String> columns = new ArrayList<>();
-        BacklogDAO dao = new BacklogDAO();
+        HistoryDAO dao = new HistoryDAO();
         try {
-            list = dao.getBacklogData();
+            list = dao.getHistoryData();
         } catch (Exception e) {
         }
+
         columns.add("Backlog ID");
         columns.add("Type");
         columns.add("Action detail");
@@ -3728,8 +3723,10 @@ public class Main extends javax.swing.JFrame {
                 list.get(i).getUser()
             });
         }
-        backlog_table.setModel(new javax.swing.table.DefaultTableModel(values.toArray(new Object[][]{}), columns.toArray()));
-        ScrollPanelForBacklog.setViewportView(backlog_table);
+        history_table.setModel(new javax.swing.table.DefaultTableModel(values.toArray(new Object[][]{}), columns.toArray()));
+        ScrollPanelForHistory.setViewportView(history_table);
+        truncate_history_btn.setEnabled(true);
+        System.out.println("History table updated");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -3741,8 +3738,8 @@ public class Main extends javax.swing.JFrame {
     protected javax.swing.JButton Logout_button;
     protected javax.swing.JButton Options_button;
     protected javax.swing.JButton Print_button;
-    private javax.swing.JScrollPane ScrollPanelForBacklog;
     private javax.swing.JScrollPane ScrollPanelForBacklog1;
+    private javax.swing.JScrollPane ScrollPanelForHistory;
     private javax.swing.JScrollPane ScrollPanelForQueryTable;
     private javax.swing.JScrollPane ScrollPanelForQueryTable2;
     protected javax.swing.JButton Search_Button;
@@ -3752,10 +3749,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton add_database_button;
     public javax.swing.JButton add_product_button;
     private javax.swing.JMenuItem add_to_order_btn;
-    protected javax.swing.JButton bac_button_wel;
-    private javax.swing.JMenuItem backlog_menuitem;
-    protected javax.swing.JPanel backlog_panel;
-    private javax.swing.JTable backlog_table;
     private javax.swing.JMenuItem backup_menuitem;
     public javax.swing.JTabbedPane body;
     private javax.swing.JPanel body_panel;
@@ -3817,6 +3810,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem help_contents_menuitem;
     protected javax.swing.JMenu help_menu;
     private javax.swing.JCheckBoxMenuItem hint_menuitem;
+    protected javax.swing.JButton his_button_wel;
+    private javax.swing.JMenuItem history_menuitem;
+    protected javax.swing.JPanel history_panel;
+    private javax.swing.JTable history_table;
     protected javax.swing.JPanel home_panel;
     private javax.swing.JLabel hostname_label;
     private javax.swing.JTextField hostname_show_box;
@@ -4006,7 +4003,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JCheckBoxMenuItem toolbar_menuitem;
     protected javax.swing.JMenu tools_menu;
     private javax.swing.JMenuItem tracking_menuitem;
-    private javax.swing.JButton truncate_backlog_btn;
+    private javax.swing.JButton truncate_history_btn;
     public static javax.swing.JTextField url_box;
     public static javax.swing.JTextField user_box;
     private javax.swing.JLabel user_label;
