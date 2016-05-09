@@ -24,13 +24,9 @@ import com.mergano.core.dbManager.*;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -3533,12 +3529,8 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_search_menuitemActionPerformed
 
     private void export_productActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_export_productActionPerformed
-        try {
-            ExportCSV ex = new ExportCSV();
-            ex.exportToCSV(product_table);
-        } catch (IOException | ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ExportCSV ex = new ExportCSV();
+        ex.exportToCSV(product_table);
     }//GEN-LAST:event_export_productActionPerformed
 
     private void done_report_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_done_report_btnActionPerformed
