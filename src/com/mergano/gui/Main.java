@@ -1026,6 +1026,11 @@ public class Main extends javax.swing.JFrame {
         product_table.getColumnModel().getColumn(9).setPreferredWidth(60);
         product_table.getColumnModel().getColumn(10).setPreferredWidth(70);
         product_table.getColumnModel().getColumn(11).setPreferredWidth(65);
+
+        if (product_table.getRowCount() == 0) {
+            remove_product_button.setEnabled(false);
+            edit_product_button.setEnabled(false);
+        }
         product_table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 product_tableMouseClicked(evt);
@@ -2146,6 +2151,12 @@ public class Main extends javax.swing.JFrame {
         history_table.setAutoCreateRowSorter(true);
         history_table.setModel(new javax.swing.table.DefaultTableModel(valuesHIS.toArray(new Object[][] {}), columnsHIS.toArray())
             {public boolean isCellEditable(int row, int column){return false;}});
+        history_table.setFillsViewportHeight(true);
+        history_table.setShowHorizontalLines(false);
+        history_table.setShowVerticalLines(false);
+        if (history_table.getRowCount() == 0) {
+            truncate_history_btn.setEnabled(false);
+        }
         ScrollPanelForHistory.setViewportView(history_table);
         history_table.getAccessibleContext().setAccessibleName("History table");
         history_table.getAccessibleContext().setAccessibleDescription("This table store history action of user.");
@@ -3419,7 +3430,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_db4ActionPerformed
 
     private void truncate_history_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_truncate_history_btnActionPerformed
-        if (product_table.getRowCount() > 0) {
+        if (history_table.getRowCount() > 0) {
             HistoryDAO hisdao = new HistoryDAO();
             hisdao.truncateHistory();
             updateHistory(hisdao.getHistoryData());
