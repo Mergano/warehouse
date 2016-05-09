@@ -8,12 +8,6 @@ public class Authenticate {
     public int VerifyUser(String encryptedUser, String encryptedPass) {
         LoginDAO log = new LoginDAO();
         int flag = log.getUser(encryptedUser, encryptedPass);
-
-        System.out.println("User type: " + LoginBean.getUserType());
-        System.out.println("Username encrypted: " + encryptedUser);
-        System.out.println("Username from db: " + LoginBean.getUsername());
-        System.out.println("Password encrypted: " + encryptedPass);
-        System.out.println("Password from db: " + LoginBean.getPassword());
         switch (flag) {
             case 1:
                 System.out.println("AUTHENTICATE QUERY SUCCESSFUL");
@@ -33,20 +27,12 @@ public class Authenticate {
                 }
                 return 1;
             case 0:
-                System.out.println("INTERNET CONNECTION ERROR");
                 return 0; // LOGIN FAILED NO INTERNET CONNECTION
             case -1:
-                System.out.println("AUTHENTICATE UNKNOWN ERROR");
                 return -1; // UNKNOWN ERROR
             default:
                 break;
         }
         return 0;
     }
-    
-    public void ResetLoginBean() {
-        LoginBean log = new LoginBean();
-        
-    }
-
 }

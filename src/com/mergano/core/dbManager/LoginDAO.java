@@ -27,7 +27,6 @@ public class LoginDAO {
 
     public int getUser(String users, String passwd) {
         if (conn == null) {
-            System.err.println("ERROR: NO INTERNET CONNECTION");
             return 0;
         }
         String sql = "SELECT * FROM " + table + " WHERE username =? AND password =? ;";
@@ -53,6 +52,7 @@ public class LoginDAO {
             p.close();
             rs.close();
             conn.close();
+            System.out.println("=== CLOSED CONNECTION SUCCESSFULLY ===");
             return 1;
 
         } catch (SQLException se) {

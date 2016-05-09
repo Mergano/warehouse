@@ -3,9 +3,11 @@ package com.mergano.gui;
 import com.mergano.core.Authenticate;
 import static com.mergano.core.ClearGC.ClearGarbageCollection;
 import com.mergano.core.Encryption;
+import com.mergano.core.TextFieldLimit;
 import com.mergano.core.dbManager.LoginBean;
 import com.mergano.core.dbManager.StatusBean;
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
 
 public class Login extends javax.swing.JFrame {
 
@@ -14,6 +16,8 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
+        auth_username_input.setDocument(new TextFieldLimit(25));
+        auth_password_input.setDocument(new TextFieldLimit(25));
         login = new LoginBean();
     }
 
@@ -97,6 +101,7 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("com/mergano/Bundle"); // NOI18N
         setTitle(bundle.getString("title")); // NOI18N
+        setIconImage(new ImageIcon(getClass().getResource("/com/mergano/gui/_static/pic/icon.png")).getImage());
         setMinimumSize(new java.awt.Dimension(580, 480));
         setName("Form"); // NOI18N
         setPreferredSize(new java.awt.Dimension(500, 450));

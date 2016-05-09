@@ -2,6 +2,24 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/SearchDAO.java</file>
+            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/Authenticate.java</file>
+            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/UserBean.java</file>
+            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/RuntimeUtil.java</file>
+            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/ProductDAO.java</file>
+            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/LoadDriver.java</file>
+            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/Utils.java</file>
+            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/LoginDAO.java</file>
+            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/Logout.java</file>
+            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/gui/Login.java</file>
+            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/ConnectDB.java</file>
+            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/Encryption.java</file>
+            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/LoginBean.java</file>
+            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/gui/Main.java</file>
+            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/dbManager/UserDAO.java</file>
+            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/ClearGC.java</file>
+            <file>file:/C:/Users/vchuk/OneDrive/Documents/NetBeansProjects/mergano/src/com/mergano/core/TextFieldLimit.java</file>
+        </group>
     </open-files>
 </project-private>

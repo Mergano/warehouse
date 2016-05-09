@@ -61,8 +61,6 @@ public class ProductDAO {
                         stub.setLocation(rs.getString("location"));
                         stub.setWarranty(rs.getString("warranty"));
                         stub.setQuantity(rs.getInt("quantity"));
-                        //Date dbSqlDate = rs.getDate("import_date").toString();
-                        //stub.setImport(dbSqlDate.toString()); // SQL NOW
                         stub.setImport(rs.getDate("import_date").toString());
                         stub.setStatus(rs.getString("status"));
                         stub.setUserLastModified(rs.getString("user_lastmodified"));
