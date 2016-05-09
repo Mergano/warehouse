@@ -3573,7 +3573,29 @@ public class Main extends javax.swing.JFrame {
 
     private void search_boxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_boxKeyReleased
         String keyword = search_box.getText().toLowerCase();
-        filter_search(keyword);
+        int selectedCol = filter_column.getSelectedIndex();
+        int col;
+        switch (selectedCol) {
+            case 0:
+                filter_search(keyword, 0);
+                break;
+            case 1:
+                filter_search(keyword, 2);
+                break;
+            case 2:
+                filter_search(keyword, 1);
+                break;
+            case 3:
+                filter_search(keyword, 3);
+                break;
+            case 4:
+                filter_search(keyword, 7);
+                break;
+            default:
+                filter_search(keyword, 9);
+                break;
+
+        }
     }//GEN-LAST:event_search_boxKeyReleased
 
     private void product_tableMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_product_tableMouseReleased
@@ -3608,11 +3630,11 @@ public class Main extends javax.swing.JFrame {
         int DeleteImgConfirm = JOptionPane.showConfirmDialog(this, "Are you sure do you want to delete this picture?", "Delete confirmation", YES_NO_OPTION, QUESTION_MESSAGE);
     }//GEN-LAST:event_remove_product_img_menuActionPerformed
 
-    private void filter_search(String keyword) {
+    private void filter_search(String keyword, int column) {
         mod = (DefaultTableModel) product_table.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(mod);
         product_table.setRowSorter(tr);
-        tr.setRowFilter(RowFilter.regexFilter("(?i)" + keyword));
+        tr.setRowFilter(RowFilter.regexFilter("(?i)" + keyword, column));
     }
 
     private void logout_action() {
