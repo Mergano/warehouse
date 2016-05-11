@@ -6,6 +6,7 @@ import com.mergano.core.Encryption;
 import com.mergano.core.TextFieldLimit;
 import com.mergano.core.dbManager.LoginBean;
 import com.mergano.core.dbManager.StatusBean;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
@@ -102,7 +103,7 @@ public class Login extends javax.swing.JFrame {
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("com/mergano/Bundle"); // NOI18N
         setTitle(bundle.getString("title")); // NOI18N
         setIconImage(new ImageIcon(getClass().getResource("/com/mergano/gui/_static/pic/icon.png")).getImage());
-        setMinimumSize(new java.awt.Dimension(580, 480));
+        setMinimumSize(new java.awt.Dimension(500, 450));
         setName("Form"); // NOI18N
         setPreferredSize(new java.awt.Dimension(500, 450));
         setResizable(false);
@@ -130,17 +131,19 @@ public class Login extends javax.swing.JFrame {
 
         auth_body.setName("auth_body"); // NOI18N
         auth_body.setPreferredSize(new java.awt.Dimension(100, 160));
-        auth_body.setLayout(new java.awt.BorderLayout());
+        auth_body.setLayout(new java.awt.BorderLayout(0, 10));
 
-        auth_input_box.setMinimumSize(new java.awt.Dimension(0, 0));
+        auth_input_box.setMaximumSize(new java.awt.Dimension(500, 150));
+        auth_input_box.setMinimumSize(new java.awt.Dimension(500, 150));
         auth_input_box.setName("auth_input_box"); // NOI18N
-        auth_input_box.setPreferredSize(new java.awt.Dimension(0, 0));
+        auth_input_box.setPreferredSize(new java.awt.Dimension(500, 150));
         java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0);
         flowLayout1.setAlignOnBaseline(true);
         auth_input_box.setLayout(flowLayout1);
 
+        auth_input_layout_box.setMinimumSize(new java.awt.Dimension(300, 128));
         auth_input_layout_box.setName("auth_input_layout_box"); // NOI18N
-        auth_input_layout_box.setLayout(new javax.swing.BoxLayout(auth_input_layout_box, javax.swing.BoxLayout.Y_AXIS));
+        auth_input_layout_box.setLayout(new javax.swing.BoxLayout(auth_input_layout_box, javax.swing.BoxLayout.PAGE_AXIS));
 
         auth_username_label_box.setName("auth_username_label_box"); // NOI18N
         auth_username_label_box.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 5));
@@ -158,6 +161,11 @@ public class Login extends javax.swing.JFrame {
         auth_username_input.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         auth_username_input.setName("auth_username_input"); // NOI18N
         auth_username_input.setPreferredSize(new java.awt.Dimension(300, 30));
+        auth_username_input.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                auth_username_inputActionPerformed(evt);
+            }
+        });
         auth_username_box.add(auth_username_input);
 
         auth_input_layout_box.add(auth_username_box);
@@ -202,14 +210,14 @@ public class Login extends javax.swing.JFrame {
 
         auth_input_box.add(auth_input_layout_box);
 
-        auth_body.add(auth_input_box, java.awt.BorderLayout.CENTER);
+        auth_body.add(auth_input_box, java.awt.BorderLayout.NORTH);
 
-        getContentPane().add(auth_body, java.awt.BorderLayout.CENTER);
-
-        auth_footer.setMinimumSize(new java.awt.Dimension(100, 60));
+        auth_footer.setMinimumSize(new java.awt.Dimension(0, 0));
         auth_footer.setName("auth_footer"); // NOI18N
-        auth_footer.setPreferredSize(new java.awt.Dimension(100, 60));
-        auth_footer.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 0));
+        auth_footer.setPreferredSize(new java.awt.Dimension(0, 0));
+        java.awt.FlowLayout flowLayout2 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 22, 0);
+        flowLayout2.setAlignOnBaseline(true);
+        auth_footer.setLayout(flowLayout2);
 
         auth_signin_btn.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         auth_signin_btn.setText("Sign in");
@@ -233,7 +241,9 @@ public class Login extends javax.swing.JFrame {
         });
         auth_footer.add(auth_cancel_btn);
 
-        getContentPane().add(auth_footer, java.awt.BorderLayout.SOUTH);
+        auth_body.add(auth_footer, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(auth_body, java.awt.BorderLayout.CENTER);
 
         pack();
         setLocationRelativeTo(null);
@@ -252,6 +262,11 @@ public class Login extends javax.swing.JFrame {
             this.signin();
         }
     }//GEN-LAST:event_auth_password_inputKeyPressed
+
+    private void auth_username_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_auth_username_inputActionPerformed
+        KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        manager.getFocusOwner().transferFocus();
+    }//GEN-LAST:event_auth_username_inputActionPerformed
 
     private void signin() {
         final String user;
