@@ -27,6 +27,7 @@ import java.io.File;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -333,6 +334,9 @@ public class Main extends javax.swing.JFrame {
         backup_menuitem = new javax.swing.JMenuItem();
         bookmark_menuitem = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
+        language_menuitem = new javax.swing.JMenu();
+        en_us_menuitem = new javax.swing.JMenuItem();
+        en_us_menuitem1 = new javax.swing.JMenuItem();
         options_menuitem = new javax.swing.JMenuItem();
         help_menu = new javax.swing.JMenu();
         help_contents_menuitem = new javax.swing.JMenuItem();
@@ -2642,6 +2646,30 @@ public class Main extends javax.swing.JFrame {
         tools_menu.add(bookmark_menuitem);
         tools_menu.add(jSeparator6);
 
+        language_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/globe.png"))); // NOI18N
+        language_menuitem.setText("Language");
+
+        en_us_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/flags/usa.png"))); // NOI18N
+        en_us_menuitem.setText("English");
+        en_us_menuitem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                en_us_menuitemActionPerformed(evt);
+            }
+        });
+        language_menuitem.add(en_us_menuitem);
+
+        en_us_menuitem1.setFont(en_us_menuitem1.getFont());
+        en_us_menuitem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/flags/thai.png"))); // NOI18N
+        en_us_menuitem1.setText("ภาษาไทย");
+        en_us_menuitem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                en_us_menuitem1ActionPerformed(evt);
+            }
+        });
+        language_menuitem.add(en_us_menuitem1);
+
+        tools_menu.add(language_menuitem);
+
         options_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/gear.png"))); // NOI18N
         options_menuitem.setText("Options");
         options_menuitem.addActionListener(new java.awt.event.ActionListener() {
@@ -2666,7 +2694,7 @@ public class Main extends javax.swing.JFrame {
         help_menu.add(help_contents_menuitem);
 
         online_docs_menuitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.SHIFT_MASK));
-        online_docs_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/user2.png"))); // NOI18N
+        online_docs_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/help2.png"))); // NOI18N
         online_docs_menuitem.setText("Online Docs and Support");
         online_docs_menuitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3633,6 +3661,16 @@ public class Main extends javax.swing.JFrame {
         int DeleteImgConfirm = JOptionPane.showConfirmDialog(this, "Are you sure do you want to delete this picture?", "Delete confirmation", YES_NO_OPTION, QUESTION_MESSAGE);
     }//GEN-LAST:event_remove_product_img_menuActionPerformed
 
+    private void en_us_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_en_us_menuitemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_en_us_menuitemActionPerformed
+
+    private void en_us_menuitem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_en_us_menuitem1ActionPerformed
+        Locale l = new Locale("th", "TH");
+        //  ResourceBundle r = new ResourceBundle.getBundle("Bundle", 1);
+
+    }//GEN-LAST:event_en_us_menuitem1ActionPerformed
+
     private void filter_search(String keyword, int column) {
         mod = (DefaultTableModel) product_table.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(mod);
@@ -3799,6 +3837,8 @@ public class Main extends javax.swing.JFrame {
     protected javax.swing.JMenu edit_menu;
     private javax.swing.JButton edit_product_button;
     private javax.swing.JMenuItem edit_product_click_btn;
+    private javax.swing.JMenuItem en_us_menuitem;
+    private javax.swing.JMenuItem en_us_menuitem1;
     private javax.swing.JMenuItem exit_program;
     private javax.swing.JMenuItem export_csv_menuitem;
     private javax.swing.JMenu export_menuitem;
@@ -3903,6 +3943,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JToggleButton jToggleButton6;
+    private javax.swing.JMenu language_menuitem;
     private javax.swing.JPanel left_panel;
     private javax.swing.JToggleButton localhost_db;
     private javax.swing.JTextField location_input;

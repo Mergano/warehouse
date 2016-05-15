@@ -8,10 +8,10 @@ public class Authenticate {
     public int VerifyUser(String encryptedUser, String encryptedPass) {
         LoginDAO log = new LoginDAO();
         int flag = log.getUser(encryptedUser, encryptedPass);
+
         switch (flag) {
             case 1:
                 System.out.println("AUTHENTICATE QUERY SUCCESSFUL");
-
                 if (encryptedUser.equals(LoginBean.getUsername()) && encryptedPass.equals(LoginBean.getPassword()) && LoginBean.getUserType().equals("administrator")) {
                     return 1; // LOGIN SUCCESSFUL AS ADMINISTRATOR LEVEL
                 } else if (encryptedUser.equals(LoginBean.getUsername()) && encryptedPass.equals(LoginBean.getPassword()) && LoginBean.getUserType().equals("user")) {

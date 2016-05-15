@@ -46,7 +46,7 @@ public class ProductDAO {
                 rs = p.executeQuery();
 
                 if (rs.next()) {
-                    while (rs.next()) {
+                    do {
                         ProductBean bean = new ProductBean();
                         bean.setProductID(rs.getLong("product_id"));
                         bean.setCategory(rs.getString("category"));
@@ -63,7 +63,7 @@ public class ProductDAO {
                         bean.setUserLastModified(rs.getString("user_lastmodified"));
                         //bean.setImage(rs.getBytes("image"));
                         product_list.add(bean);
-                    }
+                    } while (rs.next());
                     // Benchmark time
                     long stop = java.lang.System.currentTimeMillis();
                     System.out.println("JDBC query time: " + String.valueOf((stop - start)) + " ms");

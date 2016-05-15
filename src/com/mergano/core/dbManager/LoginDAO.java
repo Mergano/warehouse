@@ -40,7 +40,6 @@ public class LoginDAO {
             conn.commit();
             while (rs.next()) {
                 LoginBean bean = new LoginBean();
-                Encryption encr = new Encryption();
                 bean.setUsername(rs.getString("username"));
                 bean.setPassword(rs.getString("password"));
                 bean.setUserType(rs.getString("type"));
