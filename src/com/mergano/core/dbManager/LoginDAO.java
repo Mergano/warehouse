@@ -27,7 +27,7 @@ public class LoginDAO {
 
     public int getUser(String users, String passwd) {
         if (conn == null) {
-            return 0;
+            return 0; // NO INTERNET CONNECTION
         }
         String sql = "SELECT * FROM " + table + " WHERE username =? AND password =? ;";
         String decryptUser;
@@ -58,12 +58,12 @@ public class LoginDAO {
             try {
                 System.err.println(se);
                 conn.close();
-                return -1;
+                return -1; // FAILED TO QUERY
             } catch (SQLException ex) {
                 Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return -1;
+        return -1; // DEFAULT RETURN
     }
 
 }

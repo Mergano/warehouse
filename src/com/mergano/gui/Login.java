@@ -284,42 +284,40 @@ public class Login extends javax.swing.JFrame {
                 case 0: // NO INTERNET CONNECTION
                     session = false;
                     SetCurrentSession(session);
-                    ResetLoginInput("Error: No internet connection");
+                    ResetLoginInput("No internet connection");
                     break; //optional
                 case 1: // LOGIN SUCCESSFUL AS ADMINISTRATOR LEVEL
-                    session = true;
-                    SetCurrentSession(session);
+                    SetCurrentSession(true);
                     ResetLoginInput("");
                     LoginAdminProcess(LoginBean.getUserTxt());
                     break;
                 case 2: // LOGIN SUCCESGULL AS USER LEVEL
-                    session = true;
-                    SetCurrentSession(session);
+                    SetCurrentSession(true);
                     ResetLoginInput("");
                     LoginUserProcess(LoginBean.getUserTxt());
                     break;
                 case 3: // LOGIN SUCCESGULL AS AGENT LEVEL
-                    session = true;
-                    SetCurrentSession(session);
+                    SetCurrentSession(true);
                     ResetLoginInput("");
                     LoginAgentProcess(LoginBean.getUserTxt());
                     break;
                 case 4: // LOGIN SUCCESGULL AS DRIVER LEVEL
-                    session = true;
-                    SetCurrentSession(session);
+                    SetCurrentSession(true);
                     ResetLoginInput("");
                     LoginDriverProcess(LoginBean.getUserTxt());
                     break;
                 case 5: // LOGIN SUCCESGULL AS DEBUG MODE
-                    session = true;
-                    SetCurrentSession(session);
+                    SetCurrentSession(true);
                     ResetLoginInput("");
                     LoginDebugModeProcess(LoginBean.getUserTxt());
                     break;
                 case 6: // LOGIN FAILED WRONG USER OR PASSWORD
-                    session = false;
-                    SetCurrentSession(session);
-                    ResetLoginInput("Error: Incorrect username or password");
+                    SetCurrentSession(false);
+                    ResetLoginInput("Incorrect username or password");
+                    break;
+                case -2: // LOGIN FAILED USER EXCEED THE LOGIN ATTEMPS
+                    SetCurrentSession(false);
+                    ResetLoginInput("System temporary locked. please contact your administrator.");
                     break;
             }
         } else {

@@ -4,11 +4,14 @@ import com.mergano.core.dbManager.LoginBean;
 import com.mergano.core.dbManager.LoginDAO;
 
 public class Authenticate {
-
+    private static int attempts =0;
+    private final int max = 5;
+    
     public int VerifyUser(String encryptedUser, String encryptedPass) {
         LoginDAO log = new LoginDAO();
         int flag = log.getUser(encryptedUser, encryptedPass);
 
+    if(attempts <= max) {
         switch (flag) {
             case 1:
                 System.out.println("AUTHENTICATE QUERY SUCCESSFUL");
@@ -23,6 +26,8 @@ public class Authenticate {
                 } else if (encryptedUser.equals(LoginBean.getUsername()) && encryptedPass.equals(LoginBean.getPassword()) && LoginBean.getUserType().equals("debug")) {
                     return 5;  // LOGIN SUCCESGULL AS DEBUG MODE LEVEL
                 } else if ((!encryptedUser.equals(LoginBean.getUsername())) || (!encryptedPass.equals(LoginBean.getPassword()))) {
+                    attempts++;
+                    System.out.println(attempts);
                     return 6; // LOGIN FAILED WRONG USER OR PASSWORD
                 }
                 return 1;
@@ -33,6 +38,9 @@ public class Authenticate {
             default:
                 break;
         }
-        return 0;
-    }
+    } else if(attempts > 3) { 
+          return -2; // BAN THE USER TEMPORARY
+      }
+  return 0;
+}
 }
