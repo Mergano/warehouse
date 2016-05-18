@@ -1,7 +1,7 @@
 package com.mergano.core;
 
-import com.mergano.core.dbManager.LoginBean;
-import com.mergano.core.dbManager.LoginDAO;
+import com.mergano.core.dao.LoginBean;
+import com.mergano.core.dao.LoginDAO;
 
 public class Authenticate {
     private static int attempts =0;

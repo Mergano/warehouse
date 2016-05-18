@@ -20,7 +20,11 @@ import com.mergano.core.Logout;
 import com.mergano.core.TextFieldLimit;
 import com.mergano.core.Utils;
 import com.mergano.core.WebBrowse;
-import com.mergano.core.dbManager.*;
+import com.mergano.core.dao.HistoryBean;
+import com.mergano.core.dao.HistoryDAO;
+import com.mergano.core.dao.ProductBean;
+import com.mergano.core.dao.ProductDAO;
+import com.mergano.core.dao.SearchDAO;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -960,8 +964,8 @@ public class Main extends javax.swing.JFrame {
         ScrollPanelForQueryTable.setPreferredSize(new java.awt.Dimension(500, 450));
         ScrollPanelForQueryTable.setRequestFocusEnabled(false);
 
-        ArrayList<com.mergano.core.dbManager.ProductBean> list = null;
-        com.mergano.core.dbManager.ProductDAO db = new com.mergano.core.dbManager.ProductDAO();
+        ArrayList<com.mergano.core.dao.ProductBean> list = null;
+        com.mergano.core.dao.ProductDAO db = new com.mergano.core.dao.ProductDAO();
         try {
             list = db.getData();
         }
@@ -2126,8 +2130,8 @@ public class Main extends javax.swing.JFrame {
 
         ScrollPanelForHistory.setBorder(null);
 
-        ArrayList<com.mergano.core.dbManager.HistoryBean> listHIS = null;
-        com.mergano.core.dbManager.HistoryDAO hisdao = new com.mergano.core.dbManager.HistoryDAO();
+        ArrayList<com.mergano.core.dao.HistoryBean> listHIS = null;
+        com.mergano.core.dao.HistoryDAO hisdao = new com.mergano.core.dao.HistoryDAO();
         try {
             listHIS = hisdao.getHistoryData();
         } catch (Exception e) {
