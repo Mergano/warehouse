@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mergano.core.dbManager;
+package com.mergano.core.bean;
 
-public class OrderDAO {
+/**
+ *
+ * @author vchuk
+ */
+public class UserBean {
 
 }

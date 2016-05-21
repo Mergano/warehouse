@@ -59,6 +59,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Browse..."/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="change_product_img_menuActionPerformed"/>
+          </Events>
         </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="remove_product_img_menu">
           <Properties>
@@ -1999,7 +2002,7 @@
                           <Font name="Segoe UI" size="11" style="0"/>
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="new javax.swing.table.DefaultTableModel(values.toArray(new Object[][] {}), columns.toArray())&#xa;{public boolean isCellEditable(int row, int column){return false;}}&#xa;" type="code"/>
+                          <Connection code="new javax.swing.table.DefaultTableModel(rows, columns)&#xa;    {public boolean isCellEditable(int row, int column){return false;}}&#xa;    " type="code"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Product table"/>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -2022,8 +2025,8 @@
                         <Property name="showVerticalLines" type="boolean" value="false"/>
                       </Properties>
                       <AccessibilityProperties>
-                        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Product Table"/>
-                        <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="This table store product information of warehouse."/>
+                        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
+                        <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
                       </AccessibilityProperties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="product_tableMouseClicked"/>
@@ -2033,7 +2036,7 @@
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()"/>
                         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="product_table.removeColumn(product_table.getColumnModel().getColumn(5));&#xa;product_table.getColumnModel().getColumn(0).setPreferredWidth(90);&#xa;product_table.getColumnModel().getColumn(1).setPreferredWidth(76);&#xa;product_table.getColumnModel().getColumn(2).setPreferredWidth(150);&#xa;product_table.getColumnModel().getColumn(3).setPreferredWidth(160);&#xa;product_table.getColumnModel().getColumn(4).setPreferredWidth(50);&#xa;product_table.getColumnModel().getColumn(6).setPreferredWidth(60);&#xa;product_table.getColumnModel().getColumn(7).setPreferredWidth(50);&#xa;product_table.getColumnModel().getColumn(8).setPreferredWidth(60);&#xa;product_table.getColumnModel().getColumn(9).setPreferredWidth(60);&#xa;product_table.getColumnModel().getColumn(10).setPreferredWidth(70);&#xa;product_table.getColumnModel().getColumn(11).setPreferredWidth(65);&#xa;&#xa;if (product_table.getRowCount() == 0) {&#xa;    remove_product_button.setEnabled(false);&#xa;    edit_product_button.setEnabled(false);&#xa;}"/>
-                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ArrayList&lt;com.mergano.core.dao.ProductBean&gt; list = null;&#xa;com.mergano.core.dao.ProductDAO db = new com.mergano.core.dao.ProductDAO();&#xa;try {&#xa;    list = db.getData();&#xa;}&#xa;catch (Exception e) {&#xa;    e.printStackTrace();&#xa;}&#xa;List&lt;String[]&gt; values = new ArrayList&lt;&gt;();&#xa;List&lt;String&gt; columns = new ArrayList&lt;&gt;();&#xa;columns.add(&quot;Product ID&quot;);&#xa;columns.add(&quot;Category&quot;);&#xa;columns.add(&quot;Name&quot;);&#xa;columns.add(&quot;Manufacture&quot;);&#xa;columns.add(&quot;Model&quot;);&#xa;columns.add(&quot;Description&quot;);&#xa;columns.add(&quot;Cost&quot;);&#xa;columns.add(&quot;Location&quot;);&#xa;columns.add(&quot;Warranty&quot;);&#xa;columns.add(&quot;Quantity&quot;);&#xa;columns.add(&quot;Import&quot;);&#xa;columns.add(&quot;Status&quot;);&#xa;columns.add(&quot;Last modified&quot;);&#xa;&#xa;for(int i =0; i&lt; list.size(); i++) {&#xa;    values.add(new String[] {&quot;&quot; +&#xa;        list.get(i).getProductID(),&#xa;        list.get(i).getCategory(),&#xa;        list.get(i).getName(),&#xa;        list.get(i).getManufacture(),&#xa;        list.get(i).getModel(),&#xa;        list.get(i).getDescription(),&#xa;        list.get(i).getCost(),&#xa;        list.get(i).getLocation(),&#xa;        list.get(i).getWarranty(),&#xa;        String.valueOf(list.get(i).getQuantity()),&#xa;        list.get(i).getImport(),&#xa;        list.get(i).getStatus(),&#xa;        list.get(i).getUserLastModified()&#xa;    });&#xa;&#xa;}&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ArrayList&lt;ProductBean&gt; list = null;&#xa;ProductDAO db = new ProductDAO();&#xa;try {&#xa;    list = db.getData();&#xa;}&#xa;catch (Exception e) {&#xa;    e.printStackTrace();&#xa;}&#xa;//List&lt;Object[]&gt; values = new ArrayList&lt;&gt;();&#xa;String[] columns = {&quot;Product ID&quot;,&quot;Category&quot;,&quot;Name&quot;,&quot;Manufacture&quot;,&quot;Model&quot;,&quot;Description&quot;,&quot;Cost&quot;,&quot;Location&quot;,&quot;Warranty&quot;,&quot;Quantity&quot;,&quot;Import&quot;,&quot;Status&quot;,&quot;Last modified&quot;,&quot;Image&quot;};&#xa;Object[][] rows = new Object[list.size()][14];&#xa;for(int i =0; i&lt; list.size(); i++) {&#xa;    //values.add(new Object[] {&#xa;        rows[i][0] = list.get(i).getProductID();&#xa;        rows[i][1] = list.get(i).getCategory();&#xa;        rows[i][2] = list.get(i).getName();&#xa;        rows[i][3] = list.get(i).getManufacture();&#xa;        rows[i][4] = list.get(i).getModel();&#xa;        rows[i][5] = list.get(i).getDescription();&#xa;        rows[i][6] = list.get(i).getCost();&#xa;        rows[i][7] = list.get(i).getLocation();&#xa;        rows[i][8] = list.get(i).getWarranty();&#xa;        rows[i][9] = list.get(i).getQuantity();&#xa;        rows[i][10] = list.get(i).getImport();&#xa;        rows[i][11] = list.get(i).getStatus();&#xa;        rows[i][12] = list.get(i).getUserLastModified();&#xa;        if(list.get(i).getPImage() != null) {&#xa;            ImageIcon image = new ImageIcon(new ImageIcon(list.get(i).getPImage()).getImage().getScaledInstance(60,20,Image.SCALE_SMOOTH));&#xa;            rows[i][13] = list.get(i).getPImage();&#xa;        } else {&#xa;        rows[i][13] = null;&#xa;}&#xa;}"/>
                         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="main_query_table"/>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                       </AuxValues>
@@ -2114,8 +2117,10 @@
                               <Font name="Segoe UI" size="12" style="0"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="null" type="code"/>
+                            </Property>
                             <Property name="text" type="java.lang.String" value="NO IMAGE"/>
-                            <Property name="enabled" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[60, 20]"/>
                             </Property>
@@ -2407,6 +2412,9 @@
                   <SubComponents>
                     <Component class="javax.swing.JButton" name="add_product_button">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="11" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Add"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[80, 28]"/>
@@ -2421,6 +2429,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="remove_product_button">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="11" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Remove"/>
                         <Property name="enabled" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -2433,6 +2444,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="edit_product_button">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="11" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Edit.."/>
                         <Property name="enabled" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -2445,6 +2459,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="save_product_button">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="11" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Save"/>
                         <Property name="enabled" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -4035,7 +4052,7 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()"/>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if (history_table.getRowCount() == 0) {&#xa;    truncate_history_btn.setEnabled(false);&#xa;}"/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ArrayList&lt;com.mergano.core.dao.HistoryBean&gt; listHIS = null;&#xa;com.mergano.core.dao.HistoryDAO hisdao = new com.mergano.core.dao.HistoryDAO(); &#xa;            try {&#xa;                    listHIS = hisdao.getHistoryData();&#xa;                } catch (Exception e) {&#xa;                    e.printStackTrace();&#xa;                }&#xa;        List&lt;String[]&gt; valuesHIS = new ArrayList&lt;&gt;();&#xa;        List&lt;String&gt; columnsHIS = new ArrayList&lt;&gt;();&#xa;        columnsHIS.add(&quot;#&quot;);&#xa;        columnsHIS.add(&quot;Type&quot;);&#xa;        columnsHIS.add(&quot;Action detail&quot;);&#xa;        columnsHIS.add(&quot;Date modified&quot;);&#xa;        columnsHIS.add(&quot;Time&quot;);&#xa;        columnsHIS.add(&quot;Username&quot;);&#xa;        &#xa;        for(int i =0; i&lt; listHIS.size(); i++) {&#xa;            valuesHIS.add(new String[] {&quot;&quot; +&#xa;            listHIS.get(i).getBacklogID(),&#xa;            listHIS.get(i).getActionType(),&#xa;            listHIS.get(i).getActionDetail(),&#xa;            listHIS.get(i).getBacklogDate(),&#xa;            listHIS.get(i).getBacklogTime(),&#xa;            listHIS.get(i).getUser()&#xa;    });&#xa;}"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ArrayList&lt;com.mergano.core.bean.HistoryBean&gt; listHIS = null;&#xa;com.mergano.core.dao.HistoryDAO hisdao = new com.mergano.core.dao.HistoryDAO(); &#xa;            try {&#xa;                    listHIS = hisdao.getHistoryData();&#xa;                } catch (Exception e) {&#xa;                    e.printStackTrace();&#xa;                }&#xa;        List&lt;String[]&gt; valuesHIS = new ArrayList&lt;&gt;();&#xa;        List&lt;String&gt; columnsHIS = new ArrayList&lt;&gt;();&#xa;        columnsHIS.add(&quot;#&quot;);&#xa;        columnsHIS.add(&quot;Type&quot;);&#xa;        columnsHIS.add(&quot;Action detail&quot;);&#xa;        columnsHIS.add(&quot;Date modified&quot;);&#xa;        columnsHIS.add(&quot;Time&quot;);&#xa;        columnsHIS.add(&quot;Username&quot;);&#xa;        &#xa;        for(int i =0; i&lt; listHIS.size(); i++) {&#xa;            valuesHIS.add(new String[] {&quot;&quot; +&#xa;            listHIS.get(i).getBacklogID(),&#xa;            listHIS.get(i).getActionType(),&#xa;            listHIS.get(i).getActionDetail(),&#xa;            listHIS.get(i).getBacklogDate(),&#xa;            listHIS.get(i).getBacklogTime(),&#xa;            listHIS.get(i).getUser()&#xa;    });&#xa;}"/>
                   </AuxValues>
                 </Component>
               </SubComponents>

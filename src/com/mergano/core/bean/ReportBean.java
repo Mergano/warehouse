@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mergano.core.dbManager;
+package com.mergano.core.bean;
 
 /**
  *
  * @author vchuk
  */
-public class UserBean {
+public class ReportBean {
 
 }

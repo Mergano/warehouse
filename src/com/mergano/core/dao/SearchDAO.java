@@ -1,5 +1,6 @@
 package com.mergano.core.dao;
 
+import com.mergano.core.bean.ProductBean;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;

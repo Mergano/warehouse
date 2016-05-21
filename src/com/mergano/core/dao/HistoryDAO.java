@@ -1,5 +1,6 @@
 package com.mergano.core.dao;
 
+import com.mergano.core.bean.HistoryBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,7 +30,7 @@ public class HistoryDAO {
     // get backlog data from backlog table
     public ArrayList<HistoryBean> getHistoryData() {
         ArrayList<HistoryBean> list = new ArrayList<>();
-        sql = "SELECT idbacklog, action_type, action_detail, date, time FROM " + backlog_table + ";";
+        sql = "SELECT idbacklog, action_type, action_detail, date, time, user FROM " + backlog_table + ";";
         if (conn == null) {
             System.out.print("ERROR NO CONNECTION");
         }
@@ -38,16 +39,16 @@ public class HistoryDAO {
             p = conn.prepareStatement(sql);
             rs = p.executeQuery();
             conn.commit();
-            do {
+            while (rs.next()) {
                 HistoryBean bean = new HistoryBean();
                 bean.setBacklogID(rs.getInt("idbacklog"));
                 bean.setActionType(rs.getString("action_type"));
                 bean.setActionDetail(rs.getString("action_detail"));
                 bean.setBacklogDate(rs.getDate("date").toString());
                 bean.setBacklogTime(rs.getTime("time").toString());
-                bean.setUser(rs.getString("users"));
+                bean.setUser(rs.getString("user"));
                 list.add(bean);
-            } while (rs.next());
+            }
             p.close();
             rs.close();
             conn.close();

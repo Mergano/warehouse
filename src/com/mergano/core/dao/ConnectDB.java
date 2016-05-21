@@ -1,5 +1,6 @@
 package com.mergano.core.dao;
 
+import com.mergano.core.bean.StatusBean;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.sql.Connection;

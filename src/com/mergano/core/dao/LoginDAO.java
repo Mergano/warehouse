@@ -1,5 +1,6 @@
 package com.mergano.core.dao;
 
+import com.mergano.core.bean.LoginBean;
 import com.mergano.core.Encryption;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

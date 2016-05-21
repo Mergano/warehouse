@@ -1,4 +1,6 @@
-package com.mergano.core.dbManager;
+package com.mergano.core.bean;
+
+import java.io.InputStream;
 
 public class ProductBean {
 
@@ -16,7 +18,8 @@ public class ProductBean {
     private String p_status;
     private String p_location;
     private String user_lastmodified;
-    private byte[] image;
+    private InputStream fileimgStream;
+    private byte[] pimage;
 
     // Setter and Getter for Product Management
     public long getProductID() {
@@ -123,12 +126,20 @@ public class ProductBean {
         this.user_lastmodified = user_lastmodified;
     }
 
-    public byte[] getImage() {
-        return image;
+    public byte[] getPImage() {
+        return pimage;
     }
 
-    public void setImage(byte[] img) {
-        this.image = img;
+    public void setPImage(byte[] pimage) {
+        this.pimage = pimage;
+    }
+
+    public InputStream getInputStream() {
+        return fileimgStream;
+    }
+
+    public void setInputStream(InputStream fileimgStream) {
+        this.fileimgStream = fileimgStream;
     }
 
 }

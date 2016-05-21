@@ -1,5 +1,6 @@
 package com.mergano.core.dao;
 
+import com.mergano.core.bean.ProductBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,7 +39,7 @@ public class ProductDAO {
                     JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         } else {
-            String sql = "SELECT product_id, category, manufacture, name, model, description, cost, location, warranty, quantity, import_date, status, user_lastmodified "
+            String sql = "SELECT product_id, category, manufacture, name, model, description, cost, location, warranty, quantity, import_date, status, user_lastmodified, image "
                     + "FROM " + table + " ORDER BY " + "category;";
             try {
                 long start = java.lang.System.currentTimeMillis();
@@ -61,7 +62,7 @@ public class ProductDAO {
                         bean.setImport(rs.getDate("import_date").toString());
                         bean.setStatus(rs.getString("status"));
                         bean.setUserLastModified(rs.getString("user_lastmodified"));
-                        //bean.setImage(rs.getBytes("image"));
+                        bean.setPImage(rs.getBytes("image"));
                         product_list.add(bean);
                     } while (rs.next());
                     // Benchmark time
@@ -74,7 +75,7 @@ public class ProductDAO {
                 p.close();
                 rs.close();
                 conn.close();
-            } catch (Exception e) {
+            } catch (SQLException e) {
                 System.err.print(e);
             }
         }
@@ -85,6 +86,9 @@ public class ProductDAO {
     public boolean insertData(ProductBean bean) {
         flag = false;
         try {
+            String querySetLimit = "SET GLOBAL max_allows_packet = 104857600"; // 10 MB
+            PreparedStatement ps = conn.prepareStatement(querySetLimit);
+            ps.execute();
             String sql_insert = "INSERT INTO " + table + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             p = conn.prepareStatement(sql_insert);
             p.setLong(1, bean.getProductID());
@@ -100,7 +104,7 @@ public class ProductDAO {
             p.setDate(11, java.sql.Date.valueOf(java.time.LocalDate.now()));
             p.setString(12, bean.getStatus());
             p.setString(13, bean.getUserLastModified());
-            p.setString(14, null);
+            p.setBlob(14, bean.getInputStream());
             p.executeUpdate();
 
             String sql_insert_his = "INSERT INTO " + backlog_table + " VALUES("
@@ -110,9 +114,10 @@ public class ProductDAO {
                     + "current_date()" + ","
                     + "current_time()" + ",'"
                     + bean.getUserLastModified() + "');";
-            System.out.println(sql_insert_his);
+
             p = conn.prepareStatement(sql_insert_his);
-            p.executeUpdate();
+            int query_status = p.executeUpdate();
+            System.out.println(query_status);
             conn.commit();
             flag = true;
             p.close();
@@ -127,30 +132,25 @@ public class ProductDAO {
     public boolean updateData(ProductBean bean, long n) {
         flag = false;
         try {
-            String sql_update = "UPDATE " + table + " SET"
-                    + " product_id="
-                    + bean.getProductID()
-                    + " , category='"
-                    + bean.getCategory()
-                    + "' , manufacture='"
-                    + bean.getManufacture()
-                    + "' , model='"
-                    + bean.getModel()
-                    + "' , description='"
-                    + bean.getDescription()
-                    + "' , cost="
-                    + Double.parseDouble(bean.getCost())
-                    + " , location='"
-                    + bean.getLocation()
-                    + "' , warranty='"
-                    + bean.getWarranty()
-                    + "' , quantity="
-                    + bean.getQuantity()
-                    + ", user_lastmodified= '"
-                    + bean.getUserLastModified()
-                    + "' WHERE product_id =" + n + ";";
+            String sql_update = "UPDATE " + table + " SET product_id =?,category=?,manufacture=?,name=?,model=?,description=?,cost=?,location=?,warranty=?,quantity=?,import_date=?,status_?,import_date=?,image=? WHERE product_id =" + n + ";";
             p = conn.prepareStatement(sql_update);
+            p.setLong(1, bean.getProductID());
+            p.setString(2, bean.getCategory());
+            p.setString(3, bean.getManufacture());
+            p.setString(4, bean.getName());
+            p.setString(5, bean.getModel());
+            p.setString(6, bean.getDescription());
+            p.setDouble(7, Double.parseDouble(bean.getCost()));
+            p.setString(8, bean.getLocation());
+            p.setString(9, bean.getWarranty());
+            p.setInt(10, bean.getQuantity());
+            p.setDate(11, java.sql.Date.valueOf(java.time.LocalDate.now()));
+            p.setString(12, bean.getStatus());
+            p.setString(13, bean.getUserLastModified());
+            p.setBlob(14, bean.getInputStream());
+            System.out.println(sql_update);
             p.executeUpdate();
+
             String sql_edit_his = "INSERT INTO " + backlog_table + " VALUES("
                     + "DEFAULT" + ","
                     + "'Edited'" + ","

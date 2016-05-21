@@ -1,4 +1,4 @@
-package com.mergano.core.dbManager;
+package com.mergano.core.bean;
 
 public class StatusBean {
 
