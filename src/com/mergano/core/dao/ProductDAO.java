@@ -86,9 +86,9 @@ public class ProductDAO {
     public boolean insertData(ProductBean bean) {
         flag = false;
         try {
-            String querySetLimit = "SET GLOBAL max_allows_packet = 104857600"; // 10 MB
-            PreparedStatement ps = conn.prepareStatement(querySetLimit);
-            ps.execute();
+            //String querySetLimit = "SET GLOBAL max_allows_packet = 104857600"; // 10 MB
+            //PreparedStatement ps = conn.prepareStatement(querySetLimit);
+            //ps.execute();
             String sql_insert = "INSERT INTO " + table + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             p = conn.prepareStatement(sql_insert);
             p.setLong(1, bean.getProductID());
@@ -104,7 +104,11 @@ public class ProductDAO {
             p.setDate(11, java.sql.Date.valueOf(java.time.LocalDate.now()));
             p.setString(12, bean.getStatus());
             p.setString(13, bean.getUserLastModified());
-            p.setBlob(14, bean.getInputStream());
+            if (bean.getInputStream() != null) {
+                p.setBlob(14, bean.getInputStream());
+            } else {
+                p.setNull(14, java.sql.Types.BLOB);
+            }
             p.executeUpdate();
 
             String sql_insert_his = "INSERT INTO " + backlog_table + " VALUES("
@@ -132,7 +136,8 @@ public class ProductDAO {
     public boolean updateData(ProductBean bean, long n) {
         flag = false;
         try {
-            String sql_update = "UPDATE " + table + " SET product_id =?,category=?,manufacture=?,name=?,model=?,description=?,cost=?,location=?,warranty=?,quantity=?,import_date=?,status_?,import_date=?,image=? WHERE product_id =" + n + ";";
+            System.out.println("XXX " + bean.getInputStream());
+            String sql_update = "UPDATE " + table + " SET product_id =?,category=?,manufacture=?,name=?,model=?,description=?,cost=?,location=?,warranty=?,quantity=?,import_date=?,status_?,user_lastmodified=?,image=? WHERE product_id =" + n + ";";
             p = conn.prepareStatement(sql_update);
             p.setLong(1, bean.getProductID());
             p.setString(2, bean.getCategory());
@@ -148,6 +153,11 @@ public class ProductDAO {
             p.setString(12, bean.getStatus());
             p.setString(13, bean.getUserLastModified());
             p.setBlob(14, bean.getInputStream());
+            //  if (bean.getInputStream() != null) {
+            //    p.setBlob(14, bean.getInputStream());
+            //  } else {
+            //    p.setNull(14, java.sql.Types.BLOB);
+            //  }
             System.out.println(sql_update);
             p.executeUpdate();
 
@@ -165,7 +175,7 @@ public class ProductDAO {
             p.close();
         } catch (SQLException e) {
             flag = false;
-            System.err.println(e);
+            e.printStackTrace();
         }
         return flag;
     }
