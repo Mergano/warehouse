@@ -869,7 +869,7 @@ public class Main extends javax.swing.JFrame {
         jLabel2.setPreferredSize(new java.awt.Dimension(206, 25));
         jPanel8.add(jLabel2);
 
-        total_stock_dashboard.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        total_stock_dashboard.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
         total_stock_dashboard.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         total_stock_dashboard.setToolTipText("");
         total_stock_dashboard.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -889,7 +889,7 @@ public class Main extends javax.swing.JFrame {
         jLabel3.setPreferredSize(new java.awt.Dimension(206, 25));
         jPanel11.add(jLabel3);
 
-        jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel26.setText("0");
         jLabel26.setToolTipText("");
@@ -910,7 +910,7 @@ public class Main extends javax.swing.JFrame {
         jLabel27.setPreferredSize(new java.awt.Dimension(206, 25));
         jPanel12.add(jLabel27);
 
-        jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel28.setText("0");
         jLabel28.setToolTipText("");
@@ -931,7 +931,8 @@ public class Main extends javax.swing.JFrame {
         jLabel29.setPreferredSize(new java.awt.Dimension(206, 25));
         jPanel13.add(jLabel29);
 
-        jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(255, 0, 0));
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel30.setText("0");
         jLabel30.setToolTipText("");
@@ -952,7 +953,7 @@ public class Main extends javax.swing.JFrame {
         jLabel31.setPreferredSize(new java.awt.Dimension(206, 25));
         jPanel14.add(jLabel31);
 
-        jLabel32.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel32.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
         jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel32.setText("2");
         jLabel32.setToolTipText("");
@@ -973,9 +974,9 @@ public class Main extends javax.swing.JFrame {
         jLabel33.setPreferredSize(new java.awt.Dimension(206, 25));
         jPanel15.add(jLabel33);
 
-        jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
         jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel34.setText("0");
+        jLabel34.setText("null");
         jLabel34.setToolTipText("");
         jLabel34.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel15.add(jLabel34);
@@ -988,7 +989,6 @@ public class Main extends javax.swing.JFrame {
 
         jLabel35.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel35.setText("TEST");
         jLabel35.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel35.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel35.setMinimumSize(new java.awt.Dimension(206, 25));
