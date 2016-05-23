@@ -114,31 +114,22 @@ public class Main extends javax.swing.JFrame {
         right_panel = new javax.swing.JPanel();
         welcome_panel_pic = new javax.swing.JButton();
         dashboard_panel = new javax.swing.JPanel();
-        dashboard_panel_body = new javax.swing.JPanel();
+        dashboard_panel_body_left = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        total_stock_dashboard = new javax.swing.JLabel();
+        in_stock_dashboard_label = new javax.swing.JLabel();
+        in_stock_dashboard = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jPanel12 = new javax.swing.JPanel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jPanel13 = new javax.swing.JPanel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jPanel14 = new javax.swing.JPanel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
+        out_of_stock_dashboard_label = new javax.swing.JLabel();
+        out_of_stock_dashboard = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
+        current_report_dashboard_label = new javax.swing.JLabel();
+        current_report_dashboard = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jPanel17 = new javax.swing.JPanel();
-        jLabel37 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
+        current_order_dashboard_label = new javax.swing.JLabel();
+        current_order_dashboard = new javax.swing.JLabel();
+        dashboard_panel_body_right = new javax.swing.JPanel();
+        scroll_panel_request_order = new javax.swing.JScrollPane();
+        request_order_table_dashboard = new javax.swing.JTable();
         management_panel = new javax.swing.JPanel();
         sm_left_panel = new javax.swing.JPanel();
         sm_header_group_panel = new javax.swing.JPanel();
@@ -209,6 +200,8 @@ public class Main extends javax.swing.JFrame {
         order_product_img = new javax.swing.JButton();
         order_request_panel = new javax.swing.JPanel();
         request_order_body_panel = new javax.swing.JPanel();
+        ScrollPanelForQueryTable3 = new javax.swing.JScrollPane();
+        request_order_table = new javax.swing.JTable();
         database_panel = new javax.swing.JPanel();
         store_db_panel = new javax.swing.JPanel();
         localhost_db = new javax.swing.JToggleButton();
@@ -851,178 +844,118 @@ public class Main extends javax.swing.JFrame {
 
         body.addTab("Welcome", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/home.png")), home_panel); // NOI18N
 
-        dashboard_panel.setLayout(new java.awt.BorderLayout(5, 5));
+        dashboard_panel.setLayout(new java.awt.GridLayout(1, 2));
 
-        dashboard_panel_body.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Stock Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
-        dashboard_panel_body.setPreferredSize(new java.awt.Dimension(860, 500));
-        dashboard_panel_body.setLayout(new java.awt.GridLayout(2, 4));
+        dashboard_panel_body_left.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Stock Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
+        dashboard_panel_body_left.setPreferredSize(new java.awt.Dimension(860, 500));
+        dashboard_panel_body_left.setLayout(new java.awt.GridLayout(2, 2));
 
         jPanel8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel8.setLayout(new java.awt.GridLayout(2, 1, 0, 5));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("In Stock");
-        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel2.setMinimumSize(new java.awt.Dimension(206, 25));
-        jLabel2.setPreferredSize(new java.awt.Dimension(206, 25));
-        jPanel8.add(jLabel2);
+        in_stock_dashboard_label.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        in_stock_dashboard_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        in_stock_dashboard_label.setText("In Stock");
+        in_stock_dashboard_label.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        in_stock_dashboard_label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        in_stock_dashboard_label.setMinimumSize(new java.awt.Dimension(206, 25));
+        in_stock_dashboard_label.setPreferredSize(new java.awt.Dimension(206, 25));
+        jPanel8.add(in_stock_dashboard_label);
 
-        total_stock_dashboard.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
-        total_stock_dashboard.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        total_stock_dashboard.setToolTipText("");
-        total_stock_dashboard.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel8.add(total_stock_dashboard);
+        in_stock_dashboard.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
+        in_stock_dashboard.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        in_stock_dashboard.setToolTipText("");
+        in_stock_dashboard.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel8.add(in_stock_dashboard);
 
-        dashboard_panel_body.add(jPanel8);
+        dashboard_panel_body_left.add(jPanel8);
 
         jPanel11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel11.setLayout(new java.awt.GridLayout(2, 1, 0, 5));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Total Order");
-        jLabel3.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel3.setMinimumSize(new java.awt.Dimension(206, 25));
-        jLabel3.setPreferredSize(new java.awt.Dimension(206, 25));
-        jPanel11.add(jLabel3);
+        out_of_stock_dashboard_label.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        out_of_stock_dashboard_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        out_of_stock_dashboard_label.setText("Out of stock");
+        out_of_stock_dashboard_label.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        out_of_stock_dashboard_label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        out_of_stock_dashboard_label.setMinimumSize(new java.awt.Dimension(206, 25));
+        out_of_stock_dashboard_label.setPreferredSize(new java.awt.Dimension(206, 25));
+        jPanel11.add(out_of_stock_dashboard_label);
 
-        jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
-        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel26.setText("0");
-        jLabel26.setToolTipText("");
-        jLabel26.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel11.add(jLabel26);
+        out_of_stock_dashboard.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
+        out_of_stock_dashboard.setForeground(new java.awt.Color(255, 0, 0));
+        out_of_stock_dashboard.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        out_of_stock_dashboard.setToolTipText("");
+        out_of_stock_dashboard.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel11.add(out_of_stock_dashboard);
 
-        dashboard_panel_body.add(jPanel11);
-
-        jPanel12.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel12.setLayout(new java.awt.GridLayout(2, 1, 0, 5));
-
-        jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel27.setText("Order Request");
-        jLabel27.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel27.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel27.setMinimumSize(new java.awt.Dimension(206, 25));
-        jLabel27.setPreferredSize(new java.awt.Dimension(206, 25));
-        jPanel12.add(jLabel27);
-
-        jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
-        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel28.setText("0");
-        jLabel28.setToolTipText("");
-        jLabel28.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel12.add(jLabel28);
-
-        dashboard_panel_body.add(jPanel12);
-
-        jPanel13.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel13.setLayout(new java.awt.GridLayout(2, 1, 0, 5));
-
-        jLabel29.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel29.setText("Out of Stock");
-        jLabel29.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel29.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel29.setMinimumSize(new java.awt.Dimension(206, 25));
-        jLabel29.setPreferredSize(new java.awt.Dimension(206, 25));
-        jPanel13.add(jLabel29);
-
-        jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
-        jLabel30.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel30.setText("0");
-        jLabel30.setToolTipText("");
-        jLabel30.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel13.add(jLabel30);
-
-        dashboard_panel_body.add(jPanel13);
-
-        jPanel14.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel14.setLayout(new java.awt.GridLayout(2, 1, 0, 5));
-
-        jLabel31.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel31.setText("Today Order");
-        jLabel31.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel31.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel31.setMinimumSize(new java.awt.Dimension(206, 25));
-        jLabel31.setPreferredSize(new java.awt.Dimension(206, 25));
-        jPanel14.add(jLabel31);
-
-        jLabel32.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
-        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel32.setText("2");
-        jLabel32.setToolTipText("");
-        jLabel32.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel14.add(jLabel32);
-
-        dashboard_panel_body.add(jPanel14);
+        dashboard_panel_body_left.add(jPanel11);
 
         jPanel15.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel15.setLayout(new java.awt.GridLayout(2, 1, 0, 5));
 
-        jLabel33.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel33.setText("Total Customer");
-        jLabel33.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel33.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel33.setMinimumSize(new java.awt.Dimension(206, 25));
-        jLabel33.setPreferredSize(new java.awt.Dimension(206, 25));
-        jPanel15.add(jLabel33);
+        current_report_dashboard_label.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        current_report_dashboard_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        current_report_dashboard_label.setText("Current report");
+        current_report_dashboard_label.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        current_report_dashboard_label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        current_report_dashboard_label.setMinimumSize(new java.awt.Dimension(206, 25));
+        current_report_dashboard_label.setPreferredSize(new java.awt.Dimension(206, 25));
+        jPanel15.add(current_report_dashboard_label);
 
-        jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
-        jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel34.setText("null");
-        jLabel34.setToolTipText("");
-        jLabel34.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel15.add(jLabel34);
+        current_report_dashboard.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
+        current_report_dashboard.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        current_report_dashboard.setToolTipText("");
+        current_report_dashboard.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel15.add(current_report_dashboard);
 
-        dashboard_panel_body.add(jPanel15);
+        dashboard_panel_body_left.add(jPanel15);
 
         jPanel16.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel16.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jPanel16.setLayout(new java.awt.GridLayout(2, 1, 0, 5));
 
-        jLabel35.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel35.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel35.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel35.setMinimumSize(new java.awt.Dimension(206, 25));
-        jLabel35.setPreferredSize(new java.awt.Dimension(206, 25));
-        jPanel16.add(jLabel35);
+        current_order_dashboard_label.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        current_order_dashboard_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        current_order_dashboard_label.setText("Current Order");
+        current_order_dashboard_label.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        current_order_dashboard_label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        current_order_dashboard_label.setMinimumSize(new java.awt.Dimension(206, 25));
+        current_order_dashboard_label.setPreferredSize(new java.awt.Dimension(206, 25));
+        jPanel16.add(current_order_dashboard_label);
 
-        jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel36.setToolTipText("");
-        jLabel36.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel16.add(jLabel36);
+        current_order_dashboard.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        current_order_dashboard.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        current_order_dashboard.setToolTipText("");
+        current_order_dashboard.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel16.add(current_order_dashboard);
 
-        dashboard_panel_body.add(jPanel16);
+        dashboard_panel_body_left.add(jPanel16);
 
-        jPanel17.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel17.setLayout(new java.awt.GridLayout(2, 1, 0, 5));
+        dashboard_panel.add(dashboard_panel_body_left);
 
-        jLabel37.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel37.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel37.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel37.setMinimumSize(new java.awt.Dimension(206, 25));
-        jLabel37.setPreferredSize(new java.awt.Dimension(206, 25));
-        jPanel17.add(jLabel37);
+        dashboard_panel_body_right.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pending Requested Order", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
+        dashboard_panel_body_right.setPreferredSize(new java.awt.Dimension(860, 500));
+        dashboard_panel_body_right.setLayout(new java.awt.BorderLayout());
 
-        jLabel38.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel38.setToolTipText("");
-        jLabel38.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel17.add(jLabel38);
+        scroll_panel_request_order.setBorder(null);
 
-        dashboard_panel_body.add(jPanel17);
+        request_order_table_dashboard.setDragEnabled(true);
+        request_order_table_dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                request_order_table_dashboardMouseClicked(evt);
+            }
+        });
+        request_order_table_dashboard.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                request_order_table_dashboardKeyPressed(evt);
+            }
+        });
+        scroll_panel_request_order.setViewportView(request_order_table_dashboard);
 
-        dashboard_panel.add(dashboard_panel_body, java.awt.BorderLayout.CENTER);
+        dashboard_panel_body_right.add(scroll_panel_request_order, java.awt.BorderLayout.CENTER);
+
+        dashboard_panel.add(dashboard_panel_body_right);
 
         body.addTab("Dashboard", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/dashboard.png")), dashboard_panel); // NOI18N
 
@@ -1566,17 +1499,24 @@ public class Main extends javax.swing.JFrame {
             body.addTab("Order Management", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/clipboard.png")), order_panel); // NOI18N
 
             request_order_body_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Request Order", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
+            request_order_body_panel.setLayout(new java.awt.BorderLayout());
 
-            javax.swing.GroupLayout request_order_body_panelLayout = new javax.swing.GroupLayout(request_order_body_panel);
-            request_order_body_panel.setLayout(request_order_body_panelLayout);
-            request_order_body_panelLayout.setHorizontalGroup(
-                request_order_body_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 1012, Short.MAX_VALUE)
-            );
-            request_order_body_panelLayout.setVerticalGroup(
-                request_order_body_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 557, Short.MAX_VALUE)
-            );
+            ScrollPanelForQueryTable3.setBorder(null);
+
+            request_order_table.setDragEnabled(true);
+            request_order_table.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    request_order_tableMouseClicked(evt);
+                }
+            });
+            request_order_table.addKeyListener(new java.awt.event.KeyAdapter() {
+                public void keyPressed(java.awt.event.KeyEvent evt) {
+                    request_order_tableKeyPressed(evt);
+                }
+            });
+            ScrollPanelForQueryTable3.setViewportView(request_order_table);
+
+            request_order_body_panel.add(ScrollPanelForQueryTable3, java.awt.BorderLayout.CENTER);
 
             javax.swing.GroupLayout order_request_panelLayout = new javax.swing.GroupLayout(order_request_panel);
             order_request_panel.setLayout(order_request_panelLayout);
@@ -1584,8 +1524,8 @@ public class Main extends javax.swing.JFrame {
                 order_request_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(order_request_panelLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(request_order_body_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(642, Short.MAX_VALUE))
+                    .addComponent(request_order_body_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 683, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(502, Short.MAX_VALUE))
             );
             order_request_panelLayout.setVerticalGroup(
                 order_request_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2897,11 +2837,6 @@ public class Main extends javax.swing.JFrame {
 
             about_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/info.png"))); // NOI18N
             about_menuitem.setText("About");
-            about_menuitem.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    about_menuitemMouseClicked(evt);
-                }
-            });
             about_menuitem.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     about_menuitemActionPerformed(evt);
@@ -2940,17 +2875,26 @@ public class Main extends javax.swing.JFrame {
         }// </editor-fold>//GEN-END:initComponents
 
     private void initialDashboard() {
-        int i = product_table.getRowCount();
-        total_stock_dashboard.setText(Integer.toString(i));
+        int pcount = product_table.getRowCount();
+        int rcount = report_table.getRowCount();
+        int ocount = request_order_table.getRowCount();
+        in_stock_dashboard.setText(Integer.toString(pcount));
+        current_report_dashboard.setText(Integer.toString(rcount));
+        current_order_dashboard.setText(Integer.toString(ocount));
+        int outofstock = 0;
+        for (int i = 0; i < pcount; i++) {
+            if ((int) product_table.getModel().getValueAt(product_table.getSelectedRow(), 9) == 0) {
+                outofstock++;
+            } else {
+                outofstock = 0;
+            }
+        }
+        out_of_stock_dashboard.setText(Integer.toString(outofstock));
     }
     private void about_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_menuitemActionPerformed
         About a = new About();
         a.setVisible(true);
     }//GEN-LAST:event_about_menuitemActionPerformed
-
-    private void about_menuitemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_about_menuitemMouseClicked
-
-    }//GEN-LAST:event_about_menuitemMouseClicked
 
     private void check_for_update_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_for_update_menuitemActionPerformed
         JOptionPane.showMessageDialog(this, "No new update found.", "Check for Updates", JOptionPane.INFORMATION_MESSAGE);
@@ -3172,17 +3116,19 @@ public class Main extends javax.swing.JFrame {
                 || location.length() == 0
                 || cost.length() == 0
                 || warranty.length() == 0) {
-            JOptionPane.showMessageDialog(this, "Please fill out request box", "Input Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please fill out request box", "Information is null", JOptionPane.WARNING_MESSAGE);
         } else if (new_productID_txt.length() < 8 || new_productID_txt.length() > 13) {
-            JOptionPane.showMessageDialog(this, "Product ID must between 8-13 13 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Product ID must between 8-13 digits only", "Input Error", JOptionPane.WARNING_MESSAGE);
         } else if (cost.length() > 8) {
-            JOptionPane.showMessageDialog(this, "Cost must less than or 8 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Cost must less than or 8 digits only", "Input Error", JOptionPane.WARNING_MESSAGE);
         } else if (warranty.length() > 3) {
-            JOptionPane.showMessageDialog(this, "Warranty must less than or 3 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
-        } else if (quantity > 999999) {
-            JOptionPane.showMessageDialog(this, "Quantity must less than or 6 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Warranty must less than or 3 digits only", "Input Error", JOptionPane.WARNING_MESSAGE);
+        } else if (quantity_txt.length() > 13) {
+            JOptionPane.showMessageDialog(this, "Quantity must less than or 13 digits only", "Input Error", JOptionPane.WARNING_MESSAGE);
+        } else if (quantity < 0) {
+            JOptionPane.showMessageDialog(this, "Quantity cannot be negative.", "Input Error", JOptionPane.WARNING_MESSAGE);
         } else if (!isNumeric(quantity_txt) || !isNumeric(cost) || !isNumeric(new_productID_txt)) {
-            JOptionPane.showMessageDialog(this, "Quantity, Cost or ProductID must be an integer format only", "Input Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Quantity, Cost or ProductID must be an integer format only", "Input Error", JOptionPane.WARNING_MESSAGE);
         } else {
 
             // Update product bean
@@ -3199,6 +3145,11 @@ public class Main extends javax.swing.JFrame {
             bean.setLocation(location);
             bean.setQuantity(quantity);
             bean.setWarranty(warranty);
+            if (quantity > 0) {
+                bean.setStatus("Available");
+            } else if (quantity == 0) {
+                bean.setStatus("Unavailable");
+            }
             bean.setUserLastModified(user_box.getText());
             bean.setInputStream(instm);
 
@@ -3238,15 +3189,17 @@ public class Main extends javax.swing.JFrame {
                 || warranty.length() == 0) {
             JOptionPane.showMessageDialog(this, "Please fill out request box", "Information is null", JOptionPane.WARNING_MESSAGE);
         } else if (productID_txt.length() < 8 || productID_txt.length() > 13) {
-            JOptionPane.showMessageDialog(this, "Product ID must between 8-13 13 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Product ID must between 8-13 digits only", "Input Error", JOptionPane.WARNING_MESSAGE);
         } else if (cost.length() > 8) {
-            JOptionPane.showMessageDialog(this, "Cost must less than or 8 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Cost must less than or 8 digits only", "Input Error", JOptionPane.WARNING_MESSAGE);
         } else if (warranty.length() > 3) {
-            JOptionPane.showMessageDialog(this, "Warranty must less than or 3 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Warranty must less than or 3 digits only", "Input Error", JOptionPane.WARNING_MESSAGE);
         } else if (quantity_txt.length() > 13) {
-            JOptionPane.showMessageDialog(this, "Quantity must less than or 13 digits only", "Input Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Quantity must less than or 13 digits only", "Input Error", JOptionPane.WARNING_MESSAGE);
+        } else if (quantity < 0) {
+            JOptionPane.showMessageDialog(this, "Quantity cannot be negative.", "Input Error", JOptionPane.WARNING_MESSAGE);
         } else if (!isNumeric(quantity_txt) || !isNumeric(cost) || !isNumeric(productID_txt)) {
-            JOptionPane.showMessageDialog(this, "Quantity, Cost or ProductID must be an integer format only", "Input Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Quantity, Cost or ProductID must be an integer format only", "Input Error", JOptionPane.WARNING_MESSAGE);
         } else {
             // Update product bean
             ProductDAO dao = new ProductDAO();
@@ -3262,8 +3215,11 @@ public class Main extends javax.swing.JFrame {
             bean.setLocation(location);
             bean.setQuantity(quantity);
             bean.setWarranty(warranty);
-            bean.setStatus("Available");
-            bean.setImport(null);
+            if (quantity > 0) {
+                bean.setStatus("Available");
+            } else if (quantity == 0) {
+                bean.setStatus("Unavailable");
+            }
             bean.setUserLastModified(user_box.getText());
             bean.setInputStream(instm);
 
@@ -3898,6 +3854,22 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_create_report_buttonActionPerformed
 
+    private void request_order_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_request_order_tableMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_request_order_tableMouseClicked
+
+    private void request_order_tableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_request_order_tableKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_request_order_tableKeyPressed
+
+    private void request_order_table_dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_request_order_table_dashboardMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_request_order_table_dashboardMouseClicked
+
+    private void request_order_table_dashboardKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_request_order_table_dashboardKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_request_order_table_dashboardKeyPressed
+
     private void filter_search(String keyword, int column) {
         mod = (DefaultTableModel) product_table.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(mod);
@@ -4003,6 +3975,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane ScrollPanelForHistory;
     private javax.swing.JScrollPane ScrollPanelForQueryTable;
     private javax.swing.JScrollPane ScrollPanelForQueryTable2;
+    private javax.swing.JScrollPane ScrollPanelForQueryTable3;
     protected javax.swing.JButton Search_Button;
     protected javax.swing.JButton User_button;
     private javax.swing.JButton View_button;
@@ -4025,10 +3998,15 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField cost_input;
     private javax.swing.JLabel cost_label;
     private javax.swing.JButton create_report_button;
+    private javax.swing.JLabel current_order_dashboard;
+    private javax.swing.JLabel current_order_dashboard_label;
+    private javax.swing.JLabel current_report_dashboard;
+    private javax.swing.JLabel current_report_dashboard_label;
     protected javax.swing.JButton da_button_wel;
     private javax.swing.JMenuItem dashboard_menuitem;
     protected javax.swing.JPanel dashboard_panel;
-    private javax.swing.JPanel dashboard_panel_body;
+    private javax.swing.JPanel dashboard_panel_body_left;
+    private javax.swing.JPanel dashboard_panel_body_right;
     protected javax.swing.JButton data_button_wel;
     protected javax.swing.JMenu database_menu;
     private javax.swing.JMenuItem database_menuitem;
@@ -4086,6 +4064,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem import_csv_menuitem;
     private javax.swing.JMenu import_menuitem;
     private javax.swing.JButton import_product;
+    private javax.swing.JLabel in_stock_dashboard;
+    private javax.swing.JLabel in_stock_dashboard_label;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -4097,27 +4077,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -4138,12 +4103,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem35;
     private javax.swing.JMenuItem jMenuItem36;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
@@ -4210,6 +4171,8 @@ public class Main extends javax.swing.JFrame {
     protected javax.swing.JButton order_request_button_wel;
     protected javax.swing.JPanel order_request_panel;
     private javax.swing.JPanel order_right_panel;
+    private javax.swing.JLabel out_of_stock_dashboard;
+    private javax.swing.JLabel out_of_stock_dashboard_label;
     public javax.swing.JTextField pathname_box;
     public static javax.swing.JTextField port_box;
     private javax.swing.JLabel port_label;
@@ -4254,6 +4217,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel report_text_area_panel;
     private javax.swing.JScrollPane report_text_scroll;
     private javax.swing.JPanel request_order_body_panel;
+    public javax.swing.JTable request_order_table;
+    public javax.swing.JTable request_order_table_dashboard;
     private javax.swing.JPanel right_panel;
     private javax.swing.JMenuItem save_menuitem;
     private javax.swing.JButton save_order_btn;
@@ -4261,6 +4226,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton save_report_button;
     private javax.swing.JMenuItem saveas_menuitem;
     private javax.swing.JScrollPane scroll_panel_for_report;
+    private javax.swing.JScrollPane scroll_panel_request_order;
     private javax.swing.JTextField search_box;
     private javax.swing.JTextField search_box_searching;
     private javax.swing.JButton search_button;
@@ -4292,7 +4258,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton test_connection_button;
     private javax.swing.JCheckBoxMenuItem toolbar_menuitem;
     protected javax.swing.JMenu tools_menu;
-    private javax.swing.JLabel total_stock_dashboard;
     private javax.swing.JMenuItem tracking_menuitem;
     private javax.swing.JButton truncate_history_btn;
     public static javax.swing.JTextField url_box;
