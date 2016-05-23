@@ -202,8 +202,8 @@ public class Main extends javax.swing.JFrame {
         delete_order_btn = new javax.swing.JButton();
         edit_order_btn = new javax.swing.JButton();
         order_confirm_btn = new javax.swing.JButton();
-        order_product_img_panel = new javax.swing.JPanel();
-        order_product_img = new javax.swing.JButton();
+        add_product_to_order_table = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         order_request_panel = new javax.swing.JPanel();
         request_order_body_panel = new javax.swing.JPanel();
         ScrollPanelForQueryTable3 = new javax.swing.JScrollPane();
@@ -211,32 +211,35 @@ public class Main extends javax.swing.JFrame {
         database_panel = new javax.swing.JPanel();
         store_db_panel = new javax.swing.JPanel();
         localhost_db = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
+        db2 = new javax.swing.JToggleButton();
+        db3 = new javax.swing.JToggleButton();
         db4 = new javax.swing.JToggleButton();
-        jToggleButton5 = new javax.swing.JToggleButton();
-        jToggleButton6 = new javax.swing.JToggleButton();
-        db_manager_panel = new javax.swing.JPanel();
-        add_database_button = new javax.swing.JButton();
-        find_database_button = new javax.swing.JButton();
-        delete_database_button1 = new javax.swing.JButton();
+        db5 = new javax.swing.JToggleButton();
+        db6 = new javax.swing.JToggleButton();
         db_info_panel = new javax.swing.JPanel();
         db_show_info_panel = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        connect_status_box = new javax.swing.JTextField();
-        database_name_show_box = new javax.swing.JTextField();
+        jPanel4 = new javax.swing.JPanel();
+        port_show_box = new javax.swing.JTextField();
         hostname_show_box = new javax.swing.JTextField();
         database_type_show_box = new javax.swing.JTextField();
-        port_show_box = new javax.swing.JTextField();
-        driver_box = new javax.swing.JTextField();
+        database_name_show_box = new javax.swing.JTextField();
+        connect_status_box = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        db_manager_panel = new javax.swing.JPanel();
+        db_action_group_panel = new javax.swing.JPanel();
         print_database_info_button = new javax.swing.JButton();
         test_connection_button = new javax.swing.JButton();
         set_as_default_button = new javax.swing.JButton();
+        add_database_button = new javax.swing.JButton();
+        delete_database_button1 = new javax.swing.JButton();
+        find_database_button = new javax.swing.JButton();
         searching_panel = new javax.swing.JPanel();
         search_input_panel = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -244,39 +247,40 @@ public class Main extends javax.swing.JFrame {
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jPanel7 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        search_box_searching = new javax.swing.JTextField();
+        search_filter_column = new javax.swing.JComboBox();
+        searching_box_input = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         search_button = new javax.swing.JButton();
         search_result_panel = new javax.swing.JPanel();
         img_box_search = new javax.swing.JPanel();
+        img_search_result_input = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel25 = new javax.swing.JLabel();
         product_group_panel = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        s_product_id_input = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        s_category_input = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        s_name_input = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        s_model_input = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        s_cost_input = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        s_quantity_input = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        s_warranty_input = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
-        jTextField14 = new javax.swing.JTextField();
+        s_status_input = new javax.swing.JTextField();
         product_location_panel = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        s_location_input = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
+        s_import_date_input = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
+        s_user_last_modified_input = new javax.swing.JTextField();
         statistics_panel = new javax.swing.JPanel();
         statistic_graph = new javax.swing.JPanel();
         statistic_control_group = new javax.swing.JPanel();
@@ -325,6 +329,7 @@ public class Main extends javax.swing.JFrame {
             jPanel1 = new javax.swing.JPanel();
             jPanel2 = new javax.swing.JPanel();
             truncate_history_btn = new javax.swing.JButton();
+            print_history_btn = new javax.swing.JButton();
             status_bar_frame = new javax.swing.JPanel();
             dbname_label = new javax.swing.JLabel();
             db_name_box = new javax.swing.JTextField();
@@ -1413,7 +1418,7 @@ public class Main extends javax.swing.JFrame {
 
                 order_panel.setLayout(new java.awt.BorderLayout());
 
-                order_left_panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Order Management"));
+                order_left_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Order Management", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12))); // NOI18N
                 order_left_panel.setPreferredSize(new java.awt.Dimension(800, 576));
 
                 ScrollPanelForQueryTable2.setBorder(null);
@@ -1444,18 +1449,21 @@ public class Main extends javax.swing.JFrame {
                     order_left_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(order_left_panelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(ScrollPanelForQueryTable2, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
+                        .addComponent(ScrollPanelForQueryTable2, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
                         .addContainerGap())
                 );
 
                 order_panel.add(order_left_panel, java.awt.BorderLayout.WEST);
 
-                order_right_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add order", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
+                order_right_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add order", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12))); // NOI18N
 
+                order_quantity_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
                 order_quantity_label.setText("Quantity");
 
+                jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
                 jLabel9.setText("Product ID");
 
+                jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
                 jLabel5.setText("Customer ID");
 
                 delete_order_btn.setText("Delete Order");
@@ -1466,25 +1474,10 @@ public class Main extends javax.swing.JFrame {
                 order_confirm_btn.setText("Confirm Order");
                 order_confirm_btn.setPreferredSize(new java.awt.Dimension(140, 40));
 
-                order_product_img_panel.setBackground(new java.awt.Color(255, 255, 255));
-                order_product_img_panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-                order_product_img_panel.setLayout(new java.awt.BorderLayout());
-
-                order_product_img.setBackground(new java.awt.Color(255, 255, 255));
-                order_product_img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/pic/logo.png"))); // NOI18N
-                order_product_img.setBorder(null);
-                order_product_img.setContentAreaFilled(false);
-                order_product_img.setMaximumSize(new java.awt.Dimension(150, 150));
-                order_product_img.setMinimumSize(new java.awt.Dimension(150, 150));
-                order_product_img.setOpaque(true);
-                order_product_img.setPreferredSize(new java.awt.Dimension(150, 150));
-                order_product_img.setRolloverEnabled(false);
-                order_product_img.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        order_product_imgActionPerformed(evt);
-                    }
-                });
-                order_product_img_panel.add(order_product_img, java.awt.BorderLayout.CENTER);
+                jTable1.setModel(new javax.swing.table.DefaultTableModel(rows, columns)
+                    {public boolean isCellEditable(int row, int column){return false;}}
+                );
+                add_product_to_order_table.setViewportView(jTable1);
 
                 javax.swing.GroupLayout order_right_panelLayout = new javax.swing.GroupLayout(order_right_panel);
                 order_right_panel.setLayout(order_right_panelLayout);
@@ -1496,28 +1489,28 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(order_confirm_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(order_right_panelLayout.createSequentialGroup()
                                 .addComponent(jLabel9)
-                                .addGap(27, 27, 27)
                                 .addGroup(order_right_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(order_quantity)
-                                    .addComponent(jTextField3)))
-                            .addGroup(order_right_panelLayout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField7))
+                                    .addGroup(order_right_panelLayout.createSequentialGroup()
+                                        .addGap(27, 27, 27)
+                                        .addComponent(order_quantity))
+                                    .addGroup(order_right_panelLayout.createSequentialGroup()
+                                        .addGap(28, 28, 28)
+                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(order_right_panelLayout.createSequentialGroup()
                                 .addGroup(order_right_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(order_right_panelLayout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(40, 40, 40)
+                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(order_quantity_label)
                                     .addGroup(order_right_panelLayout.createSequentialGroup()
                                         .addComponent(edit_order_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(delete_order_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(delete_order_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(add_product_to_order_table, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
-                    .addGroup(order_right_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(order_right_panelLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(order_product_img_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
-                            .addContainerGap()))
                 );
                 order_right_panelLayout.setVerticalGroup(
                     order_right_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1534,18 +1527,15 @@ public class Main extends javax.swing.JFrame {
                         .addGroup(order_right_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(order_quantity_label)
                             .addComponent(order_quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 335, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(add_product_to_order_table, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                         .addGroup(order_right_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(edit_order_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(delete_order_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(order_confirm_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
-                    .addGroup(order_right_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(order_right_panelLayout.createSequentialGroup()
-                            .addGap(135, 135, 135)
-                            .addComponent(order_product_img_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(221, Short.MAX_VALUE)))
                 );
 
                 order_panel.add(order_right_panel, java.awt.BorderLayout.CENTER);
@@ -1579,7 +1569,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(order_request_panelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(request_order_body_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 683, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(553, Short.MAX_VALUE))
+                        .addContainerGap(502, Short.MAX_VALUE))
                 );
                 order_request_panelLayout.setVerticalGroup(
                     order_request_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1592,6 +1582,7 @@ public class Main extends javax.swing.JFrame {
                 body.addTab("Order Request", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/checkmark.png")), order_request_panel); // NOI18N
 
                 database_panel.setEnabled(false);
+                database_panel.setLayout(new java.awt.BorderLayout());
 
                 store_db_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Stored Database", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
                 store_db_panel.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
@@ -1600,7 +1591,7 @@ public class Main extends javax.swing.JFrame {
 
                 localhost_db.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
                 localhost_db.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
-                localhost_db.setText("Localhost");
+                localhost_db.setText("Database 1");
                 localhost_db.setBorder(null);
                 localhost_db.setBorderPainted(false);
                 localhost_db.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -1616,32 +1607,32 @@ public class Main extends javax.swing.JFrame {
                 });
                 store_db_panel.add(localhost_db);
 
-                jToggleButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-                jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
-                jToggleButton2.setText("Database 2");
-                jToggleButton2.setFocusPainted(false);
-                jToggleButton2.setFocusable(false);
-                jToggleButton2.setIconTextGap(12);
-                jToggleButton2.setMargin(new java.awt.Insets(5, 5, 5, 5));
-                jToggleButton2.setOpaque(true);
-                jToggleButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32_roll.png"))); // NOI18N
-                jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+                db2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+                db2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
+                db2.setText("Database 2");
+                db2.setFocusPainted(false);
+                db2.setFocusable(false);
+                db2.setIconTextGap(12);
+                db2.setMargin(new java.awt.Insets(5, 5, 5, 5));
+                db2.setOpaque(true);
+                db2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32_roll.png"))); // NOI18N
+                db2.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        jToggleButton2ActionPerformed(evt);
+                        db2ActionPerformed(evt);
                     }
                 });
-                store_db_panel.add(jToggleButton2);
+                store_db_panel.add(db2);
 
-                jToggleButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-                jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
-                jToggleButton3.setText("Database 3");
-                jToggleButton3.setFocusPainted(false);
-                jToggleButton3.setFocusable(false);
-                jToggleButton3.setIconTextGap(12);
-                jToggleButton3.setMargin(new java.awt.Insets(5, 5, 5, 5));
-                jToggleButton3.setOpaque(true);
-                jToggleButton3.setRolloverEnabled(false);
-                store_db_panel.add(jToggleButton3);
+                db3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+                db3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
+                db3.setText("Database 3");
+                db3.setFocusPainted(false);
+                db3.setFocusable(false);
+                db3.setIconTextGap(12);
+                db3.setMargin(new java.awt.Insets(5, 5, 5, 5));
+                db3.setOpaque(true);
+                db3.setRolloverEnabled(false);
+                store_db_panel.add(db3);
 
                 db4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
                 db4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
@@ -1658,175 +1649,123 @@ public class Main extends javax.swing.JFrame {
                 });
                 store_db_panel.add(db4);
 
-                jToggleButton5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-                jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
-                jToggleButton5.setText("Database 5");
-                jToggleButton5.setFocusPainted(false);
-                jToggleButton5.setFocusable(false);
-                jToggleButton5.setIconTextGap(12);
-                jToggleButton5.setMargin(new java.awt.Insets(5, 5, 5, 5));
-                jToggleButton5.setRolloverEnabled(false);
-                store_db_panel.add(jToggleButton5);
+                db5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+                db5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
+                db5.setText("Database 5");
+                db5.setFocusPainted(false);
+                db5.setFocusable(false);
+                db5.setIconTextGap(12);
+                db5.setMargin(new java.awt.Insets(5, 5, 5, 5));
+                db5.setRolloverEnabled(false);
+                store_db_panel.add(db5);
 
-                jToggleButton6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-                jToggleButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
-                jToggleButton6.setText("Database 6");
-                jToggleButton6.setFocusPainted(false);
-                jToggleButton6.setFocusable(false);
-                jToggleButton6.setIconTextGap(12);
-                jToggleButton6.setMargin(new java.awt.Insets(5, 5, 5, 5));
-                jToggleButton6.setRolloverEnabled(false);
-                store_db_panel.add(jToggleButton6);
+                db6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+                db6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
+                db6.setText("Database 6");
+                db6.setFocusPainted(false);
+                db6.setFocusable(false);
+                db6.setIconTextGap(12);
+                db6.setMargin(new java.awt.Insets(5, 5, 5, 5));
+                db6.setRolloverEnabled(false);
+                store_db_panel.add(db6);
 
-                db_manager_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Database Manager", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
-
-                add_database_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_add_32.png"))); // NOI18N
-                add_database_button.setText("Add Database");
-                add_database_button.setIconTextGap(6);
-                add_database_button.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        add_database_buttonActionPerformed(evt);
-                    }
-                });
-
-                find_database_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_search_32.png"))); // NOI18N
-                find_database_button.setText("Edit Database");
-                find_database_button.setActionCommand("Find Database");
-                find_database_button.setIconTextGap(6);
-                find_database_button.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        find_database_buttonActionPerformed(evt);
-                    }
-                });
-
-                delete_database_button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_close_32.png"))); // NOI18N
-                delete_database_button1.setText("Delete Database");
-                delete_database_button1.setIconTextGap(6);
-                delete_database_button1.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        delete_database_button1ActionPerformed(evt);
-                    }
-                });
-
-                javax.swing.GroupLayout db_manager_panelLayout = new javax.swing.GroupLayout(db_manager_panel);
-                db_manager_panel.setLayout(db_manager_panelLayout);
-                db_manager_panelLayout.setHorizontalGroup(
-                    db_manager_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(db_manager_panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(add_database_button, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(delete_database_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(find_database_button, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                );
-                db_manager_panelLayout.setVerticalGroup(
-                    db_manager_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, db_manager_panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(db_manager_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(add_database_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(db_manager_panelLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(db_manager_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(find_database_button, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(delete_database_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap())
-                );
+                database_panel.add(store_db_panel, java.awt.BorderLayout.WEST);
 
                 db_info_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Database Infomation", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
+                db_info_panel.setLayout(new java.awt.BorderLayout(10, 10));
 
                 db_show_info_panel.setBackground(new java.awt.Color(255, 255, 255));
                 db_show_info_panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+                db_show_info_panel.setPreferredSize(new java.awt.Dimension(792, 400));
 
-                jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+                jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+                jPanel5.setLayout(new java.awt.GridLayout(6, 1, 0, 20));
+
+                jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
                 jLabel8.setText("Connection Status");
+                jPanel5.add(jLabel8);
 
-                jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+                jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
                 jLabel12.setText("Database Name");
+                jPanel5.add(jLabel12);
 
-                jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+                jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
                 jLabel13.setText("Database Type");
+                jPanel5.add(jLabel13);
 
-                jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+                jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
                 jLabel14.setText("Host name");
+                jPanel5.add(jLabel14);
 
-                jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+                jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
                 jLabel15.setText("Port");
+                jPanel5.add(jLabel15);
 
-                jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+                jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
                 jLabel16.setText("Driver");
+                jPanel5.add(jLabel16);
 
-                driver_box.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        driver_boxActionPerformed(evt);
-                    }
-                });
+                jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+                jPanel4.setLayout(new java.awt.GridLayout(6, 1, 0, 20));
+
+                port_show_box.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+                jPanel4.add(port_show_box);
+
+                hostname_show_box.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+                jPanel4.add(hostname_show_box);
+
+                database_type_show_box.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+                jPanel4.add(database_type_show_box);
+
+                database_name_show_box.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+                jPanel4.add(database_name_show_box);
+
+                connect_status_box.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+                jPanel4.add(connect_status_box);
+
+                jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+                jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MySQL", "Postgresql", "SQL Server", "DB2" }));
+                jPanel4.add(jComboBox1);
 
                 javax.swing.GroupLayout db_show_info_panelLayout = new javax.swing.GroupLayout(db_show_info_panel);
                 db_show_info_panel.setLayout(db_show_info_panelLayout);
                 db_show_info_panelLayout.setHorizontalGroup(
                     db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(db_show_info_panelLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13))
-                        .addGap(27, 27, 27)
-                        .addGroup(db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(database_name_show_box, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(connect_status_box, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(hostname_show_box, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(database_type_show_box, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(port_show_box, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(driver_box, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                        .addContainerGap())
                 );
                 db_show_info_panelLayout.setVerticalGroup(
                     db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(db_show_info_panelLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(connect_status_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(database_name_show_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12))
-                        .addGap(19, 19, 19)
-                        .addGroup(db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(database_type_show_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))
-                        .addGap(18, 18, 18)
-                        .addGroup(db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(hostname_show_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14))
-                        .addGap(18, 18, 18)
-                        .addGroup(db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel15)
-                            .addComponent(port_show_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel16)
-                            .addComponent(driver_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30))
+                        .addGap(26, 26, 26)
+                        .addGroup(db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(89, 89, 89))
                 );
+
+                db_info_panel.add(db_show_info_panel, java.awt.BorderLayout.NORTH);
+
+                db_manager_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Database Manager", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
+                db_manager_panel.setPreferredSize(new java.awt.Dimension(485, 100));
+                db_manager_panel.setLayout(new java.awt.BorderLayout());
+
+                db_action_group_panel.setLayout(new java.awt.GridLayout(2, 3, 10, 10));
 
                 print_database_info_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/button_up.png"))); // NOI18N
                 print_database_info_button.setText("Quick Connect");
                 print_database_info_button.setIconTextGap(12);
+                print_database_info_button.setPreferredSize(new java.awt.Dimension(130, 50));
                 print_database_info_button.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         print_database_info_buttonActionPerformed(evt);
                     }
                 });
+                db_action_group_panel.add(print_database_info_button);
 
                 test_connection_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/button_sync.png"))); // NOI18N
                 test_connection_button.setText("Test Connection");
@@ -1836,6 +1775,7 @@ public class Main extends javax.swing.JFrame {
                         test_connection_buttonActionPerformed(evt);
                     }
                 });
+                db_action_group_panel.add(test_connection_button);
 
                 set_as_default_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/leaf.png"))); // NOI18N
                 set_as_default_button.setText("Set as Default");
@@ -1845,61 +1785,47 @@ public class Main extends javax.swing.JFrame {
                         set_as_default_buttonActionPerformed(evt);
                     }
                 });
+                db_action_group_panel.add(set_as_default_button);
 
-                javax.swing.GroupLayout db_info_panelLayout = new javax.swing.GroupLayout(db_info_panel);
-                db_info_panel.setLayout(db_info_panelLayout);
-                db_info_panelLayout.setHorizontalGroup(
-                    db_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(db_info_panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(db_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(db_show_info_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(db_info_panelLayout.createSequentialGroup()
-                                .addComponent(print_database_info_button, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(test_connection_button, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(36, 36, 36)
-                                .addComponent(set_as_default_button, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())
-                );
-                db_info_panelLayout.setVerticalGroup(
-                    db_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(db_info_panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(db_show_info_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(db_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(print_database_info_button, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(test_connection_button, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(set_as_default_button, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                );
+                add_database_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_add_32.png"))); // NOI18N
+                add_database_button.setText("Add Database");
+                add_database_button.setIconTextGap(6);
+                add_database_button.setPreferredSize(new java.awt.Dimension(150, 50));
+                add_database_button.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        add_database_buttonActionPerformed(evt);
+                    }
+                });
+                db_action_group_panel.add(add_database_button);
 
-                javax.swing.GroupLayout database_panelLayout = new javax.swing.GroupLayout(database_panel);
-                database_panel.setLayout(database_panelLayout);
-                database_panelLayout.setHorizontalGroup(
-                    database_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(database_panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(store_db_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(database_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(db_manager_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(db_info_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
-                );
-                database_panelLayout.setVerticalGroup(
-                    database_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(database_panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(database_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(store_db_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(database_panelLayout.createSequentialGroup()
-                                .addComponent(db_info_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(db_manager_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())
-                );
+                delete_database_button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_close_32.png"))); // NOI18N
+                delete_database_button1.setText("Delete Database");
+                delete_database_button1.setIconTextGap(6);
+                delete_database_button1.setPreferredSize(new java.awt.Dimension(150, 50));
+                delete_database_button1.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        delete_database_button1ActionPerformed(evt);
+                    }
+                });
+                db_action_group_panel.add(delete_database_button1);
+
+                find_database_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_search_32.png"))); // NOI18N
+                find_database_button.setText("Edit Database");
+                find_database_button.setActionCommand("Find Database");
+                find_database_button.setIconTextGap(6);
+                find_database_button.setPreferredSize(new java.awt.Dimension(150, 50));
+                find_database_button.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        find_database_buttonActionPerformed(evt);
+                    }
+                });
+                db_action_group_panel.add(find_database_button);
+
+                db_manager_panel.add(db_action_group_panel, java.awt.BorderLayout.CENTER);
+
+                db_info_panel.add(db_manager_panel, java.awt.BorderLayout.CENTER);
+
+                database_panel.add(db_info_panel, java.awt.BorderLayout.CENTER);
 
                 body.addTab("Database", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/database_32.png")), database_panel); // NOI18N
 
@@ -1927,14 +1853,19 @@ public class Main extends javax.swing.JFrame {
 
                 jPanel7.setPreferredSize(new java.awt.Dimension(531, 300));
 
-                jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                jLabel7.setText("Product ID");
-                jPanel7.add(jLabel7);
+                search_filter_column.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Product ID", "Name", " " }));
+                search_filter_column.setPreferredSize(new java.awt.Dimension(100, 30));
+                jPanel7.add(search_filter_column);
 
-                search_box_searching.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                search_box_searching.setMinimumSize(new java.awt.Dimension(300, 30));
-                search_box_searching.setPreferredSize(new java.awt.Dimension(450, 30));
-                jPanel7.add(search_box_searching);
+                searching_box_input.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+                searching_box_input.setMinimumSize(new java.awt.Dimension(300, 30));
+                searching_box_input.setPreferredSize(new java.awt.Dimension(450, 30));
+                searching_box_input.addKeyListener(new java.awt.event.KeyAdapter() {
+                    public void keyPressed(java.awt.event.KeyEvent evt) {
+                        searching_box_inputKeyPressed(evt);
+                    }
+                });
+                jPanel7.add(searching_box_input);
 
                 search_input_panel.add(jPanel7, java.awt.BorderLayout.CENTER);
 
@@ -1963,18 +1894,14 @@ public class Main extends javax.swing.JFrame {
                 img_box_search.setBackground(new java.awt.Color(255, 255, 255));
                 img_box_search.setBorder(javax.swing.BorderFactory.createEtchedBorder());
                 img_box_search.setPreferredSize(new java.awt.Dimension(150, 150));
+                img_box_search.setLayout(new java.awt.BorderLayout());
 
-                javax.swing.GroupLayout img_box_searchLayout = new javax.swing.GroupLayout(img_box_search);
-                img_box_search.setLayout(img_box_searchLayout);
-                img_box_searchLayout.setHorizontalGroup(
-                    img_box_searchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 0, Short.MAX_VALUE)
-                );
-                img_box_searchLayout.setVerticalGroup(
-                    img_box_searchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 216, Short.MAX_VALUE)
-                );
+                img_search_result_input.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+                img_search_result_input.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                img_search_result_input.setText("NO IMAGE");
+                img_box_search.add(img_search_result_input, java.awt.BorderLayout.CENTER);
 
+                jTextArea1.setEditable(false);
                 jTextArea1.setColumns(20);
                 jTextArea1.setRows(5);
                 jScrollPane1.setViewportView(jTextArea1);
@@ -1986,70 +1913,80 @@ public class Main extends javax.swing.JFrame {
                 jLabel17.setText("Product ID");
                 product_group_panel.add(jLabel17);
 
-                jTextField4.setEditable(false);
-                product_group_panel.add(jTextField4);
+                s_product_id_input.setEditable(false);
+                product_group_panel.add(s_product_id_input);
 
                 jLabel19.setText("Category");
                 product_group_panel.add(jLabel19);
 
-                jTextField5.setEditable(false);
-                product_group_panel.add(jTextField5);
+                s_category_input.setEditable(false);
+                s_category_input.setBackground(new java.awt.Color(255, 255, 255));
+                product_group_panel.add(s_category_input);
 
                 jLabel18.setText("Name");
                 product_group_panel.add(jLabel18);
 
-                jTextField6.setEditable(false);
-                product_group_panel.add(jTextField6);
+                s_name_input.setEditable(false);
+                s_name_input.setBackground(new java.awt.Color(255, 255, 255));
+                product_group_panel.add(s_name_input);
 
                 jLabel6.setText("Model");
                 product_group_panel.add(jLabel6);
 
-                jTextField8.setEditable(false);
-                product_group_panel.add(jTextField8);
+                s_model_input.setEditable(false);
+                s_model_input.setBackground(new java.awt.Color(255, 255, 255));
+                product_group_panel.add(s_model_input);
 
                 jLabel10.setText("Cost");
                 product_group_panel.add(jLabel10);
 
-                jTextField9.setEditable(false);
-                product_group_panel.add(jTextField9);
+                s_cost_input.setEditable(false);
+                s_cost_input.setBackground(new java.awt.Color(255, 255, 255));
+                product_group_panel.add(s_cost_input);
 
                 jLabel21.setText("Quantity");
                 product_group_panel.add(jLabel21);
 
-                jTextField12.setEditable(false);
-                product_group_panel.add(jTextField12);
+                s_quantity_input.setEditable(false);
+                s_quantity_input.setBackground(new java.awt.Color(255, 255, 255));
+                product_group_panel.add(s_quantity_input);
 
                 jLabel20.setText("Warranty");
                 product_group_panel.add(jLabel20);
 
-                jTextField11.setEditable(false);
-                product_group_panel.add(jTextField11);
+                s_warranty_input.setEditable(false);
+                s_warranty_input.setBackground(new java.awt.Color(255, 255, 255));
+                product_group_panel.add(s_warranty_input);
 
                 jLabel23.setText("Status");
                 product_group_panel.add(jLabel23);
 
-                jTextField14.setEditable(false);
-                product_group_panel.add(jTextField14);
+                s_status_input.setEditable(false);
+                s_status_input.setBackground(new java.awt.Color(255, 255, 255));
+                product_group_panel.add(s_status_input);
 
                 product_location_panel.setLayout(new java.awt.GridLayout(6, 1, 0, 1));
 
                 jLabel11.setText("Location");
                 product_location_panel.add(jLabel11);
 
-                jTextField10.setEditable(false);
-                product_location_panel.add(jTextField10);
+                s_location_input.setEditable(false);
+                s_location_input.setBackground(new java.awt.Color(255, 255, 255));
+                product_location_panel.add(s_location_input);
 
                 jLabel22.setText("Imported Date");
                 product_location_panel.add(jLabel22);
 
-                jTextField13.setEditable(false);
-                product_location_panel.add(jTextField13);
+                s_import_date_input.setEditable(false);
+                s_import_date_input.setBackground(new java.awt.Color(255, 255, 255));
+                product_location_panel.add(s_import_date_input);
 
                 jLabel24.setText("User Last modified");
                 product_location_panel.add(jLabel24);
 
-                jTextField15.setEditable(false);
-                product_location_panel.add(jTextField15);
+                s_user_last_modified_input.setEditable(false);
+                s_user_last_modified_input.setBackground(new java.awt.Color(255, 255, 255));
+                product_location_panel.add(s_user_last_modified_input);
 
                 javax.swing.GroupLayout search_result_panelLayout = new javax.swing.GroupLayout(search_result_panel);
                 search_result_panel.setLayout(search_result_panelLayout);
@@ -2058,7 +1995,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(search_result_panelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(search_result_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
                             .addGroup(search_result_panelLayout.createSequentialGroup()
                                 .addGroup(search_result_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel25)
@@ -2167,17 +2104,18 @@ public class Main extends javax.swing.JFrame {
 
                 report_text_area_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Report to stock ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
                 report_text_area_panel.setPreferredSize(new java.awt.Dimension(218, 350));
-                report_text_area_panel.setLayout(new java.awt.BorderLayout());
+                report_text_area_panel.setLayout(new java.awt.BorderLayout(5, 10));
 
-                report_text_scroll.setPreferredSize(new java.awt.Dimension(200, 300));
+                report_text_scroll.setPreferredSize(new java.awt.Dimension(200, 280));
 
                 report_text_area.setColumns(20);
+                report_text_area.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
                 report_text_area.setRows(9);
-                report_text_area.setPreferredSize(new java.awt.Dimension(200, 250));
                 report_text_scroll.setViewportView(report_text_area);
 
                 report_text_area_panel.add(report_text_scroll, java.awt.BorderLayout.NORTH);
 
+                report_type.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
                 report_type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Critical", "Severve", "Regular" }));
                 report_type.setSelectedItem("Regular");
                 report_type.setMinimumSize(new java.awt.Dimension(65, 30));
@@ -2230,7 +2168,7 @@ public class Main extends javax.swing.JFrame {
                 report_btn_group.add(accept_report_btn);
 
                 save_report_button.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                save_report_button.setText("Save Report as..");
+                save_report_button.setText("Save Report as PDF");
                 save_report_button.setEnabled(false);
                 save_report_button.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2296,6 +2234,8 @@ public class Main extends javax.swing.JFrame {
 
                 history_panel.add(ScrollPanelForHistory, java.awt.BorderLayout.NORTH);
 
+                jPanel2.setLayout(new java.awt.GridLayout(1, 0, 10, 10));
+
                 truncate_history_btn.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
                 truncate_history_btn.setText("Clear");
                 truncate_history_btn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -2305,27 +2245,18 @@ public class Main extends javax.swing.JFrame {
                         truncate_history_btnActionPerformed(evt);
                     }
                 });
+                jPanel2.add(truncate_history_btn);
 
-                javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-                jPanel2.setLayout(jPanel2Layout);
-                jPanel2Layout.setHorizontalGroup(
-                    jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 200, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addComponent(truncate_history_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, Short.MAX_VALUE)))
-                );
-                jPanel2Layout.setVerticalGroup(
-                    jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 100, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addComponent(truncate_history_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, Short.MAX_VALUE)))
-                );
+                print_history_btn.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+                print_history_btn.setText("Print");
+                print_history_btn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+                print_history_btn.setPreferredSize(new java.awt.Dimension(200, 40));
+                print_history_btn.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        print_history_btnActionPerformed(evt);
+                    }
+                });
+                jPanel2.add(print_history_btn);
 
                 jPanel1.add(jPanel2);
 
@@ -2912,14 +2843,14 @@ public class Main extends javax.swing.JFrame {
                     layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(status_bar_frame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, 1251, Short.MAX_VALUE)
+                    .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
                 );
                 layout.setVerticalGroup(
                     layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
+                        .addComponent(body)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(status_bar_frame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 );
@@ -3523,12 +3454,7 @@ public class Main extends javax.swing.JFrame {
 
     private void set_as_default_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_set_as_default_buttonActionPerformed
         set_as_default_button.setEnabled(false);
-        // save connection setting to file then load as default
     }//GEN-LAST:event_set_as_default_buttonActionPerformed
-
-    private void driver_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driver_boxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_driver_boxActionPerformed
 
     private void localhost_dbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localhost_dbActionPerformed
         hostname_show_box.setText("localhost");
@@ -3592,9 +3518,32 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_Import_buttonActionPerformed
 
     private void search_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_buttonActionPerformed
-        body.setSelectedIndex(2);
+        search_action();
     }//GEN-LAST:event_search_buttonActionPerformed
 
+    private void search_action() {
+        int filter = filter_column.getSelectedIndex();
+        String input_search = searching_box_input.getText();
+        SearchDAO sdao = new SearchDAO();
+        if (searching_box_input.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Search field cannot be empty", "Input error", WARNING_MESSAGE);
+        } else {
+            switch (filter) {
+                case 0: // ProductID
+                    if (isNumeric(input_search)) {
+                        sdao.getDataSearch(input_search, 0);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Product ID must be integer type.", "Input error", WARNING_MESSAGE);
+                    }
+                    break;
+                case 1: // Name
+                    sdao.getDataSearch(input_search, 1);
+
+                    break;
+                default:
+            }
+        }
+    }
     private void search_boxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_boxKeyPressed
         if (evt.getKeyCode() == 10) {
             search_product_buttonActionPerformed(null);
@@ -3605,9 +3554,9 @@ public class Main extends javax.swing.JFrame {
         new_db_menuitemActionPerformed(evt);
     }//GEN-LAST:event_print_database_info_buttonActionPerformed
 
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+    private void db2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_db2ActionPerformed
 
-    }//GEN-LAST:event_jToggleButton2ActionPerformed
+    }//GEN-LAST:event_db2ActionPerformed
 
     private void test_connection_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_test_connection_buttonActionPerformed
         // TODO add your handling code here:
@@ -3760,12 +3709,7 @@ public class Main extends javax.swing.JFrame {
         } catch (java.awt.print.PrinterException e) {
             System.err.format("Can't print file", e.getMessage());
         }
-
     }//GEN-LAST:event_print_report_buttonActionPerformed
-
-    private void order_product_imgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_order_product_imgActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_order_product_imgActionPerformed
 
     private void product_imgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_product_imgMouseClicked
         if (save_product_button.isEnabled()) {
@@ -3992,6 +3936,24 @@ public class Main extends javax.swing.JFrame {
         ex.exportToCSV(product_table);
     }//GEN-LAST:event_Export_buttonActionPerformed
 
+    private void searching_box_inputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searching_box_inputKeyPressed
+        if (evt.getKeyCode() == 10) {
+            search_action();
+        }
+    }//GEN-LAST:event_searching_box_inputKeyPressed
+
+    private void print_history_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_print_history_btnActionPerformed
+        if (history_table.getRowCount() > 0) {
+            MessageFormat header = new MessageFormat("Report Print");
+            MessageFormat footer = new MessageFormat("Page{0,number,integer}");
+            try {
+                report_table.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+            } catch (java.awt.print.PrinterException e) {
+                System.err.format("Can't print file", e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_print_history_btnActionPerformed
+
     private void openUserManager() {
         UserManager m = new UserManager();
         m.setVisible(true);
@@ -4130,6 +4092,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton accept_report_btn;
     private javax.swing.JButton add_database_button;
     public javax.swing.JButton add_product_button;
+    private javax.swing.JScrollPane add_product_to_order_table;
     private javax.swing.JMenuItem add_to_order_btn;
     private javax.swing.JMenuItem backup_menuitem;
     public javax.swing.JTabbedPane body;
@@ -4160,8 +4123,13 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField database_name_show_box;
     protected javax.swing.JPanel database_panel;
     private javax.swing.JTextField database_type_show_box;
+    private javax.swing.JToggleButton db2;
+    private javax.swing.JToggleButton db3;
     private javax.swing.JToggleButton db4;
+    private javax.swing.JToggleButton db5;
+    private javax.swing.JToggleButton db6;
     private javax.swing.JLabel dbType_label;
+    private javax.swing.JPanel db_action_group_panel;
     private javax.swing.JPanel db_info_panel;
     private javax.swing.JPanel db_manager_panel;
     public static javax.swing.JTextField db_name_box;
@@ -4176,7 +4144,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel description_label;
     private javax.swing.JScrollPane description_scroll;
     private static javax.swing.JMenuItem disconnect_menuitem;
-    private javax.swing.JTextField driver_box;
     protected javax.swing.JMenu edit_menu;
     private javax.swing.JButton edit_order_btn;
     private javax.swing.JButton edit_product_button;
@@ -4207,12 +4174,14 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel hostname_label;
     private javax.swing.JTextField hostname_show_box;
     private javax.swing.JPanel img_box_search;
+    private javax.swing.JLabel img_search_result_input;
     private javax.swing.JPanel import_action_panel;
     private javax.swing.JMenuItem import_csv_menuitem;
     private javax.swing.JMenu import_menuitem;
     private javax.swing.JButton import_product;
     private javax.swing.JLabel in_stock_dashboard;
     private javax.swing.JLabel in_stock_dashboard_label;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -4232,7 +4201,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu7;
@@ -4254,6 +4222,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
@@ -4271,24 +4241,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JPopupMenu.Separator jSeparator9;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton3;
-    private javax.swing.JToggleButton jToggleButton5;
-    private javax.swing.JToggleButton jToggleButton6;
     private javax.swing.JMenu language_menuitem;
     private javax.swing.JPanel left_panel;
     private javax.swing.JToggleButton localhost_db;
@@ -4315,8 +4271,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel order_left_panel;
     private javax.swing.JMenuItem order_management_menuitem;
     protected javax.swing.JPanel order_panel;
-    private javax.swing.JButton order_product_img;
-    private javax.swing.JPanel order_product_img_panel;
     private javax.swing.JSpinner order_quantity;
     private javax.swing.JLabel order_quantity_label;
     protected javax.swing.JButton order_request_button_wel;
@@ -4331,6 +4285,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField port_show_box;
     private javax.swing.JButton print_database_info_button;
     private javax.swing.JToggleButton print_graph_button;
+    private javax.swing.JButton print_history_btn;
     private javax.swing.JMenuItem print_menuitem;
     private javax.swing.JMenuItem print_preview_menuitem;
     private javax.swing.JButton print_report_button;
@@ -4374,6 +4329,17 @@ public class Main extends javax.swing.JFrame {
     public javax.swing.JTable request_order_table;
     public javax.swing.JTable request_order_table_dashboard;
     private javax.swing.JPanel right_panel;
+    private javax.swing.JTextField s_category_input;
+    private javax.swing.JTextField s_cost_input;
+    private javax.swing.JTextField s_import_date_input;
+    private javax.swing.JTextField s_location_input;
+    private javax.swing.JTextField s_model_input;
+    private javax.swing.JTextField s_name_input;
+    private javax.swing.JTextField s_product_id_input;
+    private javax.swing.JTextField s_quantity_input;
+    private javax.swing.JTextField s_status_input;
+    private javax.swing.JTextField s_user_last_modified_input;
+    private javax.swing.JTextField s_warranty_input;
     private javax.swing.JMenuItem save_menuitem;
     private javax.swing.JButton save_product_button;
     private javax.swing.JButton save_report_button;
@@ -4381,12 +4347,13 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane scroll_panel_for_report;
     private javax.swing.JScrollPane scroll_panel_request_order;
     private javax.swing.JTextField search_box;
-    private javax.swing.JTextField search_box_searching;
     private javax.swing.JButton search_button;
+    private javax.swing.JComboBox search_filter_column;
     private javax.swing.JPanel search_input_panel;
     private javax.swing.JMenuItem search_menuitem;
     private javax.swing.JButton search_product_button;
     private javax.swing.JPanel search_result_panel;
+    private javax.swing.JTextField searching_box_input;
     private javax.swing.JMenuItem searching_menuitem;
     protected javax.swing.JPanel searching_panel;
     protected javax.swing.JButton ser_button_wel;

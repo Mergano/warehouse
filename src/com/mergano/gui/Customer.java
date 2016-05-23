@@ -14,8 +14,8 @@ public class Customer extends javax.swing.JFrame {
     private void initComponents() {
 
         edit_customer_panel = new javax.swing.JPanel();
-        ScrollPanelForUserQueryTable = new javax.swing.JScrollPane();
-        user_query_table = new javax.swing.JTable();
+        ScrollPanelForCustomerQueryTable = new javax.swing.JScrollPane();
+        customer_table = new javax.swing.JTable();
         customer_manager_input_group = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -42,24 +42,24 @@ public class Customer extends javax.swing.JFrame {
 
         edit_customer_panel.setLayout(new java.awt.BorderLayout());
 
-        ScrollPanelForUserQueryTable.setBorder(null);
-        ScrollPanelForUserQueryTable.setPreferredSize(new java.awt.Dimension(500, 400));
+        ScrollPanelForCustomerQueryTable.setBorder(null);
+        ScrollPanelForCustomerQueryTable.setPreferredSize(new java.awt.Dimension(500, 400));
 
-        user_query_table.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        user_query_table.setDragEnabled(true);
-        user_query_table.addMouseListener(new java.awt.event.MouseAdapter() {
+        customer_table.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        customer_table.setDragEnabled(true);
+        customer_table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                user_query_tableMouseClicked(evt);
+                customer_tableMouseClicked(evt);
             }
         });
-        user_query_table.addKeyListener(new java.awt.event.KeyAdapter() {
+        customer_table.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                user_query_tableKeyPressed(evt);
+                customer_tableKeyPressed(evt);
             }
         });
-        ScrollPanelForUserQueryTable.setViewportView(user_query_table);
+        ScrollPanelForCustomerQueryTable.setViewportView(customer_table);
 
-        edit_customer_panel.add(ScrollPanelForUserQueryTable, java.awt.BorderLayout.PAGE_START);
+        edit_customer_panel.add(ScrollPanelForCustomerQueryTable, java.awt.BorderLayout.PAGE_START);
 
         jPanel2.setLayout(new java.awt.GridLayout(3, 1, 10, 10));
 
@@ -73,8 +73,14 @@ public class Customer extends javax.swing.JFrame {
         jPanel2.add(jLabel3);
 
         jPanel1.setLayout(new java.awt.GridLayout(3, 1, 10, 10));
+
+        customer_name_edit_input.setEditable(false);
         jPanel1.add(customer_name_edit_input);
+
+        company_name_edit_input.setEditable(false);
         jPanel1.add(company_name_edit_input);
+
+        contact_edit_input.setEditable(false);
         jPanel1.add(contact_edit_input);
 
         javax.swing.GroupLayout customer_manager_input_groupLayout = new javax.swing.GroupLayout(customer_manager_input_group);
@@ -121,6 +127,12 @@ public class Customer extends javax.swing.JFrame {
 
         delete_customer_btn.setForeground(new java.awt.Color(204, 0, 0));
         delete_customer_btn.setText("Delete");
+        delete_customer_btn.setEnabled(false);
+        delete_customer_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delete_customer_btnActionPerformed(evt);
+            }
+        });
         cutomer_manager_btn_group.add(delete_customer_btn);
 
         cancel_customer_btn.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -159,15 +171,17 @@ public class Customer extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_cancel_customer_btnActionPerformed
 
-    private void user_query_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_user_query_tableMouseClicked
-        //   this.fillDataField();
-    }//GEN-LAST:event_user_query_tableMouseClicked
+    private void customer_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customer_tableMouseClicked
+        if (customer_table.getSelectedRow() > 0) {
+            delete_customer_btn.setEnabled(true);
+        }
+    }//GEN-LAST:event_customer_tableMouseClicked
 
-    private void user_query_tableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_user_query_tableKeyPressed
+    private void customer_tableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customer_tableKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_UP || evt.getKeyCode() == KeyEvent.VK_DOWN) {
             //    this.fillDataField();
         }
-    }//GEN-LAST:event_user_query_tableKeyPressed
+    }//GEN-LAST:event_customer_tableKeyPressed
 
     private void edit_customer_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_customer_btnActionPerformed
         enable_customer_edit_input(true);
@@ -177,18 +191,23 @@ public class Customer extends javax.swing.JFrame {
         enable_customer_edit_input(false);
     }//GEN-LAST:event_save_customer_btnActionPerformed
 
+    private void delete_customer_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_customer_btnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_delete_customer_btnActionPerformed
+
     private void enable_customer_edit_input(boolean b) {
         customer_name_edit_input.setEditable(b);
         company_name_edit_input.setEditable(b);
         contact_edit_input.setEditable(b);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane ScrollPanelForUserQueryTable;
+    private javax.swing.JScrollPane ScrollPanelForCustomerQueryTable;
     private javax.swing.JButton cancel_customer_btn;
     private javax.swing.JTextField company_name_edit_input;
     private javax.swing.JTextField contact_edit_input;
     private javax.swing.JPanel customer_manager_input_group;
     private javax.swing.JTextField customer_name_edit_input;
+    public javax.swing.JTable customer_table;
     private javax.swing.JPanel cutomer_manager_btn_group;
     private javax.swing.JButton delete_customer_btn;
     private javax.swing.JButton edit_customer_btn;
@@ -199,6 +218,5 @@ public class Customer extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton save_customer_btn;
-    public javax.swing.JTable user_query_table;
     // End of variables declaration//GEN-END:variables
 }
