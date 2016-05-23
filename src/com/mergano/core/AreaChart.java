@@ -5,10 +5,7 @@
  */
 package com.mergano.core;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -20,46 +17,36 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.general.DatasetUtilities;
 
-public class AreaChart extends JFrame{
+public class AreaChart {
 
     public ChartPanel chartPanel;
 
     public ChartPanel getChart() {
         // create a dataset...
         final double[][] data = new double[][]{
-            {1.0, 4.0, 3.0, 5.0, 5.0, 7.0, 7.0, 8.0},
-            {5.0, 7.0, 6.0, 8.0, 4.0, 4.0, 2.0, 1.0},
-            {4.0, 3.0, 2.0, 3.0, 6.0, 3.0, 4.0, 3.0}
+            {34.0, 10.0, 2.0, 25.0, 53.0, 79.0, 27.0, 13.0, 34.0, 13.0, 5.0, 39.0, 69.0, 85.0, 55.0, 32.0, 48.0, 25.0, 53.0, 79.0, 27.0, 13.0, 34.0, 13.0, 0, 79.0, 27.0, 13.0, 34.0, 13.0,}
         };
 
         final CategoryDataset dataset = DatasetUtilities.createCategoryDataset(
-                "Series ", "Type ", data
+                "May ", "Day ", data
         );
-
         // create the chart...
         final JFreeChart chart = createChart(dataset);
         chartPanel = new ChartPanel(chart);
-        //JPanel jPanelx = new JPanel();
-        //jPanelx.setLayout(new BorderLayout());
-        //statistic_graph.add(chartPanel, BorderLayout.NORTH);
 
-        //JFrame frame = new JFrame();
-        //frame.add(jPanelx);
-        //frame.pack();
-        //frame.setVisible(true);
         return chartPanel;
     }
 
     private JFreeChart createChart(final CategoryDataset dataset) {
 
         final JFreeChart chart = ChartFactory.createAreaChart(
-                "Area Chart", // chart title
-                "Category", // domain axis label
-                "Value", // range axis label
+                "Order statistic", // chart title
+                "Days", // domain axis label
+                "Order Average", // range axis label
                 dataset, // data
                 PlotOrientation.VERTICAL, // orientation
                 true, // include legend
-                true, // tooltips
+                false, // tooltips
                 false // urls
         );
 
@@ -68,15 +55,22 @@ public class AreaChart extends JFrame{
 //        final StandardLegend legend = (StandardLegend) chart.getLegend();
         //      legend.setAnchor(StandardLegend.SOUTH);
         chart.setBackgroundPaint(Color.white);
-        final CategoryPlot plot = chart.getCategoryPlot();
-        plot.setForegroundAlpha(0.5f);
+        chart.setAntiAlias(true);
 
-        //      plot.setAxisOffset(new Spacer(Spacer.ABSOLUTE, 5.0, 5.0, 5.0, 5.0));
-        plot.setBackgroundPaint(Color.lightGray);
-        plot.setDomainGridlinesVisible(true);
-        plot.setDomainGridlinePaint(Color.white);
-        plot.setRangeGridlinesVisible(true);
-        plot.setRangeGridlinePaint(Color.white);
+        CategoryPlot plot = chart.getCategoryPlot();
+        plot.getRenderer().setSeriesPaint(0, new Color(0, 191, 165));
+        plot.setForegroundAlpha(0.75f);
+        plot.setBackgroundPaint(Color.white);
+
+        plot.setDomainCrosshairVisible(false);
+        plot.setRangeCrosshairVisible(false);
+        // plot.setAxisOffset(new Spacer(Spacer.ABSOLUTE, 5.0, 5.0, 5.0, 5.0)); // disable this
+        plot.setDomainGridlinesVisible(false);
+        plot.setDomainGridlinePaint(new Color(240, 240, 240));
+        plot.setRangeGridlinesVisible(false);
+        plot.setRangeGridlinePaint(new Color(240, 240, 240));
+        plot.setDomainCrosshairPaint(Color.MAGENTA);
+        plot.setRangeCrosshairPaint(Color.CYAN);
 
         final CategoryAxis domainAxis = plot.getDomainAxis();
         domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45);

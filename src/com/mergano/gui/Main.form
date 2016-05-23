@@ -802,7 +802,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="header" max="32767" attributes="0"/>
           <Component id="status_bar_frame" alignment="0" max="32767" attributes="0"/>
-          <Component id="body" alignment="0" max="32767" attributes="0"/>
+          <Component id="body" alignment="0" pref="1200" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -810,7 +810,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="header" min="-2" pref="32" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="body" max="32767" attributes="0"/>
+              <Component id="body" pref="608" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="status_bar_frame" max="-2" attributes="0"/>
           </Group>
@@ -2229,7 +2229,7 @@
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()"/>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="product_table.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);&#xa;product_table.removeColumn(product_table.getColumnModel().getColumn(5));&#xa;product_table.removeColumn(product_table.getColumnModel().getColumn(11));&#xa;product_table.removeColumn(product_table.getColumnModel().getColumn(13));&#xa;product_table.getColumnModel().getColumn(0).setPreferredWidth(90);&#xa;product_table.getColumnModel().getColumn(1).setPreferredWidth(76);&#xa;product_table.getColumnModel().getColumn(2).setPreferredWidth(150);&#xa;product_table.getColumnModel().getColumn(3).setPreferredWidth(160);&#xa;product_table.getColumnModel().getColumn(4).setPreferredWidth(50);&#xa;product_table.getColumnModel().getColumn(6).setPreferredWidth(60);&#xa;product_table.getColumnModel().getColumn(7).setPreferredWidth(50);&#xa;product_table.getColumnModel().getColumn(8).setPreferredWidth(60);&#xa;product_table.getColumnModel().getColumn(9).setPreferredWidth(60);&#xa;product_table.getColumnModel().getColumn(10).setPreferredWidth(70);&#xa;&#xa;if (product_table.getRowCount() == 0) {&#xa;    remove_product_button.setEnabled(false);&#xa;    edit_product_button.setEnabled(false);&#xa;}"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="product_table.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);&#xa;product_table.removeColumn(product_table.getColumnModel().getColumn(5));&#xa;product_table.removeColumn(product_table.getColumnModel().getColumn(12));&#xa;product_table.getColumnModel().getColumn(0).setPreferredWidth(90);&#xa;product_table.getColumnModel().getColumn(1).setPreferredWidth(76);&#xa;product_table.getColumnModel().getColumn(2).setPreferredWidth(150);&#xa;product_table.getColumnModel().getColumn(3).setPreferredWidth(160);&#xa;product_table.getColumnModel().getColumn(4).setPreferredWidth(50);&#xa;product_table.getColumnModel().getColumn(6).setPreferredWidth(60);&#xa;product_table.getColumnModel().getColumn(7).setPreferredWidth(50);&#xa;product_table.getColumnModel().getColumn(8).setPreferredWidth(60);&#xa;product_table.getColumnModel().getColumn(9).setPreferredWidth(60);&#xa;product_table.getColumnModel().getColumn(10).setPreferredWidth(70);&#xa;&#xa;if (product_table.getRowCount() == 0) {&#xa;    remove_product_button.setEnabled(false);&#xa;    edit_product_button.setEnabled(false);&#xa;}"/>
                         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="ArrayList&lt;ProductBean&gt; list = null;&#xa;ProductDAO db = new ProductDAO();&#xa;try {&#xa;    list = db.getData();&#xa;}&#xa;catch (Exception e) {&#xa;    e.printStackTrace();&#xa;}&#xa;//List&lt;Object[]&gt; values = new ArrayList&lt;&gt;();&#xa;String[] columns = {&quot;Product ID&quot;,&quot;Category&quot;,&quot;Name&quot;,&quot;Manufacture&quot;,&quot;Model&quot;,&quot;Description&quot;,&quot;Cost&quot;,&quot;Location&quot;,&quot;Warranty&quot;,&quot;Quantity&quot;,&quot;Import&quot;,&quot;Status&quot;,&quot;Last modified&quot;,&quot;Image&quot;};&#xa;Object[][] rows = new Object[list.size()][14];&#xa;for(int i =0; i&lt; list.size(); i++) {&#xa;    //values.add(new Object[] {&#xa;        rows[i][0] = list.get(i).getProductID();&#xa;        rows[i][1] = list.get(i).getCategory();&#xa;        rows[i][2] = list.get(i).getName();&#xa;        rows[i][3] = list.get(i).getManufacture();&#xa;        rows[i][4] = list.get(i).getModel();&#xa;        rows[i][5] = list.get(i).getDescription();&#xa;        rows[i][6] = list.get(i).getCost();&#xa;        rows[i][7] = list.get(i).getLocation();&#xa;        rows[i][8] = list.get(i).getWarranty();&#xa;        rows[i][9] = list.get(i).getQuantity();&#xa;        rows[i][10] = list.get(i).getImport();&#xa;        rows[i][11] = list.get(i).getStatus();&#xa;        rows[i][12] = list.get(i).getUserLastModified();&#xa;        if (list.get(i).getPImage() != null) {&#xa;                InputStream is = new BufferedInputStream(list.get(i).getPImage());&#xa;                try {&#xa;                    Image image = ImageIO.read(is);&#xa;                    ImageIcon image2 = new ImageIcon(new ImageIcon(image).getImage().getScaledInstance(60, 20, Image.SCALE_SMOOTH));&#xa;                    rows[i][13] = image2;&#xa;                } catch (IOException ex) {&#xa;                    rows[i][13] = null;&#xa;                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);&#xa;                }&#xa;            } else {&#xa;                rows[i][13] = null;&#xa;            }&#xa;}"/>
                         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="main_query_table"/>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -2813,7 +2813,7 @@
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="order_product_img_panel" pref="844" max="32767" attributes="0"/>
+                              <Component id="order_product_img_panel" pref="363" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -3436,7 +3436,7 @@
                                   </Group>
                                   <Component id="driver_box" min="-2" pref="246" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="755" max="32767" attributes="0"/>
+                              <EmptySpace pref="274" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -3618,38 +3618,58 @@
                 </Property>
               </Properties>
 
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                              <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
-                          <Component id="search_button" min="-2" pref="130" max="-2" attributes="0"/>
-                          <EmptySpace pref="505" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="431" max="32767" attributes="0"/>
-                          <Component id="search_button" min="-2" pref="45" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
               <SubComponents>
+                <Container class="javax.swing.JPanel" name="jPanel6">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                      <BorderConstraints direction="North"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout">
+                    <Property name="horizontalGap" type="int" value="15"/>
+                    <Property name="verticalGap" type="int" value="10"/>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="jLabel4">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="12" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Search Type"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="12" style="0"/>
+                        </Property>
+                        <Property name="selected" type="boolean" value="true"/>
+                        <Property name="text" type="java.lang.String" value="Quick Search"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="12" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Deep Search"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
                 <Container class="javax.swing.JPanel" name="jPanel7">
+                  <Properties>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[531, 300]"/>
+                    </Property>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                      <BorderConstraints direction="Center"/>
+                    </Constraint>
+                  </Constraints>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout">
                     <Property name="alignment" type="int" value="0"/>
@@ -3657,63 +3677,64 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabel7">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="14" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Product ID"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="search_box_searching">
                       <Properties>
+                        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[300, 30]"/>
+                        </Property>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[250, 20]"/>
+                          <Dimension value="[450, 30]"/>
                         </Property>
                       </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="jPanel6">
+                <Container class="javax.swing.JPanel" name="jPanel3">
+                  <Properties>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[585, 107]"/>
+                    </Property>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                      <BorderConstraints direction="South"/>
+                    </Constraint>
+                  </Constraints>
 
-                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout">
-                    <Property name="alignment" type="int" value="0"/>
-                  </Layout>
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="jLabel4">
+                    <Component class="javax.swing.JButton" name="search_button">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Search Type"/>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="12" style="0"/>
+                        </Property>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/com/mergano/gui/_static/ico/search.png"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Search"/>
+                        <Property name="iconTextGap" type="int" value="8"/>
+                        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[140, 40]"/>
+                        </Property>
+                        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[180, 45]"/>
+                        </Property>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[180, 45]"/>
+                        </Property>
                       </Properties>
-                    </Component>
-                    <Component class="javax.swing.JRadioButton" name="jRadioButton1">
-                      <Properties>
-                        <Property name="selected" type="boolean" value="true"/>
-                        <Property name="text" type="java.lang.String" value="Quick Search"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JRadioButton" name="jRadioButton2">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Deep Search"/>
-                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="search_buttonActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JButton" name="search_button">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="12" style="0"/>
-                    </Property>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/mergano/gui/_static/ico/search.png"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Search"/>
-                    <Property name="iconTextGap" type="int" value="8"/>
-                    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[140, 40]"/>
-                    </Property>
-                    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[140, 40]"/>
-                    </Property>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="search_buttonActionPerformed"/>
-                  </Events>
-                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="search_result_panel">
@@ -3733,7 +3754,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane1" alignment="1" pref="806" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" alignment="1" pref="565" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jLabel25" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -3966,33 +3987,7 @@
             </Constraint>
           </Constraints>
 
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jComboBox2" min="-2" pref="157" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="view_graph_button" min="-2" pref="85" max="-2" attributes="0"/>
-                      <EmptySpace pref="1406" max="32767" attributes="0"/>
-                  </Group>
-                  <Component id="statistic_graph" alignment="1" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="statistic_graph" max="32767" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="view_graph_button" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
           <SubComponents>
             <Container class="javax.swing.JPanel" name="statistic_graph">
               <Properties>
@@ -4003,38 +3998,88 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                  <BorderConstraints direction="Center"/>
+                </Constraint>
+              </Constraints>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
             </Container>
-            <Component class="javax.swing.JComboBox" name="jComboBox2">
+            <Container class="javax.swing.JPanel" name="statistic_control_group">
               <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="13">
-                    <StringItem index="0" value="Select Months revenue"/>
-                    <StringItem index="1" value="January"/>
-                    <StringItem index="2" value="February"/>
-                    <StringItem index="3" value="March"/>
-                    <StringItem index="4" value="April"/>
-                    <StringItem index="5" value="May"/>
-                    <StringItem index="6" value="June"/>
-                    <StringItem index="7" value="July"/>
-                    <StringItem index="8" value="August"/>
-                    <StringItem index="9" value="September"/>
-                    <StringItem index="10" value="October"/>
-                    <StringItem index="11" value="November"/>
-                    <StringItem index="12" value="December"/>
-                  </StringArray>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[500, 40]"/>
                 </Property>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JToggleButton" name="view_graph_button">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="View"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="view_graph_buttonActionPerformed"/>
-              </Events>
-            </Component>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                  <BorderConstraints direction="South"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout">
+                <Property name="alignment" type="int" value="0"/>
+                <Property name="horizontalGap" type="int" value="15"/>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JComboBox" name="month_select">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="11" style="0"/>
+                    </Property>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="13">
+                        <StringItem index="0" value="Select Months revenue"/>
+                        <StringItem index="1" value="January"/>
+                        <StringItem index="2" value="February"/>
+                        <StringItem index="3" value="March"/>
+                        <StringItem index="4" value="April"/>
+                        <StringItem index="5" value="May"/>
+                        <StringItem index="6" value="June"/>
+                        <StringItem index="7" value="July"/>
+                        <StringItem index="8" value="August"/>
+                        <StringItem index="9" value="September"/>
+                        <StringItem index="10" value="October"/>
+                        <StringItem index="11" value="November"/>
+                        <StringItem index="12" value="December"/>
+                      </StringArray>
+                    </Property>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[150, 30]"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JToggleButton" name="refresh_graph_button">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="11" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Refresh"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[100, 30]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refresh_graph_buttonActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JToggleButton" name="print_graph_button">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="11" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Print"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[100, 30]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="print_graph_buttonActionPerformed"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="report_panel">
@@ -4082,6 +4127,9 @@
               <SubComponents>
                 <Container class="javax.swing.JScrollPane" name="scroll_panel_for_report">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
@@ -4095,9 +4143,23 @@
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
                     <Component class="javax.swing.JTable" name="report_table">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="12" style="0"/>
+                        </Property>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="new javax.swing.table.DefaultTableModel(rowsr, columnsr)&#xa;    {public boolean isCellEditable(int row, int column){return false;}}" type="code"/>
+                        </Property>
+                        <Property name="rowHeight" type="int" value="20"/>
+                        <Property name="rowMargin" type="int" value="3"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="report_tableMouseClicked"/>
+                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()"/>
-                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="/*  ArrayList&lt;com.mergano.core.dao.&lt;ReportBean&gt; list = null;&#xa;com.mergano.core.dao.ReportDAO rpdao = new com.mergano.core.dao.ReportDAO(); &#xa;        try {&#xa;               list = rpdao.getReportData();&#xa;            } catch (Exception e) {&#xa;               e.printStackTrace();&#xa;            }&#xa;        List&lt;String[]&gt; values = new ArrayList&lt;&gt;();&#xa;        List&lt;String&gt; columns = new ArrayList&lt;&gt;();&#xa;        columns.add(&quot;Report ID&quot;);&#xa;        columns.add(&quot;Type&quot;);&#xa;        columns.add(&quot;Detail&quot;);&#xa;        columns.add(&quot;Product ID&quot;);&#xa;        columns.add(&quot;Status&quot;);&#xa;        columns.add(&quot;Reported User&quot;);&#xa;        columns.add(&quot;Date created&quot;);    &#xa;        for(int i =0; i&lt; list.size(); i++) {&#xa;            values.add(new String[] {&quot;&quot; +&#xa;            list.get(i).getReportID(),&#xa;            list.get(i).getReportType(),&#xa;            list.get(i).getReportDetail(),&#xa;            list.get(i).getReportProductID(),&#xa;            list.get(i).getReportStatus(),&#xa;            list.get(i).getReportUser(),&#xa;            list.get(i).getReportDate()&#xa;    });&#xa;} */"/>
+                        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ArrayList&lt;ReportBean&gt; rlist = null;&#xa;ReportDAO dbr = new ReportDAO();&#xa;try {&#xa;    rlist = dbr.getReportData();&#xa;}&#xa;catch (Exception e) {&#xa;    e.printStackTrace();&#xa;}&#xa;&#xa;String[] columnsr = {&quot;Report No.&quot;,&quot;Report Level&quot;,&quot;Detail&quot;,&quot;Status&quot;,&quot;User Created&quot;, &quot;Datetime Created&quot;};&#xa;Object[][] rowsr = new Object[rlist.size()][6];&#xa;for(int i =0; i&lt; rlist.size(); i++) {&#xa;    //values.add(new Object[] {&#xa;        rowsr[i][0] = rlist.get(i).getReportID() ;&#xa;        rowsr[i][1] = rlist.get(i).getReportType();&#xa;        rowsr[i][2] = rlist.get(i).getReportDetail();&#xa;        rowsr[i][3] = rlist.get(i).getReportStatus();&#xa;        rowsr[i][4] = rlist.get(i).getCreatedDate();&#xa;        rowsr[i][5] = rlist.get(i).getUserCreated();&#xa;}"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if (report_table.getRowCount() == 0) {&#xa;    clear_report_btn.setEnabled(false);&#xa;    save_report_button.setEnabled(false);&#xa;    accept_report_btn.setEnabled(false);&#xa;    print_report_button.setEnabled(false);&#xa;} else {&#xa;    clear_report_btn.setEnabled(true);&#xa;    save_report_button.setEnabled(true);&#xa;    accept_report_btn.setEnabled(true);&#xa;    print_report_button.setEnabled(true);&#xa;}"/>
                       </AuxValues>
                     </Component>
                   </SubComponents>
@@ -4137,7 +4199,7 @@
                     <Container class="javax.swing.JScrollPane" name="report_text_scroll">
                       <Properties>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 400]"/>
+                          <Dimension value="[200, 300]"/>
                         </Property>
                       </Properties>
                       <AuxValues>
@@ -4145,7 +4207,7 @@
                       </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
-                          <BorderConstraints direction="Center"/>
+                          <BorderConstraints direction="North"/>
                         </Constraint>
                       </Constraints>
 
@@ -4162,6 +4224,31 @@
                         </Component>
                       </SubComponents>
                     </Container>
+                    <Component class="javax.swing.JComboBox" name="report_type">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="3">
+                            <StringItem index="0" value="Critical"/>
+                            <StringItem index="1" value="Severve"/>
+                            <StringItem index="2" value="Regular"/>
+                          </StringArray>
+                        </Property>
+                        <Property name="selectedItem" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="&quot;Regular&quot;" type="code"/>
+                        </Property>
+                        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[65, 30]"/>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                          <BorderConstraints direction="Center"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="report_btn_panel">
@@ -4225,16 +4312,20 @@
                               <Dimension value="[120, 40]"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clear_report_btnActionPerformed"/>
+                          </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="done_report_btn">
+                        <Component class="javax.swing.JButton" name="accept_report_btn">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Segoe UI" size="14" style="0"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Accept"/>
+                            <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="done_report_btnActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="accept_report_btnActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="save_report_button">
@@ -4243,6 +4334,7 @@
                               <Font name="Segoe UI" size="14" style="0"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Save Report as.."/>
+                            <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="save_report_buttonActionPerformed"/>
@@ -4297,7 +4389,7 @@
                       <Connection code="new javax.swing.table.DefaultTableModel(valuesHIS.toArray(new Object[][] {}), columnsHIS.toArray())&#xa;{public boolean isCellEditable(int row, int column){return false;}}" type="code"/>
                     </Property>
                     <Property name="fillsViewportHeight" type="boolean" value="true"/>
-                    <Property name="rowHeight" type="int" value="20"/>
+                    <Property name="rowHeight" type="int" value="25"/>
                     <Property name="rowMargin" type="int" value="3"/>
                     <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="ff" type="rgb"/>
@@ -4395,6 +4487,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="dbname_label">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Database name"/>
           </Properties>
         </Component>
@@ -4403,6 +4498,9 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -4421,6 +4519,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="status_label">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Database status"/>
           </Properties>
         </Component>
@@ -4429,6 +4530,9 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="99" red="0" type="rgb"/>
@@ -4447,6 +4551,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="dbType_label">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Type"/>
           </Properties>
         </Component>
@@ -4455,6 +4562,9 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -4470,6 +4580,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="hostname_label">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Hostname"/>
           </Properties>
         </Component>
@@ -4478,6 +4591,9 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -4496,6 +4612,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="port_label">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Port"/>
           </Properties>
         </Component>
@@ -4504,6 +4623,9 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -4519,6 +4641,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="user_label">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Username"/>
           </Properties>
         </Component>
@@ -4527,6 +4652,9 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">

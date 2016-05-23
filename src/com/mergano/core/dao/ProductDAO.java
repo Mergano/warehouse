@@ -150,12 +150,11 @@ public class ProductDAO extends ConnectDB {
             p.setDate(11, java.sql.Date.valueOf(java.time.LocalDate.now()));
             p.setString(12, bean.getStatus());
             p.setString(13, bean.getUserLastModified());
-            p.setBlob(14, bean.getInputStream());
-            //  if (bean.getInputStream() != null) {
-            //    p.setBlob(14, bean.getInputStream());
-            //  } else {
-            //    p.setNull(14, java.sql.Types.BLOB);
-            //  }
+            if (bean.getInputStream() != null) {
+                p.setBlob(14, bean.getInputStream());
+            } else {
+                p.setNull(14, java.sql.Types.BLOB);
+            }
             System.out.println(sql_update);
             p.executeUpdate();
 
@@ -173,7 +172,6 @@ public class ProductDAO extends ConnectDB {
             p.close();
         } catch (SQLException e) {
             flag = false;
-            e.printStackTrace();
         }
         return flag;
     }

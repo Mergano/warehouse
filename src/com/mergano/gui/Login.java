@@ -6,6 +6,7 @@ import com.mergano.core.Encryption;
 import com.mergano.core.TextFieldLimit;
 import com.mergano.core.bean.LoginBean;
 import com.mergano.core.bean.StatusBean;
+import java.awt.Color;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
@@ -335,6 +336,7 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
         Main m = new Main();
         Main.user_box.setText(u);
+        Main.user_box.setForeground(Color.red);
         SetUpStatusBar();
         ClearLoginPassword();
         m.pack();
@@ -347,6 +349,7 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
         Main m = new Main();
         Main.user_box.setText(u);
+        Main.user_box.setForeground(Color.GREEN);
         m.manager_user_menuitem.setEnabled(false);
         m.database_menu.setEnabled(false);
         m.database_panel.setEnabled(false);
@@ -367,6 +370,7 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
         Main m = new Main();
         Main.user_box.setText(u);
+        Main.user_box.setForeground(Color.MAGENTA);
         m.manager_user_menuitem.setEnabled(false);
         m.database_menu.setEnabled(false);
         m.database_panel.setEnabled(false);
@@ -390,6 +394,7 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
         Main m = new Main();
         Main.user_box.setText(u);
+        Main.user_box.setForeground(Color.ORANGE);
         m.manager_user_menuitem.setEnabled(false);
         m.database_menu.setEnabled(false);
         m.database_panel.setEnabled(false);
@@ -415,6 +420,7 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
         Main m = new Main();
         Main.user_box.setText(u);
+        Main.user_box.setForeground(Color.RED);
         SetUpStatusBar();
         ClearLoginPassword();
         m.pack();
