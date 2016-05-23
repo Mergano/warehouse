@@ -60,7 +60,7 @@ public class ProductDAO extends ConnectDB {
                         bean.setImport(rs.getDate("import_date").toString());
                         bean.setStatus(rs.getString("status"));
                         bean.setUserLastModified(rs.getString("user_lastmodified"));
-                        bean.setPImage(rs.getBytes("image"));
+                        bean.setPImage(rs.getBinaryStream("image"));
                         product_list.add(bean);
                     } while (rs.next());
                     // Benchmark time

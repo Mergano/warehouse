@@ -61,6 +61,9 @@ public class HistoryDAO extends ConnectDB {
             sql = "TRUNCATE " + backlog_table + ";";
             p = conn.prepareStatement(sql);
             p.executeUpdate();
+            sql = "ALTER TABLE " + backlog_table + " AUTO_INCREMENT = 1;";
+            p = conn.prepareStatement(sql);
+            p.executeUpdate();
             conn.commit();
             p.close();
         } catch (SQLException ex) {

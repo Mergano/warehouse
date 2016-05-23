@@ -19,7 +19,7 @@ public class ProductBean {
     private String p_location;
     private String user_lastmodified;
     private InputStream fileimgStream;
-    private byte[] pimage;
+    private InputStream pimage;
 
     // Setter and Getter for Product Management
     public long getProductID() {
@@ -126,11 +126,11 @@ public class ProductBean {
         this.user_lastmodified = user_lastmodified;
     }
 
-    public byte[] getPImage() {
+    public InputStream getPImage() {
         return pimage;
     }
 
-    public void setPImage(byte[] pimage) {
+    public void setPImage(InputStream pimage) {
         this.pimage = pimage;
     }
 

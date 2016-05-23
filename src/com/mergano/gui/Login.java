@@ -347,8 +347,10 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
         Main m = new Main();
         Main.user_box.setText(u);
+        m.manager_user_menuitem.setEnabled(false);
         m.database_menu.setEnabled(false);
         m.database_panel.setEnabled(false);
+        m.database_menuitem.setEnabled(false);
         m.body.setEnabledAt(5, false);
         m.data_button_wel.setEnabled(false);
         m.User_button.setEnabled(false);
@@ -365,8 +367,10 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
         Main m = new Main();
         Main.user_box.setText(u);
+        m.manager_user_menuitem.setEnabled(false);
         m.database_menu.setEnabled(false);
         m.database_panel.setEnabled(false);
+        m.database_menuitem.setEnabled(false);
         m.body.setEnabledAt(2, false);
         m.body.setEnabledAt(5, false);
         m.sm_button_wel.setEnabled(false);
@@ -386,8 +390,10 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
         Main m = new Main();
         Main.user_box.setText(u);
+        m.manager_user_menuitem.setEnabled(false);
         m.database_menu.setEnabled(false);
         m.database_panel.setEnabled(false);
+        m.database_menuitem.setEnabled(false);
         m.body.setEnabledAt(2, false);
         m.body.setEnabledAt(3, false);
         m.body.setEnabledAt(5, false);

@@ -30,6 +30,7 @@ import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -50,7 +51,6 @@ import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
 import static javax.swing.JOptionPane.YES_NO_OPTION;
-import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -371,7 +371,7 @@ public class Main extends javax.swing.JFrame {
         tools_menu = new javax.swing.JMenu();
         search_menuitem = new javax.swing.JMenuItem();
         backup_menuitem = new javax.swing.JMenuItem();
-        bookmark_menuitem = new javax.swing.JMenuItem();
+        manager_user_menuitem = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
         language_menuitem = new javax.swing.JMenu();
         en_us_menuitem = new javax.swing.JMenuItem();
@@ -1108,9 +1108,16 @@ public class Main extends javax.swing.JFrame {
                 rows[i][10] = list.get(i).getImport();
                 rows[i][11] = list.get(i).getStatus();
                 rows[i][12] = list.get(i).getUserLastModified();
-                if(list.get(i).getPImage() != null) {
-                    ImageIcon image = new ImageIcon(new ImageIcon(list.get(i).getPImage()).getImage().getScaledInstance(60,20,Image.SCALE_SMOOTH));
-                    rows[i][13] = list.get(i).getPImage();
+                if (list.get(i).getPImage() != null) {
+                    InputStream is = new BufferedInputStream(list.get(i).getPImage());
+                    try {
+                        Image image = ImageIO.read(is);
+                        ImageIcon image2 = new ImageIcon(new ImageIcon(image).getImage().getScaledInstance(60, 20, Image.SCALE_SMOOTH));
+                        rows[i][13] = image2;
+                    } catch (IOException ex) {
+                        rows[i][13] = null;
+                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 } else {
                     rows[i][13] = null;
                 }
@@ -1131,7 +1138,10 @@ public class Main extends javax.swing.JFrame {
             product_table.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
             product_table.setShowHorizontalLines(false);
             product_table.setShowVerticalLines(false);
+            product_table.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
             product_table.removeColumn(product_table.getColumnModel().getColumn(5));
+            product_table.removeColumn(product_table.getColumnModel().getColumn(11));
+            product_table.removeColumn(product_table.getColumnModel().getColumn(13));
             product_table.getColumnModel().getColumn(0).setPreferredWidth(90);
             product_table.getColumnModel().getColumn(1).setPreferredWidth(76);
             product_table.getColumnModel().getColumn(2).setPreferredWidth(150);
@@ -1142,7 +1152,6 @@ public class Main extends javax.swing.JFrame {
             product_table.getColumnModel().getColumn(8).setPreferredWidth(60);
             product_table.getColumnModel().getColumn(9).setPreferredWidth(60);
             product_table.getColumnModel().getColumn(10).setPreferredWidth(70);
-            product_table.getColumnModel().getColumn(11).setPreferredWidth(65);
 
             if (product_table.getRowCount() == 0) {
                 remove_product_button.setEnabled(false);
@@ -1187,6 +1196,8 @@ public class Main extends javax.swing.JFrame {
             product_img.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             product_img.setIcon(null);
             product_img.setText("NO IMAGE");
+            product_img.setMaximumSize(new java.awt.Dimension(60, 20));
+            product_img.setMinimumSize(new java.awt.Dimension(60, 20));
             product_img.setPreferredSize(new java.awt.Dimension(60, 20));
             product_img.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2759,14 +2770,14 @@ public class Main extends javax.swing.JFrame {
             backup_menuitem.setText("Backup");
             tools_menu.add(backup_menuitem);
 
-            bookmark_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/user.png"))); // NOI18N
-            bookmark_menuitem.setText("Manage User");
-            bookmark_menuitem.addActionListener(new java.awt.event.ActionListener() {
+            manager_user_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/user.png"))); // NOI18N
+            manager_user_menuitem.setText("Manage User");
+            manager_user_menuitem.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    bookmark_menuitemActionPerformed(evt);
+                    manager_user_menuitemActionPerformed(evt);
                 }
             });
-            tools_menu.add(bookmark_menuitem);
+            tools_menu.add(manager_user_menuitem);
             tools_menu.add(jSeparator6);
 
             language_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/globe.png"))); // NOI18N
@@ -3642,7 +3653,8 @@ public class Main extends javax.swing.JFrame {
         product_status_box.setText(selectedStatus);
         description_input.setText(selectedDescription);
         if (imgIcon != null) {
-            Image img = imgIcon.getImage().getScaledInstance(product_img.getWidth(), product_img.getHeight(), Image.SCALE_SMOOTH);
+            Image img = imgIcon.getImage().getScaledInstance(product_img.getWidth(), product_img.getHeight(), Image.SCALE_FAST);
+            product_img.setText("");
             product_img.setIcon(new ImageIcon(img));
         } else {
             product_img.setIcon(null);
@@ -3734,6 +3746,7 @@ public class Main extends javax.swing.JFrame {
                 JFileChooser fileChooser = new JFileChooser();
                 fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
                 FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files", "jpg", "png", "jpeg", "bmp");
+
                 fileChooser.addChoosableFileFilter(filter);
                 int result = fileChooser.showSaveDialog(null);
 
@@ -3743,11 +3756,9 @@ public class Main extends javax.swing.JFrame {
                         String exten = Utils.getFileExtension(selectedFile);
                         if (exten.equals("jpg") || exten.equals("png") || exten.equals("bmp") || exten.equals("jpeg")) {
                             InputStream is = new FileInputStream(selectedFile);
-
                             ByteArrayOutputStream baos = new ByteArrayOutputStream();
                             //ImageIO.write(bufferedImage, "png", baos);
                             //InputStream is = new ByteArrayInputStream(baos.toByteArray());
-                            //InputStream is = new ByteArrayInputStream(bytes);
                             BufferedImage img_buffer = ImageIO.read(selectedFile); // read data from inputstream and store into image
                             setImageInputStream(is);
                             ImageIcon imageIcon = new ImageIcon(img_buffer);
@@ -3907,9 +3918,9 @@ public class Main extends javax.swing.JFrame {
         body.setSelectedIndex(1);
     }//GEN-LAST:event_Dashboard_buttonActionPerformed
 
-    private void bookmark_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookmark_menuitemActionPerformed
+    private void manager_user_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manager_user_menuitemActionPerformed
         openUserManager();
-    }//GEN-LAST:event_bookmark_menuitemActionPerformed
+    }//GEN-LAST:event_manager_user_menuitemActionPerformed
 
     private void dashboard_panelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboard_panelMouseClicked
         initialDashboard();
@@ -3955,8 +3966,15 @@ public class Main extends javax.swing.JFrame {
             rows[i][11] = list.get(i).getStatus();
             rows[i][12] = list.get(i).getUserLastModified();
             if (list.get(i).getPImage() != null) {
-                ImageIcon image = new ImageIcon(new ImageIcon(list.get(i).getPImage()).getImage().getScaledInstance(60, 20, Image.SCALE_SMOOTH));
-                rows[i][13] = image;
+                InputStream is = new BufferedInputStream(list.get(i).getPImage());
+                try {
+                    Image image = ImageIO.read(is);
+                    ImageIcon image2 = new ImageIcon(new ImageIcon(image).getImage().getScaledInstance(60, 20, Image.SCALE_AREA_AVERAGING));
+                    rows[i][13] = image2;
+                } catch (IOException ex) {
+                    rows[i][13] = null;
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else {
                 rows[i][13] = null;
             }
@@ -3965,6 +3983,8 @@ public class Main extends javax.swing.JFrame {
         product_table.setModel(new javax.swing.table.DefaultTableModel(rows, columns));
         product_table.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         product_table.removeColumn(product_table.getColumnModel().getColumn(5));
+        product_table.removeColumn(product_table.getColumnModel().getColumn(11));
+        product_table.removeColumn(product_table.getColumnModel().getColumn(13));
         product_table.getColumnModel().getColumn(0).setPreferredWidth(90);
         product_table.getColumnModel().getColumn(1).setPreferredWidth(76);
         product_table.getColumnModel().getColumn(2).setPreferredWidth(150);
@@ -3975,7 +3995,6 @@ public class Main extends javax.swing.JFrame {
         product_table.getColumnModel().getColumn(8).setPreferredWidth(60);
         product_table.getColumnModel().getColumn(9).setPreferredWidth(60);
         product_table.getColumnModel().getColumn(10).setPreferredWidth(70);
-        product_table.getColumnModel().getColumn(11).setPreferredWidth(65);
         // set the JTable into scroll panel
         ScrollPanelForQueryTable.setViewportView(product_table);
         System.out.println("Product table updated");
@@ -4041,7 +4060,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem backup_menuitem;
     public javax.swing.JTabbedPane body;
     private javax.swing.JPanel body_panel;
-    private javax.swing.JMenuItem bookmark_menuitem;
     public javax.swing.JButton browse_button;
     private javax.swing.JComboBox category_input;
     private javax.swing.JLabel category_label;
@@ -4064,7 +4082,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel dashboard_panel_body_right;
     protected javax.swing.JButton data_button_wel;
     protected javax.swing.JMenu database_menu;
-    private javax.swing.JMenuItem database_menuitem;
+    protected javax.swing.JMenuItem database_menuitem;
     private javax.swing.JTextField database_name_show_box;
     protected javax.swing.JPanel database_panel;
     private javax.swing.JTextField database_type_show_box;
@@ -4207,6 +4225,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuBar main_menubar;
     private javax.swing.JToolBar main_toolbar;
     protected javax.swing.JPanel management_panel;
+    protected javax.swing.JMenuItem manager_user_menuitem;
     private javax.swing.JTextField manufacture_input;
     private javax.swing.JLabel manufacture_label;
     private javax.swing.JTextField model_input;
