@@ -200,7 +200,7 @@ public class Main extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         delete_order_btn = new javax.swing.JButton();
-        save_order_btn = new javax.swing.JButton();
+        edit_order_btn = new javax.swing.JButton();
         order_confirm_btn = new javax.swing.JButton();
         order_product_img_panel = new javax.swing.JPanel();
         order_product_img = new javax.swing.JButton();
@@ -623,6 +623,11 @@ public class Main extends javax.swing.JFrame {
             Export_button.setMaximumSize(new java.awt.Dimension(90, 40));
             Export_button.setMinimumSize(new java.awt.Dimension(90, 40));
             Export_button.setPreferredSize(new java.awt.Dimension(70, 30));
+            Export_button.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    Export_buttonActionPerformed(evt);
+                }
+            });
             main_toolbar.add(Export_button);
 
             Options_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
@@ -1455,10 +1460,10 @@ public class Main extends javax.swing.JFrame {
 
                 delete_order_btn.setText("Delete Order");
 
-                save_order_btn.setText("Save Order");
+                edit_order_btn.setText("Edit Order");
 
                 order_confirm_btn.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                order_confirm_btn.setText("Order");
+                order_confirm_btn.setText("Confirm Order");
                 order_confirm_btn.setPreferredSize(new java.awt.Dimension(140, 40));
 
                 order_product_img_panel.setBackground(new java.awt.Color(255, 255, 255));
@@ -1500,17 +1505,18 @@ public class Main extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jTextField7))
                             .addGroup(order_right_panelLayout.createSequentialGroup()
-                                .addComponent(order_quantity_label)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(order_right_panelLayout.createSequentialGroup()
-                                .addComponent(save_order_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(delete_order_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(order_right_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(order_quantity_label)
+                                    .addGroup(order_right_panelLayout.createSequentialGroup()
+                                        .addComponent(edit_order_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(delete_order_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(order_right_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(order_right_panelLayout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(order_product_img_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                            .addComponent(order_product_img_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
                             .addContainerGap()))
                 );
                 order_right_panelLayout.setVerticalGroup(
@@ -1528,9 +1534,9 @@ public class Main extends javax.swing.JFrame {
                         .addGroup(order_right_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(order_quantity_label)
                             .addComponent(order_quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 339, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 335, Short.MAX_VALUE)
                         .addGroup(order_right_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(save_order_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edit_order_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(delete_order_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(order_confirm_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1573,7 +1579,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(order_request_panelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(request_order_body_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 683, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(502, Short.MAX_VALUE))
+                        .addContainerGap(553, Short.MAX_VALUE))
                 );
                 order_request_panelLayout.setVerticalGroup(
                     order_request_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1589,7 +1595,10 @@ public class Main extends javax.swing.JFrame {
 
                 store_db_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Stored Database", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
                 store_db_panel.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+                store_db_panel.setPreferredSize(new java.awt.Dimension(650, 460));
+                store_db_panel.setLayout(new java.awt.GridLayout(3, 2, 10, 10));
 
+                localhost_db.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
                 localhost_db.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
                 localhost_db.setText("Localhost");
                 localhost_db.setBorder(null);
@@ -1605,7 +1614,9 @@ public class Main extends javax.swing.JFrame {
                         localhost_dbActionPerformed(evt);
                     }
                 });
+                store_db_panel.add(localhost_db);
 
+                jToggleButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
                 jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
                 jToggleButton2.setText("Database 2");
                 jToggleButton2.setFocusPainted(false);
@@ -1619,7 +1630,9 @@ public class Main extends javax.swing.JFrame {
                         jToggleButton2ActionPerformed(evt);
                     }
                 });
+                store_db_panel.add(jToggleButton2);
 
+                jToggleButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
                 jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
                 jToggleButton3.setText("Database 3");
                 jToggleButton3.setFocusPainted(false);
@@ -1628,7 +1641,9 @@ public class Main extends javax.swing.JFrame {
                 jToggleButton3.setMargin(new java.awt.Insets(5, 5, 5, 5));
                 jToggleButton3.setOpaque(true);
                 jToggleButton3.setRolloverEnabled(false);
+                store_db_panel.add(jToggleButton3);
 
+                db4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
                 db4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
                 db4.setText("Database 4");
                 db4.setFocusPainted(false);
@@ -1641,7 +1656,9 @@ public class Main extends javax.swing.JFrame {
                         db4ActionPerformed(evt);
                     }
                 });
+                store_db_panel.add(db4);
 
+                jToggleButton5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
                 jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
                 jToggleButton5.setText("Database 5");
                 jToggleButton5.setFocusPainted(false);
@@ -1649,7 +1666,9 @@ public class Main extends javax.swing.JFrame {
                 jToggleButton5.setIconTextGap(12);
                 jToggleButton5.setMargin(new java.awt.Insets(5, 5, 5, 5));
                 jToggleButton5.setRolloverEnabled(false);
+                store_db_panel.add(jToggleButton5);
 
+                jToggleButton6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
                 jToggleButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
                 jToggleButton6.setText("Database 6");
                 jToggleButton6.setFocusPainted(false);
@@ -1657,45 +1676,7 @@ public class Main extends javax.swing.JFrame {
                 jToggleButton6.setIconTextGap(12);
                 jToggleButton6.setMargin(new java.awt.Insets(5, 5, 5, 5));
                 jToggleButton6.setRolloverEnabled(false);
-
-                javax.swing.GroupLayout store_db_panelLayout = new javax.swing.GroupLayout(store_db_panel);
-                store_db_panel.setLayout(store_db_panelLayout);
-                store_db_panelLayout.setHorizontalGroup(
-                    store_db_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(store_db_panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(store_db_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(store_db_panelLayout.createSequentialGroup()
-                                .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(store_db_panelLayout.createSequentialGroup()
-                                .addGroup(store_db_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(localhost_db, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(store_db_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(db4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jToggleButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                );
-                store_db_panelLayout.setVerticalGroup(
-                    store_db_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, store_db_panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(store_db_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(localhost_db, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(db4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addGroup(store_db_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(store_db_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jToggleButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                );
+                store_db_panel.add(jToggleButton6);
 
                 db_manager_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Database Manager", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
 
@@ -1806,7 +1787,7 @@ public class Main extends javax.swing.JFrame {
                                     .addComponent(database_type_show_box, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(port_show_box, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(driver_box, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(274, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 );
                 db_show_info_panelLayout.setVerticalGroup(
                     db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1945,12 +1926,12 @@ public class Main extends javax.swing.JFrame {
                 search_input_panel.add(jPanel6, java.awt.BorderLayout.NORTH);
 
                 jPanel7.setPreferredSize(new java.awt.Dimension(531, 300));
-                jPanel7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
                 jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
                 jLabel7.setText("Product ID");
                 jPanel7.add(jLabel7);
 
+                search_box_searching.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
                 search_box_searching.setMinimumSize(new java.awt.Dimension(300, 30));
                 search_box_searching.setPreferredSize(new java.awt.Dimension(450, 30));
                 jPanel7.add(search_box_searching);
@@ -2077,7 +2058,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(search_result_panelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(search_result_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
                             .addGroup(search_result_panelLayout.createSequentialGroup()
                                 .addGroup(search_result_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel25)
@@ -2931,7 +2912,7 @@ public class Main extends javax.swing.JFrame {
                     layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(status_bar_frame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
+                    .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, 1251, Short.MAX_VALUE)
                 );
                 layout.setVerticalGroup(
                     layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3751,7 +3732,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_export_productActionPerformed
 
     private void accept_report_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accept_report_btnActionPerformed
-        int selectedRow = product_table.getSelectedRow();
+        int selectedRow = report_table.getSelectedRow();
         int reportID = (Integer) report_table.getModel().getValueAt(selectedRow, 0);
         ReportBean bean = new ReportBean();
         bean.setReportStatus("Accepted");
@@ -4006,6 +3987,11 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_report_tableMouseClicked
 
+    private void Export_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Export_buttonActionPerformed
+        ExportCSV ex = new ExportCSV();
+        ex.exportToCSV(product_table);
+    }//GEN-LAST:event_Export_buttonActionPerformed
+
     private void openUserManager() {
         UserManager m = new UserManager();
         m.setVisible(true);
@@ -4192,6 +4178,7 @@ public class Main extends javax.swing.JFrame {
     private static javax.swing.JMenuItem disconnect_menuitem;
     private javax.swing.JTextField driver_box;
     protected javax.swing.JMenu edit_menu;
+    private javax.swing.JButton edit_order_btn;
     private javax.swing.JButton edit_product_button;
     private javax.swing.JMenuItem edit_product_click_btn;
     private javax.swing.JMenuItem en_us_menuitem;
@@ -4388,7 +4375,6 @@ public class Main extends javax.swing.JFrame {
     public javax.swing.JTable request_order_table_dashboard;
     private javax.swing.JPanel right_panel;
     private javax.swing.JMenuItem save_menuitem;
-    private javax.swing.JButton save_order_btn;
     private javax.swing.JButton save_product_button;
     private javax.swing.JButton save_report_button;
     private javax.swing.JMenuItem saveas_menuitem;

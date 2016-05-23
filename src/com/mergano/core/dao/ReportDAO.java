@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 public class ReportDAO extends ConnectDB {
 
-    private final String table = "norification_report";
+    private final String table = "notification_report";
     private final String backlog_table = "backlog";
     private Connection conn;
     private PreparedStatement p = null;
@@ -72,11 +72,12 @@ public class ReportDAO extends ConnectDB {
         try {
             String sql_insert = "INSERT INTO " + table + " VALUES(DEFAULT,?,?,?,?,?)";
             p = conn.prepareStatement(sql_insert);
-            p.setString(2, bean.getReportType());
-            p.setString(3, bean.getReportDetail());
-            p.setString(4, bean.getReportStatus());
-            p.setString(5, bean.getUserCreated());
-            p.setString(6, bean.getCreatedDate());
+            p.setString(1, bean.getReportType());
+            p.setString(2, bean.getReportDetail());
+            p.setString(3, bean.getReportStatus());
+            p.setString(4, bean.getUserCreated());
+            java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
+            p.setTimestamp(5, date);
             p.executeUpdate();
 
             String sql_insert_his = "INSERT INTO " + backlog_table + " VALUES("
@@ -100,14 +101,9 @@ public class ReportDAO extends ConnectDB {
 
     public void updateReport(ReportBean bean, int n, String u) {
         try {
-            String sql_update = "UPDATE " + table + " SET report_type=?, report_detail=?, report_status=?, user_created=?, date_created=current WHERE idnotice =" + n + ";";
+            String sql_update = "UPDATE " + table + " SET report_status=? WHERE idnotice =" + n + ";";
             p = conn.prepareStatement(sql_update);
-            p.setString(2, bean.getReportType());
-            p.setString(3, bean.getReportDetail());
-            p.setString(4, bean.getReportStatus());
-            p.setString(5, bean.getUserCreated());
-            java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
-            p.setTimestamp(6, date);
+            p.setString(1, bean.getReportStatus());
             System.out.println(sql_update);
             p.executeUpdate();
 
