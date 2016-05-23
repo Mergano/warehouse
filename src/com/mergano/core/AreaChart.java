@@ -5,6 +5,7 @@
  */
 package com.mergano.core;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
@@ -18,11 +19,11 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.general.DatasetUtilities;
 
-public class AreaChart extends JPanel {
+public class AreaChart {
 
     public ChartPanel chartPanel;
 
-    public ChartPanel getChart() {
+    public void getChart() {
         // create a dataset...
         final double[][] data = new double[][]{
             {1.0, 4.0, 3.0, 5.0, 5.0, 7.0, 7.0, 8.0},
@@ -37,7 +38,14 @@ public class AreaChart extends JPanel {
         // create the chart...
         final JFreeChart chart = createChart(dataset);
         chartPanel = new ChartPanel(chart);
-        return chartPanel;
+        JPanel jPanelx = new JPanel();
+        jPanelx.setLayout(new BorderLayout());
+        // statistic_graph.add(chartPanel, BorderLayout.NORTH);
+
+        JFrame frame = new JFrame();
+        frame.add(jPanelx);
+        frame.pack();
+        frame.setVisible(true);
     }
 
     private JFreeChart createChart(final CategoryDataset dataset) {

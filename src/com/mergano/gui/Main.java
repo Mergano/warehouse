@@ -15,7 +15,6 @@
  */
 package com.mergano.gui;
 
-import com.mergano.core.AreaChart;
 import com.mergano.core.ExportCSV;
 import com.mergano.core.Logout;
 import com.mergano.core.TextFieldLimit;
@@ -2921,9 +2920,10 @@ public class Main extends javax.swing.JFrame {
 
     private void initialStatisticChart() {
         AreaChart a = new AreaChart();
-        statistic_graph.add(a.getChart(), BorderLayout.NORTH);
-        statistic_graph.setVisible(t);
-        statistic_graph.validate();
+        a.getChart();
+        //statistic_graph.add(a.getChart(), BorderLayout.CENTER);
+        //statistic_graph.setVisible(true);
+        //statistic_graph.validate();
     }
     private void about_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_menuitemActionPerformed
         About a = new About();
