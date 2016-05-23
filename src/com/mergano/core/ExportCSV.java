@@ -27,17 +27,31 @@ import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JFileChooser;
 
 public class ExportCSV {
 
     public void exportToCSV(JTable table) {
+        JOptionPane.showMessageDialog(null, "Please choose directory and specify your file name (in .csv form)", "Information", JOptionPane.WARNING_MESSAGE);
+        String pathToSave = "";
+        JFileChooser fc = new JFileChooser();
+        int returnVal = fc.showSaveDialog(null);
+        if(returnVal == JFileChooser.APPROVE_OPTION){
+            pathToSave = fc.getCurrentDirectory() + "\\" + fc.getSelectedFile().getName();
+        }
+        else return;
+
+        if(!acceptFileName(pathToSave)){
+            return;
+        }
+        
         Writer writer = null;
         DefaultTableModel dtm = (DefaultTableModel) table.getModel();
         int nRow = dtm.getRowCount();
         int nCol = dtm.getColumnCount();
 
         try {
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(System.getProperty("user.home") + "/data.csv"), "utf-8"));
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(pathToSave), "utf-8"));
 
             //write the header information
             StringBuilder bufferHeader = new StringBuilder();
@@ -60,7 +74,7 @@ public class ExportCSV {
                 }
                 writer.write(buffer.toString() + "\r\n");
             }
-            JOptionPane.showMessageDialog(null, "Data table exported to " + System.getProperty("user.home") + " successfully.", "Export Successfully", INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Data table exported to " + fc.getCurrentDirectory() + " successfully.", "Export Successfully", INFORMATION_MESSAGE);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Error 301 : Can't export data because " + ex.getMessage(), "Export Failed", ERROR_MESSAGE);
         } finally {
@@ -71,5 +85,16 @@ public class ExportCSV {
             }
         }
 
+    }
+    
+    private boolean acceptFileName(String str){
+        if(str.toLowerCase().endsWith(".csv")){
+            JOptionPane.showMessageDialog(null, "File Accepted.", "Success.", JOptionPane.INFORMATION_MESSAGE);
+            return true;
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Please Enter .csv file.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
     }
 }
