@@ -135,7 +135,7 @@ public class ProductDAO extends ConnectDB {
         flag = false;
         try {
             System.out.println("XXX " + bean.getInputStream());
-            String sql_update = "UPDATE " + table + " SET product_id =?,category=?,manufacture=?,name=?,model=?,description=?,cost=?,location=?,warranty=?,quantity=?,import_date=?,status_?,user_lastmodified=?,image=? WHERE product_id =" + n + ";";
+            String sql_update = "UPDATE " + table + " SET product_id =?,category=?,manufacture=?,name=?,model=?,description=?,cost=?,location=?,warranty=?,quantity=?,import_date=?,status=?,user_lastmodified=?,image=? WHERE product_id =" + n + ";";
             p = conn.prepareStatement(sql_update);
             p.setLong(1, bean.getProductID());
             p.setString(2, bean.getCategory());

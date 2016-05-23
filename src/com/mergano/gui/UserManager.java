@@ -1,10 +1,11 @@
 package com.mergano.gui;
 
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
 
-public class UserEditor extends javax.swing.JFrame {
+public class UserManager extends javax.swing.JFrame {
 
-    public UserEditor() {
+    public UserManager() {
         initComponents();
     }
 
@@ -39,13 +40,16 @@ public class UserEditor extends javax.swing.JFrame {
         user_flter_column = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Edit User");
+        setTitle("User Manager");
+        setAlwaysOnTop(true);
+        setIconImage(new ImageIcon(getClass().getResource("/com/mergano/gui/_static/pic/icon.png")).getImage());
         setMinimumSize(new java.awt.Dimension(640, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(750, 569));
 
         ScrollPanelForUserQueryTable.setBorder(null);
 
+        user_query_table.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         user_query_table.setDragEnabled(true);
         user_query_table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -102,11 +106,7 @@ public class UserEditor extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(20, 20, 20)
-                        .addComponent(jTextField3))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel2)
@@ -115,7 +115,9 @@ public class UserEditor extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel6))
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)

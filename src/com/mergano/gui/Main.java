@@ -185,7 +185,7 @@ public class Main extends javax.swing.JFrame {
         order_panel = new javax.swing.JPanel();
         order_left_panel = new javax.swing.JPanel();
         ScrollPanelForQueryTable2 = new javax.swing.JScrollPane();
-        query_table2 = new javax.swing.JTable();
+        order_table = new javax.swing.JTable();
         order_right_panel = new javax.swing.JPanel();
         order_quantity = new javax.swing.JSpinner();
         order_quantity_label = new javax.swing.JLabel();
@@ -292,6 +292,8 @@ public class Main extends javax.swing.JFrame {
         history_panel = new javax.swing.JPanel();
         ScrollPanelForHistory = new javax.swing.JScrollPane();
         history_table = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         truncate_history_btn = new javax.swing.JButton();
         status_bar_frame = new javax.swing.JPanel();
         dbname_label = new javax.swing.JLabel();
@@ -844,6 +846,11 @@ public class Main extends javax.swing.JFrame {
 
         body.addTab("Welcome", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/home.png")), home_panel); // NOI18N
 
+        dashboard_panel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dashboard_panelMouseClicked(evt);
+            }
+        });
         dashboard_panel.setLayout(new java.awt.GridLayout(1, 2));
 
         dashboard_panel_body_left.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Stock Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
@@ -853,7 +860,7 @@ public class Main extends javax.swing.JFrame {
         jPanel8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel8.setLayout(new java.awt.GridLayout(2, 1, 0, 5));
 
-        in_stock_dashboard_label.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        in_stock_dashboard_label.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         in_stock_dashboard_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         in_stock_dashboard_label.setText("In Stock");
         in_stock_dashboard_label.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -873,7 +880,7 @@ public class Main extends javax.swing.JFrame {
         jPanel11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel11.setLayout(new java.awt.GridLayout(2, 1, 0, 5));
 
-        out_of_stock_dashboard_label.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        out_of_stock_dashboard_label.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         out_of_stock_dashboard_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         out_of_stock_dashboard_label.setText("Out of stock");
         out_of_stock_dashboard_label.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -894,7 +901,7 @@ public class Main extends javax.swing.JFrame {
         jPanel15.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel15.setLayout(new java.awt.GridLayout(2, 1, 0, 5));
 
-        current_report_dashboard_label.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        current_report_dashboard_label.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         current_report_dashboard_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         current_report_dashboard_label.setText("Current report");
         current_report_dashboard_label.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -915,7 +922,7 @@ public class Main extends javax.swing.JFrame {
         jPanel16.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jPanel16.setLayout(new java.awt.GridLayout(2, 1, 0, 5));
 
-        current_order_dashboard_label.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        current_order_dashboard_label.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         current_order_dashboard_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         current_order_dashboard_label.setText("Current Order");
         current_order_dashboard_label.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -1284,6 +1291,7 @@ public class Main extends javax.swing.JFrame {
             quantity_label.setText("Quantity");
             product_info_group_panel.add(quantity_label);
 
+            quantity_input.setModel(new javax.swing.SpinnerNumberModel(1, 0, 999, 1));
             quantity_input.setEnabled(false);
             product_info_group_panel.add(quantity_input);
 
@@ -1365,18 +1373,18 @@ public class Main extends javax.swing.JFrame {
 
             ScrollPanelForQueryTable2.setBorder(null);
 
-            query_table2.setDragEnabled(true);
-            query_table2.addMouseListener(new java.awt.event.MouseAdapter() {
+            order_table.setDragEnabled(true);
+            order_table.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    query_table2MouseClicked(evt);
+                    order_tableMouseClicked(evt);
                 }
             });
-            query_table2.addKeyListener(new java.awt.event.KeyAdapter() {
+            order_table.addKeyListener(new java.awt.event.KeyAdapter() {
                 public void keyPressed(java.awt.event.KeyEvent evt) {
-                    query_table2KeyPressed(evt);
+                    order_tableKeyPressed(evt);
                 }
             });
-            ScrollPanelForQueryTable2.setViewportView(query_table2);
+            ScrollPanelForQueryTable2.setViewportView(order_table);
 
             javax.swing.GroupLayout order_left_panelLayout = new javax.swing.GroupLayout(order_left_panel);
             order_left_panel.setLayout(order_left_panelLayout);
@@ -1391,7 +1399,7 @@ public class Main extends javax.swing.JFrame {
                 order_left_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(order_left_panelLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(ScrollPanelForQueryTable2, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
+                    .addComponent(ScrollPanelForQueryTable2, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
                     .addContainerGap())
             );
 
@@ -1480,7 +1488,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(order_right_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(order_quantity_label)
                         .addComponent(order_quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 362, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 339, Short.MAX_VALUE)
                     .addGroup(order_right_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(save_order_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(delete_order_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1491,7 +1499,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(order_right_panelLayout.createSequentialGroup()
                         .addGap(135, 135, 135)
                         .addComponent(order_product_img_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(244, Short.MAX_VALUE)))
+                        .addContainerGap(221, Short.MAX_VALUE)))
             );
 
             order_panel.add(order_right_panel, java.awt.BorderLayout.CENTER);
@@ -1930,7 +1938,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 454, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 431, Short.MAX_VALUE)
                     .addComponent(search_button, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap())
             );
@@ -2218,7 +2226,10 @@ public class Main extends javax.swing.JFrame {
 
             body.addTab("Reporting", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/chart_graph.png")), report_panel); // NOI18N
 
+            history_panel.setLayout(new java.awt.BorderLayout());
+
             ScrollPanelForHistory.setBorder(null);
+            ScrollPanelForHistory.setPreferredSize(new java.awt.Dimension(450, 470));
 
             ArrayList<com.mergano.core.bean.HistoryBean> listHIS = null;
             com.mergano.core.dao.HistoryDAO hisdao = new com.mergano.core.dao.HistoryDAO();
@@ -2250,6 +2261,9 @@ public class Main extends javax.swing.JFrame {
             history_table.setModel(new javax.swing.table.DefaultTableModel(valuesHIS.toArray(new Object[][] {}), columnsHIS.toArray())
                 {public boolean isCellEditable(int row, int column){return false;}});
             history_table.setFillsViewportHeight(true);
+            history_table.setRowHeight(20);
+            history_table.setRowMargin(3);
+            history_table.setSelectionBackground(new java.awt.Color(255, 51, 51));
             history_table.setShowHorizontalLines(false);
             history_table.setShowVerticalLines(false);
             if (history_table.getRowCount() == 0) {
@@ -2259,36 +2273,42 @@ public class Main extends javax.swing.JFrame {
             history_table.getAccessibleContext().setAccessibleName("History table");
             history_table.getAccessibleContext().setAccessibleDescription("This table store history action of user.");
 
+            history_panel.add(ScrollPanelForHistory, java.awt.BorderLayout.NORTH);
+
             truncate_history_btn.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
             truncate_history_btn.setText("Clear");
+            truncate_history_btn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+            truncate_history_btn.setPreferredSize(new java.awt.Dimension(200, 40));
             truncate_history_btn.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     truncate_history_btnActionPerformed(evt);
                 }
             });
 
-            javax.swing.GroupLayout history_panelLayout = new javax.swing.GroupLayout(history_panel);
-            history_panel.setLayout(history_panelLayout);
-            history_panelLayout.setHorizontalGroup(
-                history_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(history_panelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(ScrollPanelForHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 876, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(truncate_history_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap())
+            javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+            jPanel2.setLayout(jPanel2Layout);
+            jPanel2Layout.setHorizontalGroup(
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 200, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(truncate_history_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
             );
-            history_panelLayout.setVerticalGroup(
-                history_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, history_panelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(history_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(ScrollPanelForHistory, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
-                        .addGroup(history_panelLayout.createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addComponent(truncate_history_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap())
+            jPanel2Layout.setVerticalGroup(
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 100, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(truncate_history_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
             );
+
+            jPanel1.add(jPanel2);
+
+            history_panel.add(jPanel1, java.awt.BorderLayout.CENTER);
 
             body.addTab("History", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/clock2.png")), history_panel); // NOI18N
 
@@ -2722,7 +2742,7 @@ public class Main extends javax.swing.JFrame {
 
             tools_menu.setText("Tools");
 
-            search_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/application_blueprint.png"))); // NOI18N
+            search_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/search.png"))); // NOI18N
             search_menuitem.setText("Search...");
             search_menuitem.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2737,6 +2757,11 @@ public class Main extends javax.swing.JFrame {
 
             bookmark_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/user.png"))); // NOI18N
             bookmark_menuitem.setText("Manage User");
+            bookmark_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    bookmark_menuitemActionPerformed(evt);
+                }
+            });
             tools_menu.add(bookmark_menuitem);
             tools_menu.add(jSeparator6);
 
@@ -2882,8 +2907,8 @@ public class Main extends javax.swing.JFrame {
         current_report_dashboard.setText(Integer.toString(rcount));
         current_order_dashboard.setText(Integer.toString(ocount));
         int outofstock = 0;
-        for (int i = 0; i < pcount; i++) {
-            if ((int) product_table.getModel().getValueAt(product_table.getSelectedRow(), 9) == 0) {
+        for (int i = 1; i < pcount; i++) {
+            if ((int) product_table.getModel().getValueAt(i, 9) == 0) {
                 outofstock++;
             } else {
                 outofstock = 0;
@@ -3061,12 +3086,8 @@ public class Main extends javax.swing.JFrame {
         print_menuitemActionPerformed(evt);
     }//GEN-LAST:event_Print_buttonActionPerformed
 
-    private void Dashboard_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Dashboard_buttonActionPerformed
-        body.setSelectedIndex(1);
-    }//GEN-LAST:event_Dashboard_buttonActionPerformed
-
     private void User_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_User_buttonActionPerformed
-
+        openUserManager();
     }//GEN-LAST:event_User_buttonActionPerformed
 
     private void Options_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Options_buttonActionPerformed
@@ -3074,7 +3095,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_Options_buttonActionPerformed
 
     private void Customer_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Customer_buttonActionPerformed
-
+        openCustomerManager();
     }//GEN-LAST:event_Customer_buttonActionPerformed
 
     private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
@@ -3672,13 +3693,13 @@ public class Main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_done_report_btnActionPerformed
 
-    private void query_table2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_query_table2MouseClicked
+    private void order_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_order_tableMouseClicked
 
-    }//GEN-LAST:event_query_table2MouseClicked
+    }//GEN-LAST:event_order_tableMouseClicked
 
-    private void query_table2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_query_table2KeyPressed
+    private void order_tableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_order_tableKeyPressed
 
-    }//GEN-LAST:event_query_table2KeyPressed
+    }//GEN-LAST:event_order_tableKeyPressed
 
     private void print_report_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_print_report_buttonActionPerformed
         MessageFormat header = new MessageFormat("Report Print");
@@ -3869,6 +3890,28 @@ public class Main extends javax.swing.JFrame {
     private void request_order_table_dashboardKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_request_order_table_dashboardKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_request_order_table_dashboardKeyPressed
+
+    private void Dashboard_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Dashboard_buttonActionPerformed
+        body.setSelectedIndex(1);
+    }//GEN-LAST:event_Dashboard_buttonActionPerformed
+
+    private void bookmark_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookmark_menuitemActionPerformed
+        openUserManager();
+    }//GEN-LAST:event_bookmark_menuitemActionPerformed
+
+    private void dashboard_panelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboard_panelMouseClicked
+        initialDashboard();
+    }//GEN-LAST:event_dashboard_panelMouseClicked
+
+    private void openUserManager() {
+        UserManager m = new UserManager();
+        m.setVisible(true);
+    }
+
+    private void openCustomerManager() {
+        Customer c = new Customer();
+        c.setVisible(true);
+    }
 
     private void filter_search(String keyword, int column) {
         mod = (DefaultTableModel) product_table.getModel();
@@ -4102,9 +4145,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem34;
     private javax.swing.JMenuItem jMenuItem35;
     private javax.swing.JMenuItem jMenuItem36;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
@@ -4171,6 +4216,7 @@ public class Main extends javax.swing.JFrame {
     protected javax.swing.JButton order_request_button_wel;
     protected javax.swing.JPanel order_request_panel;
     private javax.swing.JPanel order_right_panel;
+    public javax.swing.JTable order_table;
     private javax.swing.JLabel out_of_stock_dashboard;
     private javax.swing.JLabel out_of_stock_dashboard_label;
     public javax.swing.JTextField pathname_box;
@@ -4201,7 +4247,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPopupMenu property_popup_menu;
     private javax.swing.JSpinner quantity_input;
     private javax.swing.JLabel quantity_label;
-    public javax.swing.JTable query_table2;
     private javax.swing.JButton remove_product_button;
     private javax.swing.JMenuItem remove_product_img_menu;
     protected javax.swing.JButton rep_button_wel;

@@ -338,6 +338,7 @@ public class Login extends javax.swing.JFrame {
         SetUpStatusBar();
         ClearLoginPassword();
         m.pack();
+        m.setIconImage(new ImageIcon(getClass().getResource("/com/mergano/gui/_static/pic/icon.png")).getImage());
         m.setExtendedState(m.getExtendedState() | Main.MAXIMIZED_BOTH);
         m.setVisible(true);
     }
@@ -355,6 +356,7 @@ public class Login extends javax.swing.JFrame {
         SetUpStatusBar();
         ClearLoginPassword();
         m.pack();
+        m.setIconImage(new ImageIcon(getClass().getResource("/com/mergano/gui/_static/pic/icon.png")).getImage());
         m.setExtendedState(m.getExtendedState() | Main.MAXIMIZED_BOTH);
         m.setVisible(true);
     }
@@ -375,6 +377,7 @@ public class Login extends javax.swing.JFrame {
         SetUpStatusBar();
         ClearLoginPassword();
         m.pack();
+        m.setIconImage(new ImageIcon(getClass().getResource("/com/mergano/gui/_static/pic/icon.png")).getImage());
         m.setExtendedState(m.getExtendedState() | Main.MAXIMIZED_BOTH);
         m.setVisible(true);
     }
@@ -397,6 +400,7 @@ public class Login extends javax.swing.JFrame {
         SetUpStatusBar();
         ClearLoginPassword();
         m.pack();
+        m.setIconImage(new ImageIcon(getClass().getResource("/com/mergano/gui/_static/pic/icon.png")).getImage());
         m.setExtendedState(m.getExtendedState() | Main.MAXIMIZED_BOTH);
         m.setVisible(true);
     }
@@ -408,6 +412,7 @@ public class Login extends javax.swing.JFrame {
         SetUpStatusBar();
         ClearLoginPassword();
         m.pack();
+        m.setIconImage(new ImageIcon(getClass().getResource("/com/mergano/gui/_static/pic/icon.png")).getImage());
         m.setExtendedState(m.getExtendedState() | Main.MAXIMIZED_BOTH);
         m.setVisible(true);
     }
