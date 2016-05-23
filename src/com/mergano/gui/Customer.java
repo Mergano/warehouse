@@ -1,6 +1,9 @@
 package com.mergano.gui;
 
+import com.mergano.core.bean.CustomerBean;
+import com.mergano.core.dao.CustomerDAO;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 public class Customer extends javax.swing.JFrame {
@@ -15,6 +18,23 @@ public class Customer extends javax.swing.JFrame {
 
         edit_customer_panel = new javax.swing.JPanel();
         ScrollPanelForCustomerQueryTable = new javax.swing.JScrollPane();
+        ArrayList<CustomerBean> list = null;
+        CustomerDAO db = new CustomerDAO();
+        try {
+            list = db.getCustomerData();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        String[] columns = {"Customer ID", "Name", "Company","Contact","Date created"};
+        Object[][] rows = new Object[list.size()][5];
+        for(int i =0; i< list.size(); i++) {
+            rows[i][0] = list.get(i).getIdcustomer();
+            rows[i][1] = list.get(i).getName();
+            rows[i][2] = list.get(i).getCompany();
+            rows[i][3] = list.get(i).getContact();
+            rows[i][4] = list.get(i).getDatetime();
+        }
         customer_table = new javax.swing.JTable();
         customer_manager_input_group = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();

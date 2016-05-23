@@ -51,7 +51,7 @@ public class ReportDAO extends ConnectDB {
                         bean.setReportDetail(rs.getString("report_detail"));
                         bean.setReportStatus(rs.getString("report_status"));
                         bean.setUserCreated(rs.getString("user_created"));
-                        bean.setCreatedDate(rs.getDate("date_created").toString());
+                        bean.setCreatedDate(rs.getTimestamp("date_created").toString());
                         report_list.add(bean);
                     } while (rs.next());
                 } else {

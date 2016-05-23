@@ -91,6 +91,7 @@
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ArrayList&lt;CustomerBean&gt; list = null;&#xa;CustomerDAO db = new CustomerDAO();&#xa;try {&#xa;    list = db.getCustomerData();&#xa;}&#xa;catch (Exception e) {&#xa;    e.printStackTrace();&#xa;}&#xa;String[] columns = {&quot;Customer ID&quot;, &quot;Name&quot;, &quot;Company&quot;,&quot;Contact&quot;,&quot;Date created&quot;};&#xa;Object[][] rows = new Object[list.size()][5];&#xa;for(int i =0; i&lt; list.size(); i++) {&#xa;        rows[i][0] = list.get(i).getIdcustomer();&#xa;        rows[i][1] = list.get(i).getName();&#xa;        rows[i][2] = list.get(i).getCompany();&#xa;        rows[i][3] = list.get(i).getContact();&#xa;        rows[i][4] = list.get(i).getDatetime();&#xa;}"/>
                 <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="main_query_table"/>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
