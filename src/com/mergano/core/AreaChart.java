@@ -22,7 +22,7 @@ public class AreaChart extends JPanel {
 
     public ChartPanel chartPanel;
 
-    public JPanel getChart() {
+    public ChartPanel getChart() {
         // create a dataset...
         final double[][] data = new double[][]{
             {1.0, 4.0, 3.0, 5.0, 5.0, 7.0, 7.0, 8.0},
@@ -37,9 +37,7 @@ public class AreaChart extends JPanel {
         // create the chart...
         final JFreeChart chart = createChart(dataset);
         chartPanel = new ChartPanel(chart);
-        JPanel b = new JPanel();
-        JPanel c = (JPanel) b.add(chartPanel);
-        return c;
+        return chartPanel;
     }
 
     private JFreeChart createChart(final CategoryDataset dataset) {

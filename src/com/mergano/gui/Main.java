@@ -15,6 +15,7 @@
  */
 package com.mergano.gui;
 
+import com.mergano.core.AreaChart;
 import com.mergano.core.ExportCSV;
 import com.mergano.core.Logout;
 import com.mergano.core.TextFieldLimit;
@@ -68,6 +69,7 @@ public class Main extends javax.swing.JFrame {
         pathname_box.setDocument(new TextFieldLimit(500));
         productID_input.setDocument(new TextFieldLimit(13));
         initialDashboard();
+        initialStatisticChart();
     }
 
     @SuppressWarnings("unchecked")
@@ -2915,6 +2917,13 @@ public class Main extends javax.swing.JFrame {
             }
         }
         out_of_stock_dashboard.setText(Integer.toString(outofstock));
+    }
+
+    private void initialStatisticChart() {
+        AreaChart a = new AreaChart();
+        statistic_graph.add(a.getChart(), BorderLayout.NORTH);
+        statistic_graph.setVisible(t);
+        statistic_graph.validate();
     }
     private void about_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_menuitemActionPerformed
         About a = new About();
