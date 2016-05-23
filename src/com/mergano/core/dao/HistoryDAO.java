@@ -9,9 +9,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class HistoryDAO {
+public class HistoryDAO extends ConnectDB {
 
-    private ConnectDB connect;
     private Connection conn;
     private PreparedStatement p = null;
     private ResultSet rs = null;
@@ -20,8 +19,7 @@ public class HistoryDAO {
 
     public HistoryDAO() {
         try {
-            connect = new ConnectDB();
-            conn = connect.getconnection();
+            conn = super.getconnection();
         } catch (Exception ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

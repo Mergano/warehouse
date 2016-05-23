@@ -1,5 +1,5 @@
 package com.mergano.core.dao;
 
-public class ReportDAO {
+public class ReportDAO extends ConnectDB {
 
 }

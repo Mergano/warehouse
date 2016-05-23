@@ -1,5 +1,5 @@
 package com.mergano.core.dao;
 
-public class UserDAO {
+public class UserDAO extends ConnectDB {
 
 }

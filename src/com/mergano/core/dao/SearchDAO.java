@@ -12,10 +12,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-public class SearchDAO {
+public class SearchDAO extends ConnectDB {
 
     private final String table = "products";
-    private ConnectDB connect;
     private Connection conn;
     private PreparedStatement p = null;
     private ResultSet rs = null;
@@ -23,8 +22,7 @@ public class SearchDAO {
 
     public SearchDAO() {
         try {
-            connect = new ConnectDB();
-            conn = connect.getconnection();
+            conn = super.getconnection();
         } catch (Exception ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -67,7 +65,7 @@ public class SearchDAO {
             long start = java.lang.System.currentTimeMillis();
             p = conn.prepareStatement(sql);
             rs = p.executeQuery();
-            connect.commit();
+            conn.commit();
             while (rs.next()) {
                 ProductBean stub = new ProductBean();
                 stub.setProductID(rs.getLong("product_id"));
@@ -118,7 +116,7 @@ public class SearchDAO {
                 long start = java.lang.System.currentTimeMillis();
                 p = conn.prepareStatement(sql);
                 rs = p.executeQuery();
-                connect.commit();
+                conn.commit();
                 // Benchmark time
                 long stop = java.lang.System.currentTimeMillis();
                 if (rs.next()) {

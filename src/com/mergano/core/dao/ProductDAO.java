@@ -10,11 +10,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-public class ProductDAO {
+public class ProductDAO extends ConnectDB {
 
     private final String table = "products";
     private final String backlog_table = "backlog";
-    private ConnectDB connect;
     private Connection conn;
     private PreparedStatement p = null;
     private ResultSet rs = null;
@@ -22,8 +21,7 @@ public class ProductDAO {
 
     public ProductDAO() {
         try {
-            connect = new ConnectDB();
-            conn = connect.getconnection();
+            conn = super.getconnection();
         } catch (Exception ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

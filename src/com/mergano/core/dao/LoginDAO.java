@@ -1,7 +1,7 @@
 package com.mergano.core.dao;
 
-import com.mergano.core.bean.LoginBean;
 import com.mergano.core.Encryption;
+import com.mergano.core.bean.LoginBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,18 +9,16 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class LoginDAO {
+public class LoginDAO extends ConnectDB {
 
     private final String table = "user";
-    private ConnectDB c;
     private Connection conn;
     private PreparedStatement p = null;
     private ResultSet rs = null;
 
     public LoginDAO() {
         try {
-            c = new ConnectDB();
-            conn = c.getconnection();
+            conn = super.getconnection();
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }
