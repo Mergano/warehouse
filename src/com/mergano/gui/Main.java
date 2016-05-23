@@ -15,6 +15,7 @@
  */
 package com.mergano.gui;
 
+import com.mergano.core.AreaChart;
 import com.mergano.core.ExportCSV;
 import com.mergano.core.Logout;
 import com.mergano.core.TextFieldLimit;
@@ -25,6 +26,7 @@ import com.mergano.core.bean.ProductBean;
 import com.mergano.core.dao.HistoryDAO;
 import com.mergano.core.dao.ProductDAO;
 import com.mergano.core.dao.SearchDAO;
+import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -48,6 +50,7 @@ import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
 import static javax.swing.JOptionPane.YES_NO_OPTION;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -2921,9 +2924,9 @@ public class Main extends javax.swing.JFrame {
     private void initialStatisticChart() {
         AreaChart a = new AreaChart();
         a.getChart();
-        //statistic_graph.add(a.getChart(), BorderLayout.CENTER);
+        statistic_graph.add(a.getChart(), BorderLayout.CENTER);
         //statistic_graph.setVisible(true);
-        //statistic_graph.validate();
+        statistic_graph.validate();
     }
     private void about_menuitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_menuitemActionPerformed
         About a = new About();
@@ -3522,7 +3525,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_mai_button_welActionPerformed
 
     private void rep_button_welActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rep_button_welActionPerformed
-        body.setSelectedIndex(7);
+        body.setSelectedIndex(8);
     }//GEN-LAST:event_rep_button_welActionPerformed
 
     private void view_graph_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_graph_buttonActionPerformed
@@ -3534,7 +3537,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_order_request_button_welActionPerformed
 
     private void sta_button_welActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sta_button_welActionPerformed
-        body.setSelectedIndex(8);
+        body.setSelectedIndex(7);
     }//GEN-LAST:event_sta_button_welActionPerformed
 
     private void ser_button_welActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ser_button_welActionPerformed

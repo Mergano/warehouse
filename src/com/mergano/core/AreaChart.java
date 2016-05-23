@@ -20,11 +20,11 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.general.DatasetUtilities;
 
-public class AreaChart {
+public class AreaChart extends JFrame{
 
     public ChartPanel chartPanel;
 
-    public void getChart() {
+    public ChartPanel getChart() {
         // create a dataset...
         final double[][] data = new double[][]{
             {1.0, 4.0, 3.0, 5.0, 5.0, 7.0, 7.0, 8.0},
@@ -39,14 +39,15 @@ public class AreaChart {
         // create the chart...
         final JFreeChart chart = createChart(dataset);
         chartPanel = new ChartPanel(chart);
-        JPanel jPanelx = new JPanel();
-        jPanelx.setLayout(new BorderLayout());
-        // statistic_graph.add(chartPanel, BorderLayout.NORTH);
+        //JPanel jPanelx = new JPanel();
+        //jPanelx.setLayout(new BorderLayout());
+        //statistic_graph.add(chartPanel, BorderLayout.NORTH);
 
-        JFrame frame = new JFrame();
-        frame.add(jPanelx);
-        frame.pack();
-        frame.setVisible(true);
+        //JFrame frame = new JFrame();
+        //frame.add(jPanelx);
+        //frame.pack();
+        //frame.setVisible(true);
+        return chartPanel;
     }
 
     private JFreeChart createChart(final CategoryDataset dataset) {
