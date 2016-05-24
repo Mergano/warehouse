@@ -1,6 +1,7 @@
 package com.mergano.core.dao;
 
 import com.mergano.core.bean.OrderBean;
+import com.mergano.core.bean.RequestOrderBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,8 +14,9 @@ import javax.swing.JTable;
 
 public class OrderDAO extends ConnectDB {
 
-    private final String table = "order";
+    private final String table = "mergano.order";
     private final String order_product_table = "order_product";
+    private final String request_order_table = "request_order";
     private final String backlog_table = "backlog";
     private Connection conn;
     private PreparedStatement p = null;
@@ -65,6 +67,44 @@ public class OrderDAO extends ConnectDB {
             }
         }
         return order_list;
+    }
+
+    public ArrayList<RequestOrderBean> getOrderRequestData() {
+        ArrayList<RequestOrderBean> request_order_list = new ArrayList<>();
+        if (conn == null) {
+            System.err.println("ERROR: NO INTERNET CONNECTION");
+            JOptionPane.showMessageDialog(null, "Internet connection is broken or disconnected. \nPlease check your internet connection and try again.", "Communication error",
+                    JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+        } else {
+            sql = "SELECT * FROM " + request_order_table + ";";
+            try {
+                p = conn.prepareStatement(sql);
+                rs = p.executeQuery();
+
+                if (rs.next()) {
+                    do {
+                        RequestOrderBean bean = new RequestOrderBean();
+                        bean.setIdrequest(rs.getInt("idrequest"));
+                        bean.setOrder_id(rs.getInt("order_id"));
+                        bean.setProduct_id(rs.getLong("product_id"));
+                        bean.setQuantity(rs.getInt("quantity"));
+                        bean.setUser_created(rs.getString("user_created"));
+                        bean.setRequest_status(rs.getString("request_status"));
+                        request_order_list.add(bean);
+                    } while (rs.next());
+                } else {
+                    // ERROR CODE QUERY ERROR
+                }
+                conn.commit();
+                p.close();
+                rs.close();
+                conn.close();
+            } catch (SQLException e) {
+                System.err.print(e);
+            }
+        }
+        return request_order_list;
     }
 
     public boolean AddOrder(int orderid, JTable table, int rows) {

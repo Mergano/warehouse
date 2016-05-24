@@ -80,6 +80,58 @@ public class ProductDAO extends ConnectDB {
         return product_list;
     }
 
+    public ArrayList<ProductBean> getDataOutofStock() {
+        ArrayList<ProductBean> out_of_stock_list = new ArrayList<>();
+
+        if (conn == null) {
+            System.err.println("ERROR: NO INTERNET CONNECTION");
+            JOptionPane.showMessageDialog(null, "Internet connection is broken or disconnected. \nPlease check your internet connection and try again.", "Communication error",
+                    JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+        } else {
+            String sql = "SELECT product_id, category, manufacture, name, model, description, cost, location, warranty, quantity, import_date, status, user_lastmodified, image "
+                    + "FROM " + table + " WHERE " + "quantity = 0;";
+            try {
+                long start = java.lang.System.currentTimeMillis();
+                p = conn.prepareStatement(sql);
+                rs = p.executeQuery();
+
+                if (rs.next()) {
+                    do {
+                        ProductBean bean = new ProductBean();
+                        bean.setProductID(rs.getLong("product_id"));
+                        bean.setCategory(rs.getString("category"));
+                        bean.setManufacture(rs.getString("manufacture"));
+                        bean.setName(rs.getString("name"));
+                        bean.setModel(rs.getString("model"));
+                        bean.setDescription(rs.getString("description"));
+                        bean.setCost(rs.getString("cost"));
+                        bean.setLocation(rs.getString("location"));
+                        bean.setWarranty(rs.getString("warranty"));
+                        bean.setQuantity(rs.getInt("quantity"));
+                        bean.setImport(rs.getDate("import_date").toString());
+                        bean.setStatus(rs.getString("status"));
+                        bean.setUserLastModified(rs.getString("user_lastmodified"));
+                        bean.setPImage(rs.getBinaryStream("image"));
+                        out_of_stock_list.add(bean);
+                    } while (rs.next());
+                    // Benchmark time
+                    long stop = java.lang.System.currentTimeMillis();
+                    System.out.println("JDBC query time: " + String.valueOf((stop - start)) + " ms");
+                } else {
+                    // ERROR CODE QUERY ERROR
+                }
+                conn.commit();
+                p.close();
+                rs.close();
+                conn.close();
+            } catch (SQLException e) {
+                System.err.print(e);
+            }
+        }
+        return out_of_stock_list;
+    }
+
 // Insert data into product table
     public boolean insertData(ProductBean bean) {
         flag = false;

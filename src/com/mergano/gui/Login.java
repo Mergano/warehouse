@@ -355,9 +355,9 @@ public class Login extends javax.swing.JFrame {
         m.database_panel.setEnabled(false);
         m.database_menuitem.setEnabled(false);
         m.body.setEnabledAt(5, false);
-        m.data_button_wel.setEnabled(false);
+        //m.data_button_wel.setEnabled(false);
         m.User_button.setEnabled(false);
-        m.mai_button_wel.setEnabled(false);
+        //m.mai_button_wel.setEnabled(false);
         SetUpStatusBar();
         ClearLoginPassword();
         m.pack();
@@ -379,9 +379,9 @@ public class Login extends javax.swing.JFrame {
         m.body.setEnabledAt(5, false);
         m.sm_button_wel.setEnabled(false);
         m.management_panel.setEnabled(false);
-        m.data_button_wel.setEnabled(false);
+        // m.data_button_wel.setEnabled(false);
         m.User_button.setEnabled(false);
-        m.mai_button_wel.setEnabled(false);
+        // m.mai_button_wel.setEnabled(false);
         SetUpStatusBar();
         ClearLoginPassword();
         m.pack();
@@ -405,9 +405,9 @@ public class Login extends javax.swing.JFrame {
         m.sm_button_wel.setEnabled(false);
         m.management_panel.setEnabled(false);
         m.order_panel.setEnabled(false);
-        m.data_button_wel.setEnabled(false);
+        // m.data_button_wel.setEnabled(false);
         m.User_button.setEnabled(false);
-        m.mai_button_wel.setEnabled(false);
+        // m.mai_button_wel.setEnabled(false);
         SetUpStatusBar();
         ClearLoginPassword();
         m.pack();
