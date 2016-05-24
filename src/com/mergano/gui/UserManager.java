@@ -39,7 +39,7 @@ public class UserManager extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         user_flter_column = new javax.swing.JComboBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("User Manager");
         setAlwaysOnTop(true);
         setIconImage(new ImageIcon(getClass().getResource("/com/mergano/gui/_static/pic/icon.png")).getImage());

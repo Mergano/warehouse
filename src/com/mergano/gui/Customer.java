@@ -36,6 +36,13 @@ public class Customer extends javax.swing.JFrame {
             rows[i][4] = list.get(i).getDatetime();
         }
         customer_table = new javax.swing.JTable();
+        /*
+        customer_table.getColumnModel().getColumn(0).setPreferredWidth(10);
+        customer_table.getColumnModel().getColumn(1).setPreferredWidth(40);
+        customer_table.getColumnModel().getColumn(2).setPreferredWidth(50);
+        customer_table.getColumnModel().getColumn(3).setPreferredWidth(50);
+        customer_table.getColumnModel().getColumn(4).setPreferredWidth(20);
+        */
         customer_manager_input_group = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -51,7 +58,7 @@ public class Customer extends javax.swing.JFrame {
         delete_customer_btn = new javax.swing.JButton();
         cancel_customer_btn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Customer Manager");
         setAlwaysOnTop(true);
         setIconImage(new ImageIcon(getClass().getResource("/com/mergano/gui/_static/pic/icon.png")).getImage());
@@ -66,7 +73,13 @@ public class Customer extends javax.swing.JFrame {
         ScrollPanelForCustomerQueryTable.setPreferredSize(new java.awt.Dimension(500, 400));
 
         customer_table.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        customer_table.setModel(new javax.swing.table.DefaultTableModel(rows, columns)
+            {public boolean iasCellEditable(int row, int column){return false;}}
+        );
         customer_table.setDragEnabled(true);
+        customer_table.setRowHeight(25);
+        customer_table.setRowMargin(3);
+        customer_table.setSelectionBackground(new java.awt.Color(0, 102, 153));
         customer_table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 customer_tableMouseClicked(evt);

@@ -34,7 +34,7 @@ public class CustomerDAO extends ConnectDB {
                     JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         } else {
-            String sql = "SELECT * FROM " + table + " ORDER BY " + "type;";
+            String sql = "SELECT * FROM " + table + ";";
             try {
                 p = conn.prepareStatement(sql);
                 rs = p.executeQuery();

@@ -22,9 +22,11 @@ import com.mergano.core.TextFieldLimit;
 import com.mergano.core.Utils;
 import com.mergano.core.WebBrowse;
 import com.mergano.core.bean.HistoryBean;
+import com.mergano.core.bean.OrderBean;
 import com.mergano.core.bean.ProductBean;
 import com.mergano.core.bean.ReportBean;
 import com.mergano.core.dao.HistoryDAO;
+import com.mergano.core.dao.OrderDAO;
 import com.mergano.core.dao.ProductDAO;
 import com.mergano.core.dao.ReportDAO;
 import com.mergano.core.dao.SearchDAO;
@@ -191,17 +193,38 @@ public class Main extends javax.swing.JFrame {
         order_panel = new javax.swing.JPanel();
         order_left_panel = new javax.swing.JPanel();
         ScrollPanelForQueryTable2 = new javax.swing.JScrollPane();
+        ArrayList<OrderBean> listo = null;
+        OrderDAO odb = new OrderDAO();
+        try {
+            listo = odb.getOrderData();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        String[] columnso = {"Order ID","Customer ID","Order Status","User created","Date created"};
+        Object[][] rowso = new Object[listo.size()][5];
+        for(int i =0; i< listo.size(); i++) {
+            rowso[i][0] = listo.get(i).getIdorder();
+            rowso[i][1] = listo.get(i).getCustomer_id();
+            rowso[i][2] = listo.get(i).getOrder_status();
+            rowso[i][3] = listo.get(i).getUser_created();
+            rowso[i][4] = listo.get(i).getDate_created();
+        }
         order_table = new javax.swing.JTable();
         order_right_panel = new javax.swing.JPanel();
         order_input = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         order_quantity_label = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
+        order_id = new javax.swing.JTextField();
         customer_id = new javax.swing.JTextField();
         product_id = new javax.swing.JTextField();
         order_quantity = new javax.swing.JSpinner();
+        jPanel9 = new javax.swing.JPanel();
+        add_to_orderlist_btn = new javax.swing.JButton();
         order_product_input = new javax.swing.JPanel();
         add_product_to_order_table = new javax.swing.JScrollPane();
         product_orderlist_table = new javax.swing.JTable();
@@ -1133,1730 +1156,1779 @@ public class Main extends javax.swing.JFrame {
             catch (Exception e) {
                 e.printStackTrace();
             }
-            //List<Object[]> values = new ArrayList<>();
             String[] columns = {"Product ID","Category","Name","Manufacture","Model","Description","Cost","Location","Warranty","Quantity","Import","Status","Last modified","Image"};
             Object[][] rows = new Object[list.size()][14];
             for(int i =0; i< list.size(); i++) {
-                //values.add(new Object[] {
-                    rows[i][0] = list.get(i).getProductID();
-                    rows[i][1] = list.get(i).getCategory();
-                    rows[i][2] = list.get(i).getName();
-                    rows[i][3] = list.get(i).getManufacture();
-                    rows[i][4] = list.get(i).getModel();
-                    rows[i][5] = list.get(i).getDescription();
-                    rows[i][6] = list.get(i).getCost();
-                    rows[i][7] = list.get(i).getLocation();
-                    rows[i][8] = list.get(i).getWarranty();
-                    rows[i][9] = list.get(i).getQuantity();
-                    rows[i][10] = list.get(i).getImport();
-                    rows[i][11] = list.get(i).getStatus();
-                    rows[i][12] = list.get(i).getUserLastModified();
-                    if (list.get(i).getPImage() != null) {
-                        InputStream is = new BufferedInputStream(list.get(i).getPImage());
-                        try {
-                            Image image = ImageIO.read(is);
-                            ImageIcon image2 = new ImageIcon(new ImageIcon(image).getImage().getScaledInstance(60, 20, Image.SCALE_SMOOTH));
-                            rows[i][13] = image2;
-                        } catch (IOException ex) {
-                            rows[i][13] = null;
-                            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    } else {
+                rows[i][0] = list.get(i).getProductID();
+                rows[i][1] = list.get(i).getCategory();
+                rows[i][2] = list.get(i).getName();
+                rows[i][3] = list.get(i).getManufacture();
+                rows[i][4] = list.get(i).getModel();
+                rows[i][5] = list.get(i).getDescription();
+                rows[i][6] = list.get(i).getCost();
+                rows[i][7] = list.get(i).getLocation();
+                rows[i][8] = list.get(i).getWarranty();
+                rows[i][9] = list.get(i).getQuantity();
+                rows[i][10] = list.get(i).getImport();
+                rows[i][11] = list.get(i).getStatus();
+                rows[i][12] = list.get(i).getUserLastModified();
+                if (list.get(i).getPImage() != null) {
+                    InputStream is = new BufferedInputStream(list.get(i).getPImage());
+                    try {
+                        Image image = ImageIO.read(is);
+                        ImageIcon image2 = new ImageIcon(new ImageIcon(image).getImage().getScaledInstance(60, 20, Image.SCALE_SMOOTH));
+                        rows[i][13] = image2;
+                    } catch (IOException ex) {
                         rows[i][13] = null;
+                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }
-                product_table.setAutoCreateRowSorter(true);
-                product_table.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-                product_table.setModel(new javax.swing.table.DefaultTableModel(rows, columns)
-                    {public boolean isCellEditable(int row, int column){return false;}}
-                );
-                product_table.setToolTipText("Product table");
-                product_table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-                product_table.setFillsViewportHeight(true);
-                product_table.setGridColor(new java.awt.Color(204, 204, 204));
-                product_table.setName(""); // NOI18N
-                product_table.setRowHeight(20);
-                product_table.setRowMargin(3);
-                product_table.setSelectionBackground(new java.awt.Color(255, 51, 51));
-                product_table.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-                product_table.setShowHorizontalLines(false);
-                product_table.setShowVerticalLines(false);
-                product_table.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-                product_table.removeColumn(product_table.getColumnModel().getColumn(5));
-                product_table.removeColumn(product_table.getColumnModel().getColumn(12));
-                product_table.getColumnModel().getColumn(0).setPreferredWidth(90);
-                product_table.getColumnModel().getColumn(1).setPreferredWidth(76);
-                product_table.getColumnModel().getColumn(2).setPreferredWidth(150);
-                product_table.getColumnModel().getColumn(3).setPreferredWidth(160);
-                product_table.getColumnModel().getColumn(4).setPreferredWidth(50);
-                product_table.getColumnModel().getColumn(6).setPreferredWidth(60);
-                product_table.getColumnModel().getColumn(7).setPreferredWidth(50);
-                product_table.getColumnModel().getColumn(8).setPreferredWidth(60);
-                product_table.getColumnModel().getColumn(9).setPreferredWidth(60);
-                product_table.getColumnModel().getColumn(10).setPreferredWidth(70);
-
-                if (product_table.getRowCount() == 0) {
-                    remove_product_button.setEnabled(false);
-                    edit_product_button.setEnabled(false);
-                }
-                product_table.addMouseListener(new java.awt.event.MouseAdapter() {
-                    public void mouseClicked(java.awt.event.MouseEvent evt) {
-                        product_tableMouseClicked(evt);
-                    }
-                    public void mouseReleased(java.awt.event.MouseEvent evt) {
-                        product_tableMouseReleased(evt);
-                    }
-                });
-                product_table.addKeyListener(new java.awt.event.KeyAdapter() {
-                    public void keyPressed(java.awt.event.KeyEvent evt) {
-                        product_tableKeyPressed(evt);
-                    }
-                });
-                ScrollPanelForQueryTable.setViewportView(product_table);
-                product_table.getAccessibleContext().setAccessibleName("");
-                product_table.getAccessibleContext().setAccessibleDescription("");
-
-                sm_left_panel.add(ScrollPanelForQueryTable, java.awt.BorderLayout.CENTER);
-
-                management_panel.add(sm_left_panel, java.awt.BorderLayout.CENTER);
-
-                sm_right_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Product Information", javax.swing.border.TitledBorder.LEADING, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12))); // NOI18N
-                sm_right_panel.setPreferredSize(new java.awt.Dimension(393, 420));
-                sm_right_panel.setLayout(new java.awt.BorderLayout(5, 5));
-
-                product_info_head_panel.setPreferredSize(new java.awt.Dimension(175, 200));
-                product_info_head_panel.setLayout(new java.awt.GridLayout(1, 0, 5, 1));
-
-                product_img_panel.setBackground(new java.awt.Color(255, 255, 255));
-                product_img_panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-                product_img_panel.setMinimumSize(new java.awt.Dimension(60, 20));
-                product_img_panel.setPreferredSize(new java.awt.Dimension(80, 20));
-                product_img_panel.setLayout(new java.awt.BorderLayout());
-
-                product_img.setBackground(new java.awt.Color(0, 204, 102));
-                product_img.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                product_img.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                product_img.setIcon(null);
-                product_img.setText("NO IMAGE");
-                product_img.setMaximumSize(new java.awt.Dimension(60, 20));
-                product_img.setMinimumSize(new java.awt.Dimension(60, 20));
-                product_img.setPreferredSize(new java.awt.Dimension(60, 20));
-                product_img.addMouseListener(new java.awt.event.MouseAdapter() {
-                    public void mouseClicked(java.awt.event.MouseEvent evt) {
-                        product_imgMouseClicked(evt);
-                    }
-                    public void mouseReleased(java.awt.event.MouseEvent evt) {
-                        product_imgMouseReleased(evt);
-                    }
-                });
-                product_img_panel.add(product_img, java.awt.BorderLayout.CENTER);
-
-                product_info_head_panel.add(product_img_panel);
-
-                product_head_group_panel.setLayout(new java.awt.GridLayout(10, 0, 0, 1));
-
-                product_id_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                product_id_label.setText("Product ID");
-                product_head_group_panel.add(product_id_label);
-
-                productID_input.setEditable(false);
-                productID_input.setBackground(new java.awt.Color(255, 255, 255));
-                product_head_group_panel.add(productID_input);
-
-                category_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                category_label.setText("Category");
-                product_head_group_panel.add(category_label);
-
-                category_input.setEditable(true);
-                category_input.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Book", "Stationary", "Drink", "Beauty", "Other" }));
-                category_input.setEnabled(false);
-                product_head_group_panel.add(category_input);
-
-                product_name_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                product_name_label.setText("Product Name");
-                product_head_group_panel.add(product_name_label);
-
-                name_input.setEditable(false);
-                name_input.setBackground(new java.awt.Color(255, 255, 255));
-                product_head_group_panel.add(name_input);
-
-                manufacture_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                manufacture_label.setText("Manufacture");
-                product_head_group_panel.add(manufacture_label);
-
-                manufacture_input.setEditable(false);
-                manufacture_input.setBackground(new java.awt.Color(255, 255, 255));
-                product_head_group_panel.add(manufacture_input);
-
-                model_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                model_label.setText("Model");
-                product_head_group_panel.add(model_label);
-
-                model_input.setEditable(false);
-                model_input.setBackground(new java.awt.Color(255, 255, 255));
-                product_head_group_panel.add(model_input);
-
-                product_info_head_panel.add(product_head_group_panel);
-
-                sm_right_panel.add(product_info_head_panel, java.awt.BorderLayout.NORTH);
-
-                product_info_body_panel.setLayout(new java.awt.BorderLayout(0, 5));
-
-                product_info_group_panel.setLayout(new java.awt.GridLayout(10, 1, 0, 1));
-
-                location_label.setText("Location");
-                product_info_group_panel.add(location_label);
-
-                location_input.setEditable(false);
-                location_input.setBackground(new java.awt.Color(255, 255, 255));
-                product_info_group_panel.add(location_input);
-
-                product_status_label.setText("Status");
-                product_info_group_panel.add(product_status_label);
-
-                product_status_box.setEditable(false);
-                product_status_box.setBackground(new java.awt.Color(255, 255, 255));
-                product_info_group_panel.add(product_status_box);
-
-                warranty_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                warranty_label.setText("Warranty");
-                product_info_group_panel.add(warranty_label);
-
-                warranty_input.setEditable(false);
-                warranty_input.setBackground(new java.awt.Color(255, 255, 255));
-                warranty_input.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        warranty_inputActionPerformed(evt);
-                    }
-                });
-                product_info_group_panel.add(warranty_input);
-
-                cost_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                cost_label.setText("Cost");
-                product_info_group_panel.add(cost_label);
-
-                cost_input.setEditable(false);
-                cost_input.setBackground(new java.awt.Color(255, 255, 255));
-                cost_input.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        cost_inputActionPerformed(evt);
-                    }
-                });
-                product_info_group_panel.add(cost_input);
-
-                quantity_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                quantity_label.setText("Quantity");
-                product_info_group_panel.add(quantity_label);
-
-                quantity_input.setModel(new javax.swing.SpinnerNumberModel(1, 0, 999, 1));
-                quantity_input.setEnabled(false);
-                product_info_group_panel.add(quantity_input);
-
-                product_info_body_panel.add(product_info_group_panel, java.awt.BorderLayout.NORTH);
-
-                product_info_desc_panel.setPreferredSize(new java.awt.Dimension(381, 150));
-                product_info_desc_panel.setLayout(new java.awt.BorderLayout(0, 2));
-
-                description_label.setText("Description");
-                product_info_desc_panel.add(description_label, java.awt.BorderLayout.NORTH);
-
-                description_scroll.setPreferredSize(new java.awt.Dimension(183, 133));
-
-                description_input.setEditable(false);
-                description_input.setColumns(20);
-                description_input.setRows(5);
-                description_input.setPreferredSize(new java.awt.Dimension(170, 100));
-                description_scroll.setViewportView(description_input);
-
-                product_info_desc_panel.add(description_scroll, java.awt.BorderLayout.CENTER);
-
-                product_info_body_panel.add(product_info_desc_panel, java.awt.BorderLayout.CENTER);
-
-                sm_right_panel.add(product_info_body_panel, java.awt.BorderLayout.CENTER);
-
-                add_product_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-                add_product_button.setText("Add");
-                add_product_button.setPreferredSize(new java.awt.Dimension(80, 28));
-                add_product_button.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        add_product_buttonActionPerformed(evt);
-                    }
-                });
-                product_info_footer_panel.add(add_product_button);
-
-                remove_product_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-                remove_product_button.setText("Remove");
-                remove_product_button.setEnabled(false);
-                remove_product_button.setPreferredSize(new java.awt.Dimension(80, 28));
-                remove_product_button.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        remove_product_buttonActionPerformed(evt);
-                    }
-                });
-                product_info_footer_panel.add(remove_product_button);
-
-                edit_product_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-                edit_product_button.setText("Edit..");
-                edit_product_button.setEnabled(false);
-                edit_product_button.setPreferredSize(new java.awt.Dimension(80, 28));
-                edit_product_button.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        edit_product_buttonActionPerformed(evt);
-                    }
-                });
-                product_info_footer_panel.add(edit_product_button);
-
-                save_product_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-                save_product_button.setText("Save");
-                save_product_button.setEnabled(false);
-                save_product_button.setPreferredSize(new java.awt.Dimension(80, 28));
-                save_product_button.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        save_product_buttonActionPerformed(evt);
-                    }
-                });
-                product_info_footer_panel.add(save_product_button);
-
-                sm_right_panel.add(product_info_footer_panel, java.awt.BorderLayout.SOUTH);
-
-                management_panel.add(sm_right_panel, java.awt.BorderLayout.EAST);
-
-                body.addTab("Stock Management", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/notebook.png")), management_panel); // NOI18N
-
-                order_panel.setLayout(new java.awt.BorderLayout());
-
-                order_left_panel.setPreferredSize(new java.awt.Dimension(800, 500));
-                order_left_panel.setLayout(new java.awt.BorderLayout(10, 10));
-
-                ScrollPanelForQueryTable2.setBorder(null);
-
-                order_table.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                order_table.setDragEnabled(true);
-                order_table.setRowHeight(25);
-                order_table.setRowMargin(3);
-                order_table.setSelectionBackground(new java.awt.Color(255, 0, 0));
-                order_table.addMouseListener(new java.awt.event.MouseAdapter() {
-                    public void mouseClicked(java.awt.event.MouseEvent evt) {
-                        order_tableMouseClicked(evt);
-                    }
-                });
-                order_table.addKeyListener(new java.awt.event.KeyAdapter() {
-                    public void keyPressed(java.awt.event.KeyEvent evt) {
-                        order_tableKeyPressed(evt);
-                    }
-                });
-                ScrollPanelForQueryTable2.setViewportView(order_table);
-
-                order_left_panel.add(ScrollPanelForQueryTable2, java.awt.BorderLayout.CENTER);
-
-                order_panel.add(order_left_panel, java.awt.BorderLayout.WEST);
-
-                order_right_panel.setLayout(new java.awt.BorderLayout(10, 10));
-
-                order_input.setLayout(new java.awt.BorderLayout(10, 10));
-
-                jPanel12.setLayout(new java.awt.GridLayout(3, 1, 10, 10));
-
-                jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                jLabel5.setText("Customer ID");
-                jPanel12.add(jLabel5);
-
-                jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                jLabel9.setText("Product ID");
-                jPanel12.add(jLabel9);
-
-                order_quantity_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                order_quantity_label.setText("Quantity");
-                jPanel12.add(order_quantity_label);
-
-                order_input.add(jPanel12, java.awt.BorderLayout.WEST);
-
-                jPanel10.setLayout(new java.awt.GridLayout(3, 0, 5, 5));
-                jPanel10.add(customer_id);
-                jPanel10.add(product_id);
-                jPanel10.add(order_quantity);
-
-                order_input.add(jPanel10, java.awt.BorderLayout.CENTER);
-
-                order_right_panel.add(order_input, java.awt.BorderLayout.NORTH);
-
-                order_product_input.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Product Order List", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12))); // NOI18N
-                order_product_input.setPreferredSize(new java.awt.Dimension(214, 423));
-                order_product_input.setLayout(new java.awt.BorderLayout(10, 10));
-
-                add_product_to_order_table.setBackground(new java.awt.Color(255, 255, 255));
-                add_product_to_order_table.setPreferredSize(new java.awt.Dimension(100, 720));
-
-                product_orderlist_table.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                product_orderlist_table.setModel(new javax.swing.table.DefaultTableModel(rows, columns)
-                    {public boolean isCellEditable(int row, int column){return false;}}
-                );
-                add_product_to_order_table.setViewportView(product_orderlist_table);
-
-                order_product_input.add(add_product_to_order_table, java.awt.BorderLayout.NORTH);
-
-                order_action_btn_group.setLayout(new java.awt.GridLayout(1, 3, 10, 10));
-
-                add_order_btn.setText("Add Order");
-                add_order_btn.setPreferredSize(new java.awt.Dimension(120, 40));
-                order_action_btn_group.add(add_order_btn);
-
-                edit_order_btn.setText("Edit Order");
-                order_action_btn_group.add(edit_order_btn);
-
-                delete_order_btn.setText("Delete Order");
-                order_action_btn_group.add(delete_order_btn);
-
-                order_product_input.add(order_action_btn_group, java.awt.BorderLayout.CENTER);
-
-                order_right_panel.add(order_product_input, java.awt.BorderLayout.CENTER);
-
-                order_confirm_btn.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                order_confirm_btn.setText("Confirm Order");
-                order_confirm_btn.setPreferredSize(new java.awt.Dimension(140, 40));
-                order_right_panel.add(order_confirm_btn, java.awt.BorderLayout.SOUTH);
-
-                order_panel.add(order_right_panel, java.awt.BorderLayout.CENTER);
-
-                body.addTab("Order Management", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/clipboard.png")), order_panel); // NOI18N
-
-                request_order_body_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Request Order", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
-                request_order_body_panel.setLayout(new java.awt.BorderLayout());
-
-                ScrollPanelForQueryTable3.setBorder(null);
-
-                request_order_table.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                request_order_table.setDragEnabled(true);
-                request_order_table.setRowHeight(25);
-                request_order_table.setRowMargin(3);
-                request_order_table.setRowSelectionAllowed(false);
-                request_order_table.setSelectionBackground(new java.awt.Color(0, 153, 153));
-                request_order_table.addMouseListener(new java.awt.event.MouseAdapter() {
-                    public void mouseClicked(java.awt.event.MouseEvent evt) {
-                        request_order_tableMouseClicked(evt);
-                    }
-                });
-                request_order_table.addKeyListener(new java.awt.event.KeyAdapter() {
-                    public void keyPressed(java.awt.event.KeyEvent evt) {
-                        request_order_tableKeyPressed(evt);
-                    }
-                });
-                ScrollPanelForQueryTable3.setViewportView(request_order_table);
-
-                request_order_body_panel.add(ScrollPanelForQueryTable3, java.awt.BorderLayout.CENTER);
-
-                accept.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                accept.setText("Accept");
-
-                javax.swing.GroupLayout order_request_panelLayout = new javax.swing.GroupLayout(order_request_panel);
-                order_request_panel.setLayout(order_request_panelLayout);
-                order_request_panelLayout.setHorizontalGroup(
-                    order_request_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(order_request_panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(request_order_body_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
-                        .addComponent(accept, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(165, 165, 165))
-                );
-                order_request_panelLayout.setVerticalGroup(
-                    order_request_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(order_request_panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(request_order_body_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, order_request_panelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(accept, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22))
-                );
-
-                body.addTab("Order Request", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/checkmark.png")), order_request_panel); // NOI18N
-
-                database_panel.setEnabled(false);
-                database_panel.setLayout(new java.awt.BorderLayout());
-
-                store_db_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Stored Database", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
-                store_db_panel.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-                store_db_panel.setPreferredSize(new java.awt.Dimension(650, 460));
-                store_db_panel.setLayout(new java.awt.GridLayout(3, 2, 10, 10));
-
-                localhost_db.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-                localhost_db.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
-                localhost_db.setText("Database 1");
-                localhost_db.setBorder(null);
-                localhost_db.setBorderPainted(false);
-                localhost_db.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-                localhost_db.setFocusPainted(false);
-                localhost_db.setFocusable(false);
-                localhost_db.setIconTextGap(12);
-                localhost_db.setMargin(new java.awt.Insets(5, 5, 5, 5));
-                localhost_db.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32_roll.png"))); // NOI18N
-                localhost_db.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        localhost_dbActionPerformed(evt);
-                    }
-                });
-                store_db_panel.add(localhost_db);
-
-                db2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-                db2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
-                db2.setText("Database 2");
-                db2.setFocusPainted(false);
-                db2.setFocusable(false);
-                db2.setIconTextGap(12);
-                db2.setMargin(new java.awt.Insets(5, 5, 5, 5));
-                db2.setOpaque(true);
-                db2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32_roll.png"))); // NOI18N
-                db2.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        db2ActionPerformed(evt);
-                    }
-                });
-                store_db_panel.add(db2);
-
-                db3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-                db3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
-                db3.setText("Database 3");
-                db3.setFocusPainted(false);
-                db3.setFocusable(false);
-                db3.setIconTextGap(12);
-                db3.setMargin(new java.awt.Insets(5, 5, 5, 5));
-                db3.setOpaque(true);
-                db3.setRolloverEnabled(false);
-                store_db_panel.add(db3);
-
-                db4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-                db4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
-                db4.setText("Database 4");
-                db4.setFocusPainted(false);
-                db4.setFocusable(false);
-                db4.setIconTextGap(12);
-                db4.setMargin(new java.awt.Insets(5, 5, 5, 5));
-                db4.setRolloverEnabled(false);
-                db4.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        db4ActionPerformed(evt);
-                    }
-                });
-                store_db_panel.add(db4);
-
-                db5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-                db5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
-                db5.setText("Database 5");
-                db5.setFocusPainted(false);
-                db5.setFocusable(false);
-                db5.setIconTextGap(12);
-                db5.setMargin(new java.awt.Insets(5, 5, 5, 5));
-                db5.setRolloverEnabled(false);
-                store_db_panel.add(db5);
-
-                db6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-                db6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
-                db6.setText("Database 6");
-                db6.setFocusPainted(false);
-                db6.setFocusable(false);
-                db6.setIconTextGap(12);
-                db6.setMargin(new java.awt.Insets(5, 5, 5, 5));
-                db6.setRolloverEnabled(false);
-                store_db_panel.add(db6);
-
-                database_panel.add(store_db_panel, java.awt.BorderLayout.WEST);
-
-                db_info_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Database Infomation", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
-                db_info_panel.setLayout(new java.awt.BorderLayout(10, 10));
-
-                db_show_info_panel.setBackground(new java.awt.Color(255, 255, 255));
-                db_show_info_panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-                db_show_info_panel.setPreferredSize(new java.awt.Dimension(792, 400));
-
-                jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-                jPanel5.setLayout(new java.awt.GridLayout(6, 1, 0, 20));
-
-                jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                jLabel8.setText("Connection Status");
-                jPanel5.add(jLabel8);
-
-                jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                jLabel12.setText("Database Name");
-                jPanel5.add(jLabel12);
-
-                jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                jLabel13.setText("Database Type");
-                jPanel5.add(jLabel13);
-
-                jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                jLabel14.setText("Host name");
-                jPanel5.add(jLabel14);
-
-                jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                jLabel15.setText("Port");
-                jPanel5.add(jLabel15);
-
-                jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                jLabel16.setText("Driver");
-                jPanel5.add(jLabel16);
-
-                jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-                jPanel4.setLayout(new java.awt.GridLayout(6, 1, 0, 20));
-
-                port_show_box.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                jPanel4.add(port_show_box);
-
-                hostname_show_box.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                jPanel4.add(hostname_show_box);
-
-                database_type_show_box.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                jPanel4.add(database_type_show_box);
-
-                database_name_show_box.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                jPanel4.add(database_name_show_box);
-
-                connect_status_box.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                jPanel4.add(connect_status_box);
-
-                jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MySQL", "Postgresql", "SQL Server", "DB2" }));
-                jPanel4.add(jComboBox1);
-
-                javax.swing.GroupLayout db_show_info_panelLayout = new javax.swing.GroupLayout(db_show_info_panel);
-                db_show_info_panel.setLayout(db_show_info_panelLayout);
-                db_show_info_panelLayout.setHorizontalGroup(
-                    db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(db_show_info_panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
-                        .addContainerGap())
-                );
-                db_show_info_panelLayout.setVerticalGroup(
-                    db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(db_show_info_panelLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(89, 89, 89))
-                );
-
-                db_info_panel.add(db_show_info_panel, java.awt.BorderLayout.NORTH);
-
-                db_manager_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Database Manager", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
-                db_manager_panel.setPreferredSize(new java.awt.Dimension(485, 100));
-                db_manager_panel.setLayout(new java.awt.BorderLayout());
-
-                db_action_group_panel.setLayout(new java.awt.GridLayout(2, 3, 10, 10));
-
-                print_database_info_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/button_up.png"))); // NOI18N
-                print_database_info_button.setText("Quick Connect");
-                print_database_info_button.setIconTextGap(12);
-                print_database_info_button.setPreferredSize(new java.awt.Dimension(130, 50));
-                print_database_info_button.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        print_database_info_buttonActionPerformed(evt);
-                    }
-                });
-                db_action_group_panel.add(print_database_info_button);
-
-                test_connection_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/button_sync.png"))); // NOI18N
-                test_connection_button.setText("Test Connection");
-                test_connection_button.setIconTextGap(12);
-                test_connection_button.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        test_connection_buttonActionPerformed(evt);
-                    }
-                });
-                db_action_group_panel.add(test_connection_button);
-
-                set_as_default_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/leaf.png"))); // NOI18N
-                set_as_default_button.setText("Set as Default");
-                set_as_default_button.setIconTextGap(12);
-                set_as_default_button.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        set_as_default_buttonActionPerformed(evt);
-                    }
-                });
-                db_action_group_panel.add(set_as_default_button);
-
-                add_database_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_add_32.png"))); // NOI18N
-                add_database_button.setText("Add Database");
-                add_database_button.setIconTextGap(6);
-                add_database_button.setPreferredSize(new java.awt.Dimension(150, 50));
-                add_database_button.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        add_database_buttonActionPerformed(evt);
-                    }
-                });
-                db_action_group_panel.add(add_database_button);
-
-                delete_database_button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_close_32.png"))); // NOI18N
-                delete_database_button1.setText("Delete Database");
-                delete_database_button1.setIconTextGap(6);
-                delete_database_button1.setPreferredSize(new java.awt.Dimension(150, 50));
-                delete_database_button1.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        delete_database_button1ActionPerformed(evt);
-                    }
-                });
-                db_action_group_panel.add(delete_database_button1);
-
-                find_database_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_search_32.png"))); // NOI18N
-                find_database_button.setText("Edit Database");
-                find_database_button.setActionCommand("Find Database");
-                find_database_button.setIconTextGap(6);
-                find_database_button.setPreferredSize(new java.awt.Dimension(150, 50));
-                find_database_button.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        find_database_buttonActionPerformed(evt);
-                    }
-                });
-                db_action_group_panel.add(find_database_button);
-
-                db_manager_panel.add(db_action_group_panel, java.awt.BorderLayout.CENTER);
-
-                db_info_panel.add(db_manager_panel, java.awt.BorderLayout.CENTER);
-
-                database_panel.add(db_info_panel, java.awt.BorderLayout.CENTER);
-
-                body.addTab("Database", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/database_32.png")), database_panel); // NOI18N
-
-                searching_panel.setLayout(new java.awt.GridLayout(1, 2));
-
-                search_input_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search Input", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
-                search_input_panel.setLayout(new java.awt.BorderLayout());
-
-                jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 15, 10));
-
-                jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                jLabel4.setText("Search Type");
-                jPanel6.add(jLabel4);
-
-                jRadioButton1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                jRadioButton1.setSelected(true);
-                jRadioButton1.setText("Quick Search");
-                jPanel6.add(jRadioButton1);
-
-                jRadioButton2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                jRadioButton2.setText("Deep Search");
-                jPanel6.add(jRadioButton2);
-
-                search_input_panel.add(jPanel6, java.awt.BorderLayout.NORTH);
-
-                jPanel7.setPreferredSize(new java.awt.Dimension(531, 300));
-                jPanel7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 10));
-
-                search_filter_column.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Product ID", "Name", " " }));
-                search_filter_column.setPreferredSize(new java.awt.Dimension(100, 30));
-                jPanel7.add(search_filter_column);
-
-                searching_box_input.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                searching_box_input.setMinimumSize(new java.awt.Dimension(300, 30));
-                searching_box_input.setPreferredSize(new java.awt.Dimension(450, 30));
-                searching_box_input.addKeyListener(new java.awt.event.KeyAdapter() {
-                    public void keyPressed(java.awt.event.KeyEvent evt) {
-                        searching_box_inputKeyPressed(evt);
-                    }
-                });
-                jPanel7.add(searching_box_input);
-
-                search_input_panel.add(jPanel7, java.awt.BorderLayout.CENTER);
-
-                jPanel3.setPreferredSize(new java.awt.Dimension(585, 107));
-                jPanel3.setLayout(new java.awt.BorderLayout());
-
-                search_button.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                search_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/search.png"))); // NOI18N
-                search_button.setText("Search");
-                search_button.setIconTextGap(8);
-                search_button.setMaximumSize(new java.awt.Dimension(140, 40));
-                search_button.setMinimumSize(new java.awt.Dimension(180, 45));
-                search_button.setPreferredSize(new java.awt.Dimension(180, 45));
-                search_button.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        search_buttonActionPerformed(evt);
-                    }
-                });
-                jPanel3.add(search_button, java.awt.BorderLayout.SOUTH);
-
-                search_input_panel.add(jPanel3, java.awt.BorderLayout.SOUTH);
-
-                searching_panel.add(search_input_panel);
-
-                search_result_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search Result", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
-
-                img_box_search.setBackground(new java.awt.Color(255, 255, 255));
-                img_box_search.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-                img_box_search.setPreferredSize(new java.awt.Dimension(150, 150));
-                img_box_search.setLayout(new java.awt.BorderLayout());
-
-                img_search_result_input.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                img_search_result_input.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-                img_search_result_input.setText("NO IMAGE");
-                img_box_search.add(img_search_result_input, java.awt.BorderLayout.CENTER);
-
-                s_descrip_search_input.setEditable(false);
-                s_descrip_search_input.setColumns(20);
-                s_descrip_search_input.setRows(5);
-                jScrollPane1.setViewportView(s_descrip_search_input);
-
-                jLabel25.setText("Description");
-
-                product_group_panel.setLayout(new java.awt.GridLayout(16, 1, 0, 1));
-
-                jLabel17.setText("Product ID");
-                product_group_panel.add(jLabel17);
-
-                s_product_id_input.setEditable(false);
-                s_product_id_input.setBackground(new java.awt.Color(255, 255, 255));
-                product_group_panel.add(s_product_id_input);
-
-                jLabel19.setText("Category");
-                product_group_panel.add(jLabel19);
-
-                s_category_input.setEditable(false);
-                s_category_input.setBackground(new java.awt.Color(255, 255, 255));
-                product_group_panel.add(s_category_input);
-
-                jLabel18.setText("Name");
-                product_group_panel.add(jLabel18);
-
-                s_name_input.setEditable(false);
-                s_name_input.setBackground(new java.awt.Color(255, 255, 255));
-                product_group_panel.add(s_name_input);
-
-                jLabel6.setText("Model");
-                product_group_panel.add(jLabel6);
-
-                s_model_input.setEditable(false);
-                s_model_input.setBackground(new java.awt.Color(255, 255, 255));
-                product_group_panel.add(s_model_input);
-
-                jLabel10.setText("Cost");
-                product_group_panel.add(jLabel10);
-
-                s_cost_input.setEditable(false);
-                s_cost_input.setBackground(new java.awt.Color(255, 255, 255));
-                product_group_panel.add(s_cost_input);
-
-                jLabel21.setText("Quantity");
-                product_group_panel.add(jLabel21);
-
-                s_quantity_input.setEditable(false);
-                s_quantity_input.setBackground(new java.awt.Color(255, 255, 255));
-                product_group_panel.add(s_quantity_input);
-
-                jLabel20.setText("Warranty");
-                product_group_panel.add(jLabel20);
-
-                s_warranty_input.setEditable(false);
-                s_warranty_input.setBackground(new java.awt.Color(255, 255, 255));
-                product_group_panel.add(s_warranty_input);
-
-                jLabel23.setText("Status");
-                product_group_panel.add(jLabel23);
-
-                s_status_input.setEditable(false);
-                s_status_input.setBackground(new java.awt.Color(255, 255, 255));
-                product_group_panel.add(s_status_input);
-
-                product_location_panel.setLayout(new java.awt.GridLayout(6, 1, 0, 1));
-
-                jLabel11.setText("Location");
-                product_location_panel.add(jLabel11);
-
-                s_location_input.setEditable(false);
-                s_location_input.setBackground(new java.awt.Color(255, 255, 255));
-                product_location_panel.add(s_location_input);
-
-                jLabel22.setText("Imported Date");
-                product_location_panel.add(jLabel22);
-
-                s_import_date_input.setEditable(false);
-                s_import_date_input.setBackground(new java.awt.Color(255, 255, 255));
-                product_location_panel.add(s_import_date_input);
-
-                jLabel24.setText("User Last modified");
-                product_location_panel.add(jLabel24);
-
-                s_user_last_modified_input.setEditable(false);
-                s_user_last_modified_input.setBackground(new java.awt.Color(255, 255, 255));
-                product_location_panel.add(s_user_last_modified_input);
-
-                javax.swing.GroupLayout search_result_panelLayout = new javax.swing.GroupLayout(search_result_panel);
-                search_result_panel.setLayout(search_result_panelLayout);
-                search_result_panelLayout.setHorizontalGroup(
-                    search_result_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(search_result_panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(search_result_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
-                            .addGroup(search_result_panelLayout.createSequentialGroup()
-                                .addGroup(search_result_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel25)
-                                    .addComponent(product_location_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                                    .addComponent(img_box_search, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))
-                                .addGap(24, 24, 24)
-                                .addComponent(product_group_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addContainerGap())
-                );
-                search_result_panelLayout.setVerticalGroup(
-                    search_result_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(search_result_panelLayout.createSequentialGroup()
-                        .addGroup(search_result_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(search_result_panelLayout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(img_box_search, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(product_location_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(product_group_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel25)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                );
-
-                searching_panel.add(search_result_panel);
-
-                body.addTab("Searching", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/search.png")), searching_panel); // NOI18N
-
-                statistics_panel.setLayout(new java.awt.BorderLayout());
-
-                statistic_graph.setBackground(new java.awt.Color(255, 255, 255));
-                statistic_graph.setLayout(new java.awt.BorderLayout());
-                statistics_panel.add(statistic_graph, java.awt.BorderLayout.CENTER);
-
-                statistic_control_group.setPreferredSize(new java.awt.Dimension(500, 40));
-                statistic_control_group.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 15, 5));
-
-                month_select.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-                month_select.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Months revenue", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
-                month_select.setPreferredSize(new java.awt.Dimension(150, 30));
-                statistic_control_group.add(month_select);
-
-                refresh_graph_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-                refresh_graph_button.setText("Refresh");
-                refresh_graph_button.setPreferredSize(new java.awt.Dimension(100, 30));
-                refresh_graph_button.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        refresh_graph_buttonActionPerformed(evt);
-                    }
-                });
-                statistic_control_group.add(refresh_graph_button);
-
-                print_graph_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-                print_graph_button.setText("Print");
-                print_graph_button.setPreferredSize(new java.awt.Dimension(100, 30));
-                print_graph_button.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        print_graph_buttonActionPerformed(evt);
-                    }
-                });
-                statistic_control_group.add(print_graph_button);
-
-                statistics_panel.add(statistic_control_group, java.awt.BorderLayout.SOUTH);
-
-                body.addTab("Statistics", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/statistics.png")), statistics_panel); // NOI18N
-
-                report_panel.setPreferredSize(new java.awt.Dimension(1024, 453));
-                report_panel.setLayout(new java.awt.BorderLayout());
-
-                stock_report_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Stock Information Report", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
-                stock_report_panel.setPreferredSize(new java.awt.Dimension(800, 502));
-                stock_report_panel.setLayout(new java.awt.BorderLayout());
-
-                scroll_panel_for_report.setBackground(new java.awt.Color(255, 255, 255));
-                scroll_panel_for_report.setBorder(null);
-
-                report_table.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                report_table.setModel(new javax.swing.table.DefaultTableModel(rowsr, columnsr)
-                    {public boolean isCellEditable(int row, int column){return false;}});
-                report_table.setRowHeight(20);
-                report_table.setRowMargin(3);
-                if (report_table.getRowCount() == 0) {
-                    clear_report_btn.setEnabled(false);
-                    save_report_button.setEnabled(false);
-                    accept_report_btn.setEnabled(false);
-                    print_report_button.setEnabled(false);
                 } else {
-                    clear_report_btn.setEnabled(true);
-                    save_report_button.setEnabled(true);
-                    accept_report_btn.setEnabled(true);
-                    print_report_button.setEnabled(true);
+                    rows[i][13] = null;
                 }
-                report_table.addMouseListener(new java.awt.event.MouseAdapter() {
-                    public void mouseClicked(java.awt.event.MouseEvent evt) {
-                        report_tableMouseClicked(evt);
-                    }
-                });
-                scroll_panel_for_report.setViewportView(report_table);
+            }
+            product_table.setAutoCreateRowSorter(true);
+            product_table.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+            product_table.setModel(new javax.swing.table.DefaultTableModel(rows, columns)
+                {public boolean iasCellEditable(int row, int column){return false;}}
+            );
+            product_table.setToolTipText("Product table");
+            product_table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+            product_table.setFillsViewportHeight(true);
+            product_table.setGridColor(new java.awt.Color(204, 204, 204));
+            product_table.setName(""); // NOI18N
+            product_table.setRowHeight(20);
+            product_table.setRowMargin(3);
+            product_table.setSelectionBackground(new java.awt.Color(255, 51, 51));
+            product_table.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+            product_table.setShowHorizontalLines(false);
+            product_table.setShowVerticalLines(false);
+            product_table.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+            product_table.removeColumn(product_table.getColumnModel().getColumn(5));
+            product_table.removeColumn(product_table.getColumnModel().getColumn(12));
+            product_table.getColumnModel().getColumn(0).setPreferredWidth(90);
+            product_table.getColumnModel().getColumn(1).setPreferredWidth(76);
+            product_table.getColumnModel().getColumn(2).setPreferredWidth(150);
+            product_table.getColumnModel().getColumn(3).setPreferredWidth(160);
+            product_table.getColumnModel().getColumn(4).setPreferredWidth(50);
+            product_table.getColumnModel().getColumn(6).setPreferredWidth(60);
+            product_table.getColumnModel().getColumn(7).setPreferredWidth(50);
+            product_table.getColumnModel().getColumn(8).setPreferredWidth(60);
+            product_table.getColumnModel().getColumn(9).setPreferredWidth(60);
+            product_table.getColumnModel().getColumn(10).setPreferredWidth(70);
 
-                stock_report_panel.add(scroll_panel_for_report, java.awt.BorderLayout.CENTER);
+            if (product_table.getRowCount() == 0) {
+                remove_product_button.setEnabled(false);
+                edit_product_button.setEnabled(false);
+            }
+            product_table.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    product_tableMouseClicked(evt);
+                }
+                public void mouseReleased(java.awt.event.MouseEvent evt) {
+                    product_tableMouseReleased(evt);
+                }
+            });
+            product_table.addKeyListener(new java.awt.event.KeyAdapter() {
+                public void keyPressed(java.awt.event.KeyEvent evt) {
+                    product_tableKeyPressed(evt);
+                }
+            });
+            ScrollPanelForQueryTable.setViewportView(product_table);
+            product_table.getAccessibleContext().setAccessibleName("");
+            product_table.getAccessibleContext().setAccessibleDescription("");
 
-                report_panel.add(stock_report_panel, java.awt.BorderLayout.WEST);
+            sm_left_panel.add(ScrollPanelForQueryTable, java.awt.BorderLayout.CENTER);
 
-                report_button_panel.setLayout(new java.awt.BorderLayout());
+            management_panel.add(sm_left_panel, java.awt.BorderLayout.CENTER);
 
-                report_text_area_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Report to stock ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
-                report_text_area_panel.setPreferredSize(new java.awt.Dimension(218, 350));
-                report_text_area_panel.setLayout(new java.awt.BorderLayout(5, 10));
+            sm_right_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Product Information", javax.swing.border.TitledBorder.LEADING, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12))); // NOI18N
+            sm_right_panel.setPreferredSize(new java.awt.Dimension(393, 420));
+            sm_right_panel.setLayout(new java.awt.BorderLayout(5, 5));
 
-                report_text_scroll.setPreferredSize(new java.awt.Dimension(200, 280));
+            product_info_head_panel.setPreferredSize(new java.awt.Dimension(175, 200));
+            product_info_head_panel.setLayout(new java.awt.GridLayout(1, 0, 5, 1));
 
-                report_text_area.setColumns(20);
-                report_text_area.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-                report_text_area.setRows(9);
-                report_text_scroll.setViewportView(report_text_area);
+            product_img_panel.setBackground(new java.awt.Color(255, 255, 255));
+            product_img_panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+            product_img_panel.setMinimumSize(new java.awt.Dimension(60, 20));
+            product_img_panel.setPreferredSize(new java.awt.Dimension(80, 20));
+            product_img_panel.setLayout(new java.awt.BorderLayout());
 
-                report_text_area_panel.add(report_text_scroll, java.awt.BorderLayout.NORTH);
+            product_img.setBackground(new java.awt.Color(0, 204, 102));
+            product_img.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            product_img.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            product_img.setIcon(null);
+            product_img.setText("NO IMAGE");
+            product_img.setMaximumSize(new java.awt.Dimension(60, 20));
+            product_img.setMinimumSize(new java.awt.Dimension(60, 20));
+            product_img.setPreferredSize(new java.awt.Dimension(60, 20));
+            product_img.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    product_imgMouseClicked(evt);
+                }
+                public void mouseReleased(java.awt.event.MouseEvent evt) {
+                    product_imgMouseReleased(evt);
+                }
+            });
+            product_img_panel.add(product_img, java.awt.BorderLayout.CENTER);
 
-                report_type.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                report_type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Critical", "Severve", "Regular" }));
-                report_type.setSelectedItem("Regular");
-                report_type.setMinimumSize(new java.awt.Dimension(65, 30));
-                report_text_area_panel.add(report_type, java.awt.BorderLayout.CENTER);
+            product_info_head_panel.add(product_img_panel);
 
-                report_button_panel.add(report_text_area_panel, java.awt.BorderLayout.NORTH);
+            product_head_group_panel.setLayout(new java.awt.GridLayout(10, 0, 0, 1));
 
-                report_btn_panel.setLayout(new java.awt.BorderLayout());
+            product_id_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            product_id_label.setText("Product ID");
+            product_head_group_panel.add(product_id_label);
 
-                report_btn_group.setLayout(new java.awt.GridLayout(5, 1, 5, 5));
+            productID_input.setEditable(false);
+            productID_input.setBackground(new java.awt.Color(255, 255, 255));
+            product_head_group_panel.add(productID_input);
 
-                create_report_button.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                create_report_button.setText("Create Report");
-                create_report_button.setPreferredSize(new java.awt.Dimension(120, 40));
-                create_report_button.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        create_report_buttonActionPerformed(evt);
-                    }
-                });
-                report_btn_group.add(create_report_button);
+            category_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            category_label.setText("Category");
+            product_head_group_panel.add(category_label);
 
-                print_report_button.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                print_report_button.setText("Print Report");
-                print_report_button.setPreferredSize(new java.awt.Dimension(120, 40));
-                print_report_button.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        print_report_buttonActionPerformed(evt);
-                    }
-                });
-                report_btn_group.add(print_report_button);
+            category_input.setEditable(true);
+            category_input.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Book", "Stationary", "Drink", "Beauty", "Other" }));
+            category_input.setEnabled(false);
+            product_head_group_panel.add(category_input);
 
-                clear_report_btn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                clear_report_btn.setText("Clear Report");
-                clear_report_btn.setPreferredSize(new java.awt.Dimension(120, 40));
-                clear_report_btn.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        clear_report_btnActionPerformed(evt);
-                    }
-                });
-                report_btn_group.add(clear_report_btn);
+            product_name_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            product_name_label.setText("Product Name");
+            product_head_group_panel.add(product_name_label);
 
-                accept_report_btn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                accept_report_btn.setText("Accept");
-                accept_report_btn.setEnabled(false);
-                accept_report_btn.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        accept_report_btnActionPerformed(evt);
-                    }
-                });
-                report_btn_group.add(accept_report_btn);
+            name_input.setEditable(false);
+            name_input.setBackground(new java.awt.Color(255, 255, 255));
+            product_head_group_panel.add(name_input);
 
-                save_report_button.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-                save_report_button.setText("Save Report as PDF");
+            manufacture_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            manufacture_label.setText("Manufacture");
+            product_head_group_panel.add(manufacture_label);
+
+            manufacture_input.setEditable(false);
+            manufacture_input.setBackground(new java.awt.Color(255, 255, 255));
+            product_head_group_panel.add(manufacture_input);
+
+            model_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            model_label.setText("Model");
+            product_head_group_panel.add(model_label);
+
+            model_input.setEditable(false);
+            model_input.setBackground(new java.awt.Color(255, 255, 255));
+            product_head_group_panel.add(model_input);
+
+            product_info_head_panel.add(product_head_group_panel);
+
+            sm_right_panel.add(product_info_head_panel, java.awt.BorderLayout.NORTH);
+
+            product_info_body_panel.setLayout(new java.awt.BorderLayout(0, 5));
+
+            product_info_group_panel.setLayout(new java.awt.GridLayout(10, 1, 0, 1));
+
+            location_label.setText("Location");
+            product_info_group_panel.add(location_label);
+
+            location_input.setEditable(false);
+            location_input.setBackground(new java.awt.Color(255, 255, 255));
+            product_info_group_panel.add(location_input);
+
+            product_status_label.setText("Status");
+            product_info_group_panel.add(product_status_label);
+
+            product_status_box.setEditable(false);
+            product_status_box.setBackground(new java.awt.Color(255, 255, 255));
+            product_info_group_panel.add(product_status_box);
+
+            warranty_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            warranty_label.setText("Warranty");
+            product_info_group_panel.add(warranty_label);
+
+            warranty_input.setEditable(false);
+            warranty_input.setBackground(new java.awt.Color(255, 255, 255));
+            warranty_input.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    warranty_inputActionPerformed(evt);
+                }
+            });
+            product_info_group_panel.add(warranty_input);
+
+            cost_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            cost_label.setText("Cost");
+            product_info_group_panel.add(cost_label);
+
+            cost_input.setEditable(false);
+            cost_input.setBackground(new java.awt.Color(255, 255, 255));
+            cost_input.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    cost_inputActionPerformed(evt);
+                }
+            });
+            product_info_group_panel.add(cost_input);
+
+            quantity_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            quantity_label.setText("Quantity");
+            product_info_group_panel.add(quantity_label);
+
+            quantity_input.setModel(new javax.swing.SpinnerNumberModel(1, 0, 999, 1));
+            quantity_input.setEnabled(false);
+            product_info_group_panel.add(quantity_input);
+
+            product_info_body_panel.add(product_info_group_panel, java.awt.BorderLayout.NORTH);
+
+            product_info_desc_panel.setPreferredSize(new java.awt.Dimension(381, 150));
+            product_info_desc_panel.setLayout(new java.awt.BorderLayout(0, 2));
+
+            description_label.setText("Description");
+            product_info_desc_panel.add(description_label, java.awt.BorderLayout.NORTH);
+
+            description_scroll.setPreferredSize(new java.awt.Dimension(183, 133));
+
+            description_input.setEditable(false);
+            description_input.setColumns(20);
+            description_input.setRows(5);
+            description_input.setPreferredSize(new java.awt.Dimension(170, 100));
+            description_scroll.setViewportView(description_input);
+
+            product_info_desc_panel.add(description_scroll, java.awt.BorderLayout.CENTER);
+
+            product_info_body_panel.add(product_info_desc_panel, java.awt.BorderLayout.CENTER);
+
+            sm_right_panel.add(product_info_body_panel, java.awt.BorderLayout.CENTER);
+
+            add_product_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+            add_product_button.setText("Add");
+            add_product_button.setPreferredSize(new java.awt.Dimension(80, 28));
+            add_product_button.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    add_product_buttonActionPerformed(evt);
+                }
+            });
+            product_info_footer_panel.add(add_product_button);
+
+            remove_product_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+            remove_product_button.setText("Remove");
+            remove_product_button.setEnabled(false);
+            remove_product_button.setPreferredSize(new java.awt.Dimension(80, 28));
+            remove_product_button.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    remove_product_buttonActionPerformed(evt);
+                }
+            });
+            product_info_footer_panel.add(remove_product_button);
+
+            edit_product_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+            edit_product_button.setText("Edit..");
+            edit_product_button.setEnabled(false);
+            edit_product_button.setPreferredSize(new java.awt.Dimension(80, 28));
+            edit_product_button.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    edit_product_buttonActionPerformed(evt);
+                }
+            });
+            product_info_footer_panel.add(edit_product_button);
+
+            save_product_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+            save_product_button.setText("Save");
+            save_product_button.setEnabled(false);
+            save_product_button.setPreferredSize(new java.awt.Dimension(80, 28));
+            save_product_button.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    save_product_buttonActionPerformed(evt);
+                }
+            });
+            product_info_footer_panel.add(save_product_button);
+
+            sm_right_panel.add(product_info_footer_panel, java.awt.BorderLayout.SOUTH);
+
+            management_panel.add(sm_right_panel, java.awt.BorderLayout.EAST);
+
+            body.addTab("Stock Management", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/notebook.png")), management_panel); // NOI18N
+
+            order_panel.setLayout(new java.awt.BorderLayout());
+
+            order_left_panel.setPreferredSize(new java.awt.Dimension(800, 500));
+            order_left_panel.setLayout(new java.awt.BorderLayout(10, 10));
+
+            ScrollPanelForQueryTable2.setBorder(null);
+
+            order_table.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            order_table.setModel(new javax.swing.table.DefaultTableModel(rowso, columnso)
+                {public boolean iasCellEditable(int row, int column){return false;}});
+            order_table.setDragEnabled(true);
+            order_table.setRowHeight(25);
+            order_table.setRowMargin(3);
+            order_table.setSelectionBackground(new java.awt.Color(255, 0, 0));
+            order_table.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    order_tableMouseClicked(evt);
+                }
+            });
+            order_table.addKeyListener(new java.awt.event.KeyAdapter() {
+                public void keyPressed(java.awt.event.KeyEvent evt) {
+                    order_tableKeyPressed(evt);
+                }
+            });
+            ScrollPanelForQueryTable2.setViewportView(order_table);
+
+            order_left_panel.add(ScrollPanelForQueryTable2, java.awt.BorderLayout.CENTER);
+
+            order_panel.add(order_left_panel, java.awt.BorderLayout.CENTER);
+
+            order_input.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add Order ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12))); // NOI18N
+            order_input.setLayout(new java.awt.BorderLayout(10, 10));
+
+            jPanel12.setLayout(new java.awt.GridLayout(4, 1, 10, 10));
+
+            jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            jLabel1.setText("Order ID");
+            jPanel12.add(jLabel1);
+
+            jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            jLabel5.setText("Customer ID");
+            jPanel12.add(jLabel5);
+
+            jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            jLabel9.setText("Product ID");
+            jPanel12.add(jLabel9);
+
+            order_quantity_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            order_quantity_label.setText("Quantity");
+            jPanel12.add(order_quantity_label);
+
+            order_input.add(jPanel12, java.awt.BorderLayout.WEST);
+
+            jPanel10.setLayout(new java.awt.GridLayout(4, 0, 5, 5));
+
+            order_id.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            jPanel10.add(order_id);
+
+            customer_id.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            jPanel10.add(customer_id);
+
+            product_id.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            jPanel10.add(product_id);
+
+            order_quantity.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            jPanel10.add(order_quantity);
+
+            order_input.add(jPanel10, java.awt.BorderLayout.CENTER);
+
+            jPanel9.setLayout(new java.awt.BorderLayout());
+
+            add_to_orderlist_btn.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            add_to_orderlist_btn.setText("Add Product");
+            add_to_orderlist_btn.setPreferredSize(new java.awt.Dimension(99, 30));
+            jPanel9.add(add_to_orderlist_btn, java.awt.BorderLayout.CENTER);
+
+            order_input.add(jPanel9, java.awt.BorderLayout.SOUTH);
+
+            order_product_input.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Product Order List", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12))); // NOI18N
+            order_product_input.setPreferredSize(new java.awt.Dimension(214, 423));
+            order_product_input.setLayout(new java.awt.BorderLayout(10, 10));
+
+            add_product_to_order_table.setBackground(new java.awt.Color(255, 255, 255));
+            add_product_to_order_table.setPreferredSize(new java.awt.Dimension(100, 600));
+
+            product_orderlist_table.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            product_orderlist_table.setModel(new javax.swing.table.DefaultTableModel(rows, columns)
+                {public boolean isCellEditable(int row, int column){return false;}}
+            );
+            add_product_to_order_table.setViewportView(product_orderlist_table);
+
+            order_product_input.add(add_product_to_order_table, java.awt.BorderLayout.CENTER);
+
+            order_action_btn_group.setLayout(new java.awt.GridLayout(1, 3, 10, 10));
+
+            add_order_btn.setText("Create Order");
+            add_order_btn.setPreferredSize(new java.awt.Dimension(120, 40));
+            add_order_btn.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    add_order_btnActionPerformed(evt);
+                }
+            });
+            order_action_btn_group.add(add_order_btn);
+
+            edit_order_btn.setText("Edit Order");
+            order_action_btn_group.add(edit_order_btn);
+
+            delete_order_btn.setText("Delete Order");
+            delete_order_btn.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    delete_order_btnActionPerformed(evt);
+                }
+            });
+            order_action_btn_group.add(delete_order_btn);
+
+            order_product_input.add(order_action_btn_group, java.awt.BorderLayout.SOUTH);
+
+            order_confirm_btn.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            order_confirm_btn.setText("Confirm Order");
+            order_confirm_btn.setPreferredSize(new java.awt.Dimension(140, 40));
+            order_confirm_btn.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    order_confirm_btnActionPerformed(evt);
+                }
+            });
+
+            javax.swing.GroupLayout order_right_panelLayout = new javax.swing.GroupLayout(order_right_panel);
+            order_right_panel.setLayout(order_right_panelLayout);
+            order_right_panelLayout.setHorizontalGroup(
+                order_right_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(order_input, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(order_product_input, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(order_confirm_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+            );
+            order_right_panelLayout.setVerticalGroup(
+                order_right_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(order_right_panelLayout.createSequentialGroup()
+                    .addComponent(order_input, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(order_product_input, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(10, 10, 10)
+                    .addComponent(order_confirm_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            );
+
+            order_panel.add(order_right_panel, java.awt.BorderLayout.EAST);
+
+            body.addTab("Order Management", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/clipboard.png")), order_panel); // NOI18N
+
+            request_order_body_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Request Order", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
+            request_order_body_panel.setLayout(new java.awt.BorderLayout());
+
+            ScrollPanelForQueryTable3.setBorder(null);
+
+            request_order_table.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            request_order_table.setDragEnabled(true);
+            request_order_table.setRowHeight(25);
+            request_order_table.setRowMargin(3);
+            request_order_table.setRowSelectionAllowed(false);
+            request_order_table.setSelectionBackground(new java.awt.Color(0, 153, 153));
+            request_order_table.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    request_order_tableMouseClicked(evt);
+                }
+            });
+            request_order_table.addKeyListener(new java.awt.event.KeyAdapter() {
+                public void keyPressed(java.awt.event.KeyEvent evt) {
+                    request_order_tableKeyPressed(evt);
+                }
+            });
+            ScrollPanelForQueryTable3.setViewportView(request_order_table);
+
+            request_order_body_panel.add(ScrollPanelForQueryTable3, java.awt.BorderLayout.CENTER);
+
+            accept.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            accept.setText("Accept");
+
+            javax.swing.GroupLayout order_request_panelLayout = new javax.swing.GroupLayout(order_request_panel);
+            order_request_panel.setLayout(order_request_panelLayout);
+            order_request_panelLayout.setHorizontalGroup(
+                order_request_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(order_request_panelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(request_order_body_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 942, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 450, Short.MAX_VALUE)
+                    .addComponent(accept, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(165, 165, 165))
+            );
+            order_request_panelLayout.setVerticalGroup(
+                order_request_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(order_request_panelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(request_order_body_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap())
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, order_request_panelLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(accept, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(22, 22, 22))
+            );
+
+            body.addTab("Order Request", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/checkmark.png")), order_request_panel); // NOI18N
+
+            database_panel.setEnabled(false);
+            database_panel.setLayout(new java.awt.BorderLayout());
+
+            store_db_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Stored Database", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
+            store_db_panel.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+            store_db_panel.setPreferredSize(new java.awt.Dimension(650, 460));
+            store_db_panel.setLayout(new java.awt.GridLayout(3, 2, 10, 10));
+
+            localhost_db.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+            localhost_db.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
+            localhost_db.setText("Database 1");
+            localhost_db.setBorder(null);
+            localhost_db.setBorderPainted(false);
+            localhost_db.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+            localhost_db.setFocusPainted(false);
+            localhost_db.setFocusable(false);
+            localhost_db.setIconTextGap(12);
+            localhost_db.setMargin(new java.awt.Insets(5, 5, 5, 5));
+            localhost_db.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32_roll.png"))); // NOI18N
+            localhost_db.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    localhost_dbActionPerformed(evt);
+                }
+            });
+            store_db_panel.add(localhost_db);
+
+            db2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+            db2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
+            db2.setText("Database 2");
+            db2.setFocusPainted(false);
+            db2.setFocusable(false);
+            db2.setIconTextGap(12);
+            db2.setMargin(new java.awt.Insets(5, 5, 5, 5));
+            db2.setOpaque(true);
+            db2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32_roll.png"))); // NOI18N
+            db2.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    db2ActionPerformed(evt);
+                }
+            });
+            store_db_panel.add(db2);
+
+            db3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+            db3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
+            db3.setText("Database 3");
+            db3.setFocusPainted(false);
+            db3.setFocusable(false);
+            db3.setIconTextGap(12);
+            db3.setMargin(new java.awt.Insets(5, 5, 5, 5));
+            db3.setOpaque(true);
+            db3.setRolloverEnabled(false);
+            store_db_panel.add(db3);
+
+            db4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+            db4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
+            db4.setText("Database 4");
+            db4.setFocusPainted(false);
+            db4.setFocusable(false);
+            db4.setIconTextGap(12);
+            db4.setMargin(new java.awt.Insets(5, 5, 5, 5));
+            db4.setRolloverEnabled(false);
+            db4.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    db4ActionPerformed(evt);
+                }
+            });
+            store_db_panel.add(db4);
+
+            db5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+            db5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
+            db5.setText("Database 5");
+            db5.setFocusPainted(false);
+            db5.setFocusable(false);
+            db5.setIconTextGap(12);
+            db5.setMargin(new java.awt.Insets(5, 5, 5, 5));
+            db5.setRolloverEnabled(false);
+            store_db_panel.add(db5);
+
+            db6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+            db6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_32.png"))); // NOI18N
+            db6.setText("Database 6");
+            db6.setFocusPainted(false);
+            db6.setFocusable(false);
+            db6.setIconTextGap(12);
+            db6.setMargin(new java.awt.Insets(5, 5, 5, 5));
+            db6.setRolloverEnabled(false);
+            store_db_panel.add(db6);
+
+            database_panel.add(store_db_panel, java.awt.BorderLayout.WEST);
+
+            db_info_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Database Infomation", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
+            db_info_panel.setLayout(new java.awt.BorderLayout(10, 10));
+
+            db_show_info_panel.setBackground(new java.awt.Color(255, 255, 255));
+            db_show_info_panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+            db_show_info_panel.setPreferredSize(new java.awt.Dimension(792, 400));
+
+            jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel5.setLayout(new java.awt.GridLayout(6, 1, 0, 20));
+
+            jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            jLabel8.setText("Connection Status");
+            jPanel5.add(jLabel8);
+
+            jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            jLabel12.setText("Database Name");
+            jPanel5.add(jLabel12);
+
+            jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            jLabel13.setText("Database Type");
+            jPanel5.add(jLabel13);
+
+            jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            jLabel14.setText("Host name");
+            jPanel5.add(jLabel14);
+
+            jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            jLabel15.setText("Port");
+            jPanel5.add(jLabel15);
+
+            jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            jLabel16.setText("Driver");
+            jPanel5.add(jLabel16);
+
+            jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+            jPanel4.setLayout(new java.awt.GridLayout(6, 1, 0, 20));
+
+            port_show_box.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            jPanel4.add(port_show_box);
+
+            hostname_show_box.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            jPanel4.add(hostname_show_box);
+
+            database_type_show_box.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            jPanel4.add(database_type_show_box);
+
+            database_name_show_box.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            jPanel4.add(database_name_show_box);
+
+            connect_status_box.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            jPanel4.add(connect_status_box);
+
+            jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MySQL", "Postgresql", "SQL Server", "DB2" }));
+            jPanel4.add(jComboBox1);
+
+            javax.swing.GroupLayout db_show_info_panelLayout = new javax.swing.GroupLayout(db_show_info_panel);
+            db_show_info_panel.setLayout(db_show_info_panelLayout);
+            db_show_info_panelLayout.setHorizontalGroup(
+                db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(db_show_info_panelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 890, Short.MAX_VALUE)
+                    .addContainerGap())
+            );
+            db_show_info_panelLayout.setVerticalGroup(
+                db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(db_show_info_panelLayout.createSequentialGroup()
+                    .addGap(26, 26, 26)
+                    .addGroup(db_show_info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGap(89, 89, 89))
+            );
+
+            db_info_panel.add(db_show_info_panel, java.awt.BorderLayout.NORTH);
+
+            db_manager_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Database Manager", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
+            db_manager_panel.setPreferredSize(new java.awt.Dimension(485, 100));
+            db_manager_panel.setLayout(new java.awt.BorderLayout());
+
+            db_action_group_panel.setLayout(new java.awt.GridLayout(2, 3, 10, 10));
+
+            print_database_info_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/button_up.png"))); // NOI18N
+            print_database_info_button.setText("Quick Connect");
+            print_database_info_button.setIconTextGap(12);
+            print_database_info_button.setPreferredSize(new java.awt.Dimension(130, 50));
+            print_database_info_button.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    print_database_info_buttonActionPerformed(evt);
+                }
+            });
+            db_action_group_panel.add(print_database_info_button);
+
+            test_connection_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/button_sync.png"))); // NOI18N
+            test_connection_button.setText("Test Connection");
+            test_connection_button.setIconTextGap(12);
+            test_connection_button.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    test_connection_buttonActionPerformed(evt);
+                }
+            });
+            db_action_group_panel.add(test_connection_button);
+
+            set_as_default_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/leaf.png"))); // NOI18N
+            set_as_default_button.setText("Set as Default");
+            set_as_default_button.setIconTextGap(12);
+            set_as_default_button.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    set_as_default_buttonActionPerformed(evt);
+                }
+            });
+            db_action_group_panel.add(set_as_default_button);
+
+            add_database_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_add_32.png"))); // NOI18N
+            add_database_button.setText("Add Database");
+            add_database_button.setIconTextGap(6);
+            add_database_button.setPreferredSize(new java.awt.Dimension(150, 50));
+            add_database_button.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    add_database_buttonActionPerformed(evt);
+                }
+            });
+            db_action_group_panel.add(add_database_button);
+
+            delete_database_button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_close_32.png"))); // NOI18N
+            delete_database_button1.setText("Delete Database");
+            delete_database_button1.setIconTextGap(6);
+            delete_database_button1.setPreferredSize(new java.awt.Dimension(150, 50));
+            delete_database_button1.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    delete_database_button1ActionPerformed(evt);
+                }
+            });
+            db_action_group_panel.add(delete_database_button1);
+
+            find_database_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico32/database_search_32.png"))); // NOI18N
+            find_database_button.setText("Edit Database");
+            find_database_button.setActionCommand("Find Database");
+            find_database_button.setIconTextGap(6);
+            find_database_button.setPreferredSize(new java.awt.Dimension(150, 50));
+            find_database_button.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    find_database_buttonActionPerformed(evt);
+                }
+            });
+            db_action_group_panel.add(find_database_button);
+
+            db_manager_panel.add(db_action_group_panel, java.awt.BorderLayout.CENTER);
+
+            db_info_panel.add(db_manager_panel, java.awt.BorderLayout.CENTER);
+
+            database_panel.add(db_info_panel, java.awt.BorderLayout.CENTER);
+
+            body.addTab("Database", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/database_32.png")), database_panel); // NOI18N
+
+            searching_panel.setLayout(new java.awt.GridLayout(1, 2));
+
+            search_input_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search Input", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
+            search_input_panel.setLayout(new java.awt.BorderLayout());
+
+            jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 15, 10));
+
+            jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            jLabel4.setText("Search Type");
+            jPanel6.add(jLabel4);
+
+            jRadioButton1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            jRadioButton1.setSelected(true);
+            jRadioButton1.setText("Quick Search");
+            jPanel6.add(jRadioButton1);
+
+            jRadioButton2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            jRadioButton2.setText("Deep Search");
+            jPanel6.add(jRadioButton2);
+
+            search_input_panel.add(jPanel6, java.awt.BorderLayout.NORTH);
+
+            jPanel7.setPreferredSize(new java.awt.Dimension(531, 300));
+            jPanel7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 10));
+
+            search_filter_column.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Product ID", "Name", " " }));
+            search_filter_column.setPreferredSize(new java.awt.Dimension(100, 30));
+            jPanel7.add(search_filter_column);
+
+            searching_box_input.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            searching_box_input.setMinimumSize(new java.awt.Dimension(300, 30));
+            searching_box_input.setPreferredSize(new java.awt.Dimension(450, 30));
+            searching_box_input.addKeyListener(new java.awt.event.KeyAdapter() {
+                public void keyPressed(java.awt.event.KeyEvent evt) {
+                    searching_box_inputKeyPressed(evt);
+                }
+            });
+            jPanel7.add(searching_box_input);
+
+            search_input_panel.add(jPanel7, java.awt.BorderLayout.CENTER);
+
+            jPanel3.setPreferredSize(new java.awt.Dimension(585, 107));
+            jPanel3.setLayout(new java.awt.BorderLayout());
+
+            search_button.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            search_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico/search.png"))); // NOI18N
+            search_button.setText("Search");
+            search_button.setIconTextGap(8);
+            search_button.setMaximumSize(new java.awt.Dimension(140, 40));
+            search_button.setMinimumSize(new java.awt.Dimension(180, 45));
+            search_button.setPreferredSize(new java.awt.Dimension(180, 45));
+            search_button.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    search_buttonActionPerformed(evt);
+                }
+            });
+            jPanel3.add(search_button, java.awt.BorderLayout.SOUTH);
+
+            search_input_panel.add(jPanel3, java.awt.BorderLayout.SOUTH);
+
+            searching_panel.add(search_input_panel);
+
+            search_result_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search Result", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 11))); // NOI18N
+
+            img_box_search.setBackground(new java.awt.Color(255, 255, 255));
+            img_box_search.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+            img_box_search.setPreferredSize(new java.awt.Dimension(150, 150));
+            img_box_search.setLayout(new java.awt.BorderLayout());
+
+            img_search_result_input.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            img_search_result_input.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            img_search_result_input.setText("NO IMAGE");
+            img_box_search.add(img_search_result_input, java.awt.BorderLayout.CENTER);
+
+            s_descrip_search_input.setEditable(false);
+            s_descrip_search_input.setColumns(20);
+            s_descrip_search_input.setRows(5);
+            jScrollPane1.setViewportView(s_descrip_search_input);
+
+            jLabel25.setText("Description");
+
+            product_group_panel.setLayout(new java.awt.GridLayout(16, 1, 0, 1));
+
+            jLabel17.setText("Product ID");
+            product_group_panel.add(jLabel17);
+
+            s_product_id_input.setEditable(false);
+            s_product_id_input.setBackground(new java.awt.Color(255, 255, 255));
+            product_group_panel.add(s_product_id_input);
+
+            jLabel19.setText("Category");
+            product_group_panel.add(jLabel19);
+
+            s_category_input.setEditable(false);
+            s_category_input.setBackground(new java.awt.Color(255, 255, 255));
+            product_group_panel.add(s_category_input);
+
+            jLabel18.setText("Name");
+            product_group_panel.add(jLabel18);
+
+            s_name_input.setEditable(false);
+            s_name_input.setBackground(new java.awt.Color(255, 255, 255));
+            product_group_panel.add(s_name_input);
+
+            jLabel6.setText("Model");
+            product_group_panel.add(jLabel6);
+
+            s_model_input.setEditable(false);
+            s_model_input.setBackground(new java.awt.Color(255, 255, 255));
+            product_group_panel.add(s_model_input);
+
+            jLabel10.setText("Cost");
+            product_group_panel.add(jLabel10);
+
+            s_cost_input.setEditable(false);
+            s_cost_input.setBackground(new java.awt.Color(255, 255, 255));
+            product_group_panel.add(s_cost_input);
+
+            jLabel21.setText("Quantity");
+            product_group_panel.add(jLabel21);
+
+            s_quantity_input.setEditable(false);
+            s_quantity_input.setBackground(new java.awt.Color(255, 255, 255));
+            product_group_panel.add(s_quantity_input);
+
+            jLabel20.setText("Warranty");
+            product_group_panel.add(jLabel20);
+
+            s_warranty_input.setEditable(false);
+            s_warranty_input.setBackground(new java.awt.Color(255, 255, 255));
+            product_group_panel.add(s_warranty_input);
+
+            jLabel23.setText("Status");
+            product_group_panel.add(jLabel23);
+
+            s_status_input.setEditable(false);
+            s_status_input.setBackground(new java.awt.Color(255, 255, 255));
+            product_group_panel.add(s_status_input);
+
+            product_location_panel.setLayout(new java.awt.GridLayout(6, 1, 0, 1));
+
+            jLabel11.setText("Location");
+            product_location_panel.add(jLabel11);
+
+            s_location_input.setEditable(false);
+            s_location_input.setBackground(new java.awt.Color(255, 255, 255));
+            product_location_panel.add(s_location_input);
+
+            jLabel22.setText("Imported Date");
+            product_location_panel.add(jLabel22);
+
+            s_import_date_input.setEditable(false);
+            s_import_date_input.setBackground(new java.awt.Color(255, 255, 255));
+            product_location_panel.add(s_import_date_input);
+
+            jLabel24.setText("User Last modified");
+            product_location_panel.add(jLabel24);
+
+            s_user_last_modified_input.setEditable(false);
+            s_user_last_modified_input.setBackground(new java.awt.Color(255, 255, 255));
+            product_location_panel.add(s_user_last_modified_input);
+
+            javax.swing.GroupLayout search_result_panelLayout = new javax.swing.GroupLayout(search_result_panel);
+            search_result_panel.setLayout(search_result_panelLayout);
+            search_result_panelLayout.setHorizontalGroup(
+                search_result_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(search_result_panelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(search_result_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 828, Short.MAX_VALUE)
+                        .addGroup(search_result_panelLayout.createSequentialGroup()
+                            .addGroup(search_result_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel25)
+                                .addComponent(product_location_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                                .addComponent(img_box_search, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))
+                            .addGap(24, 24, 24)
+                            .addComponent(product_group_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap())
+            );
+            search_result_panelLayout.setVerticalGroup(
+                search_result_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(search_result_panelLayout.createSequentialGroup()
+                    .addGroup(search_result_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(search_result_panelLayout.createSequentialGroup()
+                            .addGap(7, 7, 7)
+                            .addComponent(img_box_search, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(product_location_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(product_group_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel25)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+            );
+
+            searching_panel.add(search_result_panel);
+
+            body.addTab("Searching", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/search.png")), searching_panel); // NOI18N
+
+            statistics_panel.setLayout(new java.awt.BorderLayout());
+
+            statistic_graph.setBackground(new java.awt.Color(255, 255, 255));
+            statistic_graph.setLayout(new java.awt.BorderLayout());
+            statistics_panel.add(statistic_graph, java.awt.BorderLayout.CENTER);
+
+            statistic_control_group.setPreferredSize(new java.awt.Dimension(500, 40));
+            statistic_control_group.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 15, 5));
+
+            month_select.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+            month_select.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Months revenue", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
+            month_select.setPreferredSize(new java.awt.Dimension(150, 30));
+            statistic_control_group.add(month_select);
+
+            refresh_graph_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+            refresh_graph_button.setText("Refresh");
+            refresh_graph_button.setPreferredSize(new java.awt.Dimension(100, 30));
+            refresh_graph_button.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    refresh_graph_buttonActionPerformed(evt);
+                }
+            });
+            statistic_control_group.add(refresh_graph_button);
+
+            print_graph_button.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+            print_graph_button.setText("Print");
+            print_graph_button.setPreferredSize(new java.awt.Dimension(100, 30));
+            print_graph_button.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    print_graph_buttonActionPerformed(evt);
+                }
+            });
+            statistic_control_group.add(print_graph_button);
+
+            statistics_panel.add(statistic_control_group, java.awt.BorderLayout.SOUTH);
+
+            body.addTab("Statistics", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/statistics.png")), statistics_panel); // NOI18N
+
+            report_panel.setPreferredSize(new java.awt.Dimension(1024, 453));
+            report_panel.setLayout(new java.awt.BorderLayout());
+
+            stock_report_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Stock Information Report", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
+            stock_report_panel.setPreferredSize(new java.awt.Dimension(800, 502));
+            stock_report_panel.setLayout(new java.awt.BorderLayout());
+
+            scroll_panel_for_report.setBackground(new java.awt.Color(255, 255, 255));
+            scroll_panel_for_report.setBorder(null);
+
+            report_table.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            report_table.setModel(new javax.swing.table.DefaultTableModel(rowsr, columnsr)
+                {public boolean isCellEditable(int row, int column){return false;}});
+            report_table.setRowHeight(20);
+            report_table.setRowMargin(3);
+            if (report_table.getRowCount() == 0) {
+                clear_report_btn.setEnabled(false);
                 save_report_button.setEnabled(false);
-                save_report_button.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        save_report_buttonActionPerformed(evt);
-                    }
-                });
-                report_btn_group.add(save_report_button);
-
-                report_btn_panel.add(report_btn_group, java.awt.BorderLayout.CENTER);
-
-                report_button_panel.add(report_btn_panel, java.awt.BorderLayout.CENTER);
-
-                report_panel.add(report_button_panel, java.awt.BorderLayout.CENTER);
-
-                body.addTab("Reporting", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/chart_graph.png")), report_panel); // NOI18N
-
-                history_panel.setLayout(new java.awt.BorderLayout());
-
-                ScrollPanelForHistory.setBorder(null);
-                ScrollPanelForHistory.setPreferredSize(new java.awt.Dimension(450, 470));
-
-                ArrayList<com.mergano.core.bean.HistoryBean> listHIS = null;
-                com.mergano.core.dao.HistoryDAO hisdao = new com.mergano.core.dao.HistoryDAO();
-                try {
-                    listHIS = hisdao.getHistoryData();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                accept_report_btn.setEnabled(false);
+                print_report_button.setEnabled(false);
+            } else {
+                clear_report_btn.setEnabled(true);
+                save_report_button.setEnabled(true);
+                accept_report_btn.setEnabled(true);
+                print_report_button.setEnabled(true);
+            }
+            report_table.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    report_tableMouseClicked(evt);
                 }
-                List<String[]> valuesHIS = new ArrayList<>();
-                List<String> columnsHIS = new ArrayList<>();
-                columnsHIS.add("#");
-                columnsHIS.add("Type");
-                columnsHIS.add("Action detail");
-                columnsHIS.add("Date modified");
-                columnsHIS.add("Time");
-                columnsHIS.add("Username");
+            });
+            scroll_panel_for_report.setViewportView(report_table);
 
-                for(int i =0; i< listHIS.size(); i++) {
-                    valuesHIS.add(new String[] {"" +
-                        listHIS.get(i).getBacklogID(),
-                        listHIS.get(i).getActionType(),
-                        listHIS.get(i).getActionDetail(),
-                        listHIS.get(i).getBacklogDate(),
-                        listHIS.get(i).getBacklogTime(),
-                        listHIS.get(i).getUser()
-                    });
+            stock_report_panel.add(scroll_panel_for_report, java.awt.BorderLayout.CENTER);
+
+            report_panel.add(stock_report_panel, java.awt.BorderLayout.WEST);
+
+            report_button_panel.setLayout(new java.awt.BorderLayout());
+
+            report_text_area_panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Report to stock ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
+            report_text_area_panel.setPreferredSize(new java.awt.Dimension(218, 350));
+            report_text_area_panel.setLayout(new java.awt.BorderLayout(5, 10));
+
+            report_text_scroll.setPreferredSize(new java.awt.Dimension(200, 280));
+
+            report_text_area.setColumns(20);
+            report_text_area.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+            report_text_area.setRows(9);
+            report_text_scroll.setViewportView(report_text_area);
+
+            report_text_area_panel.add(report_text_scroll, java.awt.BorderLayout.NORTH);
+
+            report_type.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            report_type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Critical", "Severve", "Regular" }));
+            report_type.setSelectedItem("Regular");
+            report_type.setMinimumSize(new java.awt.Dimension(65, 30));
+            report_text_area_panel.add(report_type, java.awt.BorderLayout.CENTER);
+
+            report_button_panel.add(report_text_area_panel, java.awt.BorderLayout.NORTH);
+
+            report_btn_panel.setLayout(new java.awt.BorderLayout());
+
+            report_btn_group.setLayout(new java.awt.GridLayout(5, 1, 5, 5));
+
+            create_report_button.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            create_report_button.setText("Create Report");
+            create_report_button.setPreferredSize(new java.awt.Dimension(120, 40));
+            create_report_button.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    create_report_buttonActionPerformed(evt);
                 }
-                history_table.setAutoCreateRowSorter(true);
-                history_table.setModel(new javax.swing.table.DefaultTableModel(valuesHIS.toArray(new Object[][] {}), columnsHIS.toArray())
-                    {public boolean isCellEditable(int row, int column){return false;}});
-                history_table.setFillsViewportHeight(true);
-                history_table.setRowHeight(25);
-                history_table.setRowMargin(3);
-                history_table.setSelectionBackground(new java.awt.Color(255, 51, 51));
-                history_table.setShowHorizontalLines(false);
-                history_table.setShowVerticalLines(false);
-                if (history_table.getRowCount() == 0) {
-                    truncate_history_btn.setEnabled(false);
+            });
+            report_btn_group.add(create_report_button);
+
+            print_report_button.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            print_report_button.setText("Print Report");
+            print_report_button.setPreferredSize(new java.awt.Dimension(120, 40));
+            print_report_button.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    print_report_buttonActionPerformed(evt);
                 }
-                ScrollPanelForHistory.setViewportView(history_table);
-                history_table.getAccessibleContext().setAccessibleName("History table");
-                history_table.getAccessibleContext().setAccessibleDescription("This table store history action of user.");
+            });
+            report_btn_group.add(print_report_button);
 
-                history_panel.add(ScrollPanelForHistory, java.awt.BorderLayout.NORTH);
+            clear_report_btn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            clear_report_btn.setText("Clear Report");
+            clear_report_btn.setPreferredSize(new java.awt.Dimension(120, 40));
+            clear_report_btn.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    clear_report_btnActionPerformed(evt);
+                }
+            });
+            report_btn_group.add(clear_report_btn);
 
-                jPanel2.setLayout(new java.awt.GridLayout(1, 0, 10, 10));
+            accept_report_btn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            accept_report_btn.setText("Accept");
+            accept_report_btn.setEnabled(false);
+            accept_report_btn.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    accept_report_btnActionPerformed(evt);
+                }
+            });
+            report_btn_group.add(accept_report_btn);
 
-                truncate_history_btn.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                truncate_history_btn.setText("Clear");
-                truncate_history_btn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-                truncate_history_btn.setPreferredSize(new java.awt.Dimension(200, 40));
-                truncate_history_btn.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        truncate_history_btnActionPerformed(evt);
-                    }
+            save_report_button.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            save_report_button.setText("Save Report as PDF");
+            save_report_button.setEnabled(false);
+            save_report_button.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    save_report_buttonActionPerformed(evt);
+                }
+            });
+            report_btn_group.add(save_report_button);
+
+            report_btn_panel.add(report_btn_group, java.awt.BorderLayout.CENTER);
+
+            report_button_panel.add(report_btn_panel, java.awt.BorderLayout.CENTER);
+
+            report_panel.add(report_button_panel, java.awt.BorderLayout.CENTER);
+
+            body.addTab("Reporting", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/chart_graph.png")), report_panel); // NOI18N
+
+            history_panel.setLayout(new java.awt.BorderLayout());
+
+            ScrollPanelForHistory.setBorder(null);
+            ScrollPanelForHistory.setPreferredSize(new java.awt.Dimension(450, 470));
+
+            ArrayList<com.mergano.core.bean.HistoryBean> listHIS = null;
+            com.mergano.core.dao.HistoryDAO hisdao = new com.mergano.core.dao.HistoryDAO();
+            try {
+                listHIS = hisdao.getHistoryData();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            List<String[]> valuesHIS = new ArrayList<>();
+            List<String> columnsHIS = new ArrayList<>();
+            columnsHIS.add("#");
+            columnsHIS.add("Type");
+            columnsHIS.add("Action detail");
+            columnsHIS.add("Date modified");
+            columnsHIS.add("Time");
+            columnsHIS.add("Username");
+
+            for(int i =0; i< listHIS.size(); i++) {
+                valuesHIS.add(new String[] {"" +
+                    listHIS.get(i).getBacklogID(),
+                    listHIS.get(i).getActionType(),
+                    listHIS.get(i).getActionDetail(),
+                    listHIS.get(i).getBacklogDate(),
+                    listHIS.get(i).getBacklogTime(),
+                    listHIS.get(i).getUser()
                 });
-                jPanel2.add(truncate_history_btn);
-
-                print_history_btn.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                print_history_btn.setText("Print");
-                print_history_btn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-                print_history_btn.setPreferredSize(new java.awt.Dimension(200, 40));
-                print_history_btn.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        print_history_btnActionPerformed(evt);
-                    }
-                });
-                jPanel2.add(print_history_btn);
-
-                jPanel1.add(jPanel2);
-
-                history_panel.add(jPanel1, java.awt.BorderLayout.CENTER);
-
-                body.addTab("History", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/clock2.png")), history_panel); // NOI18N
-
-                status_bar_frame.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-                status_bar_frame.setPreferredSize(new java.awt.Dimension(176, 40));
-                status_bar_frame.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 12, 12));
-
-                dbname_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                dbname_label.setText("Database name");
-                status_bar_frame.add(dbname_label);
-
-                db_name_box.setEditable(false);
-                db_name_box.setBackground(new java.awt.Color(255, 255, 255));
-                db_name_box.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                db_name_box.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-                db_name_box.setMinimumSize(new java.awt.Dimension(120, 20));
-                db_name_box.setPreferredSize(new java.awt.Dimension(120, 20));
-                db_name_box.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        db_name_boxActionPerformed(evt);
-                    }
-                });
-                status_bar_frame.add(db_name_box);
-
-                status_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                status_label.setText("Database status");
-                status_bar_frame.add(status_label);
-
-                status_box.setEditable(false);
-                status_box.setBackground(new java.awt.Color(255, 255, 255));
-                status_box.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                status_box.setForeground(new java.awt.Color(0, 153, 102));
-                status_box.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-                status_box.setMinimumSize(new java.awt.Dimension(80, 20));
-                status_box.setPreferredSize(new java.awt.Dimension(80, 20));
-                status_bar_frame.add(status_box);
-
-                dbType_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                dbType_label.setText("Type");
-                status_bar_frame.add(dbType_label);
-
-                db_type_box.setEditable(false);
-                db_type_box.setBackground(new java.awt.Color(255, 255, 255));
-                db_type_box.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                db_type_box.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-                db_type_box.setMinimumSize(new java.awt.Dimension(80, 20));
-                db_type_box.setPreferredSize(new java.awt.Dimension(80, 20));
-                status_bar_frame.add(db_type_box);
-
-                hostname_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                hostname_label.setText("Hostname");
-                status_bar_frame.add(hostname_label);
-
-                url_box.setEditable(false);
-                url_box.setBackground(new java.awt.Color(255, 255, 255));
-                url_box.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                url_box.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-                url_box.setMinimumSize(new java.awt.Dimension(120, 20));
-                url_box.setPreferredSize(new java.awt.Dimension(120, 20));
-                url_box.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        url_boxActionPerformed(evt);
-                    }
-                });
-                status_bar_frame.add(url_box);
-
-                port_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                port_label.setText("Port");
-                status_bar_frame.add(port_label);
-
-                port_box.setEditable(false);
-                port_box.setBackground(new java.awt.Color(255, 255, 255));
-                port_box.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                port_box.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-                port_box.setMinimumSize(new java.awt.Dimension(60, 20));
-                port_box.setPreferredSize(new java.awt.Dimension(60, 20));
-                status_bar_frame.add(port_box);
-
-                user_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                user_label.setText("Username");
-                status_bar_frame.add(user_label);
-
-                user_box.setEditable(false);
-                user_box.setBackground(new java.awt.Color(255, 255, 255));
-                user_box.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-                user_box.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-                user_box.setMinimumSize(new java.awt.Dimension(120, 20));
-                user_box.setPreferredSize(new java.awt.Dimension(120, 20));
-                status_bar_frame.add(user_box);
-
-                main_menubar.setBorder(null);
-                main_menubar.setPreferredSize(new java.awt.Dimension(56, 23));
-
-                file_menu.setText("File");
-
-                open_menuitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-                open_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/folder_add.png"))); // NOI18N
-                open_menuitem.setText("Open...");
-                open_menuitem.setEnabled(false);
-                open_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        open_menuitemActionPerformed(evt);
-                    }
-                });
-                file_menu.add(open_menuitem);
-
-                save_menuitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-                save_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/save-icon.png"))); // NOI18N
-                save_menuitem.setText("Save");
-                save_menuitem.setEnabled(false);
-                file_menu.add(save_menuitem);
-
-                saveas_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/save-as-icon.png"))); // NOI18N
-                saveas_menuitem.setText("Save as...");
-                saveas_menuitem.setEnabled(false);
-                saveas_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        saveas_menuitemActionPerformed(evt);
-                    }
-                });
-                file_menu.add(saveas_menuitem);
-                file_menu.add(jSeparator3);
-
-                welcome_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/home.png"))); // NOI18N
-                welcome_menuitem.setText("Welcome");
-                welcome_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        Home_buttonActionPerformed(evt);
-                    }
-                });
-                file_menu.add(welcome_menuitem);
-
-                dashboard_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/dashboard.png"))); // NOI18N
-                dashboard_menuitem.setText("Dashboard");
-                dashboard_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        dashboard_menuitemActionPerformed(evt);
-                    }
-                });
-                file_menu.add(dashboard_menuitem);
-
-                stock_management_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/notebook.png"))); // NOI18N
-                stock_management_menuitem.setText("Stock Management");
-                stock_management_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        stock_management_menuitemActionPerformed(evt);
-                    }
-                });
-                file_menu.add(stock_management_menuitem);
-
-                order_management_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/clipboard.png"))); // NOI18N
-                order_management_menuitem.setText("Order Management");
-                order_management_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        order_management_menuitemActionPerformed(evt);
-                    }
-                });
-                file_menu.add(order_management_menuitem);
-
-                tracking_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/checkmark.png"))); // NOI18N
-                tracking_menuitem.setText("Tracking");
-                tracking_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        tracking_menuitemActionPerformed(evt);
-                    }
-                });
-                file_menu.add(tracking_menuitem);
-
-                database_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/database_32.png"))); // NOI18N
-                database_menuitem.setText("Database");
-                database_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        database_menuitemActionPerformed(evt);
-                    }
-                });
-                file_menu.add(database_menuitem);
-
-                searching_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/search.png"))); // NOI18N
-                searching_menuitem.setText("Searching");
-                searching_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        searching_menuitemActionPerformed(evt);
-                    }
-                });
-                file_menu.add(searching_menuitem);
-
-                statistics_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/chart_pie.png"))); // NOI18N
-                statistics_menuitem.setLabel("Statistics");
-                statistics_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        statistics_menuitemActionPerformed(evt);
-                    }
-                });
-                file_menu.add(statistics_menuitem);
-
-                report_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/chart_graph.png"))); // NOI18N
-                report_menuitem.setText("Report");
-                report_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        report_menuitemActionPerformed(evt);
-                    }
-                });
-                file_menu.add(report_menuitem);
-
-                history_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/clock2.png"))); // NOI18N
-                history_menuitem.setText("History");
-                history_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        history_menuitemActionPerformed(evt);
-                    }
-                });
-                file_menu.add(history_menuitem);
-                history_menuitem.getAccessibleContext().setAccessibleName("History button");
-
-                file_menu.add(jSeparator7);
-
-                print_menuitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-                print_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/print.png"))); // NOI18N
-                print_menuitem.setText("Print...");
-                print_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        print_menuitemActionPerformed(evt);
-                    }
-                });
-                file_menu.add(print_menuitem);
-
-                jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/file_edit.png"))); // NOI18N
-                jMenuItem16.setText("Page Setup...");
-                file_menu.add(jMenuItem16);
-
-                print_preview_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/print.png"))); // NOI18N
-                print_preview_menuitem.setText("Print Preview...");
-                print_preview_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        print_preview_menuitemActionPerformed(evt);
-                    }
-                });
-                file_menu.add(print_preview_menuitem);
-                file_menu.add(jSeparator10);
-
-                logout_menuitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-                logout_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/lock_32.png"))); // NOI18N
-                logout_menuitem.setText("Logout");
-                logout_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        logout_menuitemActionPerformed(evt);
-                    }
-                });
-                file_menu.add(logout_menuitem);
-                file_menu.add(jSeparator2);
-
-                exit_program.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
-                exit_program.setText("Exit");
-                exit_program.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        exit_programActionPerformed(evt);
-                    }
-                });
-                file_menu.add(exit_program);
-
-                main_menubar.add(file_menu);
-
-                edit_menu.setText("Edit");
-
-                jMenuItem25.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
-                jMenuItem25.setText("Undo");
-                jMenuItem25.setEnabled(false);
-                edit_menu.add(jMenuItem25);
-
-                jMenuItem26.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
-                jMenuItem26.setText("Redo");
-                jMenuItem26.setEnabled(false);
-                jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        jMenuItem26ActionPerformed(evt);
-                    }
-                });
-                edit_menu.add(jMenuItem26);
-                edit_menu.add(jSeparator8);
-
-                jMenuItem27.setText("Cut");
-                edit_menu.add(jMenuItem27);
-
-                jMenuItem28.setText("Copy");
-                edit_menu.add(jMenuItem28);
-
-                jMenuItem30.setText("Paste");
-                jMenuItem30.setEnabled(false);
-                edit_menu.add(jMenuItem30);
-
-                jMenuItem31.setText("Paste from History");
-                jMenuItem31.setEnabled(false);
-                edit_menu.add(jMenuItem31);
-
-                jMenuItem33.setText("Delete");
-                edit_menu.add(jMenuItem33);
-
-                jMenuItem32.setText("Select All");
-                edit_menu.add(jMenuItem32);
-                edit_menu.add(jSeparator9);
-
-                jMenuItem36.setText("Find/Replace...");
-                jMenuItem36.setEnabled(false);
-                edit_menu.add(jMenuItem36);
-
-                jMenuItem34.setText("Find Next");
-                jMenuItem34.setEnabled(false);
-                edit_menu.add(jMenuItem34);
-
-                jMenuItem35.setText("Find Previous");
-                jMenuItem35.setEnabled(false);
-                edit_menu.add(jMenuItem35);
-
-                main_menubar.add(edit_menu);
-
-                view_menu.setText("View");
-                view_menu.setToolTipText("");
-                view_menu.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        view_menuActionPerformed(evt);
-                    }
-                });
-
-                hint_menuitem.setText("Show hint");
-                view_menu.add(hint_menuitem);
-
-                toolbar_menuitem.setSelected(true);
-                toolbar_menuitem.setText("Show Toolbar");
-                toolbar_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        toolbar_menuitemActionPerformed(evt);
-                    }
-                });
-                view_menu.add(toolbar_menuitem);
-
-                statusbar_menuitem.setSelected(true);
-                statusbar_menuitem.setText("Show Status bar");
-                statusbar_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        statusbar_menuitemActionPerformed(evt);
-                    }
-                });
-                view_menu.add(statusbar_menuitem);
-
-                main_menubar.add(view_menu);
-
-                database_menu.setText("Database");
-                database_menu.addChangeListener(new javax.swing.event.ChangeListener() {
-                    public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                        database_menuStateChanged(evt);
-                    }
-                });
-                database_menu.addFocusListener(new java.awt.event.FocusAdapter() {
-                    public void focusGained(java.awt.event.FocusEvent evt) {
-                        database_menuFocusGained(evt);
-                    }
-                });
-                database_menu.addMouseListener(new java.awt.event.MouseAdapter() {
-                    public void mouseClicked(java.awt.event.MouseEvent evt) {
-                        database_menuMouseClicked(evt);
-                    }
-                });
-                database_menu.addComponentListener(new java.awt.event.ComponentAdapter() {
-                    public void componentShown(java.awt.event.ComponentEvent evt) {
-                        database_menuComponentShown(evt);
-                    }
-                });
-                database_menu.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        database_menuActionPerformed(evt);
-                    }
-                });
-
-                jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/database_32.png"))); // NOI18N
-                jMenu7.setText("Connect..");
-                jMenu7.setEnabled(false);
-
-                new_db_menuitem.setText("New...");
-                new_db_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        new_db_menuitemActionPerformed(evt);
-                    }
-                });
-                jMenu7.add(new_db_menuitem);
-
-                del_db_menuitem.setText("Delete...");
-                del_db_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        del_db_menuitemActionPerformed(evt);
-                    }
-                });
-                jMenu7.add(del_db_menuitem);
-
-                find_db_menuitem.setText("Find...");
-                jMenu7.add(find_db_menuitem);
-
-                database_menu.add(jMenu7);
-
-                connect_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/database_add_32.png"))); // NOI18N
-                connect_menuitem.setText("Connect");
-                connect_menuitem.setEnabled(false);
-                connect_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        connect_menuitemActionPerformed(evt);
-                    }
-                });
-                database_menu.add(connect_menuitem);
-
-                disconnect_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/database_close_32.png"))); // NOI18N
-                disconnect_menuitem.setText("Disconnect");
-                disconnect_menuitem.setEnabled(false);
-                disconnect_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        disconnect_menuitemActionPerformed(evt);
-                    }
-                });
-                database_menu.add(disconnect_menuitem);
-                database_menu.add(jSeparator1);
-
-                import_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/folder_upload.png"))); // NOI18N
-                import_menuitem.setText("Import...");
-
-                import_csv_menuitem.setText("From CSV");
-                import_menuitem.add(import_csv_menuitem);
-
-                database_menu.add(import_menuitem);
-
-                export_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/folder_upload.png"))); // NOI18N
-                export_menuitem.setText("Export...");
-
-                export_csv_menuitem.setText("To CSV");
-                export_menuitem.add(export_csv_menuitem);
-
-                export_txt_menuitem.setText("To TXT");
-                export_menuitem.add(export_txt_menuitem);
-
-                export_sql_menuitem.setText("To SQL");
-                export_menuitem.add(export_sql_menuitem);
-
-                database_menu.add(export_menuitem);
-
-                main_menubar.add(database_menu);
-
-                tools_menu.setText("Tools");
-
-                search_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/search.png"))); // NOI18N
-                search_menuitem.setText("Search...");
-                search_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        search_menuitemActionPerformed(evt);
-                    }
-                });
-                tools_menu.add(search_menuitem);
-
-                backup_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/folder_add.png"))); // NOI18N
-                backup_menuitem.setText("Backup");
-                tools_menu.add(backup_menuitem);
-
-                manager_user_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/user.png"))); // NOI18N
-                manager_user_menuitem.setText("Manage User");
-                manager_user_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        manager_user_menuitemActionPerformed(evt);
-                    }
-                });
-                tools_menu.add(manager_user_menuitem);
-                tools_menu.add(jSeparator6);
-
-                language_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/globe.png"))); // NOI18N
-                language_menuitem.setText("Language");
-
-                en_us_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/flags/usa.png"))); // NOI18N
-                en_us_menuitem.setText("English");
-                en_us_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        en_us_menuitemActionPerformed(evt);
-                    }
-                });
-                language_menuitem.add(en_us_menuitem);
-
-                en_us_menuitem1.setFont(en_us_menuitem1.getFont());
-                en_us_menuitem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/flags/thai.png"))); // NOI18N
-                en_us_menuitem1.setText("ภาษาไทย");
-                en_us_menuitem1.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        en_us_menuitem1ActionPerformed(evt);
-                    }
-                });
-                language_menuitem.add(en_us_menuitem1);
-
-                tools_menu.add(language_menuitem);
-
-                options_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/gear.png"))); // NOI18N
-                options_menuitem.setText("Options");
-                options_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        options_menuitemActionPerformed(evt);
-                    }
-                });
-                tools_menu.add(options_menuitem);
-
-                main_menubar.add(tools_menu);
-
-                help_menu.setText("Help");
-
-                help_contents_menuitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
-                help_contents_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/help.png"))); // NOI18N
-                help_contents_menuitem.setText("Help Contents");
-                help_contents_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        help_contents_menuitemActionPerformed(evt);
-                    }
-                });
-                help_menu.add(help_contents_menuitem);
-
-                online_docs_menuitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.SHIFT_MASK));
-                online_docs_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/help2.png"))); // NOI18N
-                online_docs_menuitem.setText("Online Docs and Support");
-                online_docs_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        online_docs_menuitemActionPerformed(evt);
-                    }
-                });
-                help_menu.add(online_docs_menuitem);
-                help_menu.add(jSeparator5);
-
-                report_bug_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/bug.png"))); // NOI18N
-                report_bug_menuitem.setText("Report Bug...");
-                report_bug_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        report_bug_menuitemActionPerformed(evt);
-                    }
-                });
-                help_menu.add(report_bug_menuitem);
-
-                feedback_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/comment.png"))); // NOI18N
-                feedback_menuitem.setText("Feedback...");
-                feedback_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        feedback_menuitemActionPerformed(evt);
-                    }
-                });
-                help_menu.add(feedback_menuitem);
-
-                website_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/globe.png"))); // NOI18N
-                website_menuitem.setText("Website..");
-                website_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        website_menuitemActionPerformed(evt);
-                    }
-                });
-                help_menu.add(website_menuitem);
-                help_menu.add(jSeparator4);
-
-                check_for_update_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/button_up.png"))); // NOI18N
-                check_for_update_menuitem.setText("Check for Updates");
-                check_for_update_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        check_for_update_menuitemActionPerformed(evt);
-                    }
-                });
-                help_menu.add(check_for_update_menuitem);
-
-                about_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/info.png"))); // NOI18N
-                about_menuitem.setText("About");
-                about_menuitem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        about_menuitemActionPerformed(evt);
-                    }
-                });
-                help_menu.add(about_menuitem);
-
-                main_menubar.add(help_menu);
-
-                setJMenuBar(main_menubar);
-
-                javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-                getContentPane().setLayout(layout);
-                layout.setHorizontalGroup(
-                    layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(status_bar_frame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
-                );
-                layout.setVerticalGroup(
-                    layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(body)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(status_bar_frame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                );
-
-                body.getAccessibleContext().setAccessibleName("Body");
-
-                getAccessibleContext().setAccessibleDescription("This is main windows");
-
-                pack();
-                setLocationRelativeTo(null);
-            }// </editor-fold>//GEN-END:initComponents
+            }
+            history_table.setAutoCreateRowSorter(true);
+            history_table.setModel(new javax.swing.table.DefaultTableModel(valuesHIS.toArray(new Object[][] {}), columnsHIS.toArray())
+                {public boolean isCellEditable(int row, int column){return false;}});
+            history_table.setFillsViewportHeight(true);
+            history_table.setRowHeight(25);
+            history_table.setRowMargin(3);
+            history_table.setSelectionBackground(new java.awt.Color(255, 51, 51));
+            history_table.setShowHorizontalLines(false);
+            history_table.setShowVerticalLines(false);
+            if (history_table.getRowCount() == 0) {
+                truncate_history_btn.setEnabled(false);
+            }
+            ScrollPanelForHistory.setViewportView(history_table);
+            history_table.getAccessibleContext().setAccessibleName("History table");
+            history_table.getAccessibleContext().setAccessibleDescription("This table store history action of user.");
+
+            history_panel.add(ScrollPanelForHistory, java.awt.BorderLayout.NORTH);
+
+            jPanel2.setLayout(new java.awt.GridLayout(1, 0, 10, 10));
+
+            truncate_history_btn.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            truncate_history_btn.setText("Clear");
+            truncate_history_btn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+            truncate_history_btn.setPreferredSize(new java.awt.Dimension(200, 40));
+            truncate_history_btn.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    truncate_history_btnActionPerformed(evt);
+                }
+            });
+            jPanel2.add(truncate_history_btn);
+
+            print_history_btn.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            print_history_btn.setText("Print");
+            print_history_btn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+            print_history_btn.setPreferredSize(new java.awt.Dimension(200, 40));
+            print_history_btn.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    print_history_btnActionPerformed(evt);
+                }
+            });
+            jPanel2.add(print_history_btn);
+
+            jPanel1.add(jPanel2);
+
+            history_panel.add(jPanel1, java.awt.BorderLayout.CENTER);
+
+            body.addTab("History", new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/clock2.png")), history_panel); // NOI18N
+
+            status_bar_frame.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+            status_bar_frame.setPreferredSize(new java.awt.Dimension(176, 40));
+            status_bar_frame.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 12, 12));
+
+            dbname_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            dbname_label.setText("Database name");
+            status_bar_frame.add(dbname_label);
+
+            db_name_box.setEditable(false);
+            db_name_box.setBackground(new java.awt.Color(255, 255, 255));
+            db_name_box.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            db_name_box.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+            db_name_box.setMinimumSize(new java.awt.Dimension(120, 20));
+            db_name_box.setPreferredSize(new java.awt.Dimension(120, 20));
+            db_name_box.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    db_name_boxActionPerformed(evt);
+                }
+            });
+            status_bar_frame.add(db_name_box);
+
+            status_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            status_label.setText("Database status");
+            status_bar_frame.add(status_label);
+
+            status_box.setEditable(false);
+            status_box.setBackground(new java.awt.Color(255, 255, 255));
+            status_box.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            status_box.setForeground(new java.awt.Color(0, 153, 102));
+            status_box.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+            status_box.setMinimumSize(new java.awt.Dimension(80, 20));
+            status_box.setPreferredSize(new java.awt.Dimension(80, 20));
+            status_bar_frame.add(status_box);
+
+            dbType_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            dbType_label.setText("Type");
+            status_bar_frame.add(dbType_label);
+
+            db_type_box.setEditable(false);
+            db_type_box.setBackground(new java.awt.Color(255, 255, 255));
+            db_type_box.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            db_type_box.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+            db_type_box.setMinimumSize(new java.awt.Dimension(80, 20));
+            db_type_box.setPreferredSize(new java.awt.Dimension(80, 20));
+            status_bar_frame.add(db_type_box);
+
+            hostname_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            hostname_label.setText("Hostname");
+            status_bar_frame.add(hostname_label);
+
+            url_box.setEditable(false);
+            url_box.setBackground(new java.awt.Color(255, 255, 255));
+            url_box.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            url_box.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+            url_box.setMinimumSize(new java.awt.Dimension(120, 20));
+            url_box.setPreferredSize(new java.awt.Dimension(120, 20));
+            url_box.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    url_boxActionPerformed(evt);
+                }
+            });
+            status_bar_frame.add(url_box);
+
+            port_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            port_label.setText("Port");
+            status_bar_frame.add(port_label);
+
+            port_box.setEditable(false);
+            port_box.setBackground(new java.awt.Color(255, 255, 255));
+            port_box.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            port_box.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+            port_box.setMinimumSize(new java.awt.Dimension(60, 20));
+            port_box.setPreferredSize(new java.awt.Dimension(60, 20));
+            status_bar_frame.add(port_box);
+
+            user_label.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            user_label.setText("Username");
+            status_bar_frame.add(user_label);
+
+            user_box.setEditable(false);
+            user_box.setBackground(new java.awt.Color(255, 255, 255));
+            user_box.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+            user_box.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+            user_box.setMinimumSize(new java.awt.Dimension(120, 20));
+            user_box.setPreferredSize(new java.awt.Dimension(120, 20));
+            status_bar_frame.add(user_box);
+
+            main_menubar.setBorder(null);
+            main_menubar.setPreferredSize(new java.awt.Dimension(56, 23));
+
+            file_menu.setText("File");
+
+            open_menuitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+            open_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/folder_add.png"))); // NOI18N
+            open_menuitem.setText("Open...");
+            open_menuitem.setEnabled(false);
+            open_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    open_menuitemActionPerformed(evt);
+                }
+            });
+            file_menu.add(open_menuitem);
+
+            save_menuitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+            save_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/save-icon.png"))); // NOI18N
+            save_menuitem.setText("Save");
+            save_menuitem.setEnabled(false);
+            file_menu.add(save_menuitem);
+
+            saveas_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/save-as-icon.png"))); // NOI18N
+            saveas_menuitem.setText("Save as...");
+            saveas_menuitem.setEnabled(false);
+            saveas_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    saveas_menuitemActionPerformed(evt);
+                }
+            });
+            file_menu.add(saveas_menuitem);
+            file_menu.add(jSeparator3);
+
+            welcome_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/home.png"))); // NOI18N
+            welcome_menuitem.setText("Welcome");
+            welcome_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    Home_buttonActionPerformed(evt);
+                }
+            });
+            file_menu.add(welcome_menuitem);
+
+            dashboard_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/dashboard.png"))); // NOI18N
+            dashboard_menuitem.setText("Dashboard");
+            dashboard_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    dashboard_menuitemActionPerformed(evt);
+                }
+            });
+            file_menu.add(dashboard_menuitem);
+
+            stock_management_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/notebook.png"))); // NOI18N
+            stock_management_menuitem.setText("Stock Management");
+            stock_management_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    stock_management_menuitemActionPerformed(evt);
+                }
+            });
+            file_menu.add(stock_management_menuitem);
+
+            order_management_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/clipboard.png"))); // NOI18N
+            order_management_menuitem.setText("Order Management");
+            order_management_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    order_management_menuitemActionPerformed(evt);
+                }
+            });
+            file_menu.add(order_management_menuitem);
+
+            tracking_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/checkmark.png"))); // NOI18N
+            tracking_menuitem.setText("Tracking");
+            tracking_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    tracking_menuitemActionPerformed(evt);
+                }
+            });
+            file_menu.add(tracking_menuitem);
+
+            database_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/database_32.png"))); // NOI18N
+            database_menuitem.setText("Database");
+            database_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    database_menuitemActionPerformed(evt);
+                }
+            });
+            file_menu.add(database_menuitem);
+
+            searching_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/search.png"))); // NOI18N
+            searching_menuitem.setText("Searching");
+            searching_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    searching_menuitemActionPerformed(evt);
+                }
+            });
+            file_menu.add(searching_menuitem);
+
+            statistics_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/chart_pie.png"))); // NOI18N
+            statistics_menuitem.setLabel("Statistics");
+            statistics_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    statistics_menuitemActionPerformed(evt);
+                }
+            });
+            file_menu.add(statistics_menuitem);
+
+            report_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/chart_graph.png"))); // NOI18N
+            report_menuitem.setText("Report");
+            report_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    report_menuitemActionPerformed(evt);
+                }
+            });
+            file_menu.add(report_menuitem);
+
+            history_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/clock2.png"))); // NOI18N
+            history_menuitem.setText("History");
+            history_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    history_menuitemActionPerformed(evt);
+                }
+            });
+            file_menu.add(history_menuitem);
+            history_menuitem.getAccessibleContext().setAccessibleName("History button");
+
+            file_menu.add(jSeparator7);
+
+            print_menuitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+            print_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/print.png"))); // NOI18N
+            print_menuitem.setText("Print...");
+            print_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    print_menuitemActionPerformed(evt);
+                }
+            });
+            file_menu.add(print_menuitem);
+
+            jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/file_edit.png"))); // NOI18N
+            jMenuItem16.setText("Page Setup...");
+            file_menu.add(jMenuItem16);
+
+            print_preview_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/print.png"))); // NOI18N
+            print_preview_menuitem.setText("Print Preview...");
+            print_preview_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    print_preview_menuitemActionPerformed(evt);
+                }
+            });
+            file_menu.add(print_preview_menuitem);
+            file_menu.add(jSeparator10);
+
+            logout_menuitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+            logout_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/lock_32.png"))); // NOI18N
+            logout_menuitem.setText("Logout");
+            logout_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    logout_menuitemActionPerformed(evt);
+                }
+            });
+            file_menu.add(logout_menuitem);
+            file_menu.add(jSeparator2);
+
+            exit_program.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+            exit_program.setText("Exit");
+            exit_program.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    exit_programActionPerformed(evt);
+                }
+            });
+            file_menu.add(exit_program);
+
+            main_menubar.add(file_menu);
+
+            edit_menu.setText("Edit");
+
+            jMenuItem25.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
+            jMenuItem25.setText("Undo");
+            jMenuItem25.setEnabled(false);
+            edit_menu.add(jMenuItem25);
+
+            jMenuItem26.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
+            jMenuItem26.setText("Redo");
+            jMenuItem26.setEnabled(false);
+            jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jMenuItem26ActionPerformed(evt);
+                }
+            });
+            edit_menu.add(jMenuItem26);
+            edit_menu.add(jSeparator8);
+
+            jMenuItem27.setText("Cut");
+            edit_menu.add(jMenuItem27);
+
+            jMenuItem28.setText("Copy");
+            edit_menu.add(jMenuItem28);
+
+            jMenuItem30.setText("Paste");
+            jMenuItem30.setEnabled(false);
+            edit_menu.add(jMenuItem30);
+
+            jMenuItem31.setText("Paste from History");
+            jMenuItem31.setEnabled(false);
+            edit_menu.add(jMenuItem31);
+
+            jMenuItem33.setText("Delete");
+            edit_menu.add(jMenuItem33);
+
+            jMenuItem32.setText("Select All");
+            edit_menu.add(jMenuItem32);
+            edit_menu.add(jSeparator9);
+
+            jMenuItem36.setText("Find/Replace...");
+            jMenuItem36.setEnabled(false);
+            edit_menu.add(jMenuItem36);
+
+            jMenuItem34.setText("Find Next");
+            jMenuItem34.setEnabled(false);
+            edit_menu.add(jMenuItem34);
+
+            jMenuItem35.setText("Find Previous");
+            jMenuItem35.setEnabled(false);
+            edit_menu.add(jMenuItem35);
+
+            main_menubar.add(edit_menu);
+
+            view_menu.setText("View");
+            view_menu.setToolTipText("");
+            view_menu.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    view_menuActionPerformed(evt);
+                }
+            });
+
+            hint_menuitem.setText("Show hint");
+            view_menu.add(hint_menuitem);
+
+            toolbar_menuitem.setSelected(true);
+            toolbar_menuitem.setText("Show Toolbar");
+            toolbar_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    toolbar_menuitemActionPerformed(evt);
+                }
+            });
+            view_menu.add(toolbar_menuitem);
+
+            statusbar_menuitem.setSelected(true);
+            statusbar_menuitem.setText("Show Status bar");
+            statusbar_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    statusbar_menuitemActionPerformed(evt);
+                }
+            });
+            view_menu.add(statusbar_menuitem);
+
+            main_menubar.add(view_menu);
+
+            database_menu.setText("Database");
+            database_menu.addChangeListener(new javax.swing.event.ChangeListener() {
+                public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                    database_menuStateChanged(evt);
+                }
+            });
+            database_menu.addFocusListener(new java.awt.event.FocusAdapter() {
+                public void focusGained(java.awt.event.FocusEvent evt) {
+                    database_menuFocusGained(evt);
+                }
+            });
+            database_menu.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    database_menuMouseClicked(evt);
+                }
+            });
+            database_menu.addComponentListener(new java.awt.event.ComponentAdapter() {
+                public void componentShown(java.awt.event.ComponentEvent evt) {
+                    database_menuComponentShown(evt);
+                }
+            });
+            database_menu.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    database_menuActionPerformed(evt);
+                }
+            });
+
+            jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/database_32.png"))); // NOI18N
+            jMenu7.setText("Connect..");
+            jMenu7.setEnabled(false);
+
+            new_db_menuitem.setText("New...");
+            new_db_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    new_db_menuitemActionPerformed(evt);
+                }
+            });
+            jMenu7.add(new_db_menuitem);
+
+            del_db_menuitem.setText("Delete...");
+            del_db_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    del_db_menuitemActionPerformed(evt);
+                }
+            });
+            jMenu7.add(del_db_menuitem);
+
+            find_db_menuitem.setText("Find...");
+            jMenu7.add(find_db_menuitem);
+
+            database_menu.add(jMenu7);
+
+            connect_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/database_add_32.png"))); // NOI18N
+            connect_menuitem.setText("Connect");
+            connect_menuitem.setEnabled(false);
+            connect_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    connect_menuitemActionPerformed(evt);
+                }
+            });
+            database_menu.add(connect_menuitem);
+
+            disconnect_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/database_close_32.png"))); // NOI18N
+            disconnect_menuitem.setText("Disconnect");
+            disconnect_menuitem.setEnabled(false);
+            disconnect_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    disconnect_menuitemActionPerformed(evt);
+                }
+            });
+            database_menu.add(disconnect_menuitem);
+            database_menu.add(jSeparator1);
+
+            import_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/folder_upload.png"))); // NOI18N
+            import_menuitem.setText("Import...");
+
+            import_csv_menuitem.setText("From CSV");
+            import_menuitem.add(import_csv_menuitem);
+
+            database_menu.add(import_menuitem);
+
+            export_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/folder_upload.png"))); // NOI18N
+            export_menuitem.setText("Export...");
+
+            export_csv_menuitem.setText("To CSV");
+            export_menuitem.add(export_csv_menuitem);
+
+            export_txt_menuitem.setText("To TXT");
+            export_menuitem.add(export_txt_menuitem);
+
+            export_sql_menuitem.setText("To SQL");
+            export_menuitem.add(export_sql_menuitem);
+
+            database_menu.add(export_menuitem);
+
+            main_menubar.add(database_menu);
+
+            tools_menu.setText("Tools");
+
+            search_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/search.png"))); // NOI18N
+            search_menuitem.setText("Search...");
+            search_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    search_menuitemActionPerformed(evt);
+                }
+            });
+            tools_menu.add(search_menuitem);
+
+            backup_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/folder_add.png"))); // NOI18N
+            backup_menuitem.setText("Backup");
+            tools_menu.add(backup_menuitem);
+
+            manager_user_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/user.png"))); // NOI18N
+            manager_user_menuitem.setText("Manage User");
+            manager_user_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    manager_user_menuitemActionPerformed(evt);
+                }
+            });
+            tools_menu.add(manager_user_menuitem);
+            tools_menu.add(jSeparator6);
+
+            language_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/globe.png"))); // NOI18N
+            language_menuitem.setText("Language");
+
+            en_us_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/flags/usa.png"))); // NOI18N
+            en_us_menuitem.setText("English");
+            en_us_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    en_us_menuitemActionPerformed(evt);
+                }
+            });
+            language_menuitem.add(en_us_menuitem);
+
+            en_us_menuitem1.setFont(en_us_menuitem1.getFont());
+            en_us_menuitem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/flags/thai.png"))); // NOI18N
+            en_us_menuitem1.setText("ภาษาไทย");
+            en_us_menuitem1.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    en_us_menuitem1ActionPerformed(evt);
+                }
+            });
+            language_menuitem.add(en_us_menuitem1);
+
+            tools_menu.add(language_menuitem);
+
+            options_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/gear.png"))); // NOI18N
+            options_menuitem.setText("Options");
+            options_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    options_menuitemActionPerformed(evt);
+                }
+            });
+            tools_menu.add(options_menuitem);
+
+            main_menubar.add(tools_menu);
+
+            help_menu.setText("Help");
+
+            help_contents_menuitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
+            help_contents_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/help.png"))); // NOI18N
+            help_contents_menuitem.setText("Help Contents");
+            help_contents_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    help_contents_menuitemActionPerformed(evt);
+                }
+            });
+            help_menu.add(help_contents_menuitem);
+
+            online_docs_menuitem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.SHIFT_MASK));
+            online_docs_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/help2.png"))); // NOI18N
+            online_docs_menuitem.setText("Online Docs and Support");
+            online_docs_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    online_docs_menuitemActionPerformed(evt);
+                }
+            });
+            help_menu.add(online_docs_menuitem);
+            help_menu.add(jSeparator5);
+
+            report_bug_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/bug.png"))); // NOI18N
+            report_bug_menuitem.setText("Report Bug...");
+            report_bug_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    report_bug_menuitemActionPerformed(evt);
+                }
+            });
+            help_menu.add(report_bug_menuitem);
+
+            feedback_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/comment.png"))); // NOI18N
+            feedback_menuitem.setText("Feedback...");
+            feedback_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    feedback_menuitemActionPerformed(evt);
+                }
+            });
+            help_menu.add(feedback_menuitem);
+
+            website_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/globe.png"))); // NOI18N
+            website_menuitem.setText("Website..");
+            website_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    website_menuitemActionPerformed(evt);
+                }
+            });
+            help_menu.add(website_menuitem);
+            help_menu.add(jSeparator4);
+
+            check_for_update_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/button_up.png"))); // NOI18N
+            check_for_update_menuitem.setText("Check for Updates");
+            check_for_update_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    check_for_update_menuitemActionPerformed(evt);
+                }
+            });
+            help_menu.add(check_for_update_menuitem);
+
+            about_menuitem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mergano/gui/_static/ico16/info.png"))); // NOI18N
+            about_menuitem.setText("About");
+            about_menuitem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    about_menuitemActionPerformed(evt);
+                }
+            });
+            help_menu.add(about_menuitem);
+
+            main_menubar.add(help_menu);
+
+            setJMenuBar(main_menubar);
+
+            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+            getContentPane().setLayout(layout);
+            layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(status_bar_frame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
+            );
+            layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(body)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(status_bar_frame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            );
+
+            body.getAccessibleContext().setAccessibleName("Body");
+
+            getAccessibleContext().setAccessibleDescription("This is main windows");
+
+            pack();
+            setLocationRelativeTo(null);
+        }// </editor-fold>//GEN-END:initComponents
 
     private void initialDashboard() {
         int pcount = product_table.getRowCount();
@@ -3248,15 +3320,15 @@ public class Main extends javax.swing.JFrame {
             int DeleteConfirm = JOptionPane.showConfirmDialog(this, "Are you sure do you want to delete this row?", "Delete confirmation", YES_NO_OPTION, WARNING_MESSAGE);
 
             if (DeleteConfirm == JOptionPane.YES_OPTION) {
-                long product_id = Long.parseLong(productID_input.getText());
+                long productid = Long.parseLong(productID_input.getText());
                 ProductDAO dao = new ProductDAO();
                 HistoryDAO hisdao = new HistoryDAO();
                 ProductBean bean = new ProductBean();
-                bean.setProductID(product_id);
+                bean.setProductID(productid);
                 bean.setUserLastModified(user_box.getText());
 
                 try {
-                    boolean status = dao.deleteData(bean, product_id);
+                    boolean status = dao.deleteData(bean, productid);
                     updateTable(dao.getData());
                     updateHistory(hisdao.getHistoryData());
 
@@ -3984,6 +4056,54 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_print_history_btnActionPerformed
 
+    private void add_order_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_order_btnActionPerformed
+        int rows = product_orderlist_table.getRowCount();
+        int orderid = Integer.parseInt(order_id.getText());
+        if (rows > 0 && customer_id.getText().length() > 0 && isNumeric(order_id.getText())) {
+            OrderDAO odao = new OrderDAO();
+            odao.AddOrder(orderid, order_table, rows);
+            updateOrderTable(odao.getOrderData());
+        }
+    }//GEN-LAST:event_add_order_btnActionPerformed
+
+    private void order_confirm_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_order_confirm_btnActionPerformed
+        confirmOrder();
+    }//GEN-LAST:event_order_confirm_btnActionPerformed
+
+    private void delete_order_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_order_btnActionPerformed
+        deleteOrder();
+    }//GEN-LAST:event_delete_order_btnActionPerformed
+
+    private void confirmOrder() {
+
+    }
+
+    private void deleteOrder() {
+        int orderid = (int) order_table.getModel().getValueAt(order_table.getSelectedRow(), 0);
+
+        if (orderid > 0) {
+            int DeleteConfirm = JOptionPane.showConfirmDialog(this, "Are you sure do you want to delete order no. " + orderid + " ?", "Delete confirmation", YES_NO_OPTION, WARNING_MESSAGE);
+            if (DeleteConfirm == JOptionPane.YES_OPTION) {
+                OrderDAO dao = new OrderDAO();
+                HistoryDAO hisdao = new HistoryDAO();
+                try {
+                    boolean status = dao.DeleteOrder(orderid, user_box.getText());
+                    updateOrderTable(dao.getOrderData());
+                    updateHistory(hisdao.getHistoryData());
+
+                    if (status) {
+                        JOptionPane.showMessageDialog(this, "Deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        save_product_button.setEnabled(false);
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "Error while deleting order" + ex, "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No order is selected to delete.", "Nothing to delete", INFORMATION_MESSAGE);
+        }
+    }
+
     private void openUserManager() {
         UserManager m = new UserManager();
         m.setVisible(true);
@@ -4003,6 +4123,10 @@ public class Main extends javax.swing.JFrame {
 
     private void logout_action() {
         Logout.logout_confirm();
+    }
+
+    public void updateOrderTable(ArrayList<OrderBean> list) {
+
     }
 
     public void updateReportTable(ArrayList<ReportBean> list) {
@@ -4126,6 +4250,7 @@ public class Main extends javax.swing.JFrame {
     public javax.swing.JButton add_product_button;
     private javax.swing.JScrollPane add_product_to_order_table;
     private javax.swing.JMenuItem add_to_order_btn;
+    private javax.swing.JButton add_to_orderlist_btn;
     private javax.swing.JMenuItem backup_menuitem;
     public javax.swing.JTabbedPane body;
     private javax.swing.JPanel body_panel;
@@ -4215,6 +4340,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel in_stock_dashboard;
     private javax.swing.JLabel in_stock_dashboard_label;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -4262,6 +4388,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -4300,6 +4427,7 @@ public class Main extends javax.swing.JFrame {
     protected javax.swing.JButton ord_button_wel;
     private javax.swing.JPanel order_action_btn_group;
     private javax.swing.JButton order_confirm_btn;
+    private javax.swing.JTextField order_id;
     private javax.swing.JPanel order_input;
     private javax.swing.JPanel order_left_panel;
     private javax.swing.JMenuItem order_management_menuitem;
