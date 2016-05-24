@@ -1000,6 +1000,7 @@ public class Main extends javax.swing.JFrame {
 
             current_order_dashboard.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
             current_order_dashboard.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            current_order_dashboard.setText("0");
             current_order_dashboard.setToolTipText("");
             current_order_dashboard.setVerticalAlignment(javax.swing.SwingConstants.TOP);
             jPanel16.add(current_order_dashboard);
@@ -1449,7 +1450,7 @@ public class Main extends javax.swing.JFrame {
 
             order_panel.setLayout(new java.awt.BorderLayout());
 
-            order_left_panel.setPreferredSize(new java.awt.Dimension(800, 500));
+            order_left_panel.setPreferredSize(new java.awt.Dimension(800, 400));
             order_left_panel.setLayout(new java.awt.BorderLayout(10, 10));
 
             ScrollPanelForQueryTable2.setBorder(null);
@@ -1473,9 +1474,11 @@ public class Main extends javax.swing.JFrame {
             });
             ScrollPanelForQueryTable2.setViewportView(order_table);
 
-            order_left_panel.add(ScrollPanelForQueryTable2, java.awt.BorderLayout.PAGE_START);
+            order_left_panel.add(ScrollPanelForQueryTable2, java.awt.BorderLayout.CENTER);
 
             order_panel.add(order_left_panel, java.awt.BorderLayout.CENTER);
+
+            order_right_panel.setPreferredSize(new java.awt.Dimension(395, 400));
 
             order_input.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add Order ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12))); // NOI18N
             order_input.setLayout(new java.awt.BorderLayout(10, 10));
@@ -1610,7 +1613,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(order_input, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(order_product_input, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(order_confirm_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             );
 

@@ -51,7 +51,6 @@ public class ConnectDB extends LoadDriver {
 //        writer.flush();
         try {
             boolean internet = "127.0.0.1".equals(InetAddress.getLocalHost().getHostAddress());
-            System.out.println(internet);
             Class.forName(LoadDriver.getDriver()); // Registed JDBC DRIVER
             conn = DriverManager.getConnection(URL, info);
             //conn = (Connection) DriverManager.getConnection("jdbc:mysql://128.199.117.93:" + "3306" + "/mergano" + "?useCompression=true", "user", "iloveoosd");
